@@ -1,20 +1,14 @@
 <template>
     <div>
-        <keyboard-style>
-            <div style="position:absolute;left:25%;width:50%;height:60px;" @click="this.onClick" id="display" text-align=centre margin=auto display=inline>{{test}}</div>
-            <key-component />
-        </keyboard-style>
+        <key-component />
     </div>
 </template>
 
-<!--How do I do this?-->
-<style scoped>
-    keyboard-style {
-        font-size: large;
-/*        margin: 40px 0 0;*/
-    }
-    font-size: large;
+
+<style>
+    
 </style>
+
 
 <script>
 import KeyComponent from '@/components/keyboard/KeyComponent.vue';
@@ -27,9 +21,6 @@ export default{
         }
     },
     methods : {
-        'onClick' : function(){
-            this.test++
-        }
     },
     components: {
         'key-component' : KeyComponent,
