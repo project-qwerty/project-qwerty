@@ -1,36 +1,110 @@
 <template>
     <div id="app">
       <Header />
-      <AddTodo v-on:add-todo="addTodo" />
-      <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
+      <Keyboard v-bind:keys="keys" />
   </div>
 </template>
 
 
 <script>
   import Header from './components/layout/Header';
-  import Todos from './components/Todos';
-  import AddTodo from './components/AddTodo';
+  import Keyboard from './components/keyboard/KeyboardComponent';
 
   export default {
     name: 'app',
     components: {
       Header,
-      Todos,
-      AddTodo
+      Keyboard
     },
     data() {
       return {
-        todos: []
+        keys: [
+          [
+          {
+            letter: 'q'
+          },
+          {
+            letter: 'w'
+          },
+          {
+            letter: 'e'
+          },
+          {
+            letter: 'r'
+          },
+          {
+            letter: 't'
+          },
+          {
+            letter: 'y'
+          },
+          {
+            letter: 'u'
+          },
+          {
+            letter: 'i'
+          },
+          {
+            letter: 'o'
+          },
+          {
+            letter: 'p'
+          }],[
+          {
+            letter: 'a'
+          },
+          {
+            letter: 's'
+          },
+          {
+            letter: 'd'
+          },
+          {
+            letter: 'f'
+          },
+          {
+            letter: 'g'
+          },
+          {
+            letter: 'h'
+          },
+          {
+            letter: 'j'
+          },
+          {
+            letter: 'k'
+          },
+          {
+            letter: 'l'
+          }],[
+          {
+            letter: 'z'
+          },
+          {
+            letter: 'x'
+          },
+          {
+            letter: 'c'
+          },
+          {
+            letter: 'v'
+          },
+          {
+            letter: 'b'
+          },
+          {
+            letter: 'n'
+          },
+          {
+            letter: 'm'
+          }],[
+          {
+            letter: ' '
+          }]
+        ]
       }
     },
     methods: {
-      deleteTodo(id) {
-        this.todos = this.todos.filter(todo => todo.id !== id);
-      },
-      addTodo(newTodo) {
-        this.todos = [...this.todos, newTodo];
-      }
     },
     created() {
     }
