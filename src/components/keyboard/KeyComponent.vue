@@ -1,6 +1,6 @@
 <template>
   <div class="key" @click="click">
-    {{char['letter']}}
+    <p>{{char['letter']}}</p>
   </div>
 </template>
 
@@ -29,12 +29,13 @@
 <style scoped>
   .key {
     border: 1px solid black;
-    width: 80px;
-    height: 80px;
-    font-size: 50px;
     text-transform: capitalize;
-/*    padding: 10px;*/
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    height: 100%;
   }
   
 </style>

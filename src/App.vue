@@ -1,6 +1,7 @@
 <template>
     <div id="app">
       <Header />
+      <WordList v-bind:wordlist="wordlist" v-bind:index="index"/>
       <Keyboard v-bind:keys="keys" />
   </div>
 </template>
@@ -9,15 +10,19 @@
 <script>
   import Header from './components/layout/Header';
   import Keyboard from './components/keyboard/KeyboardComponent';
+  import WordList from './components/WordList'
 
   export default {
     name: 'app',
     components: {
       Header,
-      Keyboard
+      WordList,
+      Keyboard,
     },
     data() {
       return {
+        wordlist: ["hello", "my", "name", "is", "tim"],
+        index: 1,
         keys: [
           [
           {
