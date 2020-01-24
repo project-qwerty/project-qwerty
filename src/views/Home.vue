@@ -1,21 +1,23 @@
 <template>
   <div class="home">
-    <a href="https://www.google.com/">
-         <img alt="Vue logo" src="../assets/logo.png">
-    </a>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header />
+    <div style="opacity:0;height:50px"></div>
+    <img alt="App logo" style="height:400px" src="../assets/app_logo.png">
+    <router-link style="display:flex;justify-content:center;align-items:center;text-decoration:none" to="/keyboard">
+      <p style="text-align:center;font-size:36px;margin-right:16px;color:#414141">Practice<br/>Typing</p>
+      <font-awesome-icon style="font-size:100;color:#414141" icon="chevron-right"/>
+    </router-link>
   </div>
 </template>
 
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+  import Header from '../components/layout/Header';
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    Header
   }
 }
 </script>

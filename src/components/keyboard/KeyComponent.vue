@@ -35,7 +35,16 @@
     align-items: center;
     justify-content: center;
     font-size: 24px;
+/*    width: 100px;*/
     height: 100%;
   }
+  
+/*
+  .key:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+*/
   
 </style>

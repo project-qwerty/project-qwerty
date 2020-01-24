@@ -1,6 +1,12 @@
 <template>
   <header class="header">
-    <h1>Typing Rehab</h1>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <img alt="MIME logo" style="height:100px" :src="require('@/assets/MIME_logo.png')">
+      <img alt="MYMI logo" style="height:100px" :src="require('@/assets/MYMI_logo.png')">
+      <router-link style="display:flex;justify-content:center;align-items:center;text-decoration:none" to="/settings">
+        <font-awesome-icon style="font-size:100;color:#444444" icon="cog"/>
+      </router-link>
+    </div>
   </header>
 </template>
 
@@ -14,8 +20,8 @@
 
 <style scoped>
   .header {
-    background: #333;
-    color: #fff;
+    background: #fff;
+    color: #444;
     text-align: center;
     padding: 10px;
   }
