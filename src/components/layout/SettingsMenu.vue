@@ -9,7 +9,7 @@
 <style scoped>
   .line {
     border-right: 1px solid black;
-    height: 700px;
+    height: 100;
     display: inline-block;
     box-shadow: 2px 0px grey;
   }

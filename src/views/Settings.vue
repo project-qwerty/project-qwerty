@@ -1,5 +1,5 @@
 <template>
-  <div class="settings" style="display:flex;height:100%">
+  <div class="settings" style="display:flex;height:100">
     <SettingsMenu />
     <Timer />
   </div>

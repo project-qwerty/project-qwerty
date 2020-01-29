@@ -3,7 +3,7 @@
     <div id="keyboard">
       <Header />
       <WordList v-if="!isHidden" class="wordlist" v-bind:wordlist="wordlist" v-bind:index="index" />
-      <div v-else style="color:white" class="wordlist">You can do it!</div>
+      <div v-else style="color:white;opacity:0" class="wordlist">You can do it!</div>
       <div class="output">{{output}}</div>
       <Keyboard v-bind:keys="keys" v-on:update:keypressed="keypressed" />
       <UploadFile />
@@ -28,7 +28,7 @@
     },
     data() {
       return {
-        wordlist: ["hello", "my", "name", "is", "tim"],
+        wordlist: ["hello", "my", "name", "is", "chris"],
         index: 0,
         keys: [
           [
