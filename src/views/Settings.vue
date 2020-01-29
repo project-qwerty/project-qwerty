@@ -1,29 +1,32 @@
 <template>
-  <div class="settings" style="display:flex;height:100">
+  <div class="settings">
     <SettingsMenu />
-    <Timer />
+    <div style="display:flex;flex-direction:column">
+      <Timer />
+      <Errorless />
+    </div>
   </div>
 </template>
+
+
+<style scoped>
+  .settings {
+    display: flex;
+  }
+</style>
 
 
 <script>
   import SettingsMenu from '../components/layout/SettingsMenu';
   import Timer from '../components/settings/Timer';
+  import Errorless from '../components/settings/Errorless';
   
   export default {
     name: "Settings",
     components: {
       SettingsMenu,
       Timer,
+      Errorless,
     }
   }
 </script>
-
-
-<!--
-<style scoped>
-  .settings {
-    display:flex;
-    min-height:100px;
-  }
-</style>-->
