@@ -1,3 +1,4 @@
+
 <template>
   <div class="settings" style="display:flex;height:100%">
     <SettingsMenu :options="options"/>
