@@ -1,5 +1,5 @@
 <template>
-  <div class="key" @click="click">
+  <div class="key" :class="{'disabled' : correction && !enable}" @click="click">
     <p>{{char['letter']}}</p>
   </div>
 </template>
@@ -8,18 +8,27 @@
 <script>
   export default {
     props:[
-      'char'
+      "char",
+      "word",
+      "correction",
     ],
     data () {
       return {
-        test:"h"
       }
     },
-//    props: ,
-    
     methods: {
       click() {
-        this.$emit('update:click', this.char['letter']);
+        if(this.enable){
+          this.$emit('update:click', this.char['letter']);
+          this.$emit('update:error', false);
+        }
+        else{this.$emit('update:error', true);}
+      }
+    },
+    computed : {
+      'enable' : function(){
+        if(this.word == null) return true;
+        return this.word.includes(this.char['letter'])
       }
     }
   }
@@ -27,7 +36,13 @@
 
 
 <style scoped>
+  
+  .disabled{
+    background-color: gray !important;
+  }
+  
   .key {
+    background-color: white;
     border: 1px solid black;
     text-transform: capitalize;
     box-sizing: border-box;

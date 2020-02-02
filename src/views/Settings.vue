@@ -4,6 +4,7 @@
     <div style="display:flex;flex-direction:column">
       <Timer />
       <Errorless />
+      <UploadFile />
     </div>
   </div>
 </template>
@@ -20,6 +21,7 @@
   import SettingsMenu from '../components/layout/SettingsMenu';
   import Timer from '../components/settings/Timer';
   import Errorless from '../components/settings/Errorless';
+  import UploadFile from '../components/UploadFile';
   
   export default {
     name: "Settings",
@@ -27,6 +29,7 @@
       SettingsMenu,
       Timer,
       Errorless,
+      UploadFile
     }
   }
 </script>

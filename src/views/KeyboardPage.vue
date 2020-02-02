@@ -1,7 +1,7 @@
 
 <template>
     <div id="keyboard">
-      <Header />
+      <Header style="opacity:0"/>
       <WordList v-if="!isHidden" class="wordlist" v-bind:wordlist="wordlist" v-bind:index="index" />
       <div v-else style="color:white;opacity:0" class="wordlist">You can do it!</div>
       <div class="output">{{output}}</div>
@@ -174,7 +174,7 @@
     computed : {
       'word' : function(){
         if(this.errorless) return this.wordlist[this.index][this.output.length];
-        return 'abcdefghijklmnopqrstuvwxyzdelete'
+        return 'abcdefghijklmnopqrstuvwxyzdelete '
       }
     },
     methods: {
@@ -205,7 +205,7 @@
         }
       },
       hide() {
-        this.isHidden = true;
+//        this.isHidden = true;
       }
     },
     created() {

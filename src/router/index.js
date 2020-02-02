@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Keyboard from '../views/KeyboardPage.vue'
 import Settings from '../views/Settings.vue'
+import SelectWords from '../views/SelectWords.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/settings',
     name: 'settings',
     component: Settings
+  },
+  {
+    path: '/select_words',
+    name: 'select_words',
+    component: SelectWords
   },
 ]
 
