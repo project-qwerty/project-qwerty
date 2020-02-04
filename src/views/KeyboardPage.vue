@@ -1,11 +1,15 @@
 
 <template>
-    <div id="keyboard">
-      <Header style="opacity:0"/>
-      <WordList v-if="!isHidden" class="wordlist" v-bind:wordlist="wordlist" v-bind:index="index" />
-      <div v-else style="color:white;opacity:0" class="wordlist">You can do it!</div>
-      <div class="output">{{output}}</div>
-      <Keyboard v-bind:keys="keys" :word="word" v-on:update:keypressed="keypressed" />
+  <div id="keyboard">
+    <Header style="opacity:0"/>
+    <WordList v-if="!isHidden" class="wordlist" v-bind:wordlist="wordlist" v-bind:index="index" />
+    <div v-else style="color:white;opacity:0" class="wordlist">You can do it!</div>
+    <div class="output">{{output}}</div>
+    <modal :show.sync="showModal">
+      <h3 slot="header">custom header</h3>
+      <div slot="body">custom body</div>
+    </modal>
+    <Keyboard v-bind:keys="keys" :word="word" v-on:update:keypressed="keypressed" />
   </div>
 </template>
 
@@ -57,6 +61,7 @@
   import Header from '../components/layout/Header';
   import Keyboard from '../components/keyboard/KeyboardComponent';
   import WordList from '../components/WordList';
+  import Modal from 'vue-modal';
 
   export default {
     name: 'app',
@@ -64,10 +69,12 @@
       Header,
       WordList,
       Keyboard,
+      Modal
     },
     data() {
       return {
-        wordlist: ["hello", "my", "name", "is", "chris"],
+        showModal:true,
+        wordlist: ["hello"],
         index: 0,
         keys: [
           [
@@ -206,7 +213,9 @@
           setTimeout(this.hide, this.timer * 1000);
           if (this.index == this.wordlist.length) {
             this.index = 0;
-            this.output = "YOU WIN!!";
+            this.output = "";
+            this.wordlist = ["You Win!"];
+            
           }
         }
       },

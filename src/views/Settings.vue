@@ -5,7 +5,7 @@
     <div style="display:flex;flex-direction:column">
       <Timer />
       <Errorless />
-      <UploadFile />
+      <UploadFile style="padding:100" />
     </div>
   </div>
 </template>
