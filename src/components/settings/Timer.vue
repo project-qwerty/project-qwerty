@@ -8,7 +8,7 @@ min is the minimum value and max the maximum value-->
       <h1 style="font-weight:200">General Settings</h1>
       
     <p class="setting-heading">Repetitions</p>
-      <switch-component :options="['1', '3']" v-on:update:value=" repetitions=$event"/> 
+      <switch-component :preset="preset.value_repetitions" :options="['1', '3']" v-on:update:value=" value_repetitions=$event"/> 
       
       <p class="setting-heading">Timer</p>
         <veeno 
@@ -48,9 +48,10 @@ min is the minimum value and max the maximum value-->
       
       <p class="setting-heading">Errorless Learning</p>
       <switch-component :preset="preset.value_errorless" :options="['ON', 'OFF']" v-on:update:value="value_errorless=$event"/> 
+      <!--This is completed-->
       
       <p class="setting-heading">Keyboard</p>
-      <switch-component :options="['LETTER ONLY', 'LETTER & NUMBER']" v-on:update:value=" keyboard=$event"/> 
+      <switch-component :preset="preset.value_keyboard" :options="['LETTER ONLY', 'LETTER & NUMBER']" v-on:update:value=" value_keyboard=$event"/> 
       
       
   </div>
@@ -72,15 +73,15 @@ min is the minimum value and max the maximum value-->
                 value_trials: null,
                 
                 // the variables related to buttons
-                repetitions: null,
+                value_repetitions: null,
                 value_startermode: null,
                 value_errorless: null,
-                keyboard: null,
+                value_keyboard: null,
                 preset : {
-                    repetitions: null,
+                    value_repetitions: null,
                     value_startermode: null,
                     value_errorless: null,
-                    keyboard: null,
+                    value_keyboard: null,
                 }
             }
         },
@@ -90,6 +91,11 @@ min is the minimum value and max the maximum value-->
         },
         // This stores the values for timer and trials into local cookies so that they can be accessed by the keyboard page.
         watch: {
+            'value_repetitions' : function(val){
+                this.$cookies.set('settings.repetitions', val)
+            },
+        
+            
             'value_timer' : function(val){
                 this.$cookies.set('settings.timer', val)
             
@@ -101,17 +107,21 @@ min is the minimum value and max the maximum value-->
             
             'value_errorless' : function(val){
                 this.$cookies.set('settings.errorless', val)
-                window.console.log('errorless saved')
             },
             
             'value_startermode' : function(val){
                 this.$cookies.set('settings.startermode', val)
-                window.console.log('startermode saved')
+            },
+            
+            'value_keyboard' : function(val){
+                this.$cookies.set('settings.keyboard', val)
             },
         
         },
         // This sets the sliders so that they remember there last location.
         created(){
+            this.preset.value_repetitions = this.$cookies.isKey('settings.repetitions') ? this.$cookies.get('settings.repetitions') : ''
+            
             this.value_timer = this.$cookies.isKey('settings.timer') ? this.$cookies.get('settings.timer') : 5
             
             this.value_trials = this.$cookies.isKey('settings.trials') ? this.$cookies.get('settings.trials') : 5
@@ -119,6 +129,8 @@ min is the minimum value and max the maximum value-->
             this.preset.value_startermode = this.$cookies.isKey('settings.startermode') ? this.$cookies.get('settings.startermode') : 'OFF'
 
             this.preset.value_errorless = this.$cookies.isKey('settings.errorless') ? this.$cookies.get('settings.errorless') : 'OFF'
+            
+            this.preset.value_keyboard = this.$cookies.isKey('settings.keyboard') ? this.$cookies.get('settings.keyboard') : 'LETTER ONLY'
             
         }
     }
