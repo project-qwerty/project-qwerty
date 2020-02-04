@@ -128,6 +128,7 @@
         ],
         output: "",
         isHidden: false,
+        timerOnOff: false, // Controls whether the timer is on or off (line 168)
         audio : new Audio(require('@/assets/correct.mp3')),
           settings: {
               timer : 1
@@ -162,9 +163,16 @@
         }
       },
       hide() {
-        this.isHidden = true;
-          // This is where the true/false is set.
-          // If true then time is on, if false the timer off
+          
+        // If true then time is on, if false the timer off
+        if (this.$cookies.get('settings.timer') > 0) {
+            this.timerOnOff = true
+            
+        } else {
+            this.timerOnOff = false
+        }
+          
+        this.isHidden = this.timerOnOff;
       }
     },
     created() {

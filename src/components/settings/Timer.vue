@@ -3,8 +3,14 @@
 min is the minimum value and max the maximum value-->
 
 <!--Need to use getValue to use the slider as an input-->
-  <div style="width:600px;" >
-      Timer  
+  <div style="width:600px; padding-left:48px;"  >
+      Repetitions
+      <switch-component :options="['1', '3']" v-on:update:value=" repetitions=$event"/> 
+      
+      <!--Creates the space required between the two paragraphs-->
+      <p style="font-size:100px;"></p>
+      
+    Timer  
         <veeno 
            v-model='value_timer'
                 :pipsy = "{ 
@@ -19,7 +25,6 @@ min is the minimum value and max the maximum value-->
                 }"
         />
       
-      
       <!--Creates the space required between the two paragraphs-->
       <p style="font-size:100px;"></p>
       
@@ -33,10 +38,27 @@ min is the minimum value and max the maximum value-->
                :handles = "[this.value_trials]" 
                :step = "5"
                 :range = "{ 
-                'min': [  0 ],
+                'min': [  5 ],
                 'max': [ 50 ]
                 }"
         />
+      
+      <!--Creates the space required between the two paragraphs-->
+      <p style="font-size:100px;"></p>
+      
+      Starter Mode
+      <switch-component :options="['ON', 'OFF']" v-on:update:value=" startermode=$event"/> 
+      
+      <p style="font-size:100px;"></p>
+      
+      Errorless Learning
+      <switch-component :options="['ON', 'OFF']" v-on:update:value="errorless=$event"/> 
+      
+      <p style="font-size:100px;"></p>
+      
+      Keyboard
+      <switch-component :options="['LETTER ONLY', 'LETTER & NUMBER']" v-on:update:value=" keyboard=$event"/> 
+      
       
   </div>
 </template>
@@ -45,7 +67,8 @@ min is the minimum value and max the maximum value-->
 <script>
     // Importing the slider from a plug in, the slider is called veeno.
     import veeno from 'veeno' 
-    import 'nouislider/distribute/nouislider.min.css';  
+    import 'nouislider/distribute/nouislider.min.css'; 
+    import Switch from '@/components/settings/Switch.vue';
     
     export default {
         data() {
@@ -53,17 +76,24 @@ min is the minimum value and max the maximum value-->
                 // this is a key value pair
                 value_timer: null,
                 // value is intially set to zero, however the value is changed as the slider is moved 
-                value_trials: null
+                value_trials: null,
+                
+                // the variables related to buttons
+                repetitions: null,
+                startermode: null,
+                errorless: null,
+                keyboard: null
             }
         },
         components: {
-            veeno 
+            'veeno' : veeno,
+            'switch-component' : Switch
         },
         // This stores the values for timer and trials into local cookies so that they can be accessed by the keyboard page.
         watch: {
             'value_timer' : function(val){
                 this.$cookies.set('settings.timer', val)
-                //window.console.log(this.$cookies.get('settings.timer'))
+            
             },
             
             'value_trials' : function(val){
