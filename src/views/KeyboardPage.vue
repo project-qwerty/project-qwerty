@@ -167,7 +167,7 @@
         ],
         output: "",
         isHidden: false,
-        errorless: false,
+        errorless: false, // Controls whether errorless is on or off 
         timerOnOff: false, // Controls whether the timer is on or off (line 168)
         audio : new Audio(require('@/assets/correct.mp3')),
           settings: {
@@ -229,5 +229,6 @@
         }
         setTimeout(this.hide, this.timer * 1000);
     }
+      
   }
 </script>
