@@ -57,7 +57,7 @@ min is the minimum value and max the maximum value-->
   // Importing the slider from a plug in, the slider is called veeno.
   import veeno from 'veeno';
   import 'nouislider/distribute/nouislider.min.css';
-  import Switch from '@/components/settings/Switch.vue';
+  import Switch from '@/components/Switch.vue';
 
   export default {
     data() {
