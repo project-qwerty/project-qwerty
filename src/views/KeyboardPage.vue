@@ -35,6 +35,7 @@
         errorlessOnOff: true, // Controls whether errorless is on or off 
         timerOnOff: false, // Controls whether the timer is on or off (line 168)
         correct_audio : new Audio(require('@/assets/correct.mp3')),
+        wrong_audio : new Audio(require('@/assets/wrong.mp3')),
           settings: {
               timer : 1
           }
@@ -91,7 +92,6 @@
           this.index += 1;
           this.output = "";
           this.correct_audio.play();
-          
           // Ths is the timer setting, time is in milliseconds
             // This should be where the if statement checking if the timer is set to zero should be added.
           this.isHidden = false;
@@ -101,8 +101,9 @@
             this.output = "";
             this.wordlist = ["You Win!"];
             this.showModal = true;
-            
           }
+        } else if (this.output.length === this.wordlist[this.index].length) {
+          this.wrong_audio.play();
         }
       },
       hide() {
