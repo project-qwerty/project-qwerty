@@ -42,10 +42,10 @@ min is the minimum value and max the maximum value-->
     />
     
     <p class="setting-heading">Starter Mode</p>
-    <switch-component :preset="preset.value_startermode" :options="['ON', 'OFF']" v-on:update:value="value_startermode=$event"/>
+    <switch-component :preset="preset.value_startermode" :options="['OFF', 'ON']" v-on:update:value="value_startermode=$event"/>
 
     <p class="setting-heading">Errorless Learning</p>
-    <switch-component :preset="preset.value_errorless" :options="['ON', 'OFF']" v-on:update:value="value_errorless=$event"/>
+    <switch-component :preset="preset.value_errorless" :options="['OFF', 'ON']" v-on:update:value="value_errorless=$event"/>
 
     <p class="setting-heading">Keyboard</p>
     <switch-component :preset="preset.value_keyboard" :options="['LETTER ONLY', 'LETTER & NUMBER']" v-on:update:value=" value_keyboard=$event"/>
