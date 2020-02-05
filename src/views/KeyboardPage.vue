@@ -27,7 +27,7 @@
     },
     data() {
       return {
-        showModal:true,
+        showModal:false,
         wordlist: ["hello"],
         index: 0,
         output: "",
@@ -100,6 +100,7 @@
             this.index = 0;
             this.output = "";
             this.wordlist = ["You Win!"];
+            this.showModal = true;
             
           }
         }
