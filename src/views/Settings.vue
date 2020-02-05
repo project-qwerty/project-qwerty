@@ -1,6 +1,5 @@
-
 <template>
-  <div class="settings" style="display:flex;height:100%">
+  <div class="settings">
     <SettingsMenu :options="options"/>
     <div style="display:flex;flex-direction:column">
       <Timer />
@@ -14,6 +13,7 @@
 <style scoped>
   .settings {
     display: flex;
+    height: 100%;
   }
 </style>
 
@@ -21,7 +21,6 @@
 <script>
   import SettingsMenu from '../components/layout/SettingsMenu';
   import Timer from '../components/settings/Timer';
-    import SettingsLinks from '@/views/SettingsLinks.js';
   import Errorless from '../components/settings/Errorless';
   import UploadFile from '../components/UploadFile';
   
@@ -34,10 +33,15 @@
       UploadFile
     },
     data : function(){
-        return {
-            // Needs to be copy and pasted for each of the settings page
-            'options' : SettingsLinks,
-        }
+      return {
+        // Links to each settings page
+        'options' : [
+          {link : '/setting/general', name: 'General', from: '/settings/General'},
+          {link : '/setting/reports', name: 'Reports', from: '/settings/Reports'},
+          {link : '/setting/custom-lists', name: 'Custom Lists', from: '/settings/CustomLists'},
+          {link : '/setting/display', name: 'Display', from: '/settings/Display'},
+        ],
+      }
     }
   }
 </script>

@@ -2,22 +2,22 @@
   <div class="line">
     <h1>Settings</h1>
     <div>
-        <router-link 
-            v-for="(option, index) in this.options"
-            :key="index"
-            class="option-link" 
-            :to="option.link">{{option.name}}</router-link>
+      <router-link 
+        v-for="(option, index) in this.options"
+        :key="index"
+        class="option-link" 
+        :to="option.link">{{option.name}}</router-link>
     </div>
   </div>
 </template>
 
 <script>
-    export default{
-        name:"settings-menu",
-        props: [
-            'options'
-        ]
-    }
+  export default{
+    name:"settings-menu",
+    props: [
+      'options'
+    ]
+  }
 </script>
 
 <style scoped>

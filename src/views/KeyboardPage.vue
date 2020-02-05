@@ -1,7 +1,6 @@
-
 <template>
   <div id="keyboard">
-    <Header style="opacity:0"/>
+    <p style="font-size:60px"></p>
     <WordList v-if="!isHidden" class="wordlist" v-bind:wordlist="wordlist" v-bind:index="index" />
     <div v-else style="color:white;opacity:0" class="wordlist">You can do it!</div>
     <div class="output">{{output}}</div>
@@ -9,7 +8,7 @@
       <h3 slot="header">custom header</h3>
       <div slot="body">custom body</div>
     </modal>
-    <Keyboard v-bind:keys="keys" :word="word" v-on:update:keypressed="keypressed" />
+    <Keyboard :word="word" v-on:update:keypressed="keypressed" />
   </div>
 </template>
 
@@ -58,7 +57,6 @@
 
 
 <script>
-  import Header from '../components/layout/Header';
   import Keyboard from '../components/keyboard/KeyboardComponent';
   import WordList from '../components/WordList';
   import Modal from 'vue-modal';
@@ -66,7 +64,6 @@
   export default {
     name: 'app',
     components: {
-      Header,
       WordList,
       Keyboard,
       Modal
@@ -76,121 +73,38 @@
         showModal:true,
         wordlist: ["hello"],
         index: 0,
-        keys: [
-          [
-            {
-              letter: 'delete'
-            }
-          ],
-          [
-            {
-              letter: 'q'
-            },
-            {
-              letter: 'w'
-            },
-            {
-              letter: 'e'
-            },
-            {
-              letter: 'r'
-            },
-            {
-              letter: 't'
-            },
-            {
-              letter: 'y'
-            },
-            {
-              letter: 'u'
-            },
-            {
-              letter: 'i'
-            },
-            {
-              letter: 'o'
-            },
-            {
-              letter: 'p'
-            }
-          ],
-          [
-            {
-              letter: 'a'
-            },
-            {
-              letter: 's'
-            },
-            {
-              letter: 'd'
-            },
-            {
-              letter: 'f'
-            },
-            {
-              letter: 'g'
-            },
-            {
-              letter: 'h'
-            },
-            {
-              letter: 'j'
-            },
-            {
-              letter: 'k'
-            },
-            {
-              letter: 'l'
-            }
-          ],
-          [
-            {
-              letter: 'z'
-            },
-            {
-              letter: 'x'
-            },
-            {
-              letter: 'c'
-            },
-            {
-              letter: 'v'
-            },
-            {
-              letter: 'b'
-            },
-            {
-              letter: 'n'
-            },
-            {
-              letter: 'm'
-            }
-          ],
-          [
-            {
-              letter: ' '
-            }
-          ]
-        ],
         output: "",
         isHidden: false,
         errorless: false, // Controls whether errorless is on or off 
         timerOnOff: false, // Controls whether the timer is on or off (line 168)
-        audio : new Audio(require('@/assets/correct.mp3')),
+        correct_audio : new Audio(require('@/assets/correct.mp3')),
           settings: {
               timer : 1
           }
       }
     },
+    //Run on loading of page
+    created() {
+      // Add all the cookies here (first two lines are the important ones)
+      if(this.$cookies.isKey('settings.timer')){
+        this.timer = this.$cookies.get('settings.timer');
+        if(this.$cookies.get('settings.timer') == 0) {
+          this.timerOnOff = false;
+        } else {
+          this.timerOnOff = true;
+        }
+      }
+      setTimeout(this.hide, this.timer * 1000);
+    },
     computed : {
       'word' : function(){
         if(this.errorless) return this.wordlist[this.index][this.output.length];
-        return 'abcdefghijklmnopqrstuvwxyzdelete '
+        return 'abcdefghijklmnopqrstuvwxyz backspace'
       }
     },
     methods: {
       keypressed(char) {
-        if (char !== "delete") {
+        if (char !== "backspace") {
           if (this.errorless) {
             var _word = this.wordlist[this.index];
             if (char === _word[this.output.length]) {
@@ -205,7 +119,7 @@
         if (this.output === this.wordlist[this.index]) {
           this.index += 1;
           this.output = "";
-          this.audio.play();
+          this.correct_audio.play();
           
           // Ths is the timer setting, time is in milliseconds
             // This should be where the if statement checking if the timer is set to zero should be added.
@@ -220,24 +134,8 @@
         }
       },
       hide() {
-          
-        // If true then time is on, if false the timer off
-        if (this.$cookies.get('settings.timer') > 0) {
-            this.timerOnOff = true
-            
-        } else {
-            this.timerOnOff = false
-        }
-          
         this.isHidden = this.timerOnOff;
       }
-    },
-    created() {
-        if(this.$cookies.isKey('settings.timer')){
-            this.timer = this.$cookies.get('settings.timer')
-        }
-        setTimeout(this.hide, this.timer * 1000);
-    }
-      
+    }, 
   }
 </script>
