@@ -52,6 +52,7 @@
     font-size: 24px;
 /*    width: 100px;*/
     height: 100%;
+    margin-right: 10px;
   }
   
 /*
