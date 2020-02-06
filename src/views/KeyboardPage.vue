@@ -2,7 +2,7 @@
   <div id="keyboard">
     <p style="font-size:60px"></p>
     <WordList v-if="!isHidden" class="wordlist" v-bind:wordlist="wordlist" v-bind:index="index" />
-    <div v-else style="color:white;opacity:0" class="wordlist">You can do it!</div>
+    <div v-else style="opacity:0" class="wordlist">You can do it!</div>
     <div class="output">{{output}}</div>
     <modal :show.sync="showModal">
       <h3 slot="header">custom header</h3>
@@ -28,7 +28,7 @@
     data() {
       return {
         showModal:false,
-        wordlist: ["hello"],
+        wordlist: ["hello", "this", "is", "a", "test"],
         index: 0,
         output: "",
         isHidden: false,
@@ -37,7 +37,7 @@
         correct_audio : new Audio(require('@/assets/correct.mp3')),
         wrong_audio : new Audio(require('@/assets/wrong.mp3')),
           settings: {
-              timer : 1
+              timer : 5
           }
       }
     },
@@ -56,7 +56,7 @@
       setTimeout(this.hide, this.timer * 1000);
       //Errorless Control
       if(this.$cookies.isKey('settings.errorless')){
-        this.timer = this.$cookies.get('settings.errorless');
+        this.errorless = this.$cookies.get('settings.errorless');
         if(this.$cookies.get('settings.errorless') == 'ON') {
           this.errorlessOnOff = true;
         } else {
@@ -71,17 +71,14 @@
     computed : {
       'word' : function(){
         if(this.errorlessOnOff) return this.wordlist[this.index][this.output.length];
-        return 'abcdefghijklmnopqrstuvwxyz backspace'
+        return 'abcdefghijklmnopqrstuvwxyz backspace';
       }
     },
     methods: {
       keypressed(char) {
         if (char !== "backspace") {
           if (this.errorlessOnOff) {
-            var _word = this.wordlist[this.index];
-            if (char === _word[this.output.length]) {
-              this.output += char;
-            } 
+            this.output += char;
           } else {
             this.output += char;
           }

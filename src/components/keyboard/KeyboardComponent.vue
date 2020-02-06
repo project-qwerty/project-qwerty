@@ -149,7 +149,7 @@
     },
     computed:{
       'correction' : function(){
-        return this.error
+        return this.error;
       }
     },
     components: {

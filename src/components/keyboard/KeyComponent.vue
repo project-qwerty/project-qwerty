@@ -28,7 +28,7 @@
     computed : {
       'enable' : function(){
         if(this.word == null) return true;
-        return this.word.includes(this.char['letter'])
+        return this.word.includes(this.char['letter']);
       }
     }
   }
