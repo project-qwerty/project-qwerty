@@ -1,16 +1,16 @@
 <template>
   <div>
-    <router-link style="display:flex;justify-content:left;align-items:center;text-decoration:none" to="/settings">
-      <p style="text-align:center;font-size:36px;margin-right:16px;color:#414141">Settings</p>
+    <div class=heading>Select Word List</div>
+    <router-link style="display:flex;justify-content:flex-end;align-items:center;text-decoration:none;" to="/settings">
+      <div style="text-align:right;font-size:36px;margin-right:16px;color:#414141;">Settings</div>
       <font-awesome-icon style="font-size:100;color:#414141" icon="cog"/>
     </router-link>
-    <p class=heading>Select Word List</p>
     
      <p class="list-heading">List A</p>
-        <select-component :options="['']"/>
+        <select-component :preset="preset.list" :index="0" v-on:update:value="temp=$event"/>
     
     <p class="list-heading">List B</p>
-        <select-component :options="['']"/>
+        <select-component :preset="preset.list" :index="1" v-on:update:value="temp=$event"/>
     
     <router-link style="display:flex;justify-content:center;align-items:center;text-decoration:none;margin-left:100px" to="/keyboard">
       <p style="text-align:center;font-size:36px;margin-right:16px:16px;color:#414141">Start</p>
@@ -20,18 +20,32 @@
 </template>
 
 <script>
- import SelectButton from '@/components/SelectButton.vue';
+  import SelectButton from '@/components/SelectButton.vue';
   
-export default {
+  export default {
     data() {
       return {
         token: null,
+        list: [0,0],
+        temp: null,
+        preset: {
+          list: null,
+        }
       }
     },
- 
     components: {
       'select-component' : SelectButton
     },
+    created() {
+      // the preset is terrible, fix this in the future - list should be all zeroes and the same size as the number of word lists (currently 2) 
+      this.preset.list = this.$cookies.isKey('select_list.list') ? this.$cookies.get('select_list.list') : [0,0]
+    },
+    watch: {
+      'temp' : function(val){
+        this.list[val.index] == val.value;
+        this.$cookies.set('select_list.list', this.list);
+      }
+    }
   }
 </script>
 
@@ -39,7 +53,7 @@ export default {
 <style scoped>
   .heading {
     font-size:28px;
-    text-align: left;
+    text-align: center;
   }
   
   .list-heading {

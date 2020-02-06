@@ -8,18 +8,19 @@
 <script>
   export default{
     name: "select-component",
-    props: ["options", "preset"],
+    props: ["index", "preset"],
     data: function(){
       return{
         toggle: false,
       }
     },
     created(){
-      this.toggle = this.preset  
+//      window.console.log(this.preset);
+//      if ()
     },
     watch: {
       'toggle' : function(val){
-        this.$emit("update:value", val)
+        this.$emit("update:value", {value : val, index : this.index})
       }
     }
   }
