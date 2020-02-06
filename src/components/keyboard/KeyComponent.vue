@@ -52,7 +52,8 @@
     font-size: 24px;
 /*    width: 100px;*/
     height: 100%;
-    margin-right: 10px;
+    border-radius: 2px;
+    margin: 0px 2px;
   }
   
 /*
