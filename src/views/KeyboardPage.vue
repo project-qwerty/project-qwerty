@@ -1,14 +1,13 @@
 <template>
   <div id="keyboard">
-    <p style="font-size:60px"></p>
-    <WordList v-if="!isHidden" class="wordlist" v-bind:wordlist="wordlist" v-bind:index="index" />
-    <div v-else style="opacity:0" class="wordlist">You can do it!</div>
-    <div class="output">{{output}}</div>
-    <modal :show.sync="showModal">
-      <h3 slot="header">custom header</h3>
-      <div slot="body">custom body</div>
-    </modal>
-    <Keyboard :word="word" v-on:update:keypressed="keypressed" />
+    <div style="">
+      <p style="font-size:60px"></p>
+      <WordList v-if="!isHidden" class="wordlist" v-bind:wordlist="wordlist" v-bind:index="index" />
+      <div v-else style="opacity:0" class="wordlist">You can do it!</div>
+      <div class="output">{{output}}</div>
+      <Popup />
+      <Keyboard :word="word" v-on:update:keypressed="keypressed" />
+    </div>
   </div>
 </template>
 
@@ -16,21 +15,21 @@
 <script>
   import Keyboard from '../components/keyboard/KeyboardComponent';
   import WordList from '../components/WordList';
-  import Modal from 'vue-modal';
+  import Popup from '../components/PopupButton';
 
   export default {
     name: 'app',
     components: {
       WordList,
       Keyboard,
-      Modal
+      Popup
     },
     data() {
       return {
         showModal:false,
         wordDatabase: [
-          ["hello", "this", "is", "a", "test"],
-          ["this", "is", "the", "second", "list"],
+          ["h"],
+          ["this"],
         ],
         wordlist: [],
         index: 0,
@@ -115,11 +114,15 @@
             this.index = 0;
             this.output = "";
             this.wordlist = ["You Win!"];
-            this.showModal = true;
+            this.completed();
           }
         } else if (this.output.length === this.wordlist[this.index].length) {
           this.wrong_audio.play();
         }
+      },
+      completed() {
+//        document.body.style.backgroundColor = "red";
+        window.console.log("done");
       },
       hide() {
         this.isHidden = this.timerOnOff;
