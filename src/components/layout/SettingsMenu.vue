@@ -1,7 +1,7 @@
 <template>
   <div class="line">
     <router-link style="display:flex;justify-content:left;text-decoration:none" to="/select_words">
-      <font-awesome-icon style="font-size:30;color:slategrey" icon="chevron-left"/>
+      <font-awesome-icon style="font-size:30;color:rgba(142, 142, 147);" icon="chevron-left"/>
     </router-link>
     <p class="heading">Settings</p>
     <div>

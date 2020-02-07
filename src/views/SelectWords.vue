@@ -2,17 +2,18 @@
   <div>
     <div class=heading>Select Word List</div>
     <router-link style="display:flex;justify-content:flex-end;align-items:center;text-decoration:none;" to="/settings">
-      <div style="text-align:right;font-size:36px;margin-right:16px;color:#414141;">Settings</div>
-      <font-awesome-icon style="font-size:100;color:#414141" icon="cog"/>
+      <font-awesome-icon style="font-size:100;color:rgba(142, 142, 147);" icon="cog"/>
     </router-link>
     
-     <p class="list-heading">List A</p>
-        <select-component :preset="preset.list" :index="0" v-on:update:value="temp=$event"/>
+     <div>
+       <p class="list-heading">List A</p>
+      <select-component :preset="preset.list" :index="0" v-on:update:value="temp=$event"/>
+    </div>
     
     <p class="list-heading">List B</p>
         <select-component :preset="preset.list" :index="1" v-on:update:value="temp=$event"/>
     
-    <Start :to="startTo" />
+    <Start :to="startTo" style="align-items:left"/>
   </div>
 </template>
 
