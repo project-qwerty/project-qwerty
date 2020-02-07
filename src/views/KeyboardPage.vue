@@ -5,7 +5,7 @@
       <WordList v-if="!isHidden" class="wordlist" v-bind:wordlist="wordlist" v-bind:index="index" />
       <div v-else style="opacity:0" class="wordlist">You can do it!</div>
       <div class="output">{{output}}</div>
-      <Popup />
+      <Overlay v-if="complete" />
       <Keyboard :word="word" v-on:update:keypressed="keypressed" />
     </div>
   </div>
@@ -15,24 +15,25 @@
 <script>
   import Keyboard from '../components/keyboard/KeyboardComponent';
   import WordList from '../components/WordList';
-  import Popup from '../components/PopupButton';
+  import Overlay from '../components/Overlay';
 
   export default {
     name: 'app',
     components: {
       WordList,
       Keyboard,
-      Popup
+      Overlay
     },
     data() {
       return {
-        showModal:false,
+        showModal:true,
         wordDatabase: [
           ["h"],
           ["this"],
         ],
         wordlist: [],
         index: 0,
+        complete: false,
         output: "",
         isHidden: false,
         errorlessOnOff: true, // Controls whether errorless is on or off 
@@ -78,7 +79,6 @@
             }
           }
         }
-        window.console.log(this.wordlist);
       }
       //Repetition Control
       //Starter Mode Control
@@ -93,36 +93,39 @@
     },
     methods: {
       keypressed(char) {
+        // If button pressed wasn't backspace
         if (char !== "backspace") {
           if (this.errorlessOnOff) {
             this.output += char;
           } else {
             this.output += char;
           }
+          
+          // If button pressed was backspace
         } else {
           this.output = this.output.substring(0, this.output.length - 1);
         }
+        
+        // If they got the word correct
         if (this.output === this.wordlist[this.index]) {
           this.index += 1;
           this.output = "";
           this.correct_audio.play();
-          // Ths is the timer setting, time is in milliseconds
-            // This should be where the if statement checking if the timer is set to zero should be added.
           this.isHidden = false;
           setTimeout(this.hide, this.timer * 1000);
+          
+          // If they finished the wordlist
           if (this.index == this.wordlist.length) {
             this.index = 0;
             this.output = "";
             this.wordlist = ["You Win!"];
-            this.completed();
+            this.complete = true;
           }
+          
+        // If they got the word wrong
         } else if (this.output.length === this.wordlist[this.index].length) {
           this.wrong_audio.play();
         }
-      },
-      completed() {
-//        document.body.style.backgroundColor = "red";
-        window.console.log("done");
       },
       hide() {
         this.isHidden = this.timerOnOff;
