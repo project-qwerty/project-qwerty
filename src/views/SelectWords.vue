@@ -12,15 +12,13 @@
     <p class="list-heading">List B</p>
         <select-component :preset="preset.list" :index="1" v-on:update:value="temp=$event"/>
     
-    <router-link style="display:flex;justify-content:center;align-items:center;text-decoration:none;margin-left:100px" to="/keyboard">
-      <p style="text-align:center;font-size:36px;margin-right:16px:16px;color:#414141">Start</p>
-      <font-awesome-icon style="font-size:100;color:#414141" icon="chevron-right"/>
-    </router-link>
+    <Start :to="to" />
   </div>
 </template>
 
 <script>
   import SelectButton from '@/components/SelectButton.vue';
+  import Start from '@/components/StartButton.vue';
   
   export default {
     data() {
@@ -30,11 +28,13 @@
         temp: null,
         preset: {
           list: null,
-        }
+        },
+        to: "/Keyboard",
       }
     },
     components: {
-      'select-component' : SelectButton
+      'select-component' : SelectButton,
+      'Start' : Start,
     },
     created() {
       // the preset is terrible, fix this in the future - list should be all zeroes and the same size as the number of word lists (currently 2) 
