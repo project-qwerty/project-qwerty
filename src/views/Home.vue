@@ -12,16 +12,16 @@
   import Header from '../components/layout/Header';
   import Start from '../components/StartButton';
 
-export default {
-  name: 'home',
-  components: {
-    Header,
-    Start
-  },
-  data() {
-    return {
-      to: "/select_words",
+  export default {
+    name: 'home',
+    components: {
+      Header,
+      Start
+    },
+    data() {
+      return {
+        to: "/select_words",
+      }
     }
   }
-}
 </script>

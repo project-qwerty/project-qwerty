@@ -12,7 +12,7 @@
     <p class="list-heading">List B</p>
         <select-component :preset="preset.list" :index="1" v-on:update:value="temp=$event"/>
     
-    <Start :to="to" />
+    <Start :to="startTo" />
   </div>
 </template>
 
@@ -24,12 +24,12 @@
     data() {
       return {
         token: null,
-        list: [0,0],
+        list: [false,false], //Change this eventually
         temp: null,
         preset: {
           list: null,
         },
-        to: "/Keyboard",
+        startTo: "/keyboard",
       }
     },
     components: {
@@ -37,12 +37,12 @@
       'Start' : Start,
     },
     created() {
-      // the preset is terrible, fix this in the future - list should be all zeroes and the same size as the number of word lists (currently 2) 
-      this.preset.list = this.$cookies.isKey('select_list.list') ? this.$cookies.get('select_list.list') : [0,0]
+      // fix this in the future - preset should be all false and the same size as the number of word lists (currently 2) 
+      this.preset.list = this.$cookies.isKey('select_list.list') ? this.$cookies.get('select_list.list') : [false,false]
     },
     watch: {
       'temp' : function(val){
-        this.list[val.index] == val.value;
+        this.list[val.index] = val.value;
         this.$cookies.set('select_list.list', this.list);
       }
     }

@@ -20,7 +20,7 @@
     },
     watch: {
       'toggle' : function(val){
-        this.$emit("update:value", {value : val, index : this.index})
+        this.$emit("update:value", {value : val, index : this.index});
       }
     }
   }

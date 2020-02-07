@@ -28,7 +28,11 @@
     data() {
       return {
         showModal:false,
-        wordlist: ["hello", "this", "is", "a", "test"],
+        wordDatabase: [
+          ["hello", "this", "is", "a", "test"],
+          ["this", "is", "the", "second", "list"],
+        ],
+        wordlist: [],
         index: 0,
         output: "",
         isHidden: false,
@@ -41,6 +45,7 @@
           }
       }
     },
+    
     //Run on loading of page
     created() {
       // Add all the cookies here (first two lines are the important ones)
@@ -62,6 +67,19 @@
         } else {
           this.errorlessOnOff = false;
         }
+      }
+      //WordList Control
+      if(this.$cookies.isKey('select_list.list')){
+        var list = this.$cookies.get('select_list.list');
+        var indices = JSON.parse("[" + list + "]");
+        for (var i = 0; i < this.wordDatabase.length;i++) {
+          if (indices[i]) {
+            for (var j = 0; j < this.wordDatabase[i].length; j++){
+              this.wordlist.push(this.wordDatabase[i][j]);
+            }
+          }
+        }
+        window.console.log(this.wordlist);
       }
       //Repetition Control
       //Starter Mode Control
@@ -109,7 +127,6 @@
     }, 
   }
 </script>
-
 
 <style>
   #app {
