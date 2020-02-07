@@ -12,10 +12,12 @@
 <style>  
   .popup {
     z-index: 9999;
-    background: white;
+    background: #fefefe;
     height: 200px;
-    width: 150px;
+    width: 300px;
     left: 0%;
+    font-size: 28px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
   }
 </style>
 
