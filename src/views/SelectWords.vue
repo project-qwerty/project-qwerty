@@ -6,11 +6,11 @@
     </router-link>
     
      <div>
-       <p class="list-heading">List A</p>
+       <p class="list-heading">Words for Email</p>
       <select-component :preset="preset.list" :index="0" v-on:update:value="temp=$event"/>
     </div>
     
-    <p class="list-heading">List B</p>
+    <p class="list-heading">Words for Text Messages</p>
         <select-component :preset="preset.list" :index="1" v-on:update:value="temp=$event"/>
     
     <Start :to="startTo" style="align-items:left"/>
