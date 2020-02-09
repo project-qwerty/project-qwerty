@@ -28,8 +28,8 @@
       return {
         showModal:true,
         wordDatabase: [
-          ["h"],
-          ["this"],
+          ["one"],
+          ["two"],
         ],
         wordlist: [],
         index: 0,

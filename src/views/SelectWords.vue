@@ -45,6 +45,7 @@
       'temp' : function(val){
         this.list[val.index] = val.value;
         this.$cookies.set('select_list.list', this.list);
+        // Wordlists are in KeyboardPage line 30 (wordDatabase)
       }
     }
   }
