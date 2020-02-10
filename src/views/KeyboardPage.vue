@@ -1,5 +1,8 @@
 <template>
   <div id="keyboard">
+    <router-link style="display:flex;justify-content:left;text-decoration:none" to="/select_words">
+      <font-awesome-icon style="font-size:30;color:rgba(142, 142, 147);" icon="chevron-left"/>
+    </router-link>
     <div style="">
       <p style="font-size:60px"></p>
       <WordList v-if="!isHidden" class="wordlist" v-bind:wordlist="wordlist" v-bind:index="index" />
