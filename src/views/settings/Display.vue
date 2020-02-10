@@ -1,6 +1,8 @@
 <template>
   <div style="width:600px; padding:48px;text-align:left">
     <h1 style="font-weight:200">Display Settings</h1>
+    
+    <p class="setting-heading" style="color:lightgrey">Please note that only Settings with * are fully functional</p>
       
     <p class="setting-heading">Keyboard Keys</p>
     <switch-component :preset="preset.value_keys" :options="['Regular', 'Bold']" v-on:update:value="value_keys=$event"/> 

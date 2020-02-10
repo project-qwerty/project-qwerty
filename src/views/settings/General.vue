@@ -5,11 +5,14 @@ min is the minimum value and max the maximum value-->
 <!--Need to use getValue to use the slider as an input-->
   <div style="width:600px; padding:48px;text-align:left">
     <h1 style="font-weight:200">General Settings</h1>
+    
+    <p class="setting-heading" style="color:lightgrey">Please note that only Settings with * are fully functional</p>
+    
       
     <p class="setting-heading">Repetitions</p>
     <switch-component :preset="preset.value_repetitions" :options="['1', '3']" v-on:update:value="value_repetitions=$event"/> 
       
-    <p class="setting-heading">Timer</p>
+    <p class="setting-heading">Timer*</p>
     <veeno 
       v-model='value_timer'
       :pipsy = "{ 
@@ -44,7 +47,7 @@ min is the minimum value and max the maximum value-->
     <p class="setting-heading">Starter Mode</p>
     <switch-component :preset="preset.value_startermode" :options="['OFF', 'ON']" v-on:update:value="value_startermode=$event"/>
 
-    <p class="setting-heading">Errorless Learning</p>
+    <p class="setting-heading">Errorless Learning*</p>
     <switch-component :preset="preset.value_errorless" :options="['OFF', 'ON']" v-on:update:value="value_errorless=$event"/>
 
     <p class="setting-heading">Keyboard</p>
