@@ -118,7 +118,7 @@
           if (this.index == this.wordlist.length) {
             this.index = 0;
             this.output = "";
-            this.wordlist = ["You Win!"];
+            this.isHidden = true;
             this.complete = true;
           }
           

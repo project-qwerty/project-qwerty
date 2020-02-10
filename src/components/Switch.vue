@@ -16,7 +16,7 @@
       }
     },
     created(){
-      this.select_value = this.preset  
+      this.select_value = this.preset
     },
     watch: {
       'select_value' : function(val){

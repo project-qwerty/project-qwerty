@@ -5,13 +5,13 @@
       <font-awesome-icon style="font-size:100;color:rgba(142, 142, 147);" icon="cog"/>
     </router-link>
     
-     <div>
-       <p class="list-heading">List A</p>
-      <select-component :preset="preset.list" :index="0" v-on:update:value="temp=$event"/>
+    <div>
+      <p class="list-heading">List A</p>
+      <SelectButton :preset="preset.list[0]" :index=0 v-on:update:value="temp=$event"/>
     </div>
     
     <p class="list-heading">List B</p>
-        <select-component :preset="preset.list" :index="1" v-on:update:value="temp=$event"/>
+    <SelectButton :preset="preset.list[1]" :index=1 v-on:update:value="temp=$event"/>
     
     <Start :to="startTo" style="align-items:left"/>
   </div>
@@ -25,24 +25,30 @@
     data() {
       return {
         token: null,
-        list: [false,false], //Change this eventually
+        list: [false,false], //Change this eventually - length of this array must be the same as wordDatabase in KeyboardPage (line 30)
         temp: null,
         preset: {
-          list: null,
+          list: [false,false],
         },
         startTo: "/keyboard",
       }
     },
     components: {
-      'select-component' : SelectButton,
+      'SelectButton' : SelectButton,
       'Start' : Start,
     },
     created() {
       // fix this in the future - preset should be all false and the same size as the number of word lists (currently 2) 
-      this.preset.list = this.$cookies.isKey('select_list.list') ? this.$cookies.get('select_list.list') : [false,false]
+      if (this.$cookies.isKey('select_list.list')) {
+        this.preset.list = JSON.parse('[' + this.$cookies.get('select_list.list') + ']');
+      } else {
+        this.preset.list = [false,false];
+      }
+      window.console.log("presetlist",this.preset.list);
     },
     watch: {
       'temp' : function(val){
+        window.console.log("temp",this.temp);
         this.list[val.index] = val.value;
         this.$cookies.set('select_list.list', this.list);
         // Wordlists are in KeyboardPage line 30 (wordDatabase)

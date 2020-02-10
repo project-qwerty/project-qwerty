@@ -15,8 +15,7 @@
       }
     },
     created(){
-//      window.console.log(this.preset);
-//      if ()
+      this.toggle = this.preset
     },
     watch: {
       'toggle' : function(val){
