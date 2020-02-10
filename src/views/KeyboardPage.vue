@@ -2,7 +2,7 @@
   <div id="keyboard">
     <div style="display:flex;position:relative;justify-content:center">
       <router-link style="position:fixed;left:0;top:0;text-decoration:none" to="/select_words">
-        <font-awesome-icon style="font-size:30;color:rgba(142, 142, 147);" icon="chevron-left"/>
+        <font-awesome-icon style="font-size:40;color:rgba(142, 142, 147);" icon="chevron-left"/>
       </router-link >
       <Progress :total="this.wordlist.length" :current="this.index + 1" />
     </div>

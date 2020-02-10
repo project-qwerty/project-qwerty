@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div style="display:flex;">
+    <div style="display:flex;justify-content:center;position:relative">
       <div class=heading>Select Word List</div>
-        <router-link style="display:flex;justify-content:flex-end;align-items:center;text-decoration:none;margin-left:800px" to="/settings">
+        <router-link style="position:fixed;text-decoration:none;right:0;" to="/settings">
           <font-awesome-icon style="font-size:75;color:rgba(142, 142, 147);" icon="cog"/>
         </router-link>
     </div>
@@ -15,7 +15,32 @@
     <div style="display:flex; align-items:center">
       <SelectButton :preset="preset.list[1]" :index="1" v-on:update:value="temp=$event"/>
       <p class="list-heading" style="margin-left:8px;">Words for Text Messages</p>
+    </div>
+    
+    <div style="display:flex; align-items:center">
+      <SelectButton :preset="preset.list" :index="2" />
+      <p class="list-heading" style="margin-left:8px;">100 Magic Words (non-functional)</p>
+    </div>
+    
+    <div style="display:flex; align-items:center">
+      <SelectButton :preset="preset.list" :index="2" />
+      <p class="list-heading" style="margin-left:8px;">Short Regular Words (non-functional)</p>
     </div> 
+    
+    <div style="display:flex; align-items:center">
+      <SelectButton :preset="preset.list" :index="2" />
+      <p class="list-heading" style="margin-left:8px;">Long Regular Words (non-functional)</p>
+    </div>
+    
+    <div style="display:flex; align-items:center">
+      <SelectButton :preset="preset.list" :index="2" />
+      <p class="list-heading" style="margin-left:8px;">Short Irregular Words (non-functional)</p>
+    </div> 
+    
+    <div style="display:flex; align-items:center">
+      <SelectButton :preset="preset.list" :index="2" />
+      <p class="list-heading" style="margin-left:8px;">Long Irregular Words (non-functional)</p>
+    </div>
     
     <Start :to="startTo" style="align-items:left"/>
   </div>
@@ -66,7 +91,7 @@
   .heading {
     font-size:40px;
     text-align: center;
-    color: rgba(44, 44, 46)
+    color: rgba(44, 44, 46);
   }
   
   .list-heading {

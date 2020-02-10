@@ -28,10 +28,9 @@
     padding: 8px;
     padding-right: 24px;
     border-right: 1px solid black;
-    height: 900px;
     display: inline-block;
     box-shadow: 2px 0px grey;
-  height: 100vh;
+    height: 100vh;
   }
   .option-link{
     display: block;

@@ -3,7 +3,7 @@
 min is the minimum value and max the maximum value-->
 
 <!--Need to use getValue to use the slider as an input-->
-  <div style="width:600px; padding:48px;text-align:left">
+  <div style="width:600px; padding-left:48px;text-align:left">
     <h1 style="font-weight:200">General Settings</h1>
     
     <p class="setting-heading" style="color:lightgrey">Please note that only Settings with * are fully functional</p>
@@ -27,7 +27,7 @@ min is the minimum value and max the maximum value-->
       'min': [  0 ],
       'max': [ 30 ]
       }"
-      style="margin-top:52px; margin-bottom:52px"
+      style="margin-top:26px; margin-bottom:52px"
     />
       
     <p class="setting-heading">Words</p>
@@ -45,7 +45,7 @@ min is the minimum value and max the maximum value-->
       'min': [  5 ],
       'max': [ 50 ]
       }"
-      style="margin-top:52px; margin-bottom:52px"
+      style="margin-top:26px; margin-bottom:52px"
     />
     
     <p class="setting-heading">Starter Mode</p>
@@ -55,7 +55,7 @@ min is the minimum value and max the maximum value-->
     <switch-component :preset="preset.value_errorless" :options="['OFF', 'ON']" v-on:update:value="value_errorless=$event"/>
 
     <p class="setting-heading">Keyboard</p>
-    <switch-component :preset="preset.value_keyboard" :options="['LETTER ONLY', 'LETTER & NUMBER']" v-on:update:value=" value_keyboard=$event"/>
+    <switch-component style="margin-bottom:0" :preset="preset.value_keyboard" :options="['LETTER ONLY', 'LETTER & NUMBER']" v-on:update:value=" value_keyboard=$event"/>
   </div>
 </template>
 
