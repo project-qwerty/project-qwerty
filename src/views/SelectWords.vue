@@ -5,13 +5,13 @@
       <font-awesome-icon style="font-size:100;color:rgba(142, 142, 147);" icon="cog"/>
     </router-link>
     
-    <div>
-      <p class="list-heading">List A</p>
-      <SelectButton :preset="preset.list[0]" :index=0 v-on:update:value="temp=$event"/>
+     <div>
+       <p class="list-heading">Words for Email</p>
+      <select-component :preset="preset.list" :index="0" v-on:update:value="temp=$event"/>
     </div>
     
-    <p class="list-heading">List B</p>
-    <SelectButton :preset="preset.list[1]" :index=1 v-on:update:value="temp=$event"/>
+    <p class="list-heading">Words for Text Messages</p>
+        <select-component :preset="preset.list" :index="1" v-on:update:value="temp=$event"/>
     
     <Start :to="startTo" style="align-items:left"/>
   </div>
