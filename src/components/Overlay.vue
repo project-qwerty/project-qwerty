@@ -1,9 +1,9 @@
 <template>
   <div class="overlay">
     <div class="popups">
-      <popup-btn-component content="Finished" :to="to[0]" />
-      <popup-btn-component content="Choose New Word List" :to="to[1]" />
-      <popup-btn-component content="Repeat Task" :to="to[2]" />
+      <popup-btn-component content="Finished" :to="to1" />
+      <popup-btn-component content="Choose New Word List" :to="to2" />
+      <popup-btn-component content="Repeat Task" :to="to3" />
     </div>
   </div>
 </template>
@@ -14,14 +14,18 @@
   export default {
     name : 'overlay-component',
     components : {"popup-btn-component" : Popup},
-    data () {
-      return {
-        to: [
-          "/",
-          "/select_words",
-          "/keyboard"
-        ]
-      }
+    methods: {
+      to1() {
+        this.$router.push('/');
+        this.$router.go(1);
+      },
+      to2() {
+        this.$router.push('/select_words');
+        this.$router.go(1);
+      },
+      to3() {
+        this.$router.go(0);
+      },
     }
   }
 </script>

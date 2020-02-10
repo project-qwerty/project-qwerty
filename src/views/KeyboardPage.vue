@@ -31,6 +31,7 @@
           // the words must be all lowercase - the checking is case sensitive
           ["hello", "to", "dear", "sincerely", "reply", "respond", "action", "immediately", "manager", "team"],
           ["hey", "hi", "thanks", "cheers", "love", "day", "night", "tonight", "today", "tomorrow", "yesterday", "sorry", "ok", "omg", "haha"],
+//          ["test"]
         ],
         wordlist: [],
         index: 0,

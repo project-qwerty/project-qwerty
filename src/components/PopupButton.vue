@@ -1,10 +1,8 @@
 <template>
 <div style="padding:16px;">
-  <router-link :to="to">
-    <button class="popup" >
-      {{content}}
-    </button>
-  </router-link>
+  <button class="popup" v-on:click="to" >
+    {{content}}
+  </button>
   </div>
 </template>
 
