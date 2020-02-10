@@ -1,17 +1,21 @@
 <template>
   <div>
-    <div class=heading>Select Word List</div>
-    <router-link style="display:flex;justify-content:flex-end;align-items:center;text-decoration:none;" to="/settings">
-      <font-awesome-icon style="font-size:100;color:rgba(142, 142, 147);" icon="cog"/>
-    </router-link>
-    
-     <div>
-       <p class="list-heading">Words for Email</p>
-      <select-component :preset="preset.list" :index="0" v-on:update:value="temp=$event"/>
+    <div style="display:flex;">
+      <div class=heading>Select Word List</div>
+        <router-link style="display:flex;justify-content:flex-end;align-items:center;text-decoration:none;margin-left:800px" to="/settings">
+          <font-awesome-icon style="font-size:75;color:rgba(142, 142, 147);" icon="cog"/>
+        </router-link>
     </div>
     
-    <p class="list-heading">Words for Text Messages</p>
-        <select-component :preset="preset.list" :index="1" v-on:update:value="temp=$event"/>
+     <div style="display:flex; align-items:center">
+       <select-component :preset="preset.list" :index="0" v-on:update:value="temp=$event"/>
+       <p class="list-heading" style="margin-left:8px;">Words for Email</p>
+    </div>
+    
+    <div style="display:flex; align-items:center">
+      <select-component :preset="preset.list" :index="1" v-on:update:value="temp=$event"/>
+      <p class="list-heading" style="margin-left:8px;">Words for Text Messages</p>
+    </div> 
     
     <Start :to="startTo" style="align-items:left"/>
   </div>
@@ -60,12 +64,13 @@
 
 <style scoped>
   .heading {
-    font-size:28px;
+    font-size:40px;
     text-align: center;
+    color: rgba(44, 44, 46)
   }
   
   .list-heading {
-    font-size:20px;
+    font-size:22px;
     text-align: left;
   }
 </style>
