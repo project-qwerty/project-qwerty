@@ -29,6 +29,7 @@
     },
     data() {
       return {
+        timer: null,
         showModal:true,
         wordDatabase: [
           // the words must be all lowercase - the checking is case sensitive
@@ -63,7 +64,7 @@
           this.timerOnOff = true;
         }
       }
-      setTimeout(this.hide, this.timer * 1000);
+      this.timer = setTimeout(this.hide, this.timer * 1000);
       //Errorless Control
       if(this.$cookies.isKey('settings.errorless')){
         this.errorless = this.$cookies.get('settings.errorless');
@@ -117,7 +118,8 @@
           this.output = "";
           this.correct_audio.play();
           this.isHidden = false;
-          setTimeout(this.hide, this.timer * 1000);
+          clearTimeout(this.timer);
+          this.timer = setTimeout(this.hide, this.timer * 1000);
           
           // If they finished the wordlist
           if (this.index == this.wordlist.length) {
@@ -134,6 +136,7 @@
       },
       hide() {
         this.isHidden = this.timerOnOff;
+        window.console.log("hide");
       }
     }, 
   }
