@@ -8,12 +8,12 @@
     </div>
     
      <div style="display:flex; align-items:center">
-       <SelectButton :preset="preset.list" :index="0" v-on:update:value="temp=$event"/>
+       <SelectButton :preset="preset.list[0]" :index="0" v-on:update:value="temp=$event"/>
        <p class="list-heading" style="margin-left:8px;">Words for Email</p>
     </div>
     
     <div style="display:flex; align-items:center">
-      <SelectButton :preset="preset.list" :index="1" v-on:update:value="temp=$event"/>
+      <SelectButton :preset="preset.list[1]" :index="1" v-on:update:value="temp=$event"/>
       <p class="list-heading" style="margin-left:8px;">Words for Text Messages</p>
     </div> 
     
