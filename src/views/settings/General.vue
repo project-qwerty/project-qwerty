@@ -14,10 +14,12 @@ min is the minimum value and max the maximum value-->
       
     <p class="setting-heading">Timer*</p>
     <veeno 
+      :connect="[true, false]"
+      :tooltips="true"
       v-model='value_timer'
       :pipsy = "{ 
       mode: 'steps', // mode is steps
-      density: 10 
+      density: 100 
       }"   
       :handles = "[this.value_timer]" 
       :step = "5"
@@ -25,11 +27,13 @@ min is the minimum value and max the maximum value-->
       'min': [  0 ],
       'max': [ 30 ]
       }"
-      style="margin-bottom:52px"
+      style="margin-top:52px; margin-bottom:52px"
     />
       
     <p class="setting-heading">Words</p>
     <veeno 
+      :connect="[true, false]"
+      :tooltips="true"     
       v-model='value_trials'
       :pipsy = "{ 
       mode: 'steps', // mode is steps
@@ -41,7 +45,7 @@ min is the minimum value and max the maximum value-->
       'min': [  5 ],
       'max': [ 50 ]
       }"
-      style="margin-bottom:52px"
+      style="margin-top:52px; margin-bottom:52px"
     />
     
     <p class="setting-heading">Starter Mode</p>
