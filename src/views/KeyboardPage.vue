@@ -1,9 +1,12 @@
 <template>
   <div id="keyboard">
-    <router-link style="display:flex;justify-content:left;text-decoration:none" to="/select_words">
-      <font-awesome-icon style="font-size:30;color:rgba(142, 142, 147);" icon="chevron-left"/>
-    </router-link>
-    <div style="">
+    <div style="display:flex;position:relative;justify-content:center">
+      <router-link style="position:fixed;left:0;top:0;text-decoration:none" to="/select_words">
+        <font-awesome-icon style="font-size:30;color:rgba(142, 142, 147);" icon="chevron-left"/>
+      </router-link >
+      <Progress :total="this.wordlist.length" :current="this.index + 1" />
+    </div>
+    <div>
       <p style="font-size:60px"></p>
       <WordList v-if="!isHidden" class="wordlist" v-bind:wordlist="wordlist" v-bind:index="index" />
       <div v-else style="opacity:0" class="wordlist">You can do it!</div>
@@ -19,13 +22,15 @@
   import Keyboard from '../components/keyboard/KeyboardComponent';
   import WordList from '../components/WordList';
   import Overlay from '../components/Overlay';
+  import Progress from '../components/Progress';
 
   export default {
     name: 'app',
     components: {
       WordList,
       Keyboard,
-      Overlay
+      Overlay,
+      Progress
     },
     data() {
       return {
