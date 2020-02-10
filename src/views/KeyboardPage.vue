@@ -163,16 +163,20 @@
   }
   
   .output {
-    font-size: 24px;
+    font-size: 70px;
     text-transform: uppercase;
     text-decoration: underline;
     height: 100px;
+    color:rgba(28, 28, 30);
+    font-weight:bold; 
   }
   
   .wordlist {
-    font-size: 24px;
+    font-size: 70px;
     text-transform: uppercase;
-    text-decoration: underline;
+    text-decoration: none;
     height: 100px;
+    color:rgba(72, 72, 74, 0.8);
+    font-weight:bold; 
   }
 </style>
