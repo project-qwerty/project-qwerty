@@ -1,5 +1,5 @@
 <template>
-  <div style="width:600px; padding:48px;text-align:left">
+  <div style="width:600px; padding-left:48px;text-align:left">
     <h1 style="font-weight:200">Display Settings</h1>
     
     <p class="setting-heading" style="color:lightgrey">Please note that only Settings with * are fully functional</p>

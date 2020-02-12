@@ -125,6 +125,7 @@
           this.isHidden = false;
           clearTimeout(this.timer);
           this.timer = setTimeout(this.hide, this.timer * 1000);
+          window.console.log("timer",this.timer);
           
           // If they finished the wordlist
           if (this.index == this.wordlist.length) {
