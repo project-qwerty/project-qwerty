@@ -68,16 +68,13 @@
       }
       if (this.$cookies.isKey('wordlists.words')) {
         var words = this.$cookies.get('wordlists.words').split('|').slice(0,-1);
-        window.console.log(words.length);
         for (var i = 0; i < words.length; i++){
-          window.console.log(words[i]);
           if (words[i].includes(',')) {
-            this.word.push(words[i].split(','));
+            this.words.push(words[i].split(','));
           } else {
-            this.word.push(words[i]);
+            this.words.push(words[i]);
           }
         }
-        window.console.log(this.words);
       }
     },
     methods: {

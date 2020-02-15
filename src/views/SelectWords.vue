@@ -17,29 +17,9 @@
       <p class="list-heading" style="margin-left:8px;">Words for Text Messages</p>
     </div>
     
-    <div style="display:flex; align-items:center">
-      <SelectButton :preset="preset.list" :index="2" />
-      <p class="list-heading" style="margin-left:8px;">100 Magic Words (non-functional)</p>
-    </div>
-    
-    <div style="display:flex; align-items:center">
-      <SelectButton :preset="preset.list" :index="2" />
-      <p class="list-heading" style="margin-left:8px;">Short Regular Words (non-functional)</p>
-    </div> 
-    
-    <div style="display:flex; align-items:center">
-      <SelectButton :preset="preset.list" :index="2" />
-      <p class="list-heading" style="margin-left:8px;">Long Regular Words (non-functional)</p>
-    </div>
-    
-    <div style="display:flex; align-items:center">
-      <SelectButton :preset="preset.list" :index="2" />
-      <p class="list-heading" style="margin-left:8px;">Short Irregular Words (non-functional)</p>
-    </div> 
-    
-    <div style="display:flex; align-items:center">
-      <SelectButton :preset="preset.list" :index="2" />
-      <p class="list-heading" style="margin-left:8px;">Long Irregular Words (non-functional)</p>
+    <div v-for="(wordlist, index) in wordlists" v-bind:key="index" style="display:flex; align-items:center">
+      <SelectButton :preset="preset.list[index + 2]" :index="index + 2" />
+      <p class="list-heading" style="margin-left:8px;">{{wordlists[index]}}</p>
     </div>
     
     <Start :to="startTo" style="align-items:left"/>
@@ -56,6 +36,8 @@
         token: null,
         list: [false,false], //Change this eventually - length of this array must be the same as wordDatabase in KeyboardPage (line 30)
         temp: null,
+        wordlists: [],
+        words: [],
         preset: {
           list: [false,false],
         },
@@ -73,11 +55,24 @@
       } else {
         this.preset.list = [false,false];
       }
-      window.console.log("presetlist",this.preset.list);
+      
+      //Importing the wordlists from cookies
+      if (this.$cookies.isKey('wordlists.lists')) {
+        this.wordlists = this.$cookies.get('wordlists.lists').split(',');
+      }
+      if (this.$cookies.isKey('wordlists.words')) {
+        var words = this.$cookies.get('wordlists.words').split('|').slice(0,-1);
+        for (var i = 0; i < words.length; i++){
+          if (words[i].includes(',')) {
+            this.words.push(words[i].split(','));
+          } else {
+            this.words.push(words[i]);
+          }
+        }
+      }
     },
     watch: {
       'temp' : function(val){
-        window.console.log("temp",this.temp);
         this.list[val.index] = val.value;
         this.$cookies.set('select_list.list', this.list);
         // Wordlists are in KeyboardPage line 30 (wordDatabase)
