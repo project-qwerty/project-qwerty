@@ -108,7 +108,6 @@
         for (var i = 0; i < val.length; i++) {
           cookie += val[i];
           cookie += '|'
-          window.console.log("monster", cookie);
         }
         this.$cookies.set('wordlists.words', cookie);        
       }
