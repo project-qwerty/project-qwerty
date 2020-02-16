@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="display:flex;justify-content:center;position:relative">
-      <div class=heading>Select Word List</div>
+      <div class=heading>Select Category</div>
         <router-link style="position:fixed;text-decoration:none;right:0;" to="/settings">
           <font-awesome-icon style="font-size:75;color:rgba(142, 142, 147);" icon="cog"/>
         </router-link>
