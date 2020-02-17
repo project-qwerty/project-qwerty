@@ -149,15 +149,12 @@
     },
     computed:{
       'correction' : function(){
-        window.console.log(screen.width);
+//        window.console.log(screen.width);
         return this.error;
       }
     },
     components: {
       'key-component' : KeyComponent,
     },
-    created: {
-      
-    }
 }
 </script>

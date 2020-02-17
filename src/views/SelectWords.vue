@@ -7,39 +7,48 @@
         </router-link>
     </div>
     
-     <div style="display:flex; align-items:center">
-       <SelectButton :preset="preset.list[0]" :index="0" v-on:update:value="temp=$event"/>
-       <p class="list-heading" style="margin-left:8px;">Words for Email</p>
+     <div v-for="(list, index) in lists" v-bind:key="index" style="display:flex; align-items:center">
+       <SelectButton :preset="preset.selected[index]" :index="index" v-on:update:value="temp=$event"/>
+       <p class="list-heading" style="margin-left:8px;">{{list}}</p>
     </div>
     
+<!--
     <div style="display:flex; align-items:center">
       <SelectButton :preset="preset.list[1]" :index="1" v-on:update:value="temp=$event"/>
       <p class="list-heading" style="margin-left:8px;">Words for Text Messages</p>
     </div>
+-->
     
-    <div v-for="(wordlist, index) in wordlists" v-bind:key="index" style="display:flex; align-items:center">
-      <SelectButton :preset="preset.list[index + 2]" :index="index + 2" />
-      <p class="list-heading" style="margin-left:8px;">{{wordlists[index]}}</p>
+    <div v-for="(customList, index) in customLists" v-bind:key="index + 2" style="display:flex; align-items:center" >
+      <SelectButton :preset="preset.customSelected[index]" :index="index + 2" v-on:update:value="temp=$event" />
+      <p class="list-heading" style="margin-left:8px;">{{customList}}</p>
     </div>
     
     <Start :to="startTo" style="align-items:left"/>
+    <InbuiltWordlists v-on:inbuiltCreated="inbuiltCreated" />
   </div>
 </template>
 
 <script>
   import SelectButton from '@/components/SelectButton.vue';
   import Start from '@/components/StartButton.vue';
+  import InbuiltWordlists from '@/components/InbuiltWordlists.vue';
   
   export default {
     data() {
       return {
-        token: null,
-        list: [false,false], //Change this eventually - length of this array must be the same as wordDatabase in KeyboardPage (line 30)
-        temp: null,
-        wordlists: [],
+        //Inbuilt lists
+        lists: [],
         words: [],
+        selected: [],
+        //Custom lists
+        customLists: [],
+        customWords: [],
+        customSelected: [],
+        temp: null,
         preset: {
-          list: [false,false],
+          selected: [],
+          customSelected: [],
         },
         startTo: "/keyboard",
       }
@@ -47,35 +56,62 @@
     components: {
       'SelectButton' : SelectButton,
       'Start' : Start,
+      InbuiltWordlists
     },
     created() {
-      // fix this in the future - preset should be all false and the same size as the number of word lists (currently 2) 
+      
+      // Import inbuilt lists from cookies
       if (this.$cookies.isKey('select_list.list')) {
-        this.preset.list = JSON.parse('[' + this.$cookies.get('select_list.list') + ']');
+        this.preset.selected = JSON.parse("[" + this.$cookies.get('select_list.list') + "]");
+//        window.console.log(this.preset.selected)
       } else {
-        this.preset.list = [false,false];
+      // fix this in the future - preset should be all false and the same size as the number of word lists (currently 2)
+        var size = 2;
+        this.preset.selected = Array.apply(null, Array(size)).map(Boolean.prototype.valueOf,false);
       }
       
-      //Importing the wordlists from cookies
+      // Importing the custom lists and whether they are selected from cookies
       if (this.$cookies.isKey('wordlists.lists')) {
-        this.wordlists = this.$cookies.get('wordlists.lists').split(',');
+        this.customLists = this.$cookies.get('wordlists.lists').split(',');
+        if (this.$cookies.isKey('wordlists.select')) {
+          this.preset.customSelected = JSON.parse("[" + this.$cookies.get('wordlists.select') + "]");
+        } else {
+          this.preset.customSelected = Array.apply(null, Array(this.customLists.length)).map(Boolean.prototype.valueOf,false);
+        }
       }
+      
+      // Importing words of custom lists from cookies
       if (this.$cookies.isKey('wordlists.words')) {
         var words = this.$cookies.get('wordlists.words').split('|').slice(0,-1);
         for (var i = 0; i < words.length; i++){
           if (words[i].includes(',')) {
-            this.words.push(words[i].split(','));
+            this.customWords.push(words[i].split(','));
           } else {
-            this.words.push(words[i]);
+            this.customWords.push(words[i]);
           }
+        }
+      }
+      
+      this.selected = this.preset.selected;
+      this.customSelected = this.preset.customSelected;
+    },
+    methods: {
+      inbuiltCreated(wordlists) {
+        for (var i = 0; i < wordlists.length; i++) {
+          this.lists.push(Object.keys(wordlists[i])[0]);
+          this.words.push(Object.values(wordlists[i])[0]);
         }
       }
     },
     watch: {
       'temp' : function(val){
-        this.list[val.index] = val.value;
-        this.$cookies.set('select_list.list', this.list);
-        // Wordlists are in KeyboardPage line 30 (wordDatabase)
+        if (val.index < 2) {
+          this.selected[val.index] = val.value;
+          this.$cookies.set('select_list.list', this.selected);
+        } else {
+          this.customSelected[val.index - 2] = val.value;
+          this.$cookies.set('wordlists.select', this.customSelected);
+        }
       }
     }
   }

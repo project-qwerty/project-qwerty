@@ -12,6 +12,7 @@
       <div v-else style="opacity:0" class="wordlist">You can do it!</div>
       <div class="output">{{output}}</div>
       <Overlay v-if="complete" />
+      <InbuiltWordlists v-on:inbuiltCreated="inbuiltCreated" />
       <Keyboard :word="word" v-on:update:keypressed="keypressed" />
     </div>
   </div>
@@ -23,6 +24,7 @@
   import WordList from '../components/WordList';
   import Overlay from '../components/Overlay';
   import Progress from '../components/Progress';
+  import InbuiltWordlists from '../components/InbuiltWordlists';
 
   export default {
     name: 'app',
@@ -30,18 +32,13 @@
       WordList,
       Keyboard,
       Overlay,
-      Progress
+      Progress,
+      InbuiltWordlists
     },
     data() {
       return {
         timer: null,
         showModal:true,
-        wordDatabase: [
-          // the words must be all lowercase - the checking is case sensitive
-          ["hello", "to", "dear", "sincerely", "reply", "respond", "action", "immediately", "manager", "team"],
-          ["hey", "hi", "thanks", "cheers", "love", "day", "night", "tonight", "today", "tomorrow", "yesterday", "sorry", "ok", "omg", "haha"],
-//          ["test"]
-        ],
         wordlist: [],
         index: 0,
         complete: false,
@@ -79,22 +76,31 @@
           this.errorlessOnOff = false;
         }
       }
-      //WordList Control
-      if(this.$cookies.isKey('select_list.list')){
-        var list = this.$cookies.get('select_list.list');
-        var indices = JSON.parse("[" + list + "]");
-        for (var i = 0; i < this.wordDatabase.length;i++) {
-          if (indices[i]) {
-            for (var j = 0; j < this.wordDatabase[i].length; j++){
-              this.wordlist.push(this.wordDatabase[i][j]);
+      // Import custom lists
+      if (this.$cookies.isKey('wordlists.select')) {
+        var customSelected = this.$cookies.get('wordlists.select').split(',');
+//        window.console.log(customSelected);
+        if (this.$cookies.isKey('wordlists.words')) {
+          var customWords = this.$cookies.get('wordlists.words').split('|').slice(0,-1);
+          window.console.log(customWords);
+          for (var i = 0; i < customSelected.length; i++) {
+            if (customSelected[i] == "true") {
+              window.console.log("i",customWords[i])
+              if (customWords[i].includes(',')) {
+                var miniList = customWords[i].split(',');
+                for (var j = 0; j < miniList.length; j++) {
+                this.wordlist.push(miniList[j]);                  
+                }
+              } else {
+                this.wordlist.push(customWords[i]);
+              }
+              window.console.log(this.wordlist);
             }
           }
         }
       }
-      //Repetition Control
-      //Starter Mode Control
-      //Keyboard Control
-      //Word Number Control
+      
+      
     },
     computed : {
       'word' : function(){
@@ -103,6 +109,27 @@
       }
     },
     methods: {
+      inbuiltCreated(wordlists) {
+//        window.console.log("words:",wordlists);
+        
+        //WordList Control
+        if(this.$cookies.isKey('select_list.list')){
+          var selected = this.$cookies.get('select_list.list');
+//          window.console.log("selected",selected);
+          var indices = JSON.parse("[" + selected + "]");
+//          window.console.log(indices, wordlists.length);
+          for (var i = 0; i < wordlists.length;i++) {
+            if (indices[i]) {
+              for (var j = 0; j < Object.values(wordlists[0]).length; j++){
+                for (var k = 0; k < Object.values(wordlists[0])[j].length; k++) {
+                  this.wordlist.push(Object.values(wordlists[0])[j][k]);
+                }
+//                window.console.log(this.wordlist);
+              }
+            }
+          }
+        }
+      },
       keypressed(char) {
         // If button pressed wasn't backspace
         if (char !== "backspace") {
@@ -125,7 +152,7 @@
           this.isHidden = false;
           clearTimeout(this.timer);
           this.timer = setTimeout(this.hide, this.timer * 1000);
-          window.console.log("timer",this.timer);
+//          window.console.log("timer",this.timer);
           
           // If they finished the wordlist
           if (this.index == this.wordlist.length) {
@@ -142,7 +169,7 @@
       },
       hide() {
         this.isHidden = this.timerOnOff;
-        window.console.log("hide");
+//        window.console.log("hide");
       }
     }, 
   }
