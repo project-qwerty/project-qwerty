@@ -19,7 +19,7 @@
 <style>
   .box {
     background-color: rgb(48, 209, 88);
-    border: 2px solid rgba(99, 99, 102, 0.5);
+    border: 1.5px solid rgba(0, 0, 0, 0.5);
     text-transform: capitalize;
     box-sizing: border-box;
     display: flex;

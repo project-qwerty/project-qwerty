@@ -1,7 +1,8 @@
 <template>
   <div class="btn-container">
     <button v-on:click="toggle=!toggle" :class="{'selected':toggle===true}" class="text">{{title}}
-    <img alt="Monash Partners logo" style="height:80px" :src="require('@/assets/monash-partners-logo.jpg')"></button>
+    <img alt="image" style="height:150px" :src="require('@/assets/category-selection-images/'+image_path)"></button>
+    <!-- CategorySelectionImages/Email.png -->
   </div>
 </template>
 
@@ -36,10 +37,6 @@
   .btn-container{
     display: flex;
     align-items: stretch;
-  }
-  
-  .text{
-    font-size: 48px
   }
 
   button{

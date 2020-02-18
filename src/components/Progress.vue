@@ -1,3 +1,4 @@
+<!--This is the progress bar at the top of the screen-->
 <template>
   <div class="progress">
     {{current}}/{{total}}

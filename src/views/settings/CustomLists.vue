@@ -20,6 +20,7 @@
 <!--        Add words to selected list-->
       <p class="heading">
         Add Words to List
+        *Please add words all lowercase
       </p>
       <div style="display:flex">
         <BFormInput v-model="new_word" placeholder="Enter a new word"></BFormInput>
