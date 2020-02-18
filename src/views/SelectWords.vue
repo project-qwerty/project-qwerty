@@ -1,27 +1,21 @@
 <template>
   <div>
-    <div style="display:flex;justify-content:center;position:relative">
+<!--    Make vertical gap bigger and center heading vertically -->
+    <div style="display:flex;justify-content:center;position:relative; height:60px">
       <div class=heading>Select Category</div>
         <router-link style="position:fixed;text-decoration:none;right:0;" to="/settings">
           <font-awesome-icon style="font-size:75;color:rgba(142, 142, 147);" icon="cog"/>
         </router-link>
     </div>
     
-     <div v-for="(list, index) in lists" v-bind:key="index" style="display:flex; align-items:center">
-       <SelectButton :preset="preset.selected[index]" :index="index" v-on:update:value="temp=$event"/>
-       <p class="list-heading" style="margin-left:8px;">{{list}}</p>
-    </div>
-    
-<!--
-    <div style="display:flex; align-items:center">
-      <SelectButton :preset="preset.list[1]" :index="1" v-on:update:value="temp=$event"/>
-      <p class="list-heading" style="margin-left:8px;">Words for Text Messages</p>
-    </div>
--->
-    
-    <div v-for="(customList, index) in customLists" v-bind:key="index + 2" style="display:flex; align-items:center" >
-      <SelectButton :preset="preset.customSelected[index]" :index="index + 2" v-on:update:value="temp=$event" />
-      <p class="list-heading" style="margin-left:8px;">{{customList}}</p>
+    <div style="display:flex; align-itmes:center; justify-content:left; flex-wrap:wrap; margin-top: 10px">
+      <div v-for="(list, index) in lists" v-bind:key="index" style="display:flex; align-items:center;  margin:10px">
+        <SelectButton :preset="preset.selected[index]" :index="index" :title="list" v-on:update:value="temp=$event"/>
+      </div>
+
+      <div v-for="(customList, index) in customLists" v-bind:key="index + 2" style="display:flex; align-items:center; margin:10px" >
+        <SelectButton :preset="preset.customSelected[index]" :index="index + 2" :title="customList" v-on:update:value="temp=$event" />
+      </div>
     </div>
     
     <Start :to="startTo" style="align-items:left"/>
