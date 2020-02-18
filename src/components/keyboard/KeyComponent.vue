@@ -1,5 +1,5 @@
 <template>
-  <div class="key" :class="{'disabled' : correction && !enable}" @click="click">
+  <div class="key" :class="{'disabled' : correction && !enable}" @mousedown="click">
     <p>{{char['letter']}}</p>
   </div>
 </template>
