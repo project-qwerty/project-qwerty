@@ -79,11 +79,19 @@
       // Import custom lists
       if (this.$cookies.isKey('wordlists.select')) {
         var customSelected = this.$cookies.get('wordlists.select').split(',');
-//        window.console.log(customSelected);
+        customSelected = JSON.parse("[" + customSelected + "]")
         if (this.$cookies.isKey('wordlists.words')) {
           var customWords = this.$cookies.get('wordlists.words').split('|').slice(0,-1);
-          window.console.log(customWords);
-          for (var i = 0; i < customSelected.length; i++) {
+          var __cw_list = [];
+          for(var i = 0; i < customSelected.length; i++){
+            if(!customSelected[i]) continue;
+            var __w_list = customWords[i].split(',');
+            __cw_list = __cw_list.concat(__w_list);
+          }
+          this.wordlist = this.wordlist.concat(__cw_list)
+          window.console.log(this.wordlist)
+          
+          /*for (var i = 0; i < customSelected.length; i++) {
             if (customSelected[i] == "true") {
               window.console.log("i",customWords[i])
               if (customWords[i].includes(',')) {
@@ -96,7 +104,7 @@
               }
               window.console.log(this.wordlist);
             }
-          }
+          }*/
         }
       }
       
@@ -110,24 +118,27 @@
     },
     methods: {
       inbuiltCreated(wordlists) {
-//        window.console.log("words:",wordlists);
-        
         //WordList Control
         if(this.$cookies.isKey('select_list.list')){
           var selected = this.$cookies.get('select_list.list');
-//          window.console.log("selected",selected);
           var indices = JSON.parse("[" + selected + "]");
-//          window.console.log(indices, wordlists.length);
-          for (var i = 0; i < wordlists.length;i++) {
-            if (indices[i]) {
-              for (var j = 0; j < Object.values(wordlists[0]).length; j++){
-                for (var k = 0; k < Object.values(wordlists[0])[j].length; k++) {
-                  this.wordlist.push(Object.values(wordlists[0])[j][k]);
-                }
-//                window.console.log(this.wordlist);
-              }
-            }
+          var _cw_list = []; // cumulated word list
+          for(var i = 0; i < indices.length; i++){
+            if(!indices[i]) continue
+            var __w_array = wordlists[i][Object.keys(wordlists[i])[0]]
+            _cw_list = _cw_list.concat(__w_array);
           }
+          this.wordlist = this.wordlist.concat(_cw_list);
+           /* for (var i = 0; i < wordlists.length;i++) {
+              if (indices[i]) {
+                for (var j = 0; j < Object.values(wordlists[0]).length; j++){
+                  for (var k = 0; k < Object.values(wordlists[0])[j].length; k++) {
+                    this.wordlist.push(Object.values(wordlists[0])[j][k]);
+                  }
+                 window .console.log(this.wordlist);
+                }
+              }
+            }*/
         }
       },
       keypressed(char) {
