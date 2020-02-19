@@ -16,7 +16,7 @@
       </div>
 
       <div v-for="(customList, index) in customLists" v-bind:key="index + 2" style="display:flex; align-items:center; margin:10px" >
-        <!-- The the index is + 2, is because of the inbuilt lists (should be a varaible that is dependent on inbuilt lists) -->
+        <!-- The the index is + 2, is because of the inbuilt lists (should be a varaible that is dependent on inbuilt lists, line 18, 20, 112) -->
         <SelectButton :preset="preset.customSelected[index]" :index="index + 2" :title="customList" v-on:update:value="temp=$event" :image_path="inbuiltImagesLists[index + 2]" />
       </div>
     </div>

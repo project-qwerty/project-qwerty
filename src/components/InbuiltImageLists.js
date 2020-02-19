@@ -1,3 +1,3 @@
 export default [
-  "Email.png", "SMS.png", "Blank-Image.png", "Blank-Image.png","Blank-Image.png", "Blank-Image.png"
+  "Email.png", "SMS.png", "Blank-Image.png", "Blank-Image.png","Blank-Image.png"
 ]

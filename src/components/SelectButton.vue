@@ -2,7 +2,6 @@
   <div class="btn-container">
     <button v-on:click="toggle=!toggle" :class="{'selected':toggle===true}" class="text">{{title}}
     <img alt="image" style="height:150px" :src="require('@/assets/category-selection-images/'+image_path)"></button>
-    <!-- CategorySelectionImages/Email.png -->
   </div>
 </template>
 
@@ -32,6 +31,10 @@
 <style scoped>
   .selected{ 
     background-color: rgb(48, 209, 88) !important /*Makes this the*/
+  }
+  
+  .text{
+    font-size: 32px
   }
   
   .btn-container{
