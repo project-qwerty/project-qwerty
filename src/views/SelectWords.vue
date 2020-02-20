@@ -15,21 +15,20 @@
         <SelectButton :preset="preset.selected[index]" :index="index" :title="list" v-on:update:value="temp=$event" :image_path="inbuiltImagesLists[index]"/>
       </div>
 
-      <div v-for="(customList, index) in customLists" v-bind:key="index + 2" style="display:flex; align-items:center; margin:10px" >
+      <div v-for="(customList, index) in customLists" v-bind:key="index + InbuiltWordlists.length" style="display:flex; align-items:center; margin:10px" >
         <!-- The the index is + 2, is because of the inbuilt lists (should be a varaible that is dependent on inbuilt lists, line 18, 20, 112) -->
-        <SelectButton :preset="preset.customSelected[index]" :index="index + 2" :title="customList" v-on:update:value="temp=$event" :image_path="inbuiltImagesLists[index + 2]" />
+        <SelectButton :preset="preset.customSelected[index]" :index="index + InbuiltWordlists.length" :title="customList" v-on:update:value="temp=$event" :image_path="inbuiltImagesLists[index + InbuiltWordlists.length]" />
       </div>
     </div>
     
     <Start :to="startTo" style="align-items:left"/>
-    <InbuiltWordlists v-on:inbuiltCreated="inbuiltCreated" />
   </div>
 </template>
 
 <script>
   import SelectButton from '@/components/SelectButton.vue';
   import Start from '@/components/StartButton.vue';
-  import InbuiltWordlists from '@/components/InbuiltWordlists.vue';
+  import InbuiltWordlists from '@/components/InbuiltWordlists.js';
   import InbuiltImagesLists from '@/components/InbuiltImageLists.js';
   
   export default {
@@ -50,16 +49,14 @@
         },
         startTo: "/keyboard",
         inbuiltImagesLists : InbuiltImagesLists,
+        InbuiltWordlists : InbuiltWordlists,
       }
     },
     components: {
       'SelectButton' : SelectButton,
       'Start' : Start,
-      InbuiltWordlists,
-      
     },
     created() {
-      
       // Import inbuilt lists from cookies
       if (this.$cookies.isKey('select_list.list')) {
         this.preset.selected = JSON.parse("[" + this.$cookies.get('select_list.list') + "]");
@@ -94,6 +91,7 @@
       
       this.selected = this.preset.selected;
       this.customSelected = this.preset.customSelected;
+      this.inbuiltCreated(this.InbuiltWordlists)
     },
     methods: {
       inbuiltCreated(wordlists) {
@@ -105,11 +103,11 @@
     },
     watch: {
       'temp' : function(val){
-        if (val.index < 2) {
+        if (val.index < this.InbuiltWordlists.length) {
           this.selected[val.index] = val.value;
           this.$cookies.set('select_list.list', this.selected);
         } else {
-          this.customSelected[val.index - 2] = val.value;
+          this.customSelected[val.index - this.InbuiltWordlists.length] = val.value;
           this.$cookies.set('wordlists.select', this.customSelected);
         }
       }

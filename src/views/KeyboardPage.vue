@@ -12,7 +12,7 @@
       <div v-else style="opacity:0" class="wordlist">You can do it!</div>
       <div class="output">{{output}}</div>
       <Overlay v-if="complete" />
-      <InbuiltWordlists v-on:inbuiltCreated="inbuiltCreated" />
+      
       <Keyboard :word="word" v-on:update:keypressed="keypressed" />
     </div>
   </div>
@@ -24,7 +24,7 @@
   import WordList from '../components/WordList';
   import Overlay from '../components/Overlay';
   import Progress from '../components/Progress';
-  import InbuiltWordlists from '../components/InbuiltWordlists';
+  import InbuiltWordlists from '@/components/InbuiltWordlists.js';
 
   export default {
     name: 'app',
@@ -33,7 +33,7 @@
       Keyboard,
       Overlay,
       Progress,
-      InbuiltWordlists
+      
     },
     data() {
       return {
@@ -44,6 +44,7 @@
         complete: false,
         output: "",
         isHidden: false,
+        InbuiltWordlists : InbuiltWordlists,
         errorlessOnOff: true, // Controls whether errorless is on or off 
         timerOnOff: false, // Controls whether the timer is on or off (line 168)
         correct_audio : new Audio(require('@/assets/correct.mp3')),
@@ -78,6 +79,8 @@
       }
       // Import custom lists
       if (this.$cookies.isKey('wordlists.select')) {
+        window.console.log('this.wordlist:')
+       //  window.console.log(wordlists.select)
         var customSelected = this.$cookies.get('wordlists.select').split(',');
         customSelected = JSON.parse("[" + customSelected + "]")
         if (this.$cookies.isKey('wordlists.words')) {
@@ -108,6 +111,7 @@
         }
       }
       
+      this.inbuiltCreated(this.InbuiltWordlists)
       
     },
     computed : {
@@ -118,6 +122,7 @@
     },
     methods: {
       inbuiltCreated(wordlists) {
+      
         //WordList Control
         if(this.$cookies.isKey('select_list.list')){
           var selected = this.$cookies.get('select_list.list');
