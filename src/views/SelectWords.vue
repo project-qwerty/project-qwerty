@@ -16,7 +16,6 @@
       </div>
 
       <div v-for="(customList, index) in customLists" v-bind:key="index + InbuiltWordlists.length" style="display:flex; align-items:center; margin:10px" >
-        <!-- The the index is + 2, is because of the inbuilt lists (should be a varaible that is dependent on inbuilt lists, line 18, 20, 112) -->
         <SelectButton :preset="preset.customSelected[index]" :index="index + InbuiltWordlists.length" :title="customList" v-on:update:value="temp=$event" :image_path="inbuiltImagesLists[index + InbuiltWordlists.length]" />
       </div>
     </div>
@@ -56,14 +55,18 @@
       'SelectButton' : SelectButton,
       'Start' : Start,
     },
-    created() {
+    created() {     
       // Import inbuilt lists from cookies
       if (this.$cookies.isKey('select_list.list')) {
+        /*window.console.log('if runs')
+        this.$cookies.get('select_list.list')
+        window.console.log('select.list')
+        var see_please = this.$cookies.get('select_list.list')
+        window.console.log("[" + see_please + "]")*/
         this.preset.selected = JSON.parse("[" + this.$cookies.get('select_list.list') + "]");
-//        window.console.log(this.preset.selected)
       } else {
-      // fix this in the future - preset should be all false and the same size as the number of word lists (currently 2)
-        var size = 2;
+        window.console.log('else runs')
+        var size = InbuiltWordlists.length;
         this.preset.selected = Array.apply(null, Array(size)).map(Boolean.prototype.valueOf,false);
       }
       
@@ -77,7 +80,8 @@
         }
       }
       
-      // Importing words of custom lists from cookies
+      //Note: there appears to be an error with the initialisation of the arrays for both the custom lists and the inbuilt lists, these errors can sometimes be overcome by editing the cookies editing
+      
       if (this.$cookies.isKey('wordlists.words')) {
         var words = this.$cookies.get('wordlists.words').split('|').slice(0,-1);
         for (var i = 0; i < words.length; i++){
@@ -90,6 +94,7 @@
       }
       
       this.selected = this.preset.selected;
+      window.console.log('set array as preset')
       this.customSelected = this.preset.customSelected;
       this.inbuiltCreated(this.InbuiltWordlists)
     },
@@ -101,6 +106,7 @@
         }
       }
     },
+    
     watch: {
       'temp' : function(val){
         if (val.index < this.InbuiltWordlists.length) {
@@ -111,7 +117,7 @@
           this.$cookies.set('wordlists.select', this.customSelected);
         }
       }
-    }
+    } 
   }
 </script>
 
