@@ -2,7 +2,7 @@
   <div>
 <!--    Make vertical gap bigger and center heading vertically -->
     <div style="display:flex;justify-content:center;position:relative; height:60px">
-      <div class=heading>Select Category</div>
+      <div class=heading>Select category a to practise</div>
         <router-link style="position:fixed;text-decoration:none;right:0;" to="/settings">
           <font-awesome-icon style="font-size:75;color:rgba(142, 142, 147);" icon="cog"/>
         </router-link>
@@ -126,7 +126,7 @@
   .heading {
     font-size:40px;
     text-align: center;
-    color: rgba(44, 44, 46);
+    color: rgba(44, 44, 46, 0.5);
   }
   
   .list-heading {

@@ -34,7 +34,7 @@
   }
   
   .text{
-    font-size: 32px
+    font-size: 36px
   }
   
   .btn-container{
