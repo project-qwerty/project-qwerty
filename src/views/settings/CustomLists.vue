@@ -1,41 +1,47 @@
 <template>
   <div style="width:600px; padding-left:48px;text-align:left">
-    <h1 style="font-weight:200">Custom Lists</h1>
+    <h1 style="font-weight:200">Custom Categories</h1>
     <div>
 <!--        Create new list-->
       <p class="heading">
-        Make a new list
+        Make a new Category
       </p>
       <div style="display:flex">
-        <BFormInput v-model="new_list" placeholder="Enter list title"></BFormInput>
-        <button v-on:click="this.newList">Submit</button>
+        <BFormInput v-model="new_list" placeholder="Enter list title" class="boxes"></BFormInput>
+        <button v-on:click="this.newList" class="boxes">Submit</button>
       </div>
 
 <!--        Current lists-->
       <p class="heading">
-        Name of Lists
+        Name of Category
       </p>
-      <Multiselect v-model="value" :preselect-first="true" :options="lists" :searchable="false" :show-labels="false" @select="onSelect" />
+      <Multiselect v-model="value" :preselect-first="true" :options="lists" :searchable="false" :show-labels="false" @select="onSelect" class="boxes"/>
 
 <!--        Add words to selected list-->
       <p class="heading">
-        Add Words to List
-        *Please add words all lowercase
+        Add Words to Category*
       </p>
+      <p class="note">*Please add words all lowercase</p>
       <div style="display:flex">
-        <BFormInput v-model="new_word" placeholder="Enter a new word"></BFormInput>
-        <button v-on:click="this.newWord">Submit</button>
+        <BFormInput v-model="new_word" placeholder="Enter a new word" class="boxes"></BFormInput>
+        <button v-on:click="this.newWord" class="boxes">Submit</button>
       </div>
 
 <!--        Current list-->
       <p class="heading">
-        Current List
+        Current Category
       </p>
-      <div style="height:300px;overflow-y:scroll">
+      <div style="height:200px;overflow-y:scroll">
         <div v-for="(item, index) in items" :key="index">
-          <ListItem :item="item" />
+          <ListItem :item="item" class="boxes"/>
         </div>
       </div>
+      
+      <p class="heading">
+        Add Image**
+      </p>
+      <p class="note">**Please note this feature is not yet functional</p>
+      
     </div>
   </div>
 </template>
@@ -117,10 +123,24 @@
 </script>
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
-<!--
+
 <style scoped>
   .heading {
     font-size: 24px;
-    color: darkslategray;
+    color:rgba(58, 58, 60);
+    margin-bottom: 5px;
+    margin-top: 30px
   }
-</style>-->
+  
+  .boxes {
+    font-size: 16px;
+    color:rgba(58, 58, 60);
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  }
+  
+  .note {
+    color:rgba(174, 174, 178);
+    margin-bottom: 5px;
+    margin-top: 5px
+  }
+</style>
