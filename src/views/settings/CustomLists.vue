@@ -19,9 +19,8 @@
 
 <!--        Add words to selected list-->
       <p class="heading">
-        Add Words to Category*
+        Add Words to Category
       </p>
-      <p class="note">*Please add words all lowercase</p>
       <div style="display:flex">
         <BFormInput v-model="new_word" placeholder="Enter a new word" class="boxes"></BFormInput>
         <button v-on:click="this.newWord" class="boxes">Submit</button>
@@ -101,7 +100,7 @@
       newWord: function () {
         var index = this.lists.indexOf(this.current_list);
         if (!(this.words[index].includes(this.new_word)) && this.new_word !== "") {
-          this.words[index].push(this.new_word);
+          this.words[index].push(this.new_word.toLowerCase());
         }
       }
     },
