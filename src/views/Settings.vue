@@ -31,7 +31,7 @@
         'options' : [
           {link : '/settings', name: 'General'},
           {link : '/settings/reports', name: 'Reports'},
-          {link : '/settings/custom-lists', name: 'Custom Words'},
+          {link : '/settings/custom-lists', name: 'Custom Categories'},
           {link : '/settings/display', name: 'Display'},
         ],
       }
