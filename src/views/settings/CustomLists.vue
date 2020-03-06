@@ -32,7 +32,7 @@
       </p>
       <div style="height:200px;overflow-y:scroll">
         <div v-for="(item, index) in items" :key="index">
-          <ListItem :item="item" class="boxes"/>
+          <ListItem v-on:click="click" :item="item" class="boxes"/>
         </div>
       </div>
       
@@ -102,6 +102,10 @@
         if (!(this.words[index].includes(this.new_word)) && this.new_word !== "") {
           this.words[index].push(this.new_word.toLowerCase());
         }
+      },
+      click(val) {
+        var index = this.lists.indexOf(this.current_list);
+        this.words[index].splice(this.words[index].indexOf(val),1);
       }
     },
     watch: {
