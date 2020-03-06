@@ -20,13 +20,17 @@
       </div>
     </div>
     
-    <Start :to="startTo" style="align-items:left"/>
+    <div style="width:460px; margin:auto" class="box">
+      <router-link style="display:flex;justify-content:center;align-items:center;text-decoration:none" :to="startTo" >
+        <p style="text-align:center;font-size:40px;margin-right:16px;color:black">START</p>
+        <font-awesome-icon style="font-size:100;color:black" icon="chevron-right"/>
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
   import SelectButton from '@/components/SelectButton.vue';
-  import Start from '@/components/StartButton.vue';
   import InbuiltWordlists from '@/components/InbuiltWordlists.js';
   import InbuiltImagesLists from '@/components/InbuiltImageLists.js';
   
@@ -53,7 +57,6 @@
     },
     components: {
       'SelectButton' : SelectButton,
-      'Start' : Start,
     },
     created() {     
       // Import inbuilt lists from cookies
