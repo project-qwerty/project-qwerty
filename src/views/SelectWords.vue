@@ -1,6 +1,5 @@
 <template>
   <div>
-<!--    Make vertical gap bigger and center heading vertically -->
     <div style="display:flex;justify-content:center;position:relative; height:60px">
       <div class=heading>Select category a to practise</div>
         <router-link style="position:fixed;text-decoration:none;right:0;" to="/settings">
@@ -20,7 +19,7 @@
       </div>
     </div>
     
-    <div style="width:460px; margin:auto" class="box">
+    <div style="width:460px;margin:auto" v-if="!hidden" class="box">
       <router-link style="display:flex;justify-content:center;align-items:center;text-decoration:none" :to="startTo" >
         <p style="text-align:center;font-size:40px;margin-right:16px;color:black">START</p>
         <font-awesome-icon style="font-size:100;color:black" icon="chevron-right"/>
@@ -46,6 +45,7 @@
         customWords: [],
         customSelected: [],
         temp: null,
+        hidden: true,
         preset: {
           selected: [],
           customSelected: [],
@@ -61,14 +61,8 @@
     created() {     
       // Import inbuilt lists from cookies
       if (this.$cookies.isKey('select_list.list')) {
-        /*window.console.log('if runs')
-        this.$cookies.get('select_list.list')
-        window.console.log('select.list')
-        var see_please = this.$cookies.get('select_list.list')
-        window.console.log("[" + see_please + "]")*/
         this.preset.selected = JSON.parse("[" + this.$cookies.get('select_list.list') + "]");
       } else {
-        window.console.log('else runs')
         var size = InbuiltWordlists.length;
         this.preset.selected = Array.apply(null, Array(size)).map(Boolean.prototype.valueOf,false);
       }
@@ -83,8 +77,6 @@
         }
       }
       
-      //Note: there appears to be an error with the initialisation of the arrays for both the custom lists and the inbuilt lists, these errors can sometimes be overcome by editing the cookies editing
-      
       if (this.$cookies.isKey('wordlists.words')) {
         var words = this.$cookies.get('wordlists.words').split('|').slice(0,-1);
         for (var i = 0; i < words.length; i++){
@@ -97,9 +89,13 @@
       }
       
       this.selected = this.preset.selected;
-      window.console.log('set array as preset')
       this.customSelected = this.preset.customSelected;
       this.inbuiltCreated(this.InbuiltWordlists)
+      if(this.selected.includes(true) || this.customSelected.includes(true)) {
+            this.hidden = false;
+          } else {
+            this.hidden = true;
+          }
     },
     methods: {
       inbuiltCreated(wordlists) {
@@ -118,6 +114,11 @@
         } else {
           this.customSelected[val.index - this.InbuiltWordlists.length] = val.value;
           this.$cookies.set('wordlists.select', this.customSelected);
+        }
+        if(this.selected.includes(true) || this.customSelected.includes(true)) {
+          this.hidden = false;
+        } else {
+          this.hidden = true;
         }
       }
     } 
