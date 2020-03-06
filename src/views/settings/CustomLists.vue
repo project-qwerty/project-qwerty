@@ -78,7 +78,7 @@
           if (words[i].includes(',')) {
             this.words.push(words[i].split(','));
           } else {
-            this.words.push(words[i]);
+            this.words.push([words[i]]);
           }
         }
       }
