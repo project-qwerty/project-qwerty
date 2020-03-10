@@ -2,16 +2,16 @@
   <div id="keyboard">
 <!--    This section runs if the word is not hidden-->
     <div v-if="!isHidden" style="display:flex;position:relative;justify-content:center">
-      <router-link style="position:fixed;left:0;top:0;text-decoration:none" to="/select_words">
+      <router-link style="position:fixed;left:0;top:10;text-decoration:none" to="/select_words">
         <font-awesome-icon style="font-size:40;color:rgba(142, 142, 147);" icon="chevron-left"/>
-      </router-link >
+      </router-link>
       <Progress :total="this.wordlist.length" :current="this.index + 1" />
     </div>
 <!--    This section runs if the word is hidden-->
     <div v-if="isHidden" style="display:flex;position:relative;justify-content:space-between">
       <router-link style="text-decoration:none" to="/select_words">
         <font-awesome-icon style="font-size:40;color:rgba(142, 142, 147);" icon="chevron-left"/> <!--Replace the icon with the eye-->
-      </router-link >
+      </router-link>
       <Progress :total="this.wordlist.length" :current="this.index + 1" />
       <font-awesome-icon v-on:click="rehide" style="font-size:40" icon="chevron-left"/>
     </div>
