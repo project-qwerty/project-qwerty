@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCog, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { faCog, faChevronRight, faChevronLeft, faEye } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueCookies  from 'vue-cookies'
 import BFormInput from 'bootstrap-vue';
@@ -18,6 +18,7 @@ Vue.config.productionTip = false
 library.add(faCog)
 library.add(faChevronRight)
 library.add(faChevronLeft)
+library.add(faEye)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 new Vue({
   router,

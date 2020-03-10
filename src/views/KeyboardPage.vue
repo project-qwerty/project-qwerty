@@ -10,10 +10,10 @@
 <!--    This section runs if the word is hidden-->
     <div v-if="isHidden" style="display:flex;position:relative;justify-content:space-between">
       <router-link style="text-decoration:none" to="/select_words">
-        <font-awesome-icon style="font-size:40;color:rgba(142, 142, 147);" icon="chevron-left"/> <!--Replace the icon with the eye-->
+        <font-awesome-icon style="font-size:40;color:rgba(142, 142, 147);" icon="chevron-left"/> 
       </router-link>
       <Progress :total="this.wordlist.length" :current="this.index + 1" />
-      <font-awesome-icon v-on:click="rehide" style="font-size:40" icon="chevron-left"/>
+      <font-awesome-icon v-on:click="rehide" style="font-size:40; color:rgb(48, 209, 88);" icon="eye"/> <!--eye-->
     </div>
     <div>
       <p style="font-size:60px"></p>
