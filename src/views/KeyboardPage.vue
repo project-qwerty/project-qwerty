@@ -1,10 +1,19 @@
 <template>
   <div id="keyboard">
-    <div style="display:flex;position:relative;justify-content:center">
+<!--    This section runs if the word is not hidden-->
+    <div v-if="!isHidden" style="display:flex;position:relative;justify-content:center">
       <router-link style="position:fixed;left:0;top:0;text-decoration:none" to="/select_words">
         <font-awesome-icon style="font-size:40;color:rgba(142, 142, 147);" icon="chevron-left"/>
       </router-link >
       <Progress :total="this.wordlist.length" :current="this.index + 1" />
+    </div>
+<!--    This section runs if the word is hidden-->
+    <div v-if="isHidden" style="display:flex;position:relative;justify-content:space-between">
+      <router-link style="text-decoration:none" to="/select_words">
+        <font-awesome-icon style="font-size:40;color:rgba(142, 142, 147);" icon="chevron-left"/> <!--Replace the icon with the eye-->
+      </router-link >
+      <Progress :total="this.wordlist.length" :current="this.index + 1" />
+      <font-awesome-icon v-on:click="rehide" style="font-size:40" icon="chevron-left"/>
     </div>
     <div>
       <p style="font-size:60px"></p>
@@ -60,18 +69,18 @@
       // Add all the cookies here (first two lines are the important ones)
       //Timer Control
       if(this.$cookies.isKey('settings.timer')){
-        this.settings.timer = this.$cookies.get('settings.timer');
-        if(this.settings.timer == 0) {
+        this.timer = this.$cookies.get('settings.timer');
+        if(this.$cookies.get('settings.timer') == 0) {
           this.timerOnOff = false;
         } else {
           this.timerOnOff = true;
         }
       }
-      this.timer = setTimeout(this.hide, this.settings.timer * 1000);
+      this.timer = setTimeout(this.hide, this.timer * 1000);
       //Errorless Control
       if(this.$cookies.isKey('settings.errorless')){
         this.errorless = this.$cookies.get('settings.errorless');
-        if(this.errorless == 'ON') {
+        if(this.$cookies.get('settings.errorless') == 'ON') {
           this.errorlessOnOff = true;
         } else {
           this.errorlessOnOff = false;
@@ -121,6 +130,10 @@
       }
     },
     methods: {
+      rehide(){
+        this.isHidden = false;
+        this.timer = setTimeout(this.hide, this.settings.timer * 1000);
+      },
       inbuiltCreated(wordlists) {
       
         //WordList Control
@@ -167,7 +180,8 @@
           this.correct_audio.play();
           this.isHidden = false;
           clearTimeout(this.timer);
-          this.timer = setTimeout(this.hide, this.settings.timer * 1000);
+          this.timer = setTimeout(this.hide, this.timer * 1000);
+//          window.console.log("timer",this.timer);
           
           // If they finished the wordlist
           if (this.index == this.wordlist.length) {
