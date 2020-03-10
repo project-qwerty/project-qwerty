@@ -60,18 +60,18 @@
       // Add all the cookies here (first two lines are the important ones)
       //Timer Control
       if(this.$cookies.isKey('settings.timer')){
-        this.timer = this.$cookies.get('settings.timer');
-        if(this.$cookies.get('settings.timer') == 0) {
+        this.settings.timer = this.$cookies.get('settings.timer');
+        if(this.settings.timer == 0) {
           this.timerOnOff = false;
         } else {
           this.timerOnOff = true;
         }
       }
-      this.timer = setTimeout(this.hide, this.timer * 1000);
+      this.timer = setTimeout(this.hide, this.settings.timer * 1000);
       //Errorless Control
       if(this.$cookies.isKey('settings.errorless')){
         this.errorless = this.$cookies.get('settings.errorless');
-        if(this.$cookies.get('settings.errorless') == 'ON') {
+        if(this.errorless == 'ON') {
           this.errorlessOnOff = true;
         } else {
           this.errorlessOnOff = false;
@@ -167,8 +167,7 @@
           this.correct_audio.play();
           this.isHidden = false;
           clearTimeout(this.timer);
-          this.timer = setTimeout(this.hide, this.timer * 1000);
-//          window.console.log("timer",this.timer);
+          this.timer = setTimeout(this.hide, this.settings.timer * 1000);
           
           // If they finished the wordlist
           if (this.index == this.wordlist.length) {
