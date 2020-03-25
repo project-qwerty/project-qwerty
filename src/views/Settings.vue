@@ -1,6 +1,6 @@
 <template>
   <div class="settings">
-    <SettingsMenu :options="options"/>
+    <SettingsMenu :options="options" :name="name" />
     <div style="display:flex;flex-direction:column">
       <router-view></router-view>
     </div>
@@ -34,6 +34,7 @@
           {link : '/settings/custom-lists', name: 'Custom Categories'},
           {link : '/settings/display', name: 'Display'},
         ],
+        'name' : "Reports"
       }
     }
   }
