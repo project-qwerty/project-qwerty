@@ -28,9 +28,9 @@
       'options',
       'name'
     ],
-    created () {
-      window.console.log(this.options, this.$route.path);
-    }
+//    created () {
+//      window.console.log(this.options, this.$route.path);
+//    }
   }
 </script>
 

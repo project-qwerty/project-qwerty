@@ -104,10 +104,10 @@ min is the minimum value and max the maximum value-->
         this.$cookies.set('settings.repetitions', val);
       },
       'value_timer' : function(val){
-        this.$cookies.set('settings.timer', val);
+        this.$cookies.set('settings.timer', parseInt(val));
       },
       'value_trials' : function(val){
-        this.$cookies.set('settings.trials', val);
+        this.$cookies.set('settings.trials', parseInt(val));
       },
       'value_errorless' : function(val){
         this.$cookies.set('settings.errorless', val);

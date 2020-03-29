@@ -5,14 +5,14 @@
       <router-link style="position:fixed;left:0;top:10;text-decoration:none" to="/select_words">
         <font-awesome-icon style="font-size:40;color:rgba(142, 142, 147);" icon="chevron-left"/>
       </router-link>
-      <Progress :total="this.wordlist.length" :current="this.index + 1" />
+      <Progress :total="trials" :current="this.count" />
     </div>
 <!--    This section runs if the word is hidden-->
     <div v-if="isHidden" style="display:flex;position:relative;justify-content:space-between">
       <router-link style="text-decoration:none" to="/select_words">
         <font-awesome-icon style="font-size:40;color:rgba(142, 142, 147);" icon="chevron-left"/> 
       </router-link>
-      <Progress :total="this.wordlist.length" :current="this.index + 1" />
+      <Progress :total="trials" :current="this.count" />
       <font-awesome-icon v-on:click="rehide" style="font-size:40; color:rgb(48, 209, 88);" icon="eye"/> <!--eye-->
     </div>
     <div>
@@ -42,7 +42,6 @@
       Keyboard,
       Overlay,
       Progress,
-      
     },
     data() {
       return {
@@ -50,9 +49,11 @@
         showModal:true,
         wordlist: [],
         index: 0,
+        count: 1,
         complete: false,
         output: "",
         isHidden: false,
+        trials: null,
         InbuiltWordlists : InbuiltWordlists,
         errorlessOnOff: true, // Controls whether errorless is on or off 
         timerOnOff: false, // Controls whether the timer is on or off (line 168)
@@ -63,10 +64,20 @@
           }
       }
     },
+    // Variables to watch
+    watch: {
+      'index' : function(){
+        this.count += 1;
+      },
+    },
     
     //Run on loading of page
     created() {
       // Add all the cookies here (first two lines are the important ones)
+      //Word number control
+      if(this.$cookies.isKey('settings.trials')){
+        this.trials = this.$cookies.get('settings.trials');
+      }
       //Timer Control
       if(this.$cookies.isKey('settings.timer')){
         this.timer = this.$cookies.get('settings.timer');
@@ -88,8 +99,6 @@
       }
       // Import custom lists
       if (this.$cookies.isKey('wordlists.select')) {
-        window.console.log('this.wordlist:')
-       //  window.console.log(wordlists.select)
         var customSelected = this.$cookies.get('wordlists.select').split(',');
         customSelected = JSON.parse("[" + customSelected + "]")
         if (this.$cookies.isKey('wordlists.words')) {
@@ -101,7 +110,6 @@
             __cw_list = __cw_list.concat(__w_list);
           }
           this.wordlist = this.wordlist.concat(__cw_list)
-          window.console.log(this.wordlist)
           
           /*for (var i = 0; i < customSelected.length; i++) {
             if (customSelected[i] == "true") {
@@ -183,12 +191,17 @@
           this.timer = setTimeout(this.hide, this.timer * 1000);
 //          window.console.log("timer",this.timer);
           
-          // If they finished the wordlist
-          if (this.index == this.wordlist.length) {
+          // If they finished the trials
+          if (this.count == this.trials) {
             this.index = 0;
             this.output = "";
             this.isHidden = true;
             this.complete = true;
+          }
+          
+          // If they finished the wordlist
+          if (this.index == this.wordlist.length) {
+            this.index = 0;
           }
           
         // If they got the word wrong
