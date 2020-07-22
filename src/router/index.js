@@ -8,6 +8,7 @@ import General from '../views/settings/General.vue'
 import Display from '../views/settings/Display.vue'
 import Reports from '../views/settings/Reports.vue'
 import CustomLists from '../views/settings/CustomLists.vue'
+import About from '../views/settings/About.vue'
 
 Vue.use(VueRouter)
 
@@ -42,6 +43,10 @@ const routes = [
       {
         path: 'custom-lists',
         component: CustomLists
+      },
+      {
+        path: 'about',
+        component: About
       },
     ]
   },

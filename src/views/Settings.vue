@@ -33,6 +33,7 @@
           {link : '/settings/reports', name: 'Reports'},
           {link : '/settings/custom-lists', name: 'Custom Categories'},
           {link : '/settings/display', name: 'Display'},
+          {link : '/settings/about', name: 'About'},
         ],
         'name' : "Reports"
       }
