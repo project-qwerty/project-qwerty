@@ -6,13 +6,15 @@ min is the minimum value and max the maximum value-->
   <div style="width:600px; padding-left:48px;text-align:left">
     <h1 style="font-weight:200">General Settings</h1>
     
-    <p class="setting-heading" style="color:lightgrey">Please note that only Settings with * are fully functional</p>
+<!--    <p class="setting-heading" style="color:lightgrey">Please note that only Settings with * are fully functional</p>-->
     
       
+<!--
     <p class="setting-heading">Repetitions</p>
     <switch-component :preset="preset.value_repetitions" :options="['1', '3']" v-on:update:value="value_repetitions=$event"/> 
+-->
       
-    <p class="setting-heading">Timer*</p>
+    <p class="setting-heading">Timer</p><br>
     <veeno 
       :connect="[true, false]"
       :tooltips="true"
@@ -30,7 +32,7 @@ min is the minimum value and max the maximum value-->
       style="margin-top:26px; margin-bottom:52px"
     />
       
-    <p class="setting-heading">Words</p>
+    <p class="setting-heading">Words</p><br>
     <veeno 
       :connect="[true, false]"
       :tooltips="true"     
@@ -48,14 +50,18 @@ min is the minimum value and max the maximum value-->
       style="margin-top:26px; margin-bottom:52px"
     />
     
+<!--
     <p class="setting-heading">Starter Mode</p>
     <switch-component :preset="preset.value_startermode" :options="['OFF', 'ON']" v-on:update:value="value_startermode=$event"/>
+-->
 
-    <p class="setting-heading">Errorless Learning*</p>
+    <p class="setting-heading">Errorless Learning</p>
     <switch-component :preset="preset.value_errorless" :options="['OFF', 'ON']" v-on:update:value="value_errorless=$event"/>
 
+<!--
     <p class="setting-heading">Keyboard</p>
     <switch-component style="margin-bottom:0" :preset="preset.value_keyboard" :options="['LETTER ONLY', 'LETTER & NUMBER']" v-on:update:value=" value_keyboard=$event"/>
+-->
   </div>
 </template>
 
