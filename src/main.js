@@ -12,7 +12,7 @@ Vue.use(VueCookies)
 Vue.use(BFormInput)
 Vue.use(FormInputPlugin)
 //Vue.use(virtualList)
-Vue.$cookies.config('7d') //7d = the cookie expires after 7 days
+Vue.$cookies.config('365d') //365d = the cookie expires after 365 days
 
 Vue.config.productionTip = false
 library.add(faCog)
