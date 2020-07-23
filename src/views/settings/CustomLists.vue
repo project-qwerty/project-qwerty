@@ -36,10 +36,12 @@
         </div>
       </div>
       
+<!--
       <p class="heading">
         Add Image**
       </p>
       <p class="note">**Please note this feature is not yet functional</p>
+-->
       
     </div>
   </div>
