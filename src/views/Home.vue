@@ -2,7 +2,7 @@
   <div class="home">
     <Header />
     <div style="opacity:0;height:50px"></div>
-    <img alt="App logo" style="height:320px" src="../assets/app_logo_3.png">
+    <img alt="App logo" style="height:380px" src="../assets/projectqwerty1.png">
     <p class="paragraph"> This app is for people with aphasia after a stroke </p>
     <div style="width:460px; margin:auto" class="box">
       <router-link style="display:flex;justify-content:center;align-items:center;text-decoration:none" :to="to" >
