@@ -67,9 +67,7 @@
     // Variables to watch
     watch: {
       'index' : function(){
-        if this.count != this.trials{
-          this.count += 1;
-        }
+        this.count += 1;
       },
     },
     
