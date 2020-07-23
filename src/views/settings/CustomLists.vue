@@ -69,11 +69,11 @@
       }
     },
     created () {
-      if (this.$cookies.isKey('wordlists.lists')) {
-        this.lists = this.$cookies.get('wordlists.lists').split(',');
+      if (this.$cookies.isKey('custom_word_lists.lists')) {
+        this.lists = this.$cookies.get('custom_word_lists.lists').split(',');
       }
-      if (this.$cookies.isKey('wordlists.words')) {
-        var words = this.$cookies.get('wordlists.words').split('|').slice(0,-1);
+      if (this.$cookies.isKey('custom_word_lists.words')) {
+        var words = this.$cookies.get('custom_word_lists.words').split('|').slice(0,-1);
         for (var i = 0; i < words.length; i++){
           if (words[i].includes(',')) {
             this.words.push(words[i].split(','));
@@ -110,16 +110,15 @@
     },
     watch: {
       'lists' : function(val){
-        this.$cookies.set('wordlists.lists', val);
+        this.$cookies.set('custom_word_lists.lists', val);
       },
       'words' : function(val){
-//        window.console.log(val);
         var cookie = "";
         for (var i = 0; i < val.length; i++) {
           cookie += val[i];
           cookie += '|'
         }
-        this.$cookies.set('wordlists.words', cookie);        
+        this.$cookies.set('custom_word_lists.words', cookie);        
       }
     }
   }

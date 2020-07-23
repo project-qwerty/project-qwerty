@@ -77,6 +77,8 @@
       //Word number control
       if(this.$cookies.isKey('settings.trials')){
         this.trials = this.$cookies.get('settings.trials');
+      } else {
+        this.trials = 5;
       }
       //Timer Control
       if(this.$cookies.isKey('settings.timer')){
@@ -96,13 +98,15 @@
         } else {
           this.errorlessOnOff = false;
         }
+      } else {
+        this.errorlessOnOff = false;
       }
       // Import custom lists
-      if (this.$cookies.isKey('wordlists.select')) {
-        var customSelected = this.$cookies.get('wordlists.select').split(',');
+      if (this.$cookies.isKey('select_words.custom_selected')) {
+        var customSelected = this.$cookies.get('select_words.custom_selected').split(',');
         customSelected = JSON.parse("[" + customSelected + "]")
-        if (this.$cookies.isKey('wordlists.words')) {
-          var customWords = this.$cookies.get('wordlists.words').split('|').slice(0,-1);
+        if (this.$cookies.isKey('custom_word_lists.words')) {
+          var customWords = this.$cookies.get('custom_word_lists.words').split('|').slice(0,-1);
           var __cw_list = [];
           for(var i = 0; i < customSelected.length; i++){
             if(!customSelected[i]) continue;
@@ -145,8 +149,8 @@
       inbuiltCreated(wordlists) {
       
         //WordList Control
-        if(this.$cookies.isKey('select_list.list')){
-          var selected = this.$cookies.get('select_list.list');
+        if(this.$cookies.isKey('select_words.built_in_selected')){
+          var selected = this.$cookies.get('select_words.built_in_selected');
           var indices = JSON.parse("[" + selected + "]");
           var _cw_list = []; // cumulated word list
           for(var i = 0; i < indices.length; i++){

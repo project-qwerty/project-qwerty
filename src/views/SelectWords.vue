@@ -58,27 +58,27 @@
     components: {
       'SelectButton' : SelectButton,
     },
-    created() {     
+    created() {
       // Import inbuilt lists from cookies
-      if (this.$cookies.isKey('select_list.list')) {
-        this.preset.selected = JSON.parse("[" + this.$cookies.get('select_list.list') + "]");
+      if (this.$cookies.isKey('select_words.built_in_selected')) {
+        this.preset.selected = JSON.parse("[" + this.$cookies.get('select_words.built_in_selected') + "]");
       } else {
         var size = InbuiltWordlists.length;
         this.preset.selected = Array.apply(null, Array(size)).map(Boolean.prototype.valueOf,false);
       }
       
       // Importing the custom lists and whether they are selected from cookies
-      if (this.$cookies.isKey('wordlists.lists')) {
-        this.customLists = this.$cookies.get('wordlists.lists').split(',');
-        if (this.$cookies.isKey('wordlists.select')) {
-          this.preset.customSelected = JSON.parse("[" + this.$cookies.get('wordlists.select') + "]");
+      if (this.$cookies.isKey('custom_word_lists.lists')) {
+        this.customLists = this.$cookies.get('custom_word_lists.lists').split(',');
+        if (this.$cookies.isKey('select_words.custom_selected')) {
+          this.preset.customSelected = JSON.parse("[" + this.$cookies.get('select_words.custom_selected') + "]");
         } else {
           this.preset.customSelected = Array.apply(null, Array(this.customLists.length)).map(Boolean.prototype.valueOf,false);
         }
       }
       
-      if (this.$cookies.isKey('wordlists.words')) {
-        var words = this.$cookies.get('wordlists.words').split('|').slice(0,-1);
+      if (this.$cookies.isKey('custom_word_lists.words')) {
+        var words = this.$cookies.get('custom_word_lists.words').split('|').slice(0,-1);
         for (var i = 0; i < words.length; i++){
           if (words[i].includes(',')) {
             this.customWords.push(words[i].split(','));
@@ -110,10 +110,10 @@
       'temp' : function(val){
         if (val.index < this.InbuiltWordlists.length) {
           this.selected[val.index] = val.value;
-          this.$cookies.set('select_list.list', this.selected);
+          this.$cookies.set('select_words.built_in_selected', this.selected);
         } else {
           this.customSelected[val.index - this.InbuiltWordlists.length] = val.value;
-          this.$cookies.set('wordlists.select', this.customSelected);
+          this.$cookies.set('select_words.custom_selected', this.customSelected);
         }
         if(this.selected.includes(true) || this.customSelected.includes(true)) {
           this.hidden = false;
