@@ -14,7 +14,6 @@ min is the minimum value and max the maximum value-->
     <switch-component :preset="preset.value_repetitions" :options="['1', '3']" v-on:update:value="value_repetitions=$event"/> 
 -->
       
-<!--
     <p class="setting-heading">Timer</p><br>
     <veeno 
       :connect="[true, false]"
@@ -32,7 +31,6 @@ min is the minimum value and max the maximum value-->
       }"
       style="margin-top:26px; margin-bottom:52px"
     />
--->
       
     <p class="setting-heading">Words</p><br>
     <veeno 

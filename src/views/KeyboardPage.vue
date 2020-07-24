@@ -84,14 +84,14 @@
       }
       //Timer Control
       if(this.$cookies.isKey('settings.timer')){
-        this.timer = this.$cookies.get('settings.timer');
+        this.settings.timer = this.$cookies.get('settings.timer');
         if(this.$cookies.get('settings.timer') == 0) {
           this.timerOnOff = false;
         } else {
           this.timerOnOff = true;
         }
       }
-      this.timer = setTimeout(this.hide, this.timer * 1000);
+      this.timer = setTimeout(this.hide, this.settings.timer * 1000);
       //Errorless Control
       if(this.$cookies.isKey('settings.errorless')){
         this.errorless = this.$cookies.get('settings.errorless');
@@ -194,8 +194,7 @@
           this.correct_audio.play();
           this.isHidden = false;
           clearTimeout(this.timer);
-          this.timer = setTimeout(this.hide, this.timer * 1000);
-//          window.console.log("timer",this.timer);
+          this.timer = setTimeout(this.hide, this.settings.timer * 1000);
           
           // If they finished the trials
           if (this.count == this.trials) {
@@ -217,7 +216,6 @@
       },
       hide() {
         this.isHidden = this.timerOnOff;
-//        window.console.log("hide");
       }
     }, 
   }
