@@ -17,7 +17,7 @@ min is the minimum value and max the maximum value-->
     <p class="setting-heading">Timer</p><br>
     <veeno 
       :connect="[true, false]"
-      :tooltips="true"
+      :tooltips="false"
       v-model='value_timer'
       :pipsy = "{ 
       mode: 'steps', // mode is steps
@@ -30,12 +30,12 @@ min is the minimum value and max the maximum value-->
       'max': [ 30 ]
       }"
       style="margin-top:26px; margin-bottom:52px"
-    />
+    >{{timer_display}}</veeno>
       
     <p class="setting-heading">Words</p><br>
     <veeno 
       :connect="[true, false]"
-      :tooltips="true"     
+      :tooltips="false"
       v-model='value_trials'
       :pipsy = "{ 
       mode: 'steps', // mode is steps
@@ -48,7 +48,7 @@ min is the minimum value and max the maximum value-->
       'max': [ 50 ]
       }"
       style="margin-top:26px; margin-bottom:52px"
-    />
+    >{{value_trials}}</veeno>
     
 <!--
     <p class="setting-heading">Starter Mode</p>
@@ -60,7 +60,7 @@ min is the minimum value and max the maximum value-->
 
 <!--
     <p class="setting-heading">Keyboard</p>
-    <switch-component style="margin-bottom:0" :preset="preset.value_keyboard" :options="['LETTER ONLY', 'LETTER & NUMBER']" v-on:update:value=" value_keyboard=$event"/>
+    <switch-component style="margin-bottom:0" :preset="preset.value_keyboard" :options="['LETTERS ONLY', 'LETTERS & NUMBERS']" v-on:update:value=" value_keyboard=$event"/>
 -->
   </div>
 </template>
@@ -75,6 +75,7 @@ min is the minimum value and max the maximum value-->
   export default {
     data() {
       return {
+        timer_display: null,
         value_timer: null,
         // value is intially set to zero, however the value is changed as the slider is moved
         value_trials: null,
@@ -93,12 +94,12 @@ min is the minimum value and max the maximum value-->
     },
     // This sets the sliders so that they remember there last location.
     created(){
-      this.preset.value_repetitions = this.$cookies.isKey('settings.repetitions') ? this.$cookies.get('settings.repetitions') : '1'
+      this.preset.value_repetitions = this.$cookies.isKey('settings.repetitions') ? this.$cookies.get('settings.repetitions') : 1
       this.value_timer = this.$cookies.isKey('settings.timer') ? this.$cookies.get('settings.timer') : 0
       this.value_trials = this.$cookies.isKey('settings.trials') ? this.$cookies.get('settings.trials') : 5
       this.preset.value_startermode = this.$cookies.isKey('settings.startermode') ? this.$cookies.get('settings.startermode') : 'OFF'
       this.preset.value_errorless = this.$cookies.isKey('settings.errorless') ? this.$cookies.get('settings.errorless') : 'OFF'
-      this.preset.value_keyboard = this.$cookies.isKey('settings.keyboard') ? this.$cookies.get('settings.keyboard') : 'LETTER ONLY'
+      this.preset.value_keyboard = this.$cookies.isKey('settings.keyboard') ? this.$cookies.get('settings.keyboard') : 'LETTERS ONLY'
     },
     components: {
       'veeno' : veeno,
@@ -110,6 +111,11 @@ min is the minimum value and max the maximum value-->
         this.$cookies.set('settings.repetitions', val);
       },
       'value_timer' : function(val){
+        if (parseInt(val) !== 0) {
+          this.timer_display = val;
+        } else {
+          this.timer_display = "OFF";
+        }
         this.$cookies.set('settings.timer', parseInt(val));
       },
       'value_trials' : function(val){

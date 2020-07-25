@@ -97,7 +97,7 @@
         if (!(this.lists.includes(this.new_list))) {
           this.lists.push(this.new_list);
           this.words.push([]);
-          alert("List added: " + this.new_list);
+          alert("Category added: " + this.new_list);
         }
       },
       newWord: function () {
