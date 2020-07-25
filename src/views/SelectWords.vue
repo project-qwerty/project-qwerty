@@ -14,8 +14,8 @@
         <SelectButton :preset="preset.selected[index]" :index="index" :title="list" v-on:update:value="temp=$event" :image_path="inbuiltImagesLists[index]"/>
       </div>
 
-      <div v-for="(customList, index) in customLists" v-bind:key="index + InbuiltWordlists.length" style="display:flex; align-items:center; margin:10px" >
-        <SelectButton :preset="preset.customSelected[index]" :index="index + InbuiltWordlists.length" :title="customList" v-on:update:value="temp=$event" :image_path="inbuiltImagesLists[index + InbuiltWordlists.length]" />
+      <div v-for="(customList, index) in customLists" v-bind:key="index + inbuiltWordlists.length" style="display:flex; align-items:center; margin:10px" >
+        <SelectButton :preset="preset.customSelected[index]" :index="index + inbuiltWordlists.length" :title="customList" v-on:update:value="temp=$event" :image_path="inbuiltImagesLists[index + inbuiltWordlists.length]" />
       </div>
     </div>
     
@@ -32,6 +32,7 @@
   import SelectButton from '@/components/SelectButton.vue';
   import InbuiltWordlists from '@/components/InbuiltWordlists.js';
   import InbuiltImagesLists from '@/components/InbuiltImageLists.js';
+  import Cookies from '@/components/Cookies.js';
   
   export default {
     data() {
@@ -52,18 +53,29 @@
         },
         startTo: "/keyboard",
         inbuiltImagesLists : InbuiltImagesLists,
-        InbuiltWordlists : InbuiltWordlists,
+        inbuiltWordlists : InbuiltWordlists,
+        cookies : Cookies,
+        cookieNames: [],
+        cookieInitialValues: [],
       }
     },
     components: {
       'SelectButton' : SelectButton,
     },
     created() {
+      // Initialise settings cookies
+      this.cookiesCreated(this.cookies);
+      for (var x = 0; x < this.cookieNames[0].length; x++) {
+        if (!this.$cookies.isKey(this.cookieNames[0][x])) {
+          this.$cookies.set(this.cookieNames[0][x], this.cookieInitialValues[0][x]);
+        }
+      }
+      
       // Import inbuilt lists from cookies
       if (this.$cookies.isKey('select_words.built_in_selected')) {
         this.preset.selected = JSON.parse("[" + this.$cookies.get('select_words.built_in_selected') + "]");
       } else {
-        var size = InbuiltWordlists.length;
+        var size = this.inbuiltWordlists.length;
         this.preset.selected = Array.apply(null, Array(size)).map(Boolean.prototype.valueOf,false);
       }
       
@@ -71,6 +83,7 @@
       if (this.$cookies.isKey('custom_word_lists.lists')) {
         this.customLists = this.$cookies.get('custom_word_lists.lists').split(',');
         if (this.$cookies.isKey('select_words.custom_selected')) {
+          window.console.log(this.$cookies.get('select_words.custom_selected'))
           this.preset.customSelected = JSON.parse("[" + this.$cookies.get('select_words.custom_selected') + "]");
         } else {
           this.preset.customSelected = Array.apply(null, Array(this.customLists.length)).map(Boolean.prototype.valueOf,false);
@@ -90,7 +103,7 @@
       
       this.selected = this.preset.selected;
       this.customSelected = this.preset.customSelected;
-      this.inbuiltCreated(this.InbuiltWordlists)
+      this.inbuiltCreated(this.inbuiltWordlists)
       if(this.selected.includes(true) || this.customSelected.includes(true)) {
             this.hidden = false;
           } else {
@@ -103,16 +116,20 @@
           this.lists.push(Object.keys(wordlists[i])[0]);
           this.words.push(Object.values(wordlists[i])[0]);
         }
+      },
+      cookiesCreated(cookies) {
+        this.cookieNames.push(Object.values(cookies[0])[0]);
+        this.cookieInitialValues.push(Object.values(cookies[1])[0]); 
       }
     },
     
     watch: {
       'temp' : function(val){
-        if (val.index < this.InbuiltWordlists.length) {
+        if (val.index < this.inbuiltWordlists.length) {
           this.selected[val.index] = val.value;
           this.$cookies.set('select_words.built_in_selected', this.selected);
         } else {
-          this.customSelected[val.index - this.InbuiltWordlists.length] = val.value;
+          this.customSelected[val.index - this.inbuiltWordlists.length] = val.value;
           this.$cookies.set('select_words.custom_selected', this.customSelected);
         }
         if(this.selected.includes(true) || this.customSelected.includes(true)) {
