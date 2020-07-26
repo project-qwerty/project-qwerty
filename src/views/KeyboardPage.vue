@@ -16,7 +16,7 @@
       <font-awesome-icon v-on:click="rehide" style="font-size:40; color:rgb(48, 209, 88);" icon="eye"/> <!--eye-->
     </div>
     <div>
-      <p style="font-size:60px"></p>
+<!--      <p style="font-size:60px"></p>-->
       <WordList v-if="!isHidden" class="wordlist" v-bind:wordlist="wordlist" v-bind:index="index" />
       <div v-else style="opacity:0" class="wordlist">You can do it!</div>
       <div class="output">{{output}}</div>
