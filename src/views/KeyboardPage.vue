@@ -200,13 +200,13 @@
         
         // If they got the word correct
         if (this.output === this.wordlist[this.index]) {
+          this.correct_audio.play();
+          this.isHidden = false;
           if (this.click) {
             alert("Click for the next word");
           }
           this.index += 1;
           this.output = "";
-          this.correct_audio.play();
-          this.isHidden = false;
           clearTimeout(this.timer);
           this.timer = setTimeout(this.hide, this.settings.timer * 1000);
           
