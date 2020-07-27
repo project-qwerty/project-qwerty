@@ -57,6 +57,9 @@ min is the minimum value and max the maximum value-->
 
     <p class="setting-heading">Errorless Learning</p>
     <switch-component :preset="preset.value_errorless" :options="['OFF', 'ON']" v-on:update:value="value_errorless=$event"/>
+    
+    <p class="setting-heading">Click for next word</p>
+    <switch-component :preset="preset.value_click" :options="['OFF', 'ON']" v-on:update:value="value_click=$event"/>
 
 <!--
     <p class="setting-heading">Keyboard</p>
@@ -84,11 +87,13 @@ min is the minimum value and max the maximum value-->
         value_startermode: null,
         value_errorless: null,
         value_keyboard: null,
+        value_click: null,
         preset : {
           value_repetitions: null,
           value_startermode: null,
           value_errorless: null,
           value_keyboard: null,
+          value_click: null,
         }
       }
     },
@@ -99,6 +104,7 @@ min is the minimum value and max the maximum value-->
       this.value_trials = this.$cookies.isKey('settings.trials') ? this.$cookies.get('settings.trials') : 5
       this.preset.value_startermode = this.$cookies.isKey('settings.startermode') ? this.$cookies.get('settings.startermode') : 'OFF'
       this.preset.value_errorless = this.$cookies.isKey('settings.errorless') ? this.$cookies.get('settings.errorless') : 'OFF'
+      this.preset.value_click = this.$cookies.isKey('settings.click') ? this.$cookies.get('settings.click') : 'OFF'
       this.preset.value_keyboard = this.$cookies.isKey('settings.keyboard') ? this.$cookies.get('settings.keyboard') : 'LETTERS ONLY'
     },
     components: {
@@ -129,6 +135,9 @@ min is the minimum value and max the maximum value-->
       },
       'value_keyboard' : function(val){
         this.$cookies.set('settings.keyboard', val);
+      },
+      'value_click' : function(val){
+        this.$cookies.set('settings.click', val);
       },
     },
   }
