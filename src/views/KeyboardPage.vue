@@ -91,7 +91,7 @@
           this.click = false;
         }
       } else {
-          this.click = false;
+          this.click = true;
       }
       //Timer Control
       if(this.$cookies.isKey('settings.timer')){
