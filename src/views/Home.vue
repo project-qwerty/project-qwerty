@@ -4,7 +4,7 @@
     <div style="opacity:0;height:20px"></div>
     <img alt="App logo" style="height:280px" src="../assets/projectqwerty1.png">
     <p class="paragraph"> This app is for people with aphasia after a stroke </p>
-    <div style="width:380px; margin:auto" class="box">
+    <div style="width:360px; margin:auto" class="box">
       <router-link style="display:flex;justify-content:center;align-items:center;text-decoration:none" :to="to" >
         <p style="text-align:center;font-size:40px;margin-right:16px;color:black">START</p>
         <font-awesome-icon style="font-size:100;color:black" icon="chevron-right"/>
@@ -35,7 +35,7 @@
   .paragraph {
     float: left;
     margin: 24px;
-    font-size: 22px;
+    font-size: 18px;
     color:rgba(58, 58, 60);
   }
   .box {
