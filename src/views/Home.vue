@@ -34,7 +34,7 @@
 <style>
   .paragraph {
     float: left;
-    margin: 50px;
+    margin: 40px;
     font-size: 32px;
     color:rgba(58, 58, 60);
   }
