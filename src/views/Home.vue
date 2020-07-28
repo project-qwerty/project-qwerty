@@ -2,7 +2,7 @@
   <div class="home">
     <Header />
     <div style="opacity:0;height:20px"></div>
-    <img alt="App logo" style="height:260px" src="../assets/projectqwerty1.png">
+    <img alt="App logo" style="height:280px" src="../assets/projectqwerty1.png">
     <p class="paragraph"> This app is for people with aphasia after a stroke </p>
     <div style="width:360px; margin:auto" class="box">
       <router-link style="display:flex;justify-content:center;align-items:center;text-decoration:none" :to="to" >
@@ -34,8 +34,8 @@
 <style>
   .paragraph {
     float: left;
-    margin: 24px;
-    font-size: 18px;
+    margin: 28px;
+    font-size: 20px;
     color:rgba(58, 58, 60);
   }
   .box {
