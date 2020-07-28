@@ -54,6 +54,7 @@
         output: "",
         isHidden: false,
         trials: null,
+        click: null,
         InbuiltWordlists : InbuiltWordlists,
         errorlessOnOff: true, // Controls whether errorless is on or off 
         timerOnOff: false, // Controls whether the timer is on or off (line 168)
@@ -81,6 +82,16 @@
         this.trials = this.$cookies.get('settings.trials');
       } else {
         this.trials = 5;
+      }
+      //Click to see next word
+      if(this.$cookies.isKey('settings.click')){
+        if(this.$cookies.get('settings.click') == 'ON') {
+          this.click = true;
+        } else {
+          this.click = false;
+        }
+      } else {
+          this.click = true;
       }
       //Timer Control
       if(this.$cookies.isKey('settings.timer')){
@@ -189,10 +200,13 @@
         
         // If they got the word correct
         if (this.output === this.wordlist[this.index]) {
-          this.index += 1;
-          this.output = "";
           this.correct_audio.play();
           this.isHidden = false;
+          if (this.click) {
+            alert("Click for the next word");
+          }
+          this.index += 1;
+          this.output = "";
           clearTimeout(this.timer);
           this.timer = setTimeout(this.hide, this.settings.timer * 1000);
           
