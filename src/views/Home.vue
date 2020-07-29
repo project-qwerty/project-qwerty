@@ -38,7 +38,7 @@
 <style>
   .paragraph {
     float: left;
-    margin: 28px;
+    margin: 38px;
     font-size: 20px;
     color:rgba(58, 58, 60);
     text-align: left
