@@ -22,7 +22,7 @@
       <div class="output">{{output}}</div>
       <Overlay v-if="complete" />
       
-      <Keyboard style="position:fixed; bottom:80px" :word="word" v-on:update:keypressed="keypressed" />
+      <Keyboard :word="word" v-on:update:keypressed="keypressed" />
     </div>
   </div>
 </template>
