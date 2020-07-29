@@ -283,6 +283,6 @@
   
   .keyboard {
     position: fixed;
-    bottom: 80px;
+/*    bottom: 80px;*/
   }
 </style>
