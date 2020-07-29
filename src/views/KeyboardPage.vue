@@ -21,8 +21,9 @@
       <div v-else style="opacity:0" class="wordlist">You can do it!</div>
       <div class="output">{{output}}</div>
       <Overlay v-if="complete" />
-      
-      <Keyboard :word="word" v-on:update:keypressed="keypressed" />
+      <div class=keyboard>
+        <Keyboard :word="word" v-on:update:keypressed="keypressed" />
+      </div>
     </div>
   </div>
 </template>
@@ -278,5 +279,10 @@
     height: 100px;
     color:rgba(72, 72, 74, 0.8);
     font-weight:bold; 
+  }
+  
+  .keyboard {
+    position: fixed;
+    bottom: 80px;
   }
 </style>
