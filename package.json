@@ -14,6 +14,7 @@
     "axios": "^0.19.2",
     "bootstrap-vue": "^2.4.0",
     "core-js": "^3.4.4",
+    "express-samesite-default": "^1.0.6",
     "tailwindcss": "^1.1.4",
     "veeno": "0.0.4",
     "vue": "^2.6.10",
