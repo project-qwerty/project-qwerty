@@ -1,3 +1,3 @@
 export default [
-  "Email.png", "SMS.png", "Groceries.png", "Time.png", "Health.png", "Blank-Image.png", "Blank-Image.png","Blank-Image.png", "Blank-Image.png", "Blank-Image.png","Blank-Image.png","Blank-Image.png", "Blank-Image.png","Blank-Image.png"
+  "Everyday.png", "Numbers.png", "Work.png", "SMS.png", "Social_Media.png","Groceries.png", "Time.png", "Health.png", "Blank-Image.png", "Blank-Image.png","Blank-Image.png", "Blank-Image.png", "Blank-Image.png","Blank-Image.png","Blank-Image.png", "Blank-Image.png","Blank-Image.png","Blank-Image.png","Blank-Image.png", "Blank-Image.png","Blank-Image.png","Blank-Image.png","Blank-Image.png", "Blank-Image.png","Blank-Image.png"
 ]
