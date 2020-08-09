@@ -71,21 +71,36 @@
         }
       }
       
-      // Import inbuilt lists from cookies
+      // Import which inbuilt lists are selected from cookies
+      var size = this.inbuiltWordlists.length;
       if (this.$cookies.isKey('select_words.built_in_selected')) {
-        this.preset.selected = JSON.parse("[" + this.$cookies.get('select_words.built_in_selected') + "]");
+        // Set preset from cookie
+        var thisList = JSON.parse("[" + this.$cookies.get('select_words.built_in_selected') + "]")
+        this.preset.selected = thisList;
+        // This is for when we update the inbuilt lists - length of cookie doesn't match number of inbuilt lists
+        if (size !== this.preset.selected.length) {
+          this.preset.selected = Array.apply(null, Array(size)).map(Boolean.prototype.valueOf,false);
+        }
       } else {
-        var size = this.inbuiltWordlists.length;
+        // Cookie doesn't exist
         this.preset.selected = Array.apply(null, Array(size)).map(Boolean.prototype.valueOf,false);
       }
       
       // Importing the custom lists and whether they are selected from cookies
       if (this.$cookies.isKey('custom_word_lists.lists')) {
+        // Make list from cookies
         this.customLists = this.$cookies.get('custom_word_lists.lists').split(',');
         if (this.$cookies.isKey('select_words.custom_selected')) {
-          window.console.log(this.$cookies.get('select_words.custom_selected'))
+          // Set selected preset from cookie
           this.preset.customSelected = JSON.parse("[" + this.$cookies.get('select_words.custom_selected') + "]");
+          // This is for when they have just made a new custom list
+          if (this.preset.customSelected.length !== this.customLists.length) {
+            // Set preset selected to all false (should incorporate any selections they have previously made but this is much easier)
+            this.preset.customSelected = Array.apply(null, Array(this.customLists.length)).map(Boolean.prototype.valueOf,false);
+          }
+        // They have just made their first custom list so they have custom lists but no selected cookie
         } else {
+          // Set default to false
           this.preset.customSelected = Array.apply(null, Array(this.customLists.length)).map(Boolean.prototype.valueOf,false);
         }
       }
