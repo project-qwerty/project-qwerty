@@ -9,7 +9,7 @@ min is the minimum value and max the maximum value-->
 <!--    <p class="setting-heading" style="color:lightgrey">Please note that only Settings with * are fully functional</p>-->
     
       
-    <p class="setting-heading">Timer</p><br>
+    <p class="setting-heading" style="margin-bottom:35px">Timer</p>
     <veeno 
       :connect="[true, false]"
       :tooltips="false"
@@ -27,7 +27,7 @@ min is the minimum value and max the maximum value-->
       style="margin-top:26px; margin-bottom:52px"
     >{{timer_display}}</veeno>
       
-    <p class="setting-heading">Words</p><br>
+    <p class="setting-heading" style="margin-bottom:35px">Words</p>
     <veeno 
       :connect="[true, false]"
       :tooltips="false"
@@ -51,13 +51,13 @@ min is the minimum value and max the maximum value-->
 -->
 
     <p class="setting-heading">Errorless Learning</p>
-    <switch-component :preset="preset.value_errorless" :options="['OFF', 'ON']" v-on:update:value="value_errorless=$event"/>
+    <switch-component style="margin-bottom:35px" :preset="preset.value_errorless" :options="['OFF', 'ON']" v-on:update:value="value_errorless=$event"/>
     
     <p class="setting-heading">Click for next word</p>
-    <switch-component :preset="preset.value_click" :options="['OFF', 'ON']" v-on:update:value="value_click=$event"/>
+    <switch-component style="margin-bottom:35px" :preset="preset.value_click" :options="['OFF', 'ON']" v-on:update:value="value_click=$event"/>
     
     <p class="setting-heading">Repetitions</p>
-    <switch-component :preset="preset.value_repetitions" :options="['1', '3']" v-on:update:value="value_repetitions=$event"/> 
+    <switch-component style="margin-bottom:35px" :preset="preset.value_repetitions" :options="['1', '3']" v-on:update:value="value_repetitions=$event"/> 
 
 <!--
     <p class="setting-heading">Keyboard</p>
@@ -149,5 +149,7 @@ min is the minimum value and max the maximum value-->
   }
     
   .setting-heading{
+    font-size: 30px;
+    margin: auto;
   }
 </style>
