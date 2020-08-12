@@ -9,11 +9,6 @@ min is the minimum value and max the maximum value-->
 <!--    <p class="setting-heading" style="color:lightgrey">Please note that only Settings with * are fully functional</p>-->
     
       
-<!--
-    <p class="setting-heading">Repetitions</p>
-    <switch-component :preset="preset.value_repetitions" :options="['1', '3']" v-on:update:value="value_repetitions=$event"/> 
--->
-      
     <p class="setting-heading">Timer</p><br>
     <veeno 
       :connect="[true, false]"
@@ -60,6 +55,9 @@ min is the minimum value and max the maximum value-->
     
     <p class="setting-heading">Click for next word</p>
     <switch-component :preset="preset.value_click" :options="['OFF', 'ON']" v-on:update:value="value_click=$event"/>
+    
+    <p class="setting-heading">Repetitions</p>
+    <switch-component :preset="preset.value_repetitions" :options="['1', '3']" v-on:update:value="value_repetitions=$event"/> 
 
 <!--
     <p class="setting-heading">Keyboard</p>
