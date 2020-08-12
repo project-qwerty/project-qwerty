@@ -50,7 +50,7 @@
     padding-top:8px;
     padding-bottom:8px;
     outline: 2px black;
-    border: 1px solid black;
+    border: 2.5px solid black;
     transition: all 200ms;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
