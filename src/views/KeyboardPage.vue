@@ -123,11 +123,14 @@
       } else {
         this.errorlessOnOff = false;
       }
+      
       // Import custom lists
       if (this.$cookies.isKey('select_words.custom_selected')) {
+        // Get which lists are selected from cookies
         var customSelected = this.$cookies.get('select_words.custom_selected').split(',');
         customSelected = JSON.parse("[" + customSelected + "]")
         if (this.$cookies.isKey('custom_word_lists.words')) {
+          // Get words from cookies
           var customWords = this.$cookies.get('custom_word_lists.words').split('|').slice(0,-1);
           var __cw_list = [];
           for(var i = 0; i < customSelected.length; i++){
@@ -135,27 +138,14 @@
             var __w_list = customWords[i].split(',');
             __cw_list = __cw_list.concat(__w_list);
           }
-          this.wordlist = this.wordlist.concat(__cw_list)
-          
-          /*for (var i = 0; i < customSelected.length; i++) {
-            if (customSelected[i] == "true") {
-              window.console.log("i",customWords[i])
-              if (customWords[i].includes(',')) {
-                var miniList = customWords[i].split(',');
-                for (var j = 0; j < miniList.length; j++) {
-                this.wordlist.push(miniList[j]);                  
-                }
-              } else {
-                this.wordlist.push(customWords[i]);
-              }
-              window.console.log(this.wordlist);
-            }
-          }*/
+          this.wordlist = this.wordlist.concat(__cw_list);
+        } else {
+          alert("There is an error with the cookies. Please enable cookies.");
         }
       }
       
-      this.inbuiltCreated(this.InbuiltWordlists)
-      
+      this.inbuiltCreated(this.InbuiltWordlists);
+      this.wordlist = this.shuffleWordlist(this.wordlist);
     },
     computed : {
       'word' : function(){
@@ -169,7 +159,6 @@
         this.timer = setTimeout(this.hide, this.settings.timer * 1000);
       },
       inbuiltCreated(wordlists) {
-      
         //WordList Control
         if(this.$cookies.isKey('select_words.built_in_selected')){
           var selected = this.$cookies.get('select_words.built_in_selected');
@@ -181,17 +170,23 @@
             _cw_list = _cw_list.concat(__w_array);
           }
           this.wordlist = this.wordlist.concat(_cw_list);
-           /* for (var i = 0; i < wordlists.length;i++) {
-              if (indices[i]) {
-                for (var j = 0; j < Object.values(wordlists[0]).length; j++){
-                  for (var k = 0; k < Object.values(wordlists[0])[j].length; k++) {
-                    this.wordlist.push(Object.values(wordlists[0])[j][k]);
-                  }
-                 window .console.log(this.wordlist);
-                }
-              }
-            }*/
         }
+      },
+      shuffleWordlist(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+          
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+          
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+        return array;
       },
       keypressed(char) {
         // If button pressed wasn't backspace
@@ -225,7 +220,7 @@
           this.timer = setTimeout(this.hide, this.settings.timer * 1000);
           
           // If they finished the trials
-          if (this.count == this.trials) {
+          if (this.count == this.trials && this.current_count == this.repetitions) {
             this.index = 0;
             this.output = "";
             this.isHidden = true;
