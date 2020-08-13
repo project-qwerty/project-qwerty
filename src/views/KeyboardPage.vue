@@ -225,7 +225,7 @@
           this.timer = setTimeout(this.hide, this.settings.timer * 1000);
           
           // If they finished the trials
-          if (this.count == this.trials) {
+          if (this.count == this.trials && this.current_count == this.repetitions) {
             this.index = 0;
             this.output = "";
             this.isHidden = true;
