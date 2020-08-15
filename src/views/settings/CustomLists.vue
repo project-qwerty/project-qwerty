@@ -98,12 +98,14 @@
           this.lists.push(this.new_list);
           this.words.push([]);
           alert("Category added: " + this.new_list);
+          this.new_list = "";
         }
       },
       newWord: function () {
         var index = this.lists.indexOf(this.current_list);
         if (!(this.words[index].includes(this.new_word)) && this.new_word !== "") {
           this.words[index].push(this.new_word.toLowerCase());
+          this.new_word = "";
         }
       },
       click(val) {
