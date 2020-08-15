@@ -9,7 +9,7 @@ min is the minimum value and max the maximum value-->
 <!--    <p class="setting-heading" style="color:lightgrey">Please note that only Settings with * are fully functional</p>-->
     
     <p class="setting-heading" style="margin-bottom:35px">
-      <img alt="App logo" style="height:20px" src="@/assets/setting-icons/Timer.png">
+      <img style="height:20px" src="@/assets/setting-icons/Timer.png">
       Timer
     </p>
     <veeno 
@@ -30,7 +30,7 @@ min is the minimum value and max the maximum value-->
     >{{timer_display}}</veeno>
     
     <p class="setting-heading" style="margin-bottom:35px">
-      <img alt="App logo" style="height:20px" src="@/assets/setting-icons/Words.png">
+      <img style="height:20px" src="@/assets/setting-icons/Words.png">
       Words
     </p>
     <veeno 
@@ -55,13 +55,22 @@ min is the minimum value and max the maximum value-->
     <switch-component :preset="preset.value_startermode" :options="['OFF', 'ON']" v-on:update:value="value_startermode=$event"/>
 -->
 
-    <p class="setting-heading">Errorless Learning</p>
+    <p class="setting-heading">
+      <img style="height:20px" src="@/assets/setting-icons/Errorless.png">
+      Errorless Learning
+    </p>
     <switch-component style="margin-bottom:35px" :preset="preset.value_errorless" :options="['OFF', 'ON']" v-on:update:value="value_errorless=$event"/>
     
-    <p class="setting-heading">Click for next word</p>
+    <p class="setting-heading">
+      <img style="height:20px" src="@/assets/setting-icons/Click_for_next.png">
+      Click for next word
+    </p>
     <switch-component style="margin-bottom:35px" :preset="preset.value_click" :options="['OFF', 'ON']" v-on:update:value="value_click=$event"/>
     
-    <p class="setting-heading">Repetitions</p>
+    <p class="setting-heading">
+      <img style="height:20px" src="@/assets/setting-icons/Repetitions.png">
+      Repetitions
+    </p>
     <switch-component style="margin-bottom:35px" :preset="preset.value_repetitions" :options="['1', '3']" v-on:update:value="value_repetitions=$event"/> 
 
 <!--
