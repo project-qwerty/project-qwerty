@@ -1,5 +1,5 @@
 <template>
-  <div style="padding-left:48px;text-align:left">
+  <div style="padding-left:48px;text-align:left;font-color:black">
     <h1 style="font-weight:200">About</h1>
       <p>
         Welcome to Project QWERTY, this is an <strong>app</strong> for people with <strong>aphasia</strong>
@@ -8,7 +8,7 @@
       </p>
       <p> This app is a <strong> work in progress</strong>. </p>
       <p>We are <strong> working </strong> on making the app fully functional on all web browsers.</p>
-
+      <br>
       <h1 style="font-weight:200">Frequently Asked Questions (FAQs)</h1>
       <p><em><strong>What is </strong>Project QWERTY?</em></p>
       <p> Project QWERTY is an app for people with <strong> aphasia</strong>. It targets <strong> spelling </strong> and <strong> typing </strong> through the use of pre-programmed word lists and the option to create custom word lists.

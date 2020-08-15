@@ -8,7 +8,6 @@ min is the minimum value and max the maximum value-->
     
 <!--    <p class="setting-heading" style="color:lightgrey">Please note that only Settings with * are fully functional</p>-->
     
-      
     <p class="setting-heading" style="margin-bottom:35px">Timer</p>
     <veeno 
       :connect="[true, false]"
