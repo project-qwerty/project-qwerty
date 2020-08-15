@@ -63,6 +63,8 @@
         timerOnOff: false, // Controls whether the timer is on or off (line 168)
         correct_audio : new Audio(require('@/assets/correct.mp3')),
         wrong_audio : new Audio(require('@/assets/wrong.mp3')),
+        wrong_2: new Audio(require('@/assets/wrong_2.mp3')),
+        wrong_3: new Audio(require('@/assets/wrong_3.mp3')),
           settings: {
               timer : 5
           }
@@ -234,7 +236,7 @@
           
         // If they got the word wrong
         } else if (this.output.length === this.wordlist[this.index].length) {
-          this.wrong_audio.play();
+          this.wrong_3.play();
         }
       },
       hide() {
