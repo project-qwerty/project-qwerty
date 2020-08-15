@@ -26,7 +26,7 @@ min is the minimum value and max the maximum value-->
       }"
       style="margin-top:26px; margin-bottom:52px"
     >{{timer_display}}</veeno>
-      
+    
     <p class="setting-heading" style="margin-bottom:35px">Words</p>
     <veeno 
       :connect="[true, false]"
@@ -116,13 +116,14 @@ min is the minimum value and max the maximum value-->
       },
       'value_timer' : function(val){
         if (parseInt(val) !== 0) {
-          this.timer_display = val;
+          this.timer_display = parseInt(val);
         } else {
           this.timer_display = "OFF";
         }
         this.$cookies.set('settings.timer', parseInt(val));
       },
       'value_trials' : function(val){
+        this.value_trials = parseInt(val);
         this.$cookies.set('settings.trials', parseInt(val));
       },
       'value_errorless' : function(val){
