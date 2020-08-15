@@ -4,11 +4,14 @@ min is the minimum value and max the maximum value-->
 
 <!--Need to use getValue to use the slider as an input-->
   <div style="width:600px; padding-left:48px;text-align:left">
-    <h1 style="font-weight:200">General Settings</h1>
+    <h1 style="font-weight:200; color:black">General Settings</h1>
     
 <!--    <p class="setting-heading" style="color:lightgrey">Please note that only Settings with * are fully functional</p>-->
     
-    <p class="setting-heading" style="margin-bottom:35px">Timer</p>
+    <p class="setting-heading" style="margin-bottom:35px">
+      <img alt="App logo" style="height:20px" src="@/assets/setting-icons/Timer.png">
+      Timer
+    </p>
     <veeno 
       :connect="[true, false]"
       :tooltips="false"
@@ -26,7 +29,10 @@ min is the minimum value and max the maximum value-->
       style="margin-top:26px; margin-bottom:52px"
     >{{timer_display}}</veeno>
     
-    <p class="setting-heading" style="margin-bottom:35px">Words</p>
+    <p class="setting-heading" style="margin-bottom:35px">
+      <img alt="App logo" style="height:20px" src="@/assets/setting-icons/Words.png">
+      Words
+    </p>
     <veeno 
       :connect="[true, false]"
       :tooltips="false"
@@ -85,6 +91,8 @@ min is the minimum value and max the maximum value-->
         value_errorless: null,
         value_keyboard: null,
         value_click: null,
+        words_icon: new Image(require('@/assets/setting-icons/Words.png')),
+        timer_icon: new Image(require('@/assets/setting-icons/Timer.png')),
         preset : {
           value_repetitions: null,
           value_startermode: null,
@@ -96,6 +104,7 @@ min is the minimum value and max the maximum value-->
     },
     // This sets the sliders so that they remember there last location.
     created(){
+      window.console.log()
       this.preset.value_repetitions = this.$cookies.isKey('settings.repetitions') ? this.$cookies.get('settings.repetitions') : 1
       this.value_timer = this.$cookies.isKey('settings.timer') ? this.$cookies.get('settings.timer') : 0
       this.value_trials = this.$cookies.isKey('settings.trials') ? this.$cookies.get('settings.trials') : 5
@@ -151,5 +160,6 @@ min is the minimum value and max the maximum value-->
   .setting-heading{
     font-size: 30px;
     margin: auto;
+    color: black;
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div style="width:600px; padding-left:48px;text-align:left">
-    <h1 style="font-weight:200">Custom Categories</h1>
+    <h1 style="font-weight:200;color:black">Custom Categories</h1>
     <div>
 <!--        Create new list-->
       <p class="heading">
@@ -136,7 +136,8 @@
     font-size: 24px;
     color:rgba(58, 58, 60);
     margin-bottom: 5px;
-    margin-top: 30px
+    margin-top: 30px;
+    color: black;
   }
   
   .boxes {
