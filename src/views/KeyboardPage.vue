@@ -236,7 +236,7 @@
           
         // If they got the word wrong
         } else if (this.output.length === this.wordlist[this.index].length) {
-          this.wrong_3.play();
+          this.wrong_2.play();
         }
       },
       hide() {
