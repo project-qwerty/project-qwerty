@@ -4,7 +4,7 @@ min is the minimum value and max the maximum value-->
 
 <!--Need to use getValue to use the slider as an input-->
   <div style="width:600px; padding-left:48px;text-align:left">
-    <h1 style="font-weight:200; color:black">General Settings</h1>
+    <h1 style="font-weight:bold; color:black; ">General Settings</h1>
     
 <!--    <p class="setting-heading" style="color:lightgrey">Please note that only Settings with * are fully functional</p>-->
     

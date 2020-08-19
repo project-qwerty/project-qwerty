@@ -1,10 +1,10 @@
 <template>
   <div style="width:600px; padding-left:48px;text-align:left">
-    <h1 style="font-weight:200;color:black">Custom Categories</h1>
+    <h1 style="font-weight:bold;color:black">Custom Categories</h1>
     <div>
 <!--        Create new list-->
       <p class="heading">
-        <img style="height:23px" src="@/assets/setting-icons/New_Category.png">
+        <img class="icon" src="@/assets/setting-icons/New_Category.png">
         Make a new Category
       </p>
       <div style="display:flex">
@@ -14,14 +14,14 @@
 
 <!--        Current lists-->
       <p class="heading">
-        <img style="height:23px" src="@/assets/setting-icons/Select_Category.png">
+        <img class="icon" src="@/assets/setting-icons/Select_Category.png">
         Select Category
       </p>
       <Multiselect v-model="value" :preselect-first="true" :options="lists" :searchable="false" :show-labels="false" @select="onSelect" class="boxes"/>
 
 <!--        Add words to selected list-->
       <p class="heading">
-        <img style="height:23px" src="@/assets/setting-icons/New_Word.png">
+        <img class="icon" src="@/assets/setting-icons/New_Word.png">
         Add Words to Category
       </p>
       <div style="display:flex">
@@ -31,7 +31,7 @@
 
 <!--        Current list-->
       <p class="heading">
-        <img style="height:23px" src="@/assets/setting-icons/Current_Category.png">
+        <img class="icon" src="@/assets/setting-icons/Current_Category.png">
         Current Category
       </p>
       <div style="height:200px;overflow-y:scroll">
@@ -153,6 +153,10 @@
   .note {
     color:rgba(174, 174, 178);
     margin-bottom: 5px;
-    margin-top: 5px
+    margin-top: 5px;
+  }
+  
+  .icon {
+    height: 30px;
   }
 </style>
