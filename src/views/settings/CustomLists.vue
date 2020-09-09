@@ -157,6 +157,6 @@
   }
   
   .icon {
-    height: 30px;
+    height: 20px;
   }
 </style>
