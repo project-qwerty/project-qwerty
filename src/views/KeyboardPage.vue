@@ -19,7 +19,7 @@
 <!--      <p style="font-size:60px"></p>-->
       <WordList v-if="!isHidden" class="wordlist" v-bind:wordlist="wordlist" v-bind:index="index" />
       <div v-else style="opacity:0" class="wordlist">You can do it!</div>
-      <div class="output">{{output}}</div>
+      <Output :output="output" />
       <Overlay v-if="complete" />
       <div class=keyboard>
         <Keyboard :word="word" v-on:update:keypressed="keypressed" />
@@ -35,6 +35,7 @@
   import Overlay from '../components/Overlay';
   import Progress from '../components/Progress';
   import InbuiltWordlists from '@/components/InbuiltWordlists.js';
+  import Output from '@/components/Output.vue';
 
   export default {
     name: 'app',
@@ -43,6 +44,7 @@
       Keyboard,
       Overlay,
       Progress,
+      Output,
     },
     data() {
       return {
@@ -58,6 +60,7 @@
         click: null,
         repetitions: 1,
         current_count: 1,
+        key_pressed: false,
         InbuiltWordlists : InbuiltWordlists,
         errorlessOnOff: true, // Controls whether errorless is on or off 
         timerOnOff: false, // Controls whether the timer is on or off (line 168)
@@ -147,13 +150,72 @@
       }
       
       this.inbuiltCreated(this.InbuiltWordlists);
+      window.console.log(this.wordlist)
       this.wordlist = this.shuffleWordlist(this.wordlist);
+      window.console.log(this.wordlist)
     },
     computed : {
       'word' : function(){
         if(this.errorlessOnOff) return this.wordlist[this.index][this.output.length];
         return 'abcdefghijklmnopqrstuvwxyz backspace';
-      }
+      },
+      
+    },
+    updated: function () {
+      window.console.log("UPDATED")
+      this.$nextTick(function () {
+        window.console.log(this.key_pressed)
+        // Code that will run only after the
+        // entire view has been re-rendered
+        if (this.key_pressed) {
+          window.console.log(this.output)
+          // If they got the word correct
+          if (this.output === this.wordlist[this.index]) {
+            this.correct_audio.play();
+            this.isHidden = false;
+            this.output = "";
+//            if (this.click) {
+//              this.click_show = true;
+//            }
+            if (this.current_count == 1) {
+              this.index += 1;
+              this.current_count = this.repetitions;
+            } else {
+              this.current_count -= 1;
+            }
+            clearTimeout(this.timer);
+            this.timer = setTimeout(this.hide, this.settings.timer * 1000);
+
+            // If they finished the trials
+            if (this.count == this.trials && this.current_count == this.repetitions) {
+              this.index = 0;
+              this.output = "";
+              this.isHidden = true;
+              this.complete = true;
+            }
+
+            // If they finished the wordlist
+            if (this.index == this.wordlist.length) {
+              this.index = 0;
+            }
+
+          // If they got the word wrong
+          } else if (this.output.length === this.wordlist[this.index].length) {
+            this.wrong_2.play();
+          }
+          this.key_pressed = false;
+        }
+      })
+    },
+    beforeUpdate: function() {
+      this.$nextTick(() => {
+        window.console.log("before")
+        if (this.key_pressed) {
+          var char = this.char;
+          window.console.log("beforetrue")
+          window.console.log(char)          
+        }
+      });
     },
     methods: {
       rehide(){
@@ -164,6 +226,7 @@
         //WordList Control
         if(this.$cookies.isKey('select_words.built_in_selected')){
           var selected = this.$cookies.get('select_words.built_in_selected');
+          window.console.log(selected)
           var indices = JSON.parse("[" + selected + "]");
           var _cw_list = []; // cumulated word list
           for(var i = 0; i < indices.length; i++){
