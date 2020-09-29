@@ -21,6 +21,7 @@
       <div v-else style="opacity:0" class="wordlist">You can do it!</div>
       <Output :output="output" />
       <Overlay v-if="complete" />
+      <Alert v-if="alert" v-on:update:alert_function="alert_function" />
       <div class=keyboard>
         <Keyboard :word="word" v-on:update:keypressed="keypressed" />
       </div>
@@ -36,6 +37,7 @@
   import Progress from '../components/Progress';
   import InbuiltWordlists from '@/components/InbuiltWordlists.js';
   import Output from '@/components/Output.vue';
+  import Alert from '@/components/Alert.vue';
 
   export default {
     name: 'app',
@@ -45,6 +47,7 @@
       Overlay,
       Progress,
       Output,
+      Alert,
     },
     data() {
       return {
@@ -54,6 +57,7 @@
         index: 0,
         count: 1,
         complete: false,
+        alert: false,
         output: "",
         isHidden: false,
         trials: null,
@@ -173,12 +177,13 @@
           if (this.output === this.wordlist[this.index]) {
             this.correct_audio.play();
             this.isHidden = false;
-            this.output = "";
-//            if (this.click) {
-//              this.click_show = true;
+            if (this.click) {
+              this.click_show = true;
+            }
 //            }
             if (this.current_count == 1) {
               this.index += 1;
+              this.output = "";
               this.current_count = this.repetitions;
             } else {
               this.current_count -= 1;
@@ -253,30 +258,12 @@
         }
         return array;
       },
-      keypressed(char) {
-        // If button pressed wasn't backspace
-        if (char !== "backspace") {
-          if (this.errorlessOnOff) {
-            this.output += char;
-          } else {
-            this.output += char;
-          }
-          
-          // If button pressed was backspace
-        } else {
-          this.output = this.output.substring(0, this.output.length - 1);
-        }
-        
-        // If they got the word correct
-        if (this.output === this.wordlist[this.index]) {
-          this.correct_audio.play();
-          this.isHidden = false;
-          this.output = "";
-          if (this.click) {
-            alert("Click for the next word");
-          }
-          if (this.current_count == 1) {
+      alert_function() {
+        window.console.log("ALERT!!!")
+        this.alert = false;
+        if (this.current_count == 1) {
             this.index += 1;
+            this.output = "";
             this.current_count = this.repetitions;
           } else {
             this.current_count -= 1;
@@ -296,6 +283,26 @@
           if (this.index == this.wordlist.length) {
             this.index = 0;
           }
+      },
+      keypressed(char) {
+        // If button pressed wasn't backspace
+        if (char !== "backspace") {
+          if (this.errorlessOnOff) {
+            this.output += char;
+          } else {
+            this.output += char;
+          }
+          
+          // If button pressed was backspace
+        } else {
+          this.output = this.output.substring(0, this.output.length - 1);
+        }
+        
+        // If they got the word correct
+        if (this.output === this.wordlist[this.index]) {
+          this.correct_audio.play();
+          this.isHidden = false;
+          this.alert = true;
           
         // If they got the word wrong
         } else if (this.output.length === this.wordlist[this.index].length) {
