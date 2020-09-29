@@ -27,8 +27,9 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    display: table;
-    transition: opacity .3s ease;
+/*    display: table;*/
+    background-color: rgba(0, 0, 0, 0.25);
+/*    transition: opacity .3s ease;*/
   }
   
   .popups {

@@ -259,7 +259,6 @@
         return array;
       },
       alert_function() {
-        window.console.log("ALERT!!!")
         this.alert = false;
         if (this.current_count == 1) {
             this.index += 1;
