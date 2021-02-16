@@ -12,16 +12,6 @@
         <button v-on:click="this.newList" class="boxes">Submit</button>
       </div>
 
-<!--        Delete list-->
-      <p class="heading">
-        <img class="icon" src="@/assets/setting-icons/Delete_Category.png">
-        Delete a Category
-      </p>
-      <div style="display:flex">
-        <BFormInput v-model="list_to_delete" placeholder="Enter list title" class="boxes"></BFormInput>
-        <button v-on:click="this.deleteList" class="boxes">Submit</button>
-      </div>
-
 <!--        Current lists-->
       <p class="heading">
         <img class="icon" src="@/assets/setting-icons/Select_Category.png">
@@ -48,6 +38,16 @@
         <div v-for="(item, index) in items" :key="index">
           <ListItem v-on:click="click" :item="item" class="boxes"/>
         </div>
+      </div>
+
+<!--        Delete list-->
+      <p class="heading">
+        <img class="icon" src="@/assets/setting-icons/Delete_Category.png">
+        Delete a Category
+      </p>
+      <div style="display:flex">
+        <BFormInput v-model="list_to_delete" placeholder="Enter list title" class="boxes"></BFormInput>
+        <button v-on:click="this.deleteList" class="boxes">Submit</button>
       </div>
 
 <!--
