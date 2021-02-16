@@ -39,14 +39,14 @@
           <ListItem v-on:click="click" :item="item" class="boxes"/>
         </div>
       </div>
-      
+
 <!--
       <p class="heading">
         Add Image**
       </p>
       <p class="note">**Please note this feature is not yet functional</p>
 -->
-      
+
     </div>
   </div>
 </template>
@@ -56,7 +56,7 @@
 <script>
   import { Multiselect } from 'vue-multiselect';
   import ListItem from '@/components/ListItem.vue';
-  
+
   export default {
     name: 'CustomLists',
     components: {
@@ -127,7 +127,7 @@
           cookie += val[i];
           cookie += '|'
         }
-        this.$cookies.set('custom_word_lists.words', cookie);        
+        this.$cookies.set('custom_word_lists.words', cookie);
       }
     }
   }
@@ -143,19 +143,19 @@
     margin-top: 30px;
     color: black;
   }
-  
+
   .boxes {
     font-size: 16px;
     color:rgba(58, 58, 60);
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
   }
-  
+
   .note {
     color:rgba(174, 174, 178);
     margin-bottom: 5px;
     margin-top: 5px;
   }
-  
+
   .icon {
     height: 20px;
   }
