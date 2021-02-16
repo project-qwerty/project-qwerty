@@ -12,6 +12,16 @@
         <button v-on:click="this.newList" class="boxes">Submit</button>
       </div>
 
+<!--        Delete list-->
+      <p class="heading">
+        <img class="icon" src="@/assets/setting-icons/Delete_Category.png">
+        Delete a Category
+      </p>
+      <div style="display:flex">
+        <BFormInput v-model="list_to_delete" placeholder="Enter list title" class="boxes"></BFormInput>
+        <button v-on:click="this.deleteList" class="boxes">Submit</button>
+      </div>
+
 <!--        Current lists-->
       <p class="heading">
         <img class="icon" src="@/assets/setting-icons/Select_Category.png">
@@ -69,6 +79,7 @@
         lists: [],
         new_word: "",
         new_list: "",
+        list_to_delete: "",
         current_list: "",
         words: [],
         items: []
@@ -103,6 +114,15 @@
           this.words.push([]);
           alert("Category added: " + this.new_list);
           this.new_list = "";
+        }
+      },
+      deleteList: function () {
+        var index = this.lists.indexOf(this.list_to_delete);
+        if (index !== -1) {
+          this.lists.splice(index, 1);
+          this.words.splice(index, 1);
+          alert("Category deleted: " + this.list_to_delete);
+          this.list_to_delete = "";
         }
       },
       newWord: function () {
