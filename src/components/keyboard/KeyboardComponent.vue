@@ -25,7 +25,7 @@
     flex-wrap: nowrap;
     justify-content: center;
   }
-  
+
   .key {
     padding-top: 10px;
     height: 80px;

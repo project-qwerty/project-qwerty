@@ -7,7 +7,7 @@
 </template>
 
 
-<style>  
+<style>
   .popup {
     z-index: 9999;
     background: #fefefe;

@@ -29,21 +29,21 @@
 
 
 <style scoped>
-  .selected{ 
+  .selected{
     background-color: rgb(48, 209, 88) !important /*Makes this the*/
   }
-  
+
   .text{
     font-size: 32px
   }
-  
+
   .btn-container{
     display: flex;
     align-items: stretch;
   }
 
   button{
-    background-color: #fefefe; 
+    background-color: #fefefe;
     color: #212121;
     height: 200px;
     width: 200px;

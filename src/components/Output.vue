@@ -17,6 +17,6 @@
     text-decoration: underline;
     height: 100px;
     color:rgba(28, 28, 30);
-    font-weight:bold; 
+    font-weight:bold;
   }
 </style>

@@ -8,7 +8,7 @@
 
 <script>
   import Popup from '../components/PopupButton';
-  
+
   export default {
     name : 'overlay-component',
     components : {"popup-btn-component" : Popup},
@@ -31,7 +31,7 @@
     background-color: rgba(0, 0, 0, 0.25);
 /*    transition: opacity .3s ease;*/
   }
-  
+
   .popups {
     height: 100vh;
     width: 100vw;

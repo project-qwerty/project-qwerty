@@ -5,7 +5,7 @@
     </router-link>
     <p class="heading">Settings</p>
     <div>
-      <router-link 
+      <router-link
         v-for="(option, index) in this.options"
         :key="index"
         class="option-link"
@@ -48,7 +48,7 @@
     text-decoration: none;
     color: slategrey;
   }
-  
+
   .heading {
     color: rgb(44, 44, 46);
     font-size: 32px;

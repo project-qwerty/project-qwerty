@@ -5,51 +5,51 @@ min is the minimum value and max the maximum value-->
 <!--Need to use getValue to use the slider as an input-->
   <div style="width:600px; padding-left:48px;text-align:left">
     <h1 style="font-weight:bold; color:black; ">General Settings</h1>
-    
+
 <!--    <p class="setting-heading" style="color:lightgrey">Please note that only Settings with * are fully functional</p>-->
-    
+
     <p class="setting-heading" style="margin-bottom:35px">
       <img style="height:20px" src="@/assets/setting-icons/Timer.png">
       Timer
     </p>
-    <veeno 
+    <veeno
       :connect="[true, false]"
       :tooltips="false"
       v-model='value_timer'
-      :pipsy = "{ 
+      :pipsy = "{
       mode: 'steps', // mode is steps
-      density: 100 
-      }"   
-      :handles = "[this.value_timer]" 
+      density: 100
+      }"
+      :handles = "[this.value_timer]"
       :step = "5"
-      :range = "{ 
+      :range = "{
       'min': [  0 ],
       'max': [ 30 ]
       }"
       style="margin-top:26px; margin-bottom:52px"
     >{{timer_display}}</veeno>
-    
+
     <p class="setting-heading" style="margin-bottom:35px">
       <img style="height:20px" src="@/assets/setting-icons/Words.png">
       Words
     </p>
-    <veeno 
+    <veeno
       :connect="[true, false]"
       :tooltips="false"
       v-model='value_trials'
-      :pipsy = "{ 
+      :pipsy = "{
       mode: 'steps', // mode is steps
-      density: 10 
-      }"   
-      :handles = "[this.value_trials]" 
+      density: 10
+      }"
+      :handles = "[this.value_trials]"
       :step = "5"
-      :range = "{ 
+      :range = "{
       'min': [  5 ],
       'max': [ 50 ]
       }"
       style="margin-top:26px; margin-bottom:52px"
     >{{value_trials}}</veeno>
-    
+
 <!--
     <p class="setting-heading">Starter Mode</p>
     <switch-component :preset="preset.value_startermode" :options="['OFF', 'ON']" v-on:update:value="value_startermode=$event"/>
@@ -60,18 +60,18 @@ min is the minimum value and max the maximum value-->
       Errorless Learning
     </p>
     <switch-component style="margin-bottom:35px" :preset="preset.value_errorless" :options="['OFF', 'ON']" v-on:update:value="value_errorless=$event"/>
-    
+
     <p class="setting-heading">
       <img style="height:20px" src="@/assets/setting-icons/Click_for_next.png">
       Click for next word
     </p>
     <switch-component style="margin-bottom:35px" :preset="preset.value_click" :options="['OFF', 'ON']" v-on:update:value="value_click=$event"/>
-    
+
     <p class="setting-heading">
       <img style="height:20px" src="@/assets/setting-icons/Repetitions.png">
       Repetitions
     </p>
-    <switch-component style="margin-bottom:35px" :preset="preset.value_repetitions" :options="['1', '3']" v-on:update:value="value_repetitions=$event"/> 
+    <switch-component style="margin-bottom:35px" :preset="preset.value_repetitions" :options="['1', '3']" v-on:update:value="value_repetitions=$event"/>
 
 <!--
     <p class="setting-heading">Keyboard</p>
@@ -165,7 +165,7 @@ min is the minimum value and max the maximum value-->
     display:flex;
     min-height:100px;
   }
-    
+
   .setting-heading{
     font-size: 30px;
     margin: auto;

@@ -36,11 +36,11 @@
 
 
 <style scoped>
-  
+
   .disabled{
     background-color: gray !important;
   }
-  
+
   .key {
     background-color: white;
     border: 1px solid black;
@@ -56,7 +56,7 @@
     margin: 0px 6px;
     box-shadow: 0 6px 6px -1px rgba(0, 0, 0, 0.2), 0 4px 4px -1px rgba(0, 0, 0, 0.2);
   }
-  
+
 /*
   .key:after {
     content: "";
@@ -64,5 +64,5 @@
     padding-bottom: 100%;
   }
 */
-  
+
 </style>

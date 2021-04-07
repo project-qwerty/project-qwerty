@@ -8,7 +8,7 @@
 <script>
   export default{
     name: "switch-component",
-    props: ["options", "preset"], 
+    props: ["options", "preset"],
     // the internal state - can be change in this code
     data: function(){
       return{
@@ -28,7 +28,7 @@
 
 
 <style scoped>
-  .green-button{ 
+  .green-button{
     background-color: rgb(48, 209, 88) !important /*Makes this the*/
   }
 
@@ -38,7 +38,7 @@
   }
 
   button{
-    background-color: #fefefe; 
+    background-color: #fefefe;
     color: #212121;
     font-size: 14px;
     width: 96px;
