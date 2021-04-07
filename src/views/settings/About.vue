@@ -7,7 +7,7 @@
       <p>
         Welcome to Project QWERTY, this is an <strong>app</strong> for people with <strong>aphasia</strong>
       </p>
-      <p>Project QWERTY is an app made by Monash University <strong> students </strong> and Monash Health <strong> Speech Pathologists</strong> in partnership with <strong>people with aphasia</strong>. 
+      <p>Project QWERTY is an app made by Monash University <strong> students </strong> and Monash Health <strong> Speech Pathologists</strong> in partnership with <strong>people with aphasia</strong>.
       </p>
       <p> This app is a <strong> work in progress</strong>. </p>
       <p>We are <strong> working </strong> on making the app fully functional on all web browsers.</p>
@@ -24,7 +24,7 @@
       <p>1.	If you are using an <strong>iPad</strong>, access this app via the <strong>Google app</strong>.
       </p><p>OR</p><p>
       If you are using a <strong>computer</strong> or other <strong>tablet</strong> device, access this app via <strong>Google Chrome</strong>.</p><p>
-      2.Turn <strong> off </strong> private browsing / incognito mode.</p> 
+      2.Turn <strong> off </strong> private browsing / incognito mode.</p>
         <br>
       <p><em>
       Who do I contact if I have a <strong>question</strong>  about Project QWERTY? </em></p><p>Please <strong>email</strong> us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a> </p>

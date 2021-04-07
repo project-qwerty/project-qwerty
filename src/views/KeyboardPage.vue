@@ -10,7 +10,7 @@
 <!--    This section runs if the word is hidden-->
     <div v-if="isHidden" style="display:flex;position:relative;justify-content:space-between">
       <router-link style="text-decoration:none" to="/select_words">
-        <font-awesome-icon style="font-size:40;color:rgba(142, 142, 147);" icon="chevron-left"/> 
+        <font-awesome-icon style="font-size:40;color:rgba(142, 142, 147);" icon="chevron-left"/>
       </router-link>
       <Progress :total="trials" :current="this.count" />
       <font-awesome-icon v-on:click="rehide" style="font-size:40; color:rgb(48, 209, 88);" icon="eye"/> <!--eye-->
@@ -66,7 +66,7 @@
         current_count: 1,
         key_pressed: false,
         InbuiltWordlists : InbuiltWordlists,
-        errorlessOnOff: true, // Controls whether errorless is on or off 
+        errorlessOnOff: true, // Controls whether errorless is on or off
         timerOnOff: false, // Controls whether the timer is on or off (line 168)
         correct_audio : new Audio(require('@/assets/correct.mp3')),
         wrong_audio : new Audio(require('@/assets/wrong.mp3')),
@@ -85,7 +85,7 @@
         }
       },
     },
-    
+
     //Run on loading of page
     created() {
       // Add all the cookies here (first two lines are the important ones)
@@ -132,7 +132,7 @@
       } else {
         this.errorlessOnOff = false;
       }
-      
+
       // Import custom lists
       if (this.$cookies.isKey('select_words.custom_selected')) {
         // Get which lists are selected from cookies
@@ -152,7 +152,7 @@
           alert("There is an error with the cookies. Please enable cookies.");
         }
       }
-      
+
       this.inbuiltCreated(this.InbuiltWordlists);
       window.console.log(this.wordlist)
       this.wordlist = this.shuffleWordlist(this.wordlist);
@@ -163,7 +163,7 @@
         if(this.errorlessOnOff) return this.wordlist[this.index][this.output.length];
         return 'abcdefghijklmnopqrstuvwxyz backspace';
       },
-      
+
     },
     updated: function () {
       window.console.log("UPDATED")
@@ -218,7 +218,7 @@
         if (this.key_pressed) {
           var char = this.char;
           window.console.log("beforetrue")
-          window.console.log(char)          
+          window.console.log(char)
         }
       });
     },
@@ -246,11 +246,11 @@
         var currentIndex = array.length, temporaryValue, randomIndex;
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {
-          
+
           // Pick a remaining element...
           randomIndex = Math.floor(Math.random() * currentIndex);
           currentIndex -= 1;
-          
+
           // And swap it with the current element.
           temporaryValue = array[currentIndex];
           array[currentIndex] = array[randomIndex];
@@ -269,7 +269,7 @@
           }
           clearTimeout(this.timer);
           this.timer = setTimeout(this.hide, this.settings.timer * 1000);
-          
+
           // If they finished the trials
           if (this.count == this.trials && this.current_count == this.repetitions) {
             this.index = 0;
@@ -277,7 +277,7 @@
             this.isHidden = true;
             this.complete = true;
           }
-          
+
           // If they finished the wordlist
           if (this.index == this.wordlist.length) {
             this.index = 0;
@@ -291,18 +291,18 @@
           } else {
             this.output += char;
           }
-          
+
           // If button pressed was backspace
         } else {
           this.output = this.output.substring(0, this.output.length - 1);
         }
-        
+
         // If they got the word correct
         if (this.output === this.wordlist[this.index]) {
           this.correct_audio.play();
           this.isHidden = false;
           this.alert = true;
-          
+
         // If they got the word wrong
         } else if (this.output.length === this.wordlist[this.index].length) {
           this.wrong_2.play();
@@ -311,7 +311,7 @@
       hide() {
         this.isHidden = this.timerOnOff;
       }
-    }, 
+    },
   }
 </script>
 
@@ -322,17 +322,17 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    
+
   }
-  
+
   body {
     line-height: 1.4;
   }
-  
+
   .grey-button {
     background-color: grey;
   }
-  
+
   .btn {
     display: inline-block;
     border: none;
@@ -341,25 +341,25 @@
     padding: 7px 20px;
     cursor: pointer;
   }
-  
+
   .output {
     font-size: 70px;
     text-transform: uppercase;
     text-decoration: underline;
     height: 100px;
     color:rgba(28, 28, 30);
-    font-weight:bold; 
+    font-weight:bold;
   }
-  
+
   .wordlist {
     font-size: 70px;
     text-transform: uppercase;
     text-decoration: none;
     height: 100px;
     color:rgba(72, 72, 74, 0.8);
-    font-weight:bold; 
+    font-weight:bold;
   }
-  
+
   .keyboard {
 /*    position: fixed;*/
     bottom: 80px;
