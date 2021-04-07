@@ -18,8 +18,7 @@
 
 <script>
   import SettingsMenu from '../components/layout/SettingsMenu';
-  
-  
+
   export default {
     name: "Settings",
     components: {
@@ -30,12 +29,10 @@
         // Links to each settings page
         'options' : [
           {link : '/settings', name: 'General'},
-//          {link : '/settings/reports', name: 'Reports'},
           {link : '/settings/custom-lists', name: 'Custom Categories'},
 //          {link : '/settings/display', name: 'Display'},
           {link : '/settings/about', name: 'About'},
         ],
-        'name' : "Reports"
       }
     }
   }

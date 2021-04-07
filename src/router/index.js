@@ -6,7 +6,6 @@ import Settings from '../views/Settings.vue'
 import SelectWords from '../views/SelectWords.vue'
 import General from '../views/settings/General.vue'
 import Display from '../views/settings/Display.vue'
-import Reports from '../views/settings/Reports.vue'
 import CustomLists from '../views/settings/CustomLists.vue'
 import About from '../views/settings/About.vue'
 
@@ -35,10 +34,6 @@ const routes = [
       {
         path: 'display',
         component: Display
-      },
-      {
-        path: 'reports',
-        component: Reports
       },
       {
         path: 'custom-lists',
