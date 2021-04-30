@@ -62,7 +62,7 @@
   }
 
   .link-to-select-words-icon {
-    font-size: 30;
+    font-size: 50px;
     color: rgba(142, 142, 147);
   }
 
