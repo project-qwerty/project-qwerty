@@ -168,19 +168,23 @@
 <style scoped>
   .header {
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    position: relative;
-    height: 60px;
+    align-items: center;
+  }
+
+  .heading {
+    font-size: 40px;
+    color: rgba(44, 44, 46, 0.5);
+    flex-grow: 1;
   }
 
   .link-to-settings {
-    position: fixed;
     text-decoration: none;
-    right: 0;
   }
 
   .link-to-settings-cog {
-    font-size: 75;
+    font-size: 50px;
     color: rgba(142, 142, 147);
   }
 
@@ -226,16 +230,5 @@
   .start-chevron {
     font-size: 100;
     color: black;
-  }
-
-  .heading {
-    font-size: 40px;
-    text-align: center;
-    color: rgba(44, 44, 46, 0.5);
-  }
-
-  .list-heading {
-    font-size: 22px;
-    text-align: left;
   }
 </style>
