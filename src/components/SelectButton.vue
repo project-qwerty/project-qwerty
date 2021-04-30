@@ -1,6 +1,8 @@
 <template>
-  <button v-on:click="toggle=!toggle" :class="{'selected':toggle===true}">{{title}}
-  <img alt="image" class="icon" :src="require('@/assets/category-selection-images/'+image_path)"></button>
+  <button v-on:click="toggle=!toggle" :class="{'selected':toggle===true}">
+    <div class="text">{{title}}</div>
+    <img class="icon" alt="image" :src="require('@/assets/category-selection-images/'+image_path)">
+  </button>
 </template>
 
 
@@ -31,6 +33,10 @@
     background-color: rgb(48, 209, 88) !important
   }
 
+  .text{
+    font-size: 32px;
+  }
+
   .icon{
     height: 120px;
   }
@@ -46,6 +52,5 @@
     border: 2.5px solid black;
     transition: all 200ms;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    font-size: 32px;
   }
 </style>
