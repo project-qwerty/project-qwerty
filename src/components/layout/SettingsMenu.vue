@@ -1,7 +1,7 @@
 <template>
   <div class="line">
-    <router-link style="display:flex;justify-content:left;text-decoration:none" to="/select_words">
-      <font-awesome-icon style="font-size:30;color:rgba(142, 142, 147);" icon="chevron-left"/>
+    <router-link class="link-to-select-words" to="/select_words">
+      <font-awesome-icon class="link-to-select-words-icon" icon="chevron-left"/>
     </router-link>
     <p class="heading">Settings</p>
     <div>
@@ -10,7 +10,7 @@
         :key="index"
         class="option-link"
         :to="option.link">
-        <div v-if="option.link==$route.path" style="font-weight:bold;color:black">
+        <div v-if="option.link==$route.path" class="generic-link">
           {{option.name}}
         </div>
         <div v-else>
@@ -53,5 +53,21 @@
     color: rgb(44, 44, 46);
     font-size: 32px;
     font-weight: bold
+  }
+
+  .link-to-select-words {
+    display: flex;
+    justify-content: left;
+    text-decoration: none;
+  }
+
+  .link-to-select-words-icon {
+    font-size: 30;
+    color: rgba(142, 142, 147);
+  }
+
+  .generic-link {
+    font-weight: bold;
+    color: black;
   }
 </style>
