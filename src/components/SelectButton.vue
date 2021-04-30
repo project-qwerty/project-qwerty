@@ -1,7 +1,7 @@
 <template>
   <div class="btn-container">
     <button v-on:click="toggle=!toggle" :class="{'selected':toggle===true}" class="text">{{title}}
-    <img alt="image" style="height:120px" :src="require('@/assets/category-selection-images/'+image_path)"></button>
+    <img alt="image" class="icon" :src="require('@/assets/category-selection-images/'+image_path)"></button>
   </div>
 </template>
 
@@ -40,6 +40,10 @@
   .btn-container{
     display: flex;
     align-items: stretch;
+  }
+
+  .icon{
+    height: 120px;
   }
 
   button{
