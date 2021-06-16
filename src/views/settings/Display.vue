@@ -53,7 +53,4 @@
     display:flex;
     min-height:100px;
   }
-
-  .setting-heading{
-  }
 </style>

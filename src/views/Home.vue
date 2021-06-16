@@ -40,7 +40,7 @@
     float: left;
     margin: 38px;
     font-size: 20px;
-    color:rgba(58, 58, 60);
+    color: #000;
     text-align: left
   }
   .box {

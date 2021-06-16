@@ -49,14 +49,6 @@
         <BFormInput v-model="list_to_delete" placeholder="Enter list title" class="boxes"></BFormInput>
         <button v-on:click="this.deleteList" class="boxes">Submit</button>
       </div>
-
-<!--
-      <p class="heading">
-        Add Image**
-      </p>
-      <p class="note">**Please note this feature is not yet functional</p>
--->
-
     </div>
   </div>
 </template>
@@ -158,7 +150,6 @@
 <style scoped>
   .heading {
     font-size: 24px;
-    color:rgba(58, 58, 60);
     margin-bottom: 5px;
     margin-top: 30px;
     color: black;
@@ -168,12 +159,6 @@
     font-size: 16px;
     color:rgba(58, 58, 60);
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  }
-
-  .note {
-    color:rgba(174, 174, 178);
-    margin-bottom: 5px;
-    margin-top: 5px;
   }
 
   .icon {

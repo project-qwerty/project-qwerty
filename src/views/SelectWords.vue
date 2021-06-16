@@ -175,7 +175,7 @@
 
   .heading {
     font-size: 40px;
-    color: rgba(44, 44, 46, 0.5);
+    color: #000;
     flex-grow: 1;
   }
 

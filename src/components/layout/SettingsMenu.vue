@@ -50,7 +50,7 @@
   }
 
   .heading {
-    color: rgb(44, 44, 46);
+    color: #000;
     font-size: 32px;
     font-weight: bold
   }
