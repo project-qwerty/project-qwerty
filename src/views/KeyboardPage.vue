@@ -3,14 +3,14 @@
 <!--    This section runs if the word is not hidden-->
     <div v-if="!isHidden" style="display:flex;position:relative;justify-content:center">
       <router-link style="position:fixed;left:0;top:10;text-decoration:none" to="/select_words">
-        <font-awesome-icon style="font-size:40;color:rgba(142, 142, 147);" icon="chevron-left"/>
+        <font-awesome-icon style="font-size:50px;color:rgba(142, 142, 147);" icon="chevron-left"/>
       </router-link>
       <Progress :total="trials" :current="this.count" />
     </div>
 <!--    This section runs if the word is hidden-->
     <div v-if="isHidden" style="display:flex;position:relative;justify-content:space-between">
       <router-link style="text-decoration:none" to="/select_words">
-        <font-awesome-icon style="font-size:40;color:rgba(142, 142, 147);" icon="chevron-left"/>
+        <font-awesome-icon style="font-size:50px;color:rgba(142, 142, 147);" icon="chevron-left"/>
       </router-link>
       <Progress :total="trials" :current="this.count" />
       <font-awesome-icon v-on:click="rehide" style="font-size:40; color:rgb(48, 209, 88);" icon="eye"/> <!--eye-->
