@@ -13,7 +13,7 @@
         <font-awesome-icon style="font-size:50px;color:rgba(142, 142, 147);" icon="chevron-left"/>
       </router-link>
       <Progress :total="trials" :current="this.count" />
-      <font-awesome-icon v-on:click="rehide" style="font-size:40; color:rgb(48, 209, 88);" icon="eye"/> <!--eye-->
+      <font-awesome-icon v-on:click="rehide" style="font-size:40px; color:rgb(48, 209, 88);" icon="eye"/> <!--eye-->
     </div>
     <div>
 <!--      <p style="font-size:60px"></p>-->
