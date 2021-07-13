@@ -39,7 +39,6 @@
     float: left;
     margin: 38px;
     font-size: 20px;
-    color: #000;
     text-align: left
   }
   .start-button {

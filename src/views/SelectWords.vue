@@ -175,7 +175,6 @@
 
   .heading {
     font-size: 40px;
-    color: #000;
     flex-grow: 1;
   }
 
