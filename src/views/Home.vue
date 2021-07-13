@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <Header />
-    <div style="opacity:0;height:20px"></div>
     <img alt="App logo" style="height:260px" src="../assets/projectqwerty1.png">
     <div style="display:flex;justify-content:flex-end">
       <p class="paragraph"> This app is for people with aphasia after a stroke.<br>Find out more
