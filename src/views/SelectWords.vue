@@ -23,14 +23,11 @@
 
     </div>
 
-    <div class="box start-button-container" v-if="!hidden">
-      <!-- Start button -->
-      <router-link class="start-button" :to="startTo" >
-        <p class="start-text">START</p>
-        <font-awesome-icon class="start-chevron" icon="chevron-right" />
-      </router-link>
-
-    </div>
+    <!-- Start button -->
+    <router-link class="start-button" :to="startTo" v-if="!hidden">
+      <p class="start-text">START</p>
+      <font-awesome-icon class="start-chevron" icon="chevron-right" />
+    </router-link>
   </div>
 </template>
 
@@ -212,22 +209,7 @@
     margin: auto;
   }
 
-  .start-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-  }
+  /* The start button classes are defined in the homepage CSS. */
+  /* They'll need to be brought back here when all of the CSS is converted to locally scoped. */
 
-  .start-text {
-    text-align: center;
-    font-size: 40px;
-    margin-right: 16px;
-    color: black;
-  }
-
-  .start-chevron {
-    font-size: 100;
-    color: black;
-  }
 </style>

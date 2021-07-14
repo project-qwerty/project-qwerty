@@ -4,12 +4,10 @@
     <img alt="App logo" class="app-logo" src="../assets/projectqwerty1.png">
     <div class="container">
       <p class="paragraph">This app is for people with aphasia after a stroke.<br>Find out more <router-link :to="about">here</router-link>.</p>
-      <div class="start-button">
-        <router-link class="start-link" :to="selectWords" >
+      <router-link class="start-button" :to="selectWords" >
         <p class="start-text">START</p>
         <font-awesome-icon class="start-chevron" icon="chevron-right"/>
       </router-link>
-      </div>
     </div>
   </div>
 </template>
@@ -41,9 +39,15 @@
   }
 
   .start-button {
+    color: black;
     background-color: rgb(48, 209, 88);
 
     text-transform: capitalize;
+    text-decoration: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.5);
@@ -60,15 +64,6 @@
 
   .container {
     display: flex;
-  }
-
-  .start-link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    text-decoration: none;
-    color: black;
   }
 
   .start-text {
