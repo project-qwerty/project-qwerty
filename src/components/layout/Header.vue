@@ -21,7 +21,7 @@
     align-items: center;
 
     padding: 10px;
-    padding-bottom: 50px;
+    padding-bottom: 60px;
   }
 
   .header-logo {

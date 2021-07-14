@@ -3,13 +3,12 @@
     <Header />
     <img alt="App logo" class="app-logo" src="../assets/projectqwerty1.png">
     <div class="container">
-      <p class="paragraph"> This app is for people with aphasia after a stroke.<br>Find out more
-        <router-link :to="about">here</router-link>.</p>
+      <p class="paragraph">This app is for people with aphasia after a stroke.<br>Find out more <router-link :to="about">here</router-link>.</p>
       <div class="start-button">
         <router-link class="start-link" :to="selectWords" >
-          <p class="start-text">START</p>
-          <font-awesome-icon class="start-chevron" icon="chevron-right"/>
-        </router-link>
+        <p class="start-text">START</p>
+        <font-awesome-icon class="start-chevron" icon="chevron-right"/>
+      </router-link>
       </div>
     </div>
   </div>
@@ -36,22 +35,19 @@
 
 <style>
   .paragraph {
-    float: left;
     margin: 38px;
     font-size: 20px;
-    text-align: left
+    text-align: left;
   }
+
   .start-button {
     background-color: rgb(48, 209, 88);
-    border: 1.5px solid rgba(0, 0, 0, 0.5);
+
     text-transform: capitalize;
+
     box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 2px;
-    margin: 0px 6px;
     box-shadow: 0 10px 10px -1px rgba(0, 0, 0, 0.5);
 
     width: 360px;
@@ -64,25 +60,24 @@
 
   .container {
     display: flex;
-    justify-content: flex-end;
   }
 
   .start-link {
     display: flex;
     justify-content: center;
     align-items: center;
+
     text-decoration: none;
+    color: black;
   }
 
   .start-text {
-    text-align: center;
     font-size: 40px;
     margin-right: 16px;
-    color: black;
   }
 
   .start-chevron {
-    font-size: 100;
-    color: black;
+    font-size: 25px;
+    margin-bottom: 10px;
   }
 </style>
