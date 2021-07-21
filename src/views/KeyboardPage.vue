@@ -1,24 +1,16 @@
 <template>
   <div id="keyboard">
-<!--    This section runs if the word is not hidden-->
-    <div v-if="!isHidden" style="display:flex;position:relative;justify-content:center">
-      <router-link style="position:fixed;left:0;top:10;text-decoration:none" to="/select_words">
-        <font-awesome-icon style="font-size:50px;color:rgba(142, 142, 147);" icon="chevron-left"/>
+
+    <div class="top-area-container">
+      <router-link to="/select_words">
+        <font-awesome-icon class="top-area-back-button" icon="chevron-left"/>
       </router-link>
       <Progress :total="trials" :current="this.count" />
+      <font-awesome-icon v-on:click="rehide" class="top-area-eye" v-bind:class="{ 'hidden': !isHidden }" icon="eye"/>
     </div>
-<!--    This section runs if the word is hidden-->
-    <div v-if="isHidden" style="display:flex;position:relative;justify-content:space-between">
-      <router-link style="text-decoration:none" to="/select_words">
-        <font-awesome-icon style="font-size:50px;color:rgba(142, 142, 147);" icon="chevron-left"/>
-      </router-link>
-      <Progress :total="trials" :current="this.count" />
-      <font-awesome-icon v-on:click="rehide" style="font-size:40px; color:rgb(48, 209, 88);" icon="eye"/> <!--eye-->
-    </div>
+
     <div>
-<!--      <p style="font-size:60px"></p>-->
-      <WordList v-if="!isHidden" class="wordlist" v-bind:wordlist="wordlist" v-bind:index="index" />
-      <div v-else style="opacity:0" class="wordlist">You can do it!</div>
+      <WordList v-bind:wordlist="wordlist" v-bind:index="index" class="wordlist" v-bind:class="{ 'hidden': isHidden }" />
       <Output :output="output" />
       <Overlay v-if="complete" />
       <Alert v-if="alert" v-on:update:alert_function="alert_function" />
@@ -26,6 +18,7 @@
         <Keyboard :word="word" v-on:update:keypressed="keypressed" />
       </div>
     </div>
+
   </div>
 </template>
 
@@ -316,6 +309,31 @@
 </script>
 
 <style>
+
+  .top-area-container {
+    position: relative;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .top-area-back-button {
+    text-decoration: none;
+
+    font-size: 50px;
+    color: rgba(142, 142, 147);
+  }
+
+  .top-area-eye {
+    font-size: 40px;
+    color: rgb(48, 209, 88);
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+
+
 
   body {
     line-height: 1.4;
