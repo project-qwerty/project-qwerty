@@ -1,7 +1,7 @@
 <template>
   <div class="settings">
     <SettingsMenu :options="options" :name="name" />
-    <div style="display:flex;flex-direction:column">
+    <div class="settings-page-content">
       <router-view></router-view>
     </div>
   </div>
@@ -12,6 +12,11 @@
   .settings {
     display: flex;
     height: 100%;
+  }
+
+  .settings-page-content {
+    display: flex;
+    flex-direction: column;
   }
 </style>
 

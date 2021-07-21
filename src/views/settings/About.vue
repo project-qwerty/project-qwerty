@@ -1,46 +1,41 @@
 <template>
-  <div style="padding-left:48px;text-align:left;color:black">
-    <h1 style="font-weight:200;color:black">
-      <img style="height:25px" src="@/assets/setting-icons/About.png">
-      About
-    </h1>
-      <p>
-        Welcome to Project QWERTY, this is an <strong>app</strong> for people with <strong>aphasia</strong>
-      </p>
-      <p>Project QWERTY is an app made by Monash University <strong> students </strong> and Monash Health <strong> Speech Pathologists</strong> in partnership with <strong>people with aphasia</strong>.
-      </p>
-      <p> This app is a <strong> work in progress</strong>. </p>
-      <p>We are <strong> working </strong> on making the app fully functional on all web browsers.</p>
-      <br>
-      <h1 style="font-weight:200;color:black">
-        <img style="height:25px" src="@/assets/setting-icons/FQA.png">
-        Frequently Asked Questions (FAQs)
-      </h1>
-      <p><em><strong>What is </strong>Project QWERTY?</em></p>
-      <p> Project QWERTY is an app for people with <strong> aphasia</strong>. It targets <strong> spelling </strong> and <strong> typing </strong> through the use of pre-programmed word lists and the option to create custom word lists.
-      </p>
-        <br>
-      <p><em>Nothing happens when I press <strong>start</strong>. What do I do?</em></p>
-      <p>1.	If you are using an <strong>iPad</strong>, access this app via the <strong>Google app</strong>.
-      </p><p>OR</p><p>
-      If you are using a <strong>computer</strong> or other <strong>tablet</strong> device, access this app via <strong>Google Chrome</strong>.</p><p>
-      2.Turn <strong> off </strong> private browsing / incognito mode.</p>
-        <br>
-      <p><em>
-      Who do I contact if I have a <strong>question</strong>  about Project QWERTY? </em></p><p>Please <strong>email</strong> us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a> </p>
-        <br>
-      <p><em>How do I report an <strong>error / bug?</strong></em></p>
-      <p>We are sorry you are experiencing an error. Please <strong>email</strong> us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a> with a <strong>description</strong> and <strong>screenshot</strong> of the error.
-</p>
-
+  <div class="about-page-content">
+    <h1><img class="icon" src="@/assets/setting-icons/About.png"> About</h1>
+    <p>Welcome to Project QWERTY, this is an <strong>app</strong> for people with <strong>aphasia</strong>.</p>
+    <p>Project QWERTY is an app made by Monash University <strong>students</strong> and Monash Health <strong>Speech Pathologists</strong> in partnership with <strong>people with aphasia</strong>.</p>
+    <p>This app is a <strong>work in progress</strong>.</p>
+    <p>We are <strong>working</strong> on making the app fully functional on all web browsers.</p>
+    <br>
+    <h1><img class="icon" src="@/assets/setting-icons/FAQ.png"> Frequently Asked Questions (FAQs)</h1>
+    <p><em><strong>What is</strong> Project QWERTY?</em></p>
+    <p>Project QWERTY is an app for people with <strong>aphasia</strong>. It targets <strong>spelling</strong> and <strong>typing</strong> through the use of pre-programmed word lists and the option to create custom word lists.</p>
+    <br>
+    <p><em>Nothing happens when I press <strong>start</strong>. What do I do?</em></p>
+    <p>1.	If you are using an <strong>iPad</strong>, access this app via the <strong>Google app</strong>.</p>
+    <p>OR</p>
+    <p>If you are using a <strong>computer</strong> or other <strong>tablet</strong> device, access this app via <strong>Google Chrome</strong>.</p>
+    <p>2.Turn <strong>off</strong> private browsing / incognito mode.</p>
+    <br>
+    <p><em>Who do I contact if I have a <strong>question</strong> about Project QWERTY?</em></p>
+    <p>Please <strong>email</strong> us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a>.</p>
+    <br>
+    <p><em>How do I report an <strong>error / bug?</strong></em></p>
+    <p>We are sorry you are experiencing an error. Please <strong>email</strong> us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a> with a <strong>description</strong> and <strong>screenshot</strong> of the error.</p>
   </div>
 </template>
 
 
+<style scoped>
+  .about-page-content {
+    padding-left: 48px;
+    text-align: left;
+  }
 
-<style>
-  .bold {
-    color:black;
+  h1 {
+    font-weight: normal;
+  }
 
+  .icon {
+    height: 25px;
   }
 </style>
