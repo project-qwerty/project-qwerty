@@ -1,9 +1,7 @@
 <template>
-<div style="padding:16px;">
   <button class="popup" v-on:click="to" >
     {{content}}
   </button>
-  </div>
 </template>
 
 

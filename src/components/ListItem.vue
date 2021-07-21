@@ -1,5 +1,5 @@
 <template>
-  <div style="display:flex;justify-content:space-between">
+  <div class="list-item">
     {{item}}
     <button v-on:click="click">x</button>
   </div>
@@ -17,3 +17,10 @@
     }
   }
 </script>
+
+<style scoped>
+  .list-item {
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
