@@ -38,105 +38,49 @@
 <script>
   import KeyComponent from '@/components/keyboard/KeyComponent.vue';
 
-  export default{
+  export default {
     name : 'keys',
     data() {
       return {
         error : false,
         keys: [
           [
-            {
-              letter: 'backspace'
-            }
+            { letter: 'backspace' }
           ],
           [
-            {
-              letter: 'q'
-            },
-            {
-              letter: 'w'
-            },
-            {
-              letter: 'e'
-            },
-            {
-              letter: 'r'
-            },
-            {
-              letter: 't'
-            },
-            {
-              letter: 'y'
-            },
-            {
-              letter: 'u'
-            },
-            {
-              letter: 'i'
-            },
-            {
-              letter: 'o'
-            },
-            {
-              letter: 'p'
-            }
+            { letter: 'q' },
+            { letter: 'w' },
+            { letter: 'e' },
+            { letter: 'r' },
+            { letter: 't' },
+            { letter: 'y' },
+            { letter: 'u' },
+            { letter: 'i' },
+            { letter: 'o' },
+            { letter: 'p' }
           ],
           [
-            {
-              letter: 'a'
-            },
-            {
-              letter: 's'
-            },
-            {
-              letter: 'd'
-            },
-            {
-              letter: 'f'
-            },
-            {
-              letter: 'g'
-            },
-            {
-              letter: 'h'
-            },
-            {
-              letter: 'j'
-            },
-            {
-              letter: 'k'
-            },
-            {
-              letter: 'l'
-            }
+            { letter: 'a' },
+            { letter: 's' },
+            { letter: 'd' },
+            { letter: 'f' },
+            { letter: 'g' },
+            { letter: 'h' },
+            { letter: 'j' },
+            { letter: 'k' },
+            { letter: 'l' }
           ],
           [
-            {
-              letter: 'z'
-            },
-            {
-              letter: 'x'
-            },
-            {
-              letter: 'c'
-            },
-            {
-              letter: 'v'
-            },
-            {
-              letter: 'b'
-            },
-            {
-              letter: 'n'
-            },
-            {
-              letter: 'm'
-            }
+            { letter: 'z' },
+            { letter: 'x' },
+            { letter: 'c' },
+            { letter: 'v' },
+            { letter: 'b' },
+            { letter: 'n' },
+            { letter: 'm' }
           ],
           [
-            {
-              letter: ' '
-            }
+            { letter: ' ' }
           ]
         ],
       }
