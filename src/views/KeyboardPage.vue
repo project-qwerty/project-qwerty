@@ -72,7 +72,7 @@
     },
     // Variables to watch
     watch: {
-      'index' : function(){
+      'index' : function() {
         if (this.count !== parseInt(this.trials)) {
           this.count += 1;
         }
@@ -81,49 +81,39 @@
 
     //Run on loading of page
     created() {
-      // Add all the cookies here (first two lines are the important ones)
-      if(this.$cookies.isKey('settings.repetitions')){
+      // Add all the cookies here
+      this.repetitions = 1;
+      if (this.$cookies.isKey('settings.repetitions')) {
         this.repetitions = this.$cookies.get('settings.repetitions');
-      } else {
-        this.repetitions = 1;
       }
+
       this.current_count = this.repetitions;
-      //Word number control
-      if(this.$cookies.isKey('settings.trials')){
+
+      // Word number control
+      this.trials = 5;
+      if (this.$cookies.isKey('settings.trials')) {
         this.trials = this.$cookies.get('settings.trials');
-      } else {
-        this.trials = 5;
       }
-      //Click to see next word
-      if(this.$cookies.isKey('settings.click')){
-        if(this.$cookies.get('settings.click') == 'ON') {
-          this.click = true;
-        } else {
-          this.click = false;
-        }
-      } else {
-          this.click = true;
+
+      // Click to see next word
+      this.click = true;
+      if (this.$cookies.isKey('settings.click')) {
+        this.click = this.$cookies.get('settings.click') == 'ON';
       }
-      //Timer Control
-      if(this.$cookies.isKey('settings.timer')){
+
+      // Timer Control
+      if (this.$cookies.isKey('settings.timer')) {
         this.settings.timer = this.$cookies.get('settings.timer');
-        if(this.$cookies.get('settings.timer') == 0) {
-          this.timerOnOff = false;
-        } else {
-          this.timerOnOff = true;
-        }
+        this.timerOnOff = this.settings.timer != 0;
       }
+
       this.timer = setTimeout(this.hide, this.settings.timer * 1000);
-      //Errorless Control
-      if(this.$cookies.isKey('settings.errorless')){
+
+      // Errorless Control
+      this.errorlessOnOff = false;
+      if (this.$cookies.isKey('settings.errorless')) {
         this.errorless = this.$cookies.get('settings.errorless');
-        if(this.$cookies.get('settings.errorless') == 'ON') {
-          this.errorlessOnOff = true;
-        } else {
-          this.errorlessOnOff = false;
-        }
-      } else {
-        this.errorlessOnOff = false;
+        this.errorlessOnOff = this.errorless == 'ON';
       }
 
       // Import custom lists
@@ -131,18 +121,22 @@
         // Get which lists are selected from cookies
         var customSelected = this.$cookies.get('select_words.custom_selected').split(',');
         customSelected = JSON.parse("[" + customSelected + "]")
-        if (this.$cookies.isKey('custom_word_lists.words')) {
+
+        if (!this.$cookies.isKey('custom_word_lists.words')) {
+          alert("There is an error with the cookies. Please enable cookies.");
+        } else {
           // Get words from cookies
           var customWords = this.$cookies.get('custom_word_lists.words').split('|').slice(0,-1);
           var __cw_list = [];
-          for(var i = 0; i < customSelected.length; i++){
-            if(!customSelected[i]) continue;
+          for (var i = 0; i < customSelected.length; i++) {
+            if (!customSelected[i]) {
+              continue;
+            }
+
             var __w_list = customWords[i].split(',');
             __cw_list = __cw_list.concat(__w_list);
           }
           this.wordlist = this.wordlist.concat(__cw_list);
-        } else {
-          alert("There is an error with the cookies. Please enable cookies.");
         }
       }
 
@@ -152,7 +146,7 @@
       window.console.log(this.wordlist)
     },
     computed : {
-      'word' : function(){
+      'word' : function() {
         if(this.errorlessOnOff) return this.wordlist[this.index][this.output.length];
         return 'abcdefghijklmnopqrstuvwxyz backspace';
       },
@@ -162,84 +156,104 @@
       window.console.log("UPDATED")
       this.$nextTick(function () {
         window.console.log(this.key_pressed)
-        // Code that will run only after the
-        // entire view has been re-rendered
-        if (this.key_pressed) {
-          window.console.log(this.output)
-          // If they got the word correct
-          if (this.output === this.wordlist[this.index]) {
-            this.correct_audio.play();
-            this.isHidden = false;
-            if (this.click) {
-              this.click_show = true;
-            }
-//            }
-            if (this.current_count == 1) {
-              this.index += 1;
-              this.output = "";
-              this.current_count = this.repetitions;
-            } else {
-              this.current_count -= 1;
-            }
-            clearTimeout(this.timer);
-            this.timer = setTimeout(this.hide, this.settings.timer * 1000);
+        // Code that will run only after the entire view has been re-rendered
+        if (!this.key_pressed) {
+          return;
+        }
+        this.key_pressed = false;
 
-            // If they finished the trials
-            if (this.count == this.trials && this.current_count == this.repetitions) {
-              this.index = 0;
-              this.output = "";
-              this.isHidden = true;
-              this.complete = true;
-            }
+        window.console.log(this.output);
 
-            // If they finished the wordlist
-            if (this.index == this.wordlist.length) {
-              this.index = 0;
-            }
+        var target_word = this.wordlist[this.index];
 
-          // If they got the word wrong
-          } else if (this.output.length === this.wordlist[this.index].length) {
-            this.wrong_2.play();
-          }
-          this.key_pressed = false;
+        // If they aren't finished yet
+        if (this.output.length !== target_word.length) {
+          return;
+        }
+
+        // If they got the word wrong
+        if (this.output !== target_word) {
+          this.wrong_2.play();
+          return;
+        }
+
+        // They got the word correct
+
+        this.correct_audio.play();
+        this.isHidden = false;
+
+        if (this.click) {
+          // show the word
+          this.click_show = true;
+        }
+
+        if (this.current_count == 1) {
+          // move to next word
+          this.index += 1;
+          this.output = "";
+          this.current_count = this.repetitions;
+        } else {
+          // decrement repetitions
+          this.current_count -= 1;
+        }
+
+        clearTimeout(this.timer);
+        this.timer = setTimeout(this.hide, this.settings.timer * 1000);
+
+        // If they finished the trials
+        if (this.count == this.trials && this.current_count == this.repetitions) {
+          this.index = 0;
+          this.output = "";
+          this.isHidden = true;
+          this.complete = true;
+        }
+
+        // If they finished the wordlist
+        if (this.index == this.wordlist.length) {
+          this.index = 0;
         }
       })
     },
     beforeUpdate: function() {
       this.$nextTick(() => {
-        window.console.log("before")
+        // window.console.log("before")
         if (this.key_pressed) {
           var char = this.char;
-          window.console.log("beforetrue")
+          // window.console.log("beforetrue")
           window.console.log(char)
         }
       });
     },
     methods: {
-      rehide(){
+      rehide() {
         this.isHidden = false;
         this.timer = setTimeout(this.hide, this.settings.timer * 1000);
       },
       inbuiltCreated(wordlists) {
-        //WordList Control
-        if(this.$cookies.isKey('select_words.built_in_selected')){
-          var selected = this.$cookies.get('select_words.built_in_selected');
-          window.console.log(selected)
-          var indices = JSON.parse("[" + selected + "]");
-          var _cw_list = []; // cumulated word list
-          for(var i = 0; i < indices.length; i++){
-            if(!indices[i]) continue
-            var __w_array = wordlists[i][Object.keys(wordlists[i])[0]]
-            _cw_list = _cw_list.concat(__w_array);
-          }
-          this.wordlist = this.wordlist.concat(_cw_list);
+        // WordList Control
+        if (!this.$cookies.isKey('select_words.built_in_selected')) {
+          return;
         }
+
+        var selected = this.$cookies.get('select_words.built_in_selected');
+        window.console.log(selected)
+        var indices = JSON.parse("[" + selected + "]");
+        var _cw_list = []; // cumulated word list
+        for (var i = 0; i < indices.length; i++) {
+          if (!indices[i]) {
+            continue;
+          }
+
+          var __w_array = wordlists[i][Object.keys(wordlists[i])[0]];
+          _cw_list = _cw_list.concat(__w_array);
+        }
+        this.wordlist = this.wordlist.concat(_cw_list);
+
       },
       shuffleWordlist(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {
-
           // Pick a remaining element...
           randomIndex = Math.floor(Math.random() * currentIndex);
           currentIndex -= 1;
@@ -254,39 +268,35 @@
       alert_function() {
         this.alert = false;
         if (this.current_count == 1) {
-            this.index += 1;
-            this.output = "";
-            this.current_count = this.repetitions;
-          } else {
-            this.current_count -= 1;
-          }
-          clearTimeout(this.timer);
-          this.timer = setTimeout(this.hide, this.settings.timer * 1000);
+          this.index += 1;
+          this.output = "";
+          this.current_count = this.repetitions;
+        } else {
+          this.current_count -= 1;
+        }
 
-          // If they finished the trials
-          if (this.count == this.trials && this.current_count == this.repetitions) {
-            this.index = 0;
-            this.output = "";
-            this.isHidden = true;
-            this.complete = true;
-          }
+        clearTimeout(this.timer);
+        this.timer = setTimeout(this.hide, this.settings.timer * 1000);
 
-          // If they finished the wordlist
-          if (this.index == this.wordlist.length) {
-            this.index = 0;
-          }
+        // If they finished the trials
+        if (this.count == this.trials && this.current_count == this.repetitions) {
+          this.index = 0;
+          this.output = "";
+          this.isHidden = true;
+          this.complete = true;
+        }
+
+        // If they finished the wordlist
+        if (this.index == this.wordlist.length) {
+          this.index = 0;
+        }
       },
       keypressed(char) {
         // If button pressed wasn't backspace
         if (char !== "backspace") {
-          if (this.errorlessOnOff) {
-            this.output += char;
-          } else {
-            this.output += char;
-          }
-
-          // If button pressed was backspace
+          this.output += char;
         } else {
+          // If button pressed was backspace
           this.output = this.output.substring(0, this.output.length - 1);
         }
 
@@ -295,10 +305,13 @@
           this.correct_audio.play();
           this.isHidden = false;
           this.alert = true;
+          return;
+        }
 
         // If they got the word wrong
-        } else if (this.output.length === this.wordlist[this.index].length) {
+        if (this.output.length === this.wordlist[this.index].length) {
           this.wrong_2.play();
+          return;
         }
       },
       hide() {
