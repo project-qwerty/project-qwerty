@@ -3,13 +3,11 @@
 min is the minimum value and max the maximum value-->
 
 <!--Need to use getValue to use the slider as an input-->
-  <div style="width:600px; padding-left:48px;text-align:left">
-    <h1 style="font-weight:bold; color:black; ">General Settings</h1>
+  <div class="page-wrapper">
+    <h1 class="page-title">General Settings</h1>
 
-<!--    <p class="setting-heading" style="color:lightgrey">Please note that only Settings with * are fully functional</p>-->
-
-    <p class="setting-heading" style="margin-bottom:35px">
-      <img style="height:20px" src="@/assets/setting-icons/Timer.png">
+    <p class="setting-heading slider-heading">
+      <img class="setting-heading-icon" src="@/assets/setting-icons/Timer.png">
       Timer
     </p>
     <veeno
@@ -26,11 +24,11 @@ min is the minimum value and max the maximum value-->
       'min': [  0 ],
       'max': [ 30 ]
       }"
-      style="margin-top:26px; margin-bottom:52px"
+      class="slider"
     >{{timer_display}}</veeno>
 
-    <p class="setting-heading" style="margin-bottom:35px">
-      <img style="height:20px" src="@/assets/setting-icons/Words.png">
+    <p class="setting-heading slider-heading">
+      <img class="setting-heading-icon" src="@/assets/setting-icons/Words.png">
       Words
     </p>
     <veeno
@@ -47,7 +45,7 @@ min is the minimum value and max the maximum value-->
       'min': [  5 ],
       'max': [ 50 ]
       }"
-      style="margin-top:26px; margin-bottom:52px"
+      class="slider"
     >{{value_trials}}</veeno>
 
 <!--
@@ -56,26 +54,26 @@ min is the minimum value and max the maximum value-->
 -->
 
     <p class="setting-heading">
-      <img style="height:20px" src="@/assets/setting-icons/Errorless.png">
+      <img class="setting-heading-icon" src="@/assets/setting-icons/Errorless.png">
       Errorless Learning
     </p>
-    <switch-component style="margin-bottom:35px" :preset="preset.value_errorless" :options="['OFF', 'ON']" v-on:update:value="value_errorless=$event"/>
+    <switch-component class="switch" :preset="preset.value_errorless" :options="['OFF', 'ON']" v-on:update:value="value_errorless=$event"/>
 
     <p class="setting-heading">
-      <img style="height:20px" src="@/assets/setting-icons/Click_for_next.png">
+      <img class="setting-heading-icon" src="@/assets/setting-icons/Click_for_next.png">
       Click for next word
     </p>
-    <switch-component style="margin-bottom:35px" :preset="preset.value_click" :options="['OFF', 'ON']" v-on:update:value="value_click=$event"/>
+    <switch-component class="switch" :preset="preset.value_click" :options="['OFF', 'ON']" v-on:update:value="value_click=$event"/>
 
     <p class="setting-heading">
-      <img style="height:20px" src="@/assets/setting-icons/Repetitions.png">
+      <img class="setting-heading-icon" src="@/assets/setting-icons/Repetitions.png">
       Repetitions
     </p>
-    <switch-component style="margin-bottom:35px" :preset="preset.value_repetitions" :options="['1', '3']" v-on:update:value="value_repetitions=$event"/>
+    <switch-component class="switch" :preset="preset.value_repetitions" :options="['1', '3']" v-on:update:value="value_repetitions=$event"/>
 
 <!--
     <p class="setting-heading">Keyboard</p>
-    <switch-component style="margin-bottom:0" :preset="preset.value_keyboard" :options="['LETTERS ONLY', 'LETTERS & NUMBERS']" v-on:update:value=" value_keyboard=$event"/>
+    <switch-component :preset="preset.value_keyboard" :options="['LETTERS ONLY', 'LETTERS & NUMBERS']" v-on:update:value=" value_keyboard=$event"/>
 -->
   </div>
 </template>
@@ -166,9 +164,33 @@ min is the minimum value and max the maximum value-->
     min-height:100px;
   }
 
-  .setting-heading{
+  .setting-heading {
     font-size: 30px;
     margin: auto;
     color: black;
+  }
+
+  .page-wrapper {
+    width:600px; padding-left:48px;text-align:left
+  }
+
+  .page-title {
+    font-weight:bold; color:black;
+  }
+
+  .slider-heading {
+    margin-bottom:35px
+  }
+
+  .setting-heading-icon {
+    height:20px
+  }
+
+  .slider {
+    margin-top:26px; margin-bottom:52px
+  }
+
+  .switch {
+    margin-bottom:35px
   }
 </style>
