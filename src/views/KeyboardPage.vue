@@ -251,7 +251,8 @@
 
       },
       shuffleWordlist(array) {
-        var currentIndex = randomIndex;
+        var currentIndex, temp, randomIndex;
+        currentIndex = array.length;
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {
           // Pick a remaining element...
@@ -259,9 +260,9 @@
           currentIndex -= 1;
 
           // And swap it with the current element.
-          temporaryValue = array[currentIndex];
+          temp = array[currentIndex];
           array[currentIndex] = array[randomIndex];
-          array[randomIndex] = temporaryValue;
+          array[randomIndex] = temp;
         }
         return array;
       },
