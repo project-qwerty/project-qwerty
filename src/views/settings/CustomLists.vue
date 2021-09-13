@@ -24,6 +24,7 @@
         <img class="icon" src="@/assets/setting-icons/New_Word.png">
         Add Words to Category
       </p>
+      <p>Only letters and spaces are allowed in custom words.</p>
       <div class="input-wrapper">
         <BFormInput v-model="new_word" placeholder="Enter a new word" class="boxes"></BFormInput>
         <button v-on:click="this.newWord" class="boxes">Submit</button>
@@ -119,7 +120,12 @@
       },
       newWord: function () {
         var index = this.lists.indexOf(this.current_list);
-        if (!(this.words[index].includes(this.new_word)) && this.new_word !== "") {
+
+        var alreadyExists = this.words[index].includes(this.new_word);
+        var isEmpty = this.new_word === "";
+        var isValidChars = /^[a-zA-Z ]+$/.test(this.new_word);
+
+        if (!alreadyExists && !isEmpty && isValidChars) {
           this.words[index].push(this.new_word.toLowerCase());
           this.new_word = "";
         }
