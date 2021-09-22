@@ -10,7 +10,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .output {
     font-size: 70px;
     text-transform: uppercase;

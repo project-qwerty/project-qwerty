@@ -33,13 +33,6 @@
     cursor: pointer;
   }
 
-  .output {
-    font-size: 24px;
-    text-transform: uppercase;
-    text-decoration: underline;
-    height: 100px;
-  }
-
   .wordlist {
     font-size: 24px;
     text-transform: uppercase;
