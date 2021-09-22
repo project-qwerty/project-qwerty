@@ -7,11 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueCookies  from 'vue-cookies'
 import BFormInput from 'bootstrap-vue';
 import { FormInputPlugin } from 'bootstrap-vue';
-//import { virtualList } from 'vue-virtual-scroll-list';
 Vue.use(VueCookies)
 Vue.use(BFormInput)
 Vue.use(FormInputPlugin)
-//Vue.use(virtualList)
 Vue.$cookies.config('365d') //365d = the cookie expires after 365 days
 
 Vue.config.productionTip = false

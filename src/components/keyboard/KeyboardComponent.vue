@@ -93,7 +93,6 @@
     },
     computed:{
       'correction' : function(){
-//        window.console.log(screen.width);
         return this.error;
       }
     },

@@ -79,7 +79,7 @@
       },
     },
 
-    //Run on loading of page
+    // Run on loading of page
     created() {
       // Add all the cookies here
       this.repetitions = 1;
@@ -215,10 +215,8 @@
     },
     beforeUpdate: function() {
       this.$nextTick(() => {
-        // window.console.log("before")
         if (this.key_pressed) {
           var char = this.char;
-          // window.console.log("beforetrue")
           window.console.log(char)
         }
       });

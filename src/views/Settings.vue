@@ -35,7 +35,6 @@
         'options' : [
           {link : '/settings', name: 'General'},
           {link : '/settings/custom-lists', name: 'Custom Categories'},
-//          {link : '/settings/display', name: 'Display'},
           {link : '/settings/about', name: 'About'},
         ],
       }

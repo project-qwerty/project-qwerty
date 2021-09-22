@@ -40,11 +40,11 @@
   export default {
     data() {
       return {
-        //Inbuilt lists
+        // Inbuilt lists
         lists: [],
         words: [],
         selected: [],
-        //Custom lists
+        // Custom lists
         customLists: [],
         customWords: [],
         customSelected: [],
