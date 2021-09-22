@@ -48,11 +48,6 @@ min is the minimum value and max the maximum value-->
       class="slider"
     >{{value_trials}}</veeno>
 
-<!--
-    <p class="setting-heading">Starter Mode</p>
-    <switch-component :preset="preset.value_startermode" :options="['OFF', 'ON']" v-on:update:value="value_startermode=$event"/>
--->
-
     <p class="setting-heading">
       <img class="setting-heading-icon" src="@/assets/setting-icons/Errorless.png">
       Errorless Learning
@@ -71,10 +66,6 @@ min is the minimum value and max the maximum value-->
     </p>
     <switch-component class="switch" :preset="preset.value_repetitions" :options="['1', '3']" v-on:update:value="value_repetitions=$event"/>
 
-<!--
-    <p class="setting-heading">Keyboard</p>
-    <switch-component :preset="preset.value_keyboard" :options="['LETTERS ONLY', 'LETTERS & NUMBERS']" v-on:update:value=" value_keyboard=$event"/>
--->
   </div>
 </template>
 
