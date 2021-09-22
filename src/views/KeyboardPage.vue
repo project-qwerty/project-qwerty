@@ -189,6 +189,10 @@
           this.current_count = this.repetitions;
         } else {
           // decrement repetitions
+          // note: this branch appears to not get reached;
+          //  instead, this decrementing happens in alert_function
+          //  gonna leave it alone for now as it should get picked up and fixed
+          //  in forthcoming refactors
           this.current_count -= 1;
         }
 
@@ -263,9 +267,10 @@
       },
       alert_function() {
         this.alert = false;
+        this.output = "";
+
         if (this.current_count == 1) {
           this.index += 1;
-          this.output = "";
           this.current_count = this.repetitions;
         } else {
           this.current_count -= 1;
