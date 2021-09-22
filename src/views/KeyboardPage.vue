@@ -54,7 +54,7 @@
         output: "",
         isHidden: false,
         trials: null,
-        click: null,
+        click_for_next_word: null,
         repetitions: 1,
         current_count: 1,
         key_pressed: false,
@@ -96,9 +96,9 @@
       }
 
       // Click to see next word
-      this.click = true;
+      this.click_for_next_word = true;
       if (this.$cookies.isKey('settings.click')) {
-        this.click = this.$cookies.get('settings.click') == 'ON';
+        this.click_for_next_word = this.$cookies.get('settings.click') == 'ON';
       }
 
       // Timer Control
@@ -181,11 +181,6 @@
 
         this.correct_audio.play();
         this.isHidden = false;
-
-        if (this.click) {
-          // show the word
-          this.click_show = true;
-        }
 
         if (this.current_count == 1) {
           // move to next word
@@ -305,7 +300,15 @@
         if (this.output === this.wordlist[this.index]) {
           this.correct_audio.play();
           this.isHidden = false;
-          this.alert = true;
+
+          if (this.click_for_next_word) {
+            // in this case, alert_function will be called when the "Next word" alert button is clicked
+            this.alert = true;
+          } else {
+            // in this case, it's called straight away
+            this.alert_function()
+          }
+
           return;
         }
 
