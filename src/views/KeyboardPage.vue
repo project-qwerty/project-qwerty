@@ -141,28 +141,24 @@
       }
 
       this.inbuiltCreated(this.InbuiltWordlists);
-      window.console.log(this.wordlist)
       this.wordlist = this.shuffleWordlist(this.wordlist);
-      window.console.log(this.wordlist)
     },
     computed : {
       'word' : function() {
-        if(this.errorlessOnOff) return this.wordlist[this.index][this.output.length];
+        if (this.errorlessOnOff) {
+          return this.wordlist[this.index][this.output.length];
+        }
         return 'abcdefghijklmnopqrstuvwxyz backspace';
       },
 
     },
     updated: function () {
-      window.console.log("UPDATED")
       this.$nextTick(function () {
-        window.console.log(this.key_pressed)
         // Code that will run only after the entire view has been re-rendered
         if (!this.key_pressed) {
           return;
         }
         this.key_pressed = false;
-
-        window.console.log(this.output);
 
         var target_word = this.wordlist[this.index];
 
@@ -213,14 +209,6 @@
         }
       })
     },
-    beforeUpdate: function() {
-      this.$nextTick(() => {
-        if (this.key_pressed) {
-          var char = this.char;
-          window.console.log(char)
-        }
-      });
-    },
     methods: {
       rehide() {
         this.isHidden = false;
@@ -233,7 +221,6 @@
         }
 
         var selected = this.$cookies.get('select_words.built_in_selected');
-        window.console.log(selected)
         var indices = JSON.parse("[" + selected + "]");
         var _cw_list = []; // cumulated word list
         for (var i = 0; i < indices.length; i++) {

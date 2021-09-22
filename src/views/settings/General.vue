@@ -102,7 +102,6 @@ min is the minimum value and max the maximum value-->
     },
     // This sets the sliders so that they remember there last location.
     created(){
-      window.console.log()
       this.preset.value_repetitions = this.$cookies.isKey('settings.repetitions') ? this.$cookies.get('settings.repetitions') : 1
       this.value_timer = this.$cookies.isKey('settings.timer') ? this.$cookies.get('settings.timer') : 0
       this.value_trials = this.$cookies.isKey('settings.trials') ? this.$cookies.get('settings.trials') : 5
