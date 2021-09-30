@@ -5,7 +5,6 @@ import Keyboard from '../views/KeyboardPage.vue'
 import Settings from '../views/Settings.vue'
 import SelectWords from '../views/SelectWords.vue'
 import General from '../views/settings/General.vue'
-import Display from '../views/settings/Display.vue'
 import CustomLists from '../views/settings/CustomLists.vue'
 import About from '../views/settings/About.vue'
 
@@ -30,10 +29,6 @@ const routes = [
       {
         path: '',
         component: General
-      },
-      {
-        path: 'display',
-        component: Display
       },
       {
         path: 'custom-lists',
