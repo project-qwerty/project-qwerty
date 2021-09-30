@@ -45,7 +45,6 @@
     data() {
       return {
         timer: null,
-        showModal:true,
         wordlist: [],
         index: 0,
         count: 1,
@@ -58,16 +57,14 @@
         repetitions: 1,
         current_count: 1,
         key_pressed: false,
-        InbuiltWordlists : InbuiltWordlists,
+        InbuiltWordlists: InbuiltWordlists,
         errorlessOnOff: true, // Controls whether errorless is on or off
         timerOnOff: false, // Controls whether the timer is on or off (line 168)
-        correct_audio : new Audio(require('@/assets/correct.mp3')),
-        wrong_audio : new Audio(require('@/assets/wrong.mp3')),
-        wrong_2: new Audio(require('@/assets/wrong_2.mp3')),
-        wrong_3: new Audio(require('@/assets/wrong_3.mp3')),
-          settings: {
-              timer : 5
-          }
+        correct_audio: new Audio(require('@/assets/correct.mp3')),
+        wrong_audio: new Audio(require('@/assets/wrong_2.mp3')),
+        settings: {
+            timer: 5
+        }
       }
     },
     // Variables to watch
@@ -169,7 +166,7 @@
 
         // If they got the word wrong
         if (this.output !== target_word) {
-          this.wrong_2.play();
+          this.wrong_audio.play();
           return;
         }
 
@@ -304,7 +301,7 @@
 
         // If they got the word wrong
         if (this.output.length === this.wordlist[this.index].length) {
-          this.wrong_2.play();
+          this.wrong_audio.play();
           return;
         }
       },
