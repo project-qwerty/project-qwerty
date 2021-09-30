@@ -10,7 +10,6 @@
   import Popup from '../components/PopupButton';
 
   export default {
-    name : 'overlay-component',
     components : {"popup-btn-component" : Popup},
     methods: {
       click() {
@@ -20,7 +19,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .overlay {
     position: fixed;
     top: 0;
