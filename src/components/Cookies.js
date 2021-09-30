@@ -5,7 +5,6 @@ export default [
       "settings.repetitions",
       "settings.timer",
       "settings.trials",
-      "settings.startermode",
       "settings.errorless",
       "settings.click"
     ]
@@ -15,7 +14,6 @@ export default [
       1,
       0,
       5,
-      "OFF",
       "OFF",
       "ON"
     ]

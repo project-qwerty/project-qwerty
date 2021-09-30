@@ -85,14 +85,12 @@ min is the minimum value and max the maximum value-->
         value_trials: null,
         // the variables related to buttons
         value_repetitions: null,
-        value_startermode: null,
         value_errorless: null,
         value_click: null,
         words_icon: new Image(require('@/assets/setting-icons/Words.png')),
         timer_icon: new Image(require('@/assets/setting-icons/Timer.png')),
         preset : {
           value_repetitions: null,
-          value_startermode: null,
           value_errorless: null,
           value_click: null,
         }
@@ -103,7 +101,6 @@ min is the minimum value and max the maximum value-->
       this.preset.value_repetitions = this.$cookies.isKey('settings.repetitions') ? this.$cookies.get('settings.repetitions') : 1
       this.value_timer = this.$cookies.isKey('settings.timer') ? this.$cookies.get('settings.timer') : 0
       this.value_trials = this.$cookies.isKey('settings.trials') ? this.$cookies.get('settings.trials') : 5
-      this.preset.value_startermode = this.$cookies.isKey('settings.startermode') ? this.$cookies.get('settings.startermode') : 'OFF'
       this.preset.value_errorless = this.$cookies.isKey('settings.errorless') ? this.$cookies.get('settings.errorless') : 'OFF'
       this.preset.value_click = this.$cookies.isKey('settings.click') ? this.$cookies.get('settings.click') : 'OFF'
     },
@@ -130,9 +127,6 @@ min is the minimum value and max the maximum value-->
       },
       'value_errorless' : function(val){
         this.$cookies.set('settings.errorless', val);
-      },
-      'value_startermode' : function(val){
-        this.$cookies.set('settings.startermode', val);
       },
       'value_click' : function(val){
         this.$cookies.set('settings.click', val);
