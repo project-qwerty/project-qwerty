@@ -24,20 +24,34 @@
     height: 100%
   }
 
-  .btn {
-    display: inline-block;
-    border: none;
-    background: #555;
-    color: #fff;
-    padding: 7px 20px;
-    cursor: pointer;
+  .start-button {
+    color: black;
+    background-color: rgb(48, 209, 88);
+
+    text-transform: capitalize;
+    text-decoration: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+    box-shadow: 0 10px 10px -1px rgba(0, 0, 0, 0.5);
+
+    width: 360px;
+    margin: auto;
   }
 
-  .wordlist {
-    font-size: 24px;
-    text-transform: uppercase;
-    text-decoration: underline;
-    height: 100px;
+  .start-text {
+    font-size: 40px;
+    margin-right: 16px;
+  }
+
+  .start-chevron {
+    font-size: 25px;
+    margin-bottom: 10px;
   }
 </style>
 

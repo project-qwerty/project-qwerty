@@ -204,11 +204,6 @@
     margin: 10px;
   }
 
-  .start-button-container {
-    width: 460px;
-    margin: auto;
-  }
-
   /* The start button classes are defined in the homepage CSS. */
   /* They'll need to be brought back here when all of the CSS is converted to locally scoped. */
 

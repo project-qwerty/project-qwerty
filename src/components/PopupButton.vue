@@ -5,7 +5,7 @@
 </template>
 
 
-<style>
+<style scoped>
   .popup {
     z-index: 9999;
     background: #fefefe;

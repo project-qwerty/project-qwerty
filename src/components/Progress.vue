@@ -13,7 +13,7 @@
 </script>
 
 
-<style>
+<style scoped>
   .progress {
     color: grey;
     font-weight: bold;

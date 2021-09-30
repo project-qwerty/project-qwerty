@@ -312,7 +312,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 
   .top-area-container {
     position: relative;
@@ -337,16 +337,6 @@
     visibility: hidden;
   }
 
-
-
-  body {
-    line-height: 1.4;
-  }
-
-  .grey-button {
-    background-color: grey;
-  }
-
   .btn {
     display: inline-block;
     border: none;
@@ -362,7 +352,7 @@
     text-decoration: none;
     height: 100px;
     color:rgba(72, 72, 74, 0.8);
-    font-weight:bold;
+    font-weight: bold;
   }
 
   .keyboard {
