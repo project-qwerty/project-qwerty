@@ -7,7 +7,6 @@ export default [
       "settings.trials",
       "settings.startermode",
       "settings.errorless",
-      "settings.keyboard",
       "settings.click"
     ]
   },
@@ -18,7 +17,6 @@ export default [
       5,
       "OFF",
       "OFF",
-      "LETTERS ONLY",
       "ON"
     ]
   }

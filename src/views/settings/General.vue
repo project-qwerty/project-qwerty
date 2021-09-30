@@ -87,7 +87,6 @@ min is the minimum value and max the maximum value-->
         value_repetitions: null,
         value_startermode: null,
         value_errorless: null,
-        value_keyboard: null,
         value_click: null,
         words_icon: new Image(require('@/assets/setting-icons/Words.png')),
         timer_icon: new Image(require('@/assets/setting-icons/Timer.png')),
@@ -95,7 +94,6 @@ min is the minimum value and max the maximum value-->
           value_repetitions: null,
           value_startermode: null,
           value_errorless: null,
-          value_keyboard: null,
           value_click: null,
         }
       }
@@ -108,7 +106,6 @@ min is the minimum value and max the maximum value-->
       this.preset.value_startermode = this.$cookies.isKey('settings.startermode') ? this.$cookies.get('settings.startermode') : 'OFF'
       this.preset.value_errorless = this.$cookies.isKey('settings.errorless') ? this.$cookies.get('settings.errorless') : 'OFF'
       this.preset.value_click = this.$cookies.isKey('settings.click') ? this.$cookies.get('settings.click') : 'OFF'
-      this.preset.value_keyboard = this.$cookies.isKey('settings.keyboard') ? this.$cookies.get('settings.keyboard') : 'LETTERS ONLY'
     },
     components: {
       'veeno' : veeno,
@@ -136,9 +133,6 @@ min is the minimum value and max the maximum value-->
       },
       'value_startermode' : function(val){
         this.$cookies.set('settings.startermode', val);
-      },
-      'value_keyboard' : function(val){
-        this.$cookies.set('settings.keyboard', val);
       },
       'value_click' : function(val){
         this.$cookies.set('settings.click', val);
