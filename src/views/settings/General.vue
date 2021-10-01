@@ -80,6 +80,7 @@ min is the minimum value and max the maximum value-->
     data() {
       return {
         timer_display: null,
+
         value_wordDisplayTime: null,
         // value is intially set to zero, however the value is changed as the slider is moved
         value_wordsPerSession: null,
@@ -87,8 +88,6 @@ min is the minimum value and max the maximum value-->
         value_wordRepetitions: null,
         value_errorlessLearning: null,
         value_clickForNextWord: null,
-        words_icon: new Image(require('@/assets/setting-icons/Words.png')),
-        timer_icon: new Image(require('@/assets/setting-icons/Timer.png')),
         preset : {
           value_wordRepetitions: null,
           value_errorlessLearning: null,
