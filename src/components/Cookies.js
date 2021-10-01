@@ -2,11 +2,11 @@
 export default [
   {
     chrome: [
-      "settings.repetitions",
-      "settings.timer",
-      "settings.trials",
-      "settings.errorless",
-      "settings.click"
+      "settings.wordRepetitions",
+      "settings.wordDisplayTime",
+      "settings.wordsPerSession",
+      "settings.errorlessLearning",
+      "settings.clickForNextWord"
     ]
   },
   {
@@ -14,8 +14,8 @@ export default [
       1,
       0,
       5,
-      "OFF",
-      "ON"
+      false,
+      true
     ]
   }
 ]

@@ -5,7 +5,7 @@
       <router-link to="/select_words">
         <font-awesome-icon class="top-area-back-button" icon="chevron-left"/>
       </router-link>
-      <Progress :total="trials" :current="this.count" />
+      <Progress :total="wordsPerSession" :current="this.count" />
       <font-awesome-icon v-on:click="rehide" class="top-area-eye" v-bind:class="{ 'hidden': !isHidden }" icon="eye"/>
     </div>
 
@@ -52,13 +52,13 @@
         alert: false,
         output: "",
         isHidden: false,
-        trials: null,
-        click_for_next_word: null,
-        repetitions: 1,
+        wordsPerSession: null,
+        clickForNextWord: null,
+        wordRepetitions: 1,
         current_count: 1,
         key_pressed: false,
         InbuiltWordlists: InbuiltWordlists,
-        errorlessOnOff: true, // Controls whether errorless is on or off
+        errorlessLearning: true, // Controls whether errorless is on or off
         timerOnOff: false, // Controls whether the timer is on or off (line 168)
         correct_audio: new Audio(require('@/assets/correct.mp3')),
         wrong_audio: new Audio(require('@/assets/wrong_2.mp3')),
@@ -70,7 +70,7 @@
     // Variables to watch
     watch: {
       'index' : function() {
-        if (this.count !== parseInt(this.trials)) {
+        if (this.count !== parseInt(this.wordsPerSession)) {
           this.count += 1;
         }
       },
@@ -79,38 +79,37 @@
     // Run on loading of page
     created() {
       // Add all the cookies here
-      this.repetitions = 1;
-      if (this.$cookies.isKey('settings.repetitions')) {
-        this.repetitions = this.$cookies.get('settings.repetitions');
+      this.wordRepetitions = 1;
+      if (this.$cookies.isKey('settings.wordRepetitions')) {
+        this.wordRepetitions = this.$cookies.get('settings.wordRepetitions');
       }
 
-      this.current_count = this.repetitions;
+      this.current_count = this.wordRepetitions;
 
       // Word number control
-      this.trials = 5;
-      if (this.$cookies.isKey('settings.trials')) {
-        this.trials = this.$cookies.get('settings.trials');
+      this.wordsPerSession = 5;
+      if (this.$cookies.isKey('settings.wordsPerSession')) {
+        this.wordsPerSession = this.$cookies.get('settings.wordsPerSession');
       }
 
       // Click to see next word
-      this.click_for_next_word = true;
-      if (this.$cookies.isKey('settings.click')) {
-        this.click_for_next_word = this.$cookies.get('settings.click') == 'ON';
+      this.clickForNextWord = true;
+      if (this.$cookies.isKey('settings.clickForNextWord')) {
+        this.clickForNextWord = this.$cookies.get('settings.clickForNextWord') === 'true';
       }
 
       // Timer Control
-      if (this.$cookies.isKey('settings.timer')) {
-        this.settings.timer = this.$cookies.get('settings.timer');
+      if (this.$cookies.isKey('settings.wordDisplayTime')) {
+        this.settings.timer = this.$cookies.get('settings.wordDisplayTime');
         this.timerOnOff = this.settings.timer != 0;
       }
 
       this.timer = setTimeout(this.hide, this.settings.timer * 1000);
 
       // Errorless Control
-      this.errorlessOnOff = false;
-      if (this.$cookies.isKey('settings.errorless')) {
-        this.errorless = this.$cookies.get('settings.errorless');
-        this.errorlessOnOff = this.errorless == 'ON';
+      this.errorlessLearning = false;
+      if (this.$cookies.isKey('settings.errorlessLearning')) {
+        this.errorlessLearning = this.$cookies.get('settings.errorlessLearning') === 'true';
       }
 
       // Import custom lists
@@ -142,7 +141,7 @@
     },
     computed : {
       'word' : function() {
-        if (this.errorlessOnOff) {
+        if (this.errorlessLearning) {
           return this.wordlist[this.index][this.output.length];
         }
         return 'abcdefghijklmnopqrstuvwxyz backspace';
@@ -179,7 +178,7 @@
           // move to next word
           this.index += 1;
           this.output = "";
-          this.current_count = this.repetitions;
+          this.current_count = this.wordRepetitions;
         } else {
           // decrement repetitions
           // note: this branch appears to not get reached;
@@ -193,7 +192,7 @@
         this.timer = setTimeout(this.hide, this.settings.timer * 1000);
 
         // If they finished the trials
-        if (this.count == this.trials && this.current_count == this.repetitions) {
+        if (this.count == this.wordsPerSession && this.current_count == this.wordRepetitions) {
           this.index = 0;
           this.output = "";
           this.isHidden = true;
@@ -253,7 +252,7 @@
 
         if (this.current_count == 1) {
           this.index += 1;
-          this.current_count = this.repetitions;
+          this.current_count = this.wordRepetitions;
         } else {
           this.current_count -= 1;
         }
@@ -262,7 +261,7 @@
         this.timer = setTimeout(this.hide, this.settings.timer * 1000);
 
         // If they finished the trials
-        if (this.count == this.trials && this.current_count == this.repetitions) {
+        if (this.count == this.wordsPerSession && this.current_count == this.wordRepetitions) {
           this.index = 0;
           this.output = "";
           this.isHidden = true;
@@ -288,7 +287,7 @@
           this.correct_audio.play();
           this.isHidden = false;
 
-          if (this.click_for_next_word) {
+          if (this.clickForNextWord) {
             // in this case, alert_function will be called when the "Next word" alert button is clicked
             this.alert = true;
           } else {
