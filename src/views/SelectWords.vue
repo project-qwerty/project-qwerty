@@ -2,7 +2,7 @@
   <div>
     <div class="header">
       <!-- Page header -->
-      <div class=heading>Select a category to practise</div>
+      <div class="heading">Select a category to practise</div>
       <!-- Link to settings -->
       <router-link class="link-to-settings" to="/settings">
         <font-awesome-icon class="link-to-settings-cog" icon="cog" />
@@ -122,11 +122,11 @@
       this.selected = this.preset.selected;
       this.customSelected = this.preset.customSelected;
       this.inbuiltCreated(this.inbuiltWordlists)
-      if(this.selected.includes(true) || this.customSelected.includes(true)) {
-            this.hidden = false;
-          } else {
-            this.hidden = true;
-          }
+      if (this.selected.includes(true) || this.customSelected.includes(true)) {
+        this.hidden = false;
+      } else {
+        this.hidden = true;
+      }
     },
     methods: {
       inbuiltCreated(wordlists) {
@@ -203,8 +203,4 @@
     align-items: center;
     margin: 10px;
   }
-
-  /* The start button classes are defined in the homepage CSS. */
-  /* They'll need to be brought back here when all of the CSS is converted to locally scoped. */
-
 </style>
