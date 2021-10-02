@@ -12,7 +12,7 @@
     <div>
       <WordList v-bind:wordlist="wordlist" v-bind:index="index" class="wordlist" v-bind:class="{ 'hidden': isHidden }" />
       <Output :output="output" />
-      <Overlay v-if="complete" />
+      <FinishedSessionOverlay v-if="showFinishedSessionOverlay" />
       <NextWordOverlay v-if="showNextWordOverlay" v-on:update:buttonClicked="goToNextWord" />
       <div class=keyboard>
         <Keyboard :word="word" v-on:update:keypressed="keypressed" />
@@ -26,7 +26,7 @@
 <script>
   import Keyboard from '../components/keyboard/KeyboardComponent';
   import WordList from '../components/WordList';
-  import Overlay from '../components/Overlay';
+  import FinishedSessionOverlay from '../components/FinishedSessionOverlay';
   import NextWordOverlay from '@/components/NextWordOverlay.vue';
   import Progress from '../components/Progress';
   import InbuiltWordlists from '@/components/InbuiltWordlists.js';
@@ -38,7 +38,7 @@
     components: {
       WordList,
       Keyboard,
-      Overlay,
+      FinishedSessionOverlay,
       NextWordOverlay,
       Progress,
       Output,
@@ -49,7 +49,7 @@
         wordlist: [],
         index: 0,
         count: 1,
-        complete: false,
+        showFinishedSessionOverlay: false,
         showNextWordOverlay: false,
         output: "",
         isHidden: false,
@@ -183,7 +183,7 @@
           this.index = 0;
           this.output = "";
           this.isHidden = true;
-          this.complete = true;
+          this.showFinishedSessionOverlay = true;
         }
 
         // If they finished the wordlist
@@ -252,7 +252,7 @@
           this.index = 0;
           this.output = "";
           this.isHidden = true;
-          this.complete = true;
+          this.showFinishedSessionOverlay = true;
         }
 
         // If they finished the wordlist
