@@ -13,7 +13,7 @@
       <WordList v-bind:wordlist="wordlist" v-bind:index="index" class="wordlist" v-bind:class="{ 'hidden': isHidden }" />
       <Output :output="output" />
       <Overlay v-if="complete" />
-      <Alert v-if="alert" v-on:update:alert_function="alert_function" />
+      <NextWordOverlay v-if="showNextWordOverlay" v-on:update:buttonClicked="goToNextWord" />
       <div class=keyboard>
         <Keyboard :word="word" v-on:update:keypressed="keypressed" />
       </div>
@@ -27,10 +27,10 @@
   import Keyboard from '../components/keyboard/KeyboardComponent';
   import WordList from '../components/WordList';
   import Overlay from '../components/Overlay';
+  import NextWordOverlay from '@/components/NextWordOverlay.vue';
   import Progress from '../components/Progress';
   import InbuiltWordlists from '@/components/InbuiltWordlists.js';
   import Output from '@/components/Output.vue';
-  import Alert from '@/components/Alert.vue';
   import Cookies from '@/components/Cookies.js';
 
   export default {
@@ -39,9 +39,9 @@
       WordList,
       Keyboard,
       Overlay,
+      NextWordOverlay,
       Progress,
       Output,
-      Alert,
     },
     data() {
       return {
@@ -50,7 +50,7 @@
         index: 0,
         count: 1,
         complete: false,
-        alert: false,
+        showNextWordOverlay: false,
         output: "",
         isHidden: false,
         wordsPerSession: null,
@@ -169,7 +169,7 @@
         } else {
           // decrement repetitions
           // note: this branch appears to not get reached;
-          //  instead, this decrementing happens in alert_function
+          //  instead, this decrementing happens in goToNextWord
           //  gonna leave it alone for now as it should get picked up and fixed
           //  in forthcoming refactors
           this.current_count -= 1;
@@ -233,8 +233,8 @@
         }
         return array;
       },
-      alert_function() {
-        this.alert = false;
+      goToNextWord() {
+        this.showNextWordOverlay = false;
         this.output = "";
 
         if (this.current_count == 1) {
@@ -275,11 +275,11 @@
           this.isHidden = false;
 
           if (this.clickForNextWord) {
-            // in this case, alert_function will be called when the "Next word" alert button is clicked
-            this.alert = true;
+            // in this case, goToNextWord will be called when the "Next word" alert button is clicked
+            this.showNextWordOverlay = true;
           } else {
             // in this case, it's called straight away
-            this.alert_function()
+            this.goToNextWord()
           }
 
           return;

@@ -13,7 +13,7 @@
     components : {"popup-btn-component" : Popup},
     methods: {
       click() {
-        this.$emit('update:alert_function', false);
+        this.$emit('update:buttonClicked', false);
       },
     },
   }
