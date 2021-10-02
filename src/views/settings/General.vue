@@ -25,7 +25,7 @@ min is the minimum value and max the maximum value-->
       'max': [ 30 ]
       }"
       class="slider"
-    >{{timer_display}}</veeno>
+    >{{display_wordDisplayTime}}</veeno>
 
     <p class="setting-heading slider-heading">
       <img class="setting-heading-icon" src="@/assets/setting-icons/Words.png">
@@ -46,7 +46,7 @@ min is the minimum value and max the maximum value-->
       'max': [ 50 ]
       }"
       class="slider"
-    >{{value_wordsPerSession}}</veeno>
+    >{{display_wordsPerSession}}</veeno>
 
     <p class="setting-heading">
       <img class="setting-heading-icon" src="@/assets/setting-icons/Errorless.png">
@@ -75,11 +75,13 @@ min is the minimum value and max the maximum value-->
   import veeno from 'veeno';
   import 'nouislider/distribute/nouislider.min.css';
   import Switch from '@/components/Switch.vue';
+  import Cookies from '@/components/Cookies.js';
 
   export default {
     data() {
       return {
-        timer_display: null,
+        display_wordDisplayTime: null,
+        display_wordsPerSession: null,
 
         value_wordDisplayTime: null,
         // value is intially set to zero, however the value is changed as the slider is moved
@@ -97,44 +99,42 @@ min is the minimum value and max the maximum value-->
     },
     // This sets the sliders so that they remember there last location.
     created(){
-      this.preset.value_wordRepetitions = this.$cookies.isKey('settings.wordRepetitions') ? this.$cookies.get('settings.wordRepetitions') : 1
-      this.value_wordDisplayTime = this.$cookies.isKey('settings.wordDisplayTime') ? this.$cookies.get('settings.wordDisplayTime') : 0
-      this.value_wordsPerSession = this.$cookies.isKey('settings.wordsPerSession') ? this.$cookies.get('settings.wordsPerSession') : 5
+      this.preset.value_wordRepetitions = Cookies.getSetting('wordRepetitions').toString();
+      this.value_wordDisplayTime = Cookies.getSetting('wordDisplayTime');
+      this.value_wordsPerSession = Cookies.getSetting('wordsPerSession');
 
-      // TODO: find a better solution to storing booleans in cookies
-      // currently it's a mess of true vs false vs 'true' vs 'false' vs 'ON' vs 'OFF'
-      var errorlessLearningCookie = this.$cookies.isKey('settings.errorlessLearning') ? this.$cookies.get('settings.errorlessLearning') : 'false'
-      this.preset.value_errorlessLearning = errorlessLearningCookie === 'true' ? 'ON' : 'OFF'
+      var errorlessLearningCookie = Cookies.getSetting('errorlessLearning');
+      this.preset.value_errorlessLearning = errorlessLearningCookie ? 'ON' : 'OFF'
 
-      var clickForNextWordCookie = this.$cookies.isKey('settings.clickForNextWord') ? this.$cookies.get('settings.clickForNextWord') : 'false'
-      this.preset.value_clickForNextWord = clickForNextWordCookie === 'true' ? 'ON' : 'OFF'
+      var clickForNextWordCookie = Cookies.getSetting('clickForNextWord');
+      this.preset.value_clickForNextWord = clickForNextWordCookie ? 'ON' : 'OFF'
     },
     components: {
-      'veeno' : veeno,
-      'switch-component' : Switch
+      'veeno': veeno,
+      'switch-component': Switch
     },
     // This stores the values into local cookies so that they can be accessed by the keyboard page.
     watch: {
-      'value_wordRepetitions' : function(val){
-        this.$cookies.set('settings.wordRepetitions', val);
+      'value_wordRepetitions': function(val) {
+        Cookies.setSetting('wordRepetitions', val);
       },
-      'value_wordDisplayTime' : function(val){
+      'value_wordDisplayTime': function(val) {
         if (parseInt(val) !== 0) {
-          this.timer_display = parseInt(val);
+          this.display_wordDisplayTime = parseInt(val) + ' seconds';
         } else {
-          this.timer_display = "OFF";
+          this.display_wordDisplayTime = "OFF";
         }
-        this.$cookies.set('settings.wordDisplayTime', parseInt(val));
+        Cookies.setSetting('wordDisplayTime', parseInt(val));
       },
-      'value_wordsPerSession' : function(val){
-        this.value_wordsPerSession = parseInt(val);
-        this.$cookies.set('settings.wordsPerSession', parseInt(val));
+      'value_wordsPerSession': function(val) {
+        this.display_wordsPerSession = parseInt(val) + ' words';
+        Cookies.setSetting('wordsPerSession', parseInt(val));
       },
-      'value_errorlessLearning' : function(val){
-        this.$cookies.set('settings.errorlessLearning', val === 'ON');
+      'value_errorlessLearning': function(val) {
+        Cookies.setSetting('errorlessLearning', val === 'ON');
       },
-      'value_clickForNextWord' : function(val){
-        this.$cookies.set('settings.clickForNextWord', val === 'ON');
+      'value_clickForNextWord': function(val) {
+        Cookies.setSetting('clickForNextWord', val === 'ON');
       },
     },
   }

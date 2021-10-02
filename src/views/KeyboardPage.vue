@@ -31,6 +31,7 @@
   import InbuiltWordlists from '@/components/InbuiltWordlists.js';
   import Output from '@/components/Output.vue';
   import Alert from '@/components/Alert.vue';
+  import Cookies from '@/components/Cookies.js';
 
   export default {
     name: 'app',
@@ -79,38 +80,24 @@
     // Run on loading of page
     created() {
       // Add all the cookies here
-      this.wordRepetitions = 1;
-      if (this.$cookies.isKey('settings.wordRepetitions')) {
-        this.wordRepetitions = this.$cookies.get('settings.wordRepetitions');
-      }
+      this.wordRepetitions = Cookies.getSetting('wordRepetitions');
 
       this.current_count = this.wordRepetitions;
 
       // Word number control
-      this.wordsPerSession = 5;
-      if (this.$cookies.isKey('settings.wordsPerSession')) {
-        this.wordsPerSession = this.$cookies.get('settings.wordsPerSession');
-      }
+      this.wordsPerSession = Cookies.getSetting('wordsPerSession');
 
       // Click to see next word
-      this.clickForNextWord = true;
-      if (this.$cookies.isKey('settings.clickForNextWord')) {
-        this.clickForNextWord = this.$cookies.get('settings.clickForNextWord') === 'true';
-      }
+      this.clickForNextWord = Cookies.getSetting('clickForNextWord');
 
       // Timer Control
-      if (this.$cookies.isKey('settings.wordDisplayTime')) {
-        this.settings.timer = this.$cookies.get('settings.wordDisplayTime');
-        this.timerOnOff = this.settings.timer != 0;
-      }
+      this.settings.timer = Cookies.getSetting('wordDisplayTime');
+      this.timerOnOff = this.settings.timer != 0;
 
       this.timer = setTimeout(this.hide, this.settings.timer * 1000);
 
       // Errorless Control
-      this.errorlessLearning = false;
-      if (this.$cookies.isKey('settings.errorlessLearning')) {
-        this.errorlessLearning = this.$cookies.get('settings.errorlessLearning') === 'true';
-      }
+      this.errorlessLearning = Cookies.getSetting('errorlessLearning');
 
       // Import custom lists
       if (this.$cookies.isKey('select_words.custom_selected')) {

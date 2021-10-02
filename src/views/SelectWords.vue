@@ -35,7 +35,6 @@
   import SelectButton from '@/components/SelectButton.vue';
   import InbuiltWordlists from '@/components/InbuiltWordlists.js';
   import InbuiltImagesLists from '@/components/InbuiltImageLists.js';
-  import Cookies from '@/components/Cookies.js';
 
   export default {
     data() {
@@ -57,7 +56,6 @@
         startTo: "/keyboard",
         inbuiltImagesLists : InbuiltImagesLists,
         inbuiltWordlists : InbuiltWordlists,
-        cookies : Cookies,
         cookieNames: [],
         cookieInitialValues: [],
       }
@@ -66,14 +64,6 @@
       'SelectButton' : SelectButton,
     },
     created() {
-      // Initialise settings cookies
-      this.cookiesCreated(this.cookies);
-      for (var x = 0; x < this.cookieNames[0].length; x++) {
-        if (!this.$cookies.isKey(this.cookieNames[0][x])) {
-          this.$cookies.set(this.cookieNames[0][x], this.cookieInitialValues[0][x]);
-        }
-      }
-
       // Import which inbuilt lists are selected from cookies
       var size = this.inbuiltWordlists.length;
       if (this.$cookies.isKey('select_words.built_in_selected')) {
