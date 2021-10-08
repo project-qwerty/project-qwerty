@@ -1,5 +1,5 @@
 <template>
-  <div class="key" :class="{'disabled' : correction && !enable}" @mousedown="click">
+  <div class="key" :class="{'disabled': correction && !enable}" @mousedown="click">
     <p>{{char['letter']}}</p>
   </div>
 </template>
@@ -18,16 +18,16 @@
     },
     methods: {
       click() {
-        if(this.enable){
+        if (this.enable) {
           this.$emit('update:click', this.char['letter']);
           this.$emit('update:error', false);
         }
         else{this.$emit('update:error', true);}
       }
     },
-    computed : {
-      'enable' : function(){
-        if(this.word == null) return true;
+    computed: {
+      'enable': function() {
+        if (this.word == null) return true;
         return this.word.includes(this.char['letter']);
       }
     }

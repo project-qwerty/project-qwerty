@@ -8,7 +8,7 @@
 
 <script>
   export default {
-    props : ["current", "total"]
+    props: ["current", "total"]
   }
 </script>
 

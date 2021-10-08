@@ -10,16 +10,16 @@
     name: "switch-component",
     props: ["options", "preset"],
     // the internal state - can be change in this code
-    data: function(){
+    data: function() {
       return{
         select_value: null
       }
     },
-    created(){
+    created() {
       this.select_value = this.preset
     },
     watch: {
-      'select_value' : function(val){
+      'select_value': function(val) {
         this.$emit("update:value", val)
       }
     }

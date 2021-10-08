@@ -90,7 +90,7 @@ min is the minimum value and max the maximum value-->
         value_wordRepetitions: null,
         value_errorlessLearning: null,
         value_clickForNextWord: null,
-        preset : {
+        preset: {
           value_wordRepetitions: null,
           value_errorlessLearning: null,
           value_clickForNextWord: null,
@@ -98,7 +98,7 @@ min is the minimum value and max the maximum value-->
       }
     },
     // This sets the sliders so that they remember there last location.
-    created(){
+    created() {
       this.preset.value_wordRepetitions = Cookies.getSetting('wordRepetitions').toString();
       this.value_wordDisplayTime = Cookies.getSetting('wordDisplayTime');
       this.value_wordsPerSession = Cookies.getSetting('wordsPerSession');

@@ -39,10 +39,10 @@
   import KeyComponent from '@/components/keyboard/KeyComponent.vue';
 
   export default {
-    name : 'keys',
+    name: 'keys',
     data() {
       return {
-        error : false,
+        error: false,
         keys: [
           [
             { letter: 'backspace' }
@@ -85,19 +85,19 @@
         ],
       }
     },
-    props : ["word"],
-    methods : {
+    props: ["word"],
+    methods: {
       click(val) {
         this.$emit('update:keypressed', val);
       }
     },
     computed:{
-      'correction' : function(){
+      'correction': function() {
         return this.error;
       }
     },
     components: {
-      'key-component' : KeyComponent,
+      'key-component': KeyComponent,
     },
 }
 </script>

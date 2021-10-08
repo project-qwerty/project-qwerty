@@ -10,18 +10,18 @@
   export default{
     name: "select-component",
     props: ["index", "preset", "title", "image_path"],
-    data: function(){
+    data: function() {
       return{
         toggle: false,
         image: null,
       }
     },
-    created(){
+    created() {
       this.toggle = this.preset
     },
     watch: {
-      'toggle' : function(val){
-        this.$emit("update:value", {value : val, index : this.index});
+      'toggle': function(val) {
+        this.$emit("update:value", {value: val, index: this.index});
       }
     }
   }

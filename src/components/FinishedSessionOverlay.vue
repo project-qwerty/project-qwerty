@@ -12,7 +12,7 @@
   import Popup from '../components/PopupButton';
 
   export default {
-    components : {"popup-btn-component" : Popup},
+    components: {"popup-btn-component": Popup},
     methods: {
       to1() {
         this.$router.push('/');

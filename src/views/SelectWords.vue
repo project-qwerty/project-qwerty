@@ -52,14 +52,14 @@
           selected: [],
           customSelected: [],
         },
-        inbuiltImagesLists : InbuiltImagesLists,
-        inbuiltWordlists : InbuiltWordlists,
+        inbuiltImagesLists: InbuiltImagesLists,
+        inbuiltWordlists: InbuiltWordlists,
         cookieNames: [],
         cookieInitialValues: [],
       }
     },
     components: {
-      'SelectButton' : SelectButton,
+      'SelectButton': SelectButton,
     },
     created() {
       // Import which inbuilt lists are selected from cookies
@@ -98,7 +98,7 @@
 
       if (this.$cookies.isKey('custom_word_lists.words')) {
         var words = this.$cookies.get('custom_word_lists.words').split('|').slice(0,-1);
-        for (var i = 0; i < words.length; i++){
+        for (var i = 0; i < words.length; i++) {
           if (words[i].includes(',')) {
             this.customWords.push(words[i].split(','));
           } else {

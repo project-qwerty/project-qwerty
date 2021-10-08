@@ -10,7 +10,7 @@
   import Popup from '../components/PopupButton';
 
   export default {
-    components : {"popup-btn-component" : Popup},
+    components: {"popup-btn-component": Popup},
     methods: {
       click() {
         this.$emit('update:buttonClicked', false);

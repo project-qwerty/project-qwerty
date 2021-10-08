@@ -84,7 +84,7 @@
       }
       if (this.$cookies.isKey('custom_word_lists.words')) {
         var words = this.$cookies.get('custom_word_lists.words').split('|').slice(0,-1);
-        for (var i = 0; i < words.length; i++){
+        for (var i = 0; i < words.length; i++) {
           if (words[i].includes(',')) {
             this.words.push(words[i].split(','));
           } else {
@@ -136,10 +136,10 @@
       }
     },
     watch: {
-      'lists' : function(val){
+      'lists': function(val) {
         this.$cookies.set('custom_word_lists.lists', val);
       },
-      'words' : function(val){
+      'words': function(val) {
         var cookie = "";
         for (var i = 0; i < val.length; i++) {
           cookie += val[i];

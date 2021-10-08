@@ -70,7 +70,7 @@
     },
     // Variables to watch
     watch: {
-      'index' : function() {
+      'index': function() {
         if (this.count !== parseInt(this.wordsPerSession)) {
           this.count += 1;
         }
@@ -126,8 +126,8 @@
       this.inbuiltCreated(this.InbuiltWordlists);
       this.wordlist = this.shuffleWordlist(this.wordlist);
     },
-    computed : {
-      'word' : function() {
+    computed: {
+      'word': function() {
         if (this.errorlessLearning) {
           return this.wordlist[this.index][this.output.length];
         }

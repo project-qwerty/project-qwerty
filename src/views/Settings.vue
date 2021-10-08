@@ -29,13 +29,13 @@
     components: {
       SettingsMenu,
     },
-    data : function(){
+    data: function() {
       return {
         // Links to each settings page
-        'options' : [
-          {link : '/settings', name: 'General'},
-          {link : '/settings/custom-lists', name: 'Custom Categories'},
-          {link : '/settings/about', name: 'About'},
+        'options': [
+          {link: '/settings', name: 'General'},
+          {link: '/settings/custom-lists', name: 'Custom Categories'},
+          {link: '/settings/about', name: 'About'},
         ],
       }
     }
