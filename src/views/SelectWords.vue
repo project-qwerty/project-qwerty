@@ -13,12 +13,12 @@
 
       <!-- Built-in word lists -->
       <div v-for="(list, index) in lists" v-bind:key="index" class="builtins-list">
-        <SelectButton :preset="preset.selected[index]" :index="index" :title="list" v-on:update:value="temp=$event" :image_path="inbuiltImagesLists[index]"/>
+        <SelectButton :preset="preset.selected[index]" :index="index" :title="list" v-on:update:value="wordListClicked" :image_path="inbuiltImagesLists[index]"/>
       </div>
 
       <!-- Custom word lists -->
       <div v-for="(customList, index) in customLists" v-bind:key="index + inbuiltWordlists.length" class="customs-list">
-        <SelectButton :preset="preset.customSelected[index]" :index="index + inbuiltWordlists.length" :title="customList" v-on:update:value="temp=$event" :image_path="inbuiltImagesLists[index + inbuiltWordlists.length]" />
+        <SelectButton :preset="preset.customSelected[index]" :index="index + inbuiltWordlists.length" :title="customList" v-on:update:value="wordListClicked" :image_path="inbuiltImagesLists[index + inbuiltWordlists.length]" />
       </div>
 
     </div>
@@ -47,7 +47,6 @@
         customLists: [],
         customWords: [],
         customSelected: [],
-        temp: null,
         hidden: true,
         preset: {
           selected: [],
@@ -128,26 +127,22 @@
       cookiesCreated(cookies) {
         this.cookieNames.push(Object.values(cookies[0])[0]);
         this.cookieInitialValues.push(Object.values(cookies[1])[0]);
-      }
-    },
-
-    watch: {
-      'temp' : function(val){
-        if (val.index < this.inbuiltWordlists.length) {
-          this.selected[val.index] = val.value;
+      },
+      wordListClicked(event) {
+        // event is emitted by SelectButton
+        //   {value: true/false, index: position_of_wordlist}
+        if (event.index < this.inbuiltWordlists.length) {
+          this.selected[event.index] = event.value;
           this.$cookies.set('select_words.built_in_selected', this.selected);
         } else {
-          this.customSelected[val.index - this.inbuiltWordlists.length] = val.value;
+          this.customSelected[event.index - this.inbuiltWordlists.length] = event.value;
           this.$cookies.set('select_words.custom_selected', this.customSelected);
         }
-        if(this.selected.includes(true) || this.customSelected.includes(true)) {
-          this.hidden = false;
-        } else {
-          this.hidden = true;
-        }
 
-      }
-    }
+        const anyListsSelected = this.selected.includes(true) || this.customSelected.includes(true);
+        this.hidden = !anyListsSelected;
+      },
+    },
   }
 </script>
 
