@@ -24,7 +24,7 @@
     </div>
 
     <!-- Start button -->
-    <router-link class="start-button" :to="startTo" v-if="!startButtonHidden">
+    <router-link class="start-button" to="/keyboard" v-if="!startButtonHidden">
       <p class="start-text">START</p>
       <font-awesome-icon class="start-chevron" icon="chevron-right" />
     </router-link>
@@ -52,7 +52,6 @@
           selected: [],
           customSelected: [],
         },
-        startTo: "/keyboard",
         inbuiltImagesLists : InbuiltImagesLists,
         inbuiltWordlists : InbuiltWordlists,
         cookieNames: [],
