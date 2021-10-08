@@ -24,7 +24,7 @@
     </div>
 
     <!-- Start button -->
-    <router-link class="start-button" :to="startTo" v-if="!hidden">
+    <router-link class="start-button" :to="startTo" v-if="!startButtonHidden">
       <p class="start-text">START</p>
       <font-awesome-icon class="start-chevron" icon="chevron-right" />
     </router-link>
@@ -47,7 +47,7 @@
         customLists: [],
         customWords: [],
         customSelected: [],
-        hidden: true,
+        startButtonHidden: true,
         preset: {
           selected: [],
           customSelected: [],
@@ -110,12 +110,10 @@
 
       this.selected = this.preset.selected;
       this.customSelected = this.preset.customSelected;
-      this.inbuiltCreated(this.inbuiltWordlists)
-      if (this.selected.includes(true) || this.customSelected.includes(true)) {
-        this.hidden = false;
-      } else {
-        this.hidden = true;
-      }
+      this.inbuiltCreated(this.inbuiltWordlists);
+
+      const anyListsSelected = this.selected.includes(true) || this.customSelected.includes(true);
+      this.startButtonHidden = !anyListsSelected;
     },
     methods: {
       inbuiltCreated(wordlists) {
@@ -140,7 +138,7 @@
         }
 
         const anyListsSelected = this.selected.includes(true) || this.customSelected.includes(true);
-        this.hidden = !anyListsSelected;
+        this.startButtonHidden = !anyListsSelected;
       },
     },
   }
