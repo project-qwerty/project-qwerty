@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row" :key="index" v-for="(keylist, index) in keys">
-      <div v-if="index === 0" style="padding-left:87%"></div>
+      <div v-if="index === 0" style="padding-left:83%"></div>
       <div v-if="index === 1" style="padding-left:2%"></div>
       <div v-if="index === 2" style="padding-left:5%"></div>
       <div v-if="index === 3" style="padding-left:14%"></div>
@@ -27,7 +27,7 @@
   }
 
   .key {
-    padding-top: 10px;
+    margin-top: 10px;
     height: 80px;
     flex: 1;
     justify-content: center;

@@ -1,5 +1,6 @@
 <template>
   <div class="key" :class="{'disabled': correction && !enable}" @mousedown="click">
+    <font-awesome-icon v-if="char == 'backspace'" class="backspace-icon" icon="backspace" />
     <p>{{char}}</p>
   </div>
 </template>
@@ -35,7 +36,6 @@
 
 
 <style scoped>
-
   .disabled {
     background-color: gray !important;
   }
@@ -55,4 +55,8 @@
     box-shadow: 0 6px 6px -1px rgba(0, 0, 0, 0.2), 0 4px 4px -1px rgba(0, 0, 0, 0.2);
   }
 
+  .backspace-icon {
+    font-size: 50px;
+    margin-right: 15px;
+  }
 </style>
