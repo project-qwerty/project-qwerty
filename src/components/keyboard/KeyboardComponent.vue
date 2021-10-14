@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row" :key="index" v-for="(keylist, index) in keys">
-      <div v-if="index === 0" style="padding-left:83%"></div>
+      <div v-if="index === 0" style="padding-left:78%"></div>
       <div v-if="index === 1" style="padding-left:2%"></div>
       <div v-if="index === 2" style="padding-left:5%"></div>
       <div v-if="index === 3" style="padding-left:14%"></div>
@@ -58,7 +58,7 @@
         this.$emit('update:keypressed', val);
       }
     },
-    computed:{
+    computed: {
       'correction': function() {
         return this.error;
       }
