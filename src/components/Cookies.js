@@ -19,6 +19,10 @@ function parseCookieBool(val) {
   }
 }
 
+function parseCookieStringCaps(val) {
+  return val.toUpperCase();
+}
+
 const settings = {
   wordRepetitions: {
     key: 'settings.wordRepetitions',
@@ -44,6 +48,11 @@ const settings = {
     key: 'settings.clickForNextWord',
     parser: parseCookieBool,
     default: true,
+  },
+  wordDisplayCapitalization: {
+    key: 'settings.wordDisplayCapitalization',
+    parser: parseCookieStringCaps,
+    default: 'UPPERCASE',
   },
 }
 

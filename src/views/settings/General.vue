@@ -66,6 +66,12 @@ min is the minimum value and max the maximum value-->
     </p>
     <switch-component class="switch" :preset="preset.value_wordRepetitions" :options="['1', '3']" v-on:update:value="value_wordRepetitions=$event"/>
 
+    <p class="setting-heading">
+      <img class="setting-heading-icon" src="@/assets/setting-icons/Capitals.png">
+      Capitalization
+    </p>
+    <switch-component class="switch" :preset="preset.value_wordDisplayCapitalization" :options="['UPPERCASE', 'lowercase']" v-on:update:value="value_wordDisplayCapitalization=$event"/>
+
   </div>
 </template>
 
@@ -90,6 +96,7 @@ min is the minimum value and max the maximum value-->
         value_wordRepetitions: null,
         value_errorlessLearning: null,
         value_clickForNextWord: null,
+        value_wordDisplayCapitalization: null,
         preset: {
           value_wordRepetitions: null,
           value_errorlessLearning: null,
@@ -108,6 +115,11 @@ min is the minimum value and max the maximum value-->
 
       var clickForNextWordCookie = Cookies.getSetting('clickForNextWord');
       this.preset.value_clickForNextWord = clickForNextWordCookie ? 'ON' : 'OFF'
+
+      this.preset.value_wordDisplayCapitalization = Cookies.getSetting('wordDisplayCapitalization');
+      if (this.preset.value_wordDisplayCapitalization === 'LOWERCASE') {
+        this.preset.value_wordDisplayCapitalization = 'lowercase';
+      }
     },
     components: {
       'veeno': veeno,
@@ -135,6 +147,9 @@ min is the minimum value and max the maximum value-->
       },
       'value_clickForNextWord': function(val) {
         Cookies.setSetting('clickForNextWord', val === 'ON');
+      },
+      'value_wordDisplayCapitalization': function(val) {
+        Cookies.setSetting('wordDisplayCapitalization', val.toUpperCase());
       },
     },
   }
@@ -166,7 +181,7 @@ min is the minimum value and max the maximum value-->
   }
 
   .setting-heading-icon {
-    height:20px
+    height: 20px;
   }
 
   .slider {

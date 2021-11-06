@@ -20,7 +20,6 @@
 <style scoped>
   .output {
     font-size: 70px;
-    text-transform: uppercase;
     text-decoration: underline;
     height: 100px;
     color: rgba(28, 28, 30);

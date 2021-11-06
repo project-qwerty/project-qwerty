@@ -1,5 +1,5 @@
 <template>
-  <div id="keyboard">
+  <div id="keyboard" v-bind:style="{ 'text-transform': wordDisplayCapitalization }">
 
     <div class="top-area-container">
       <router-link to="/select_words">
@@ -59,13 +59,14 @@
         current_count: 1,
         key_pressed: false,
         InbuiltWordlists: InbuiltWordlists,
-        errorlessLearning: true, // Controls whether errorless is on or off
-        timerOnOff: false, // Controls whether the timer is on or off (line 168)
+        errorlessLearning: true,  // Controls whether errorless is on or off
+        timerOnOff: false,  // Controls whether the timer is on or off
         correct_audio: new Audio(require('@/assets/correct.mp3')),
         wrong_audio: new Audio(require('@/assets/wrong_2.mp3')),
         settings: {
             timer: 5
-        }
+        },
+        wordDisplayCapitalization: null,
       }
     },
     // Variables to watch
@@ -98,6 +99,9 @@
 
       // Errorless Control
       this.errorlessLearning = Cookies.getSetting('errorlessLearning');
+
+      // Text display capitalization case
+      this.wordDisplayCapitalization = Cookies.getSetting('wordDisplayCapitalization');
 
       // Import custom lists
       if (this.$cookies.isKey('select_words.custom_selected')) {
@@ -334,7 +338,6 @@
 
   .wordlist {
     font-size: 70px;
-    text-transform: uppercase;
     text-decoration: none;
     height: 100px;
     color:rgba(72, 72, 74, 0.8);

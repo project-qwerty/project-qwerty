@@ -43,7 +43,6 @@
   .key {
     background-color: white;
     border: 1px solid black;
-    text-transform: capitalize;
     box-sizing: border-box;
     display: flex;
     align-items: center;
