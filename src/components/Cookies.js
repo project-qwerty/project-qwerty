@@ -81,9 +81,16 @@ export default {
 
     return customListNames
   },
-  // getCustomList: function(name) {
-  //   // --> ['words', 'go', 'here']
-  // },
+  getCustomList: function(name) {
+    const listKey = 'custom_lists.' + name;
+
+    if (!Vue.$cookies.isKey(listKey)) {
+      throw new Error(`not a custom list: "${name}"`)
+    }
+
+    const stringData = Vue.$cookies.get(listKey);
+    return JSON.parse(stringData);
+  },
   // createCustomList: function(name) {
   //   // -->
   // },
