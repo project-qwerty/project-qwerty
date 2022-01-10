@@ -74,36 +74,41 @@ export default {
   },
 
   getCustomListNames: function() {
-    // --> ['listnames', 'go', 'here']
-  },
-  getCustomList: function(name) {
-    // --> ['words', 'go', 'here']
-  },
-  createCustomList: function(name) {
-    // -->
-  },
-  deleteCustomList: function(name) {
-    // -->
-  },
-  addCustomWord: function(listName, word) {
-    // -->
-  },
-  deleteCustomWord: function(listName, word) {
-    // -->
-  },
+    const customListKeys = Vue.$cookies.keys()
+        .filter(key => key.startsWith('custom_lists.'));
+    const customListNames = customListKeys
+        .map(key => key.replace(/^custom_lists\./, ''));
 
-  getSelectedBuiltInListNames: function() {
-    // --> ['listnames', 'go', 'here']
+    return customListNames
   },
-  getSelectedCustomListNames: function () {
-    // --> ['listnames', 'go', 'here']
-  },
-  setBuiltInListSelected: function(listName, isSelected) {
-    // -->
-  },
-  setCustomListSelected: function (listName, isSelected) {
-    // -->
-  },
+  // getCustomList: function(name) {
+  //   // --> ['words', 'go', 'here']
+  // },
+  // createCustomList: function(name) {
+  //   // -->
+  // },
+  // deleteCustomList: function(name) {
+  //   // -->
+  // },
+  // addCustomWord: function(listName, word) {
+  //   // -->
+  // },
+  // deleteCustomWord: function(listName, word) {
+  //   // -->
+  // },
+
+  // getSelectedBuiltInListNames: function() {
+  //   // --> ['listnames', 'go', 'here']
+  // },
+  // getSelectedCustomListNames: function () {
+  //   // --> ['listnames', 'go', 'here']
+  // },
+  // setBuiltInListSelected: function(listName, isSelected) {
+  //   // -->
+  // },
+  // setCustomListSelected: function (listName, isSelected) {
+  //   // -->
+  // },
 
 
 }
