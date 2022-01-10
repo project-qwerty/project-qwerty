@@ -109,9 +109,28 @@ export default {
 
     Vue.$cookies.remove(listKey);
   },
-  // addCustomWord: function(listName, word) {
-  //   // -->
-  // },
+  addCustomWord: function(listName, word) {
+    const listKey = 'custom_lists.' + listName;
+
+    if (!Vue.$cookies.isKey(listKey)) {
+      throw new Error(`not a custom list: "${listName}"`);
+    }
+
+    const listStringData = Vue.$cookies.get(listKey);
+    let list = JSON.parse(listStringData);
+
+    // we normalize the words to lowercase
+    word = word.toLowerCase();
+
+    if (list.includes(word)) {
+      // don't add the word in twice
+      return;
+    }
+
+    // add the word and save it to the cookie
+    list.push(word);
+    Vue.$cookies.set(listKey, JSON.stringify(list));
+  },
   // deleteCustomWord: function(listName, word) {
   //   // -->
   // },
