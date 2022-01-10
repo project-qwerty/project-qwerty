@@ -100,9 +100,15 @@ export default {
 
     Vue.$cookies.set(listKey, '[]');
   },
-  // deleteCustomList: function(name) {
-  //   // -->
-  // },
+  deleteCustomList: function(name) {
+    const listKey = 'custom_lists.' + name;
+
+    if (!Vue.$cookies.isKey(listKey)) {
+      throw new Error(`not a custom list: "${name}"`);
+    }
+
+    Vue.$cookies.remove(listKey);
+  },
   // addCustomWord: function(listName, word) {
   //   // -->
   // },
