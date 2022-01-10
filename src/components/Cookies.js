@@ -154,12 +154,26 @@ export default {
     Vue.$cookies.set(listKey, JSON.stringify(list));
   },
 
-  // getSelectedBuiltInListNames: function() {
-  //   // --> ['listnames', 'go', 'here']
-  // },
-  // getSelectedCustomListNames: function () {
-  //   // --> ['listnames', 'go', 'here']
-  // },
+  getSelectedBuiltInListNames: function() {
+    const key = 'selected_lists.builtin';
+
+    if (!Vue.$cookies.isKey(key)) {
+      return [];  // no cookie, nothing selected
+    }
+
+    const stringData = Vue.$cookies.get(key);
+    return JSON.parse(stringData);
+  },
+  getSelectedCustomListNames: function () {
+    const key = 'selected_lists.custom';
+
+    if (!Vue.$cookies.isKey(key)) {
+      return [];  // no cookie, nothing selected
+    }
+
+    const stringData = Vue.$cookies.get(key);
+    return JSON.parse(stringData);
+  },
   // setBuiltInListSelected: function(listName, isSelected) {
   //   // -->
   // },
