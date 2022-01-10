@@ -37,7 +37,7 @@
       </p>
       <div class="current-list-display">
         <div v-for="(item, index) in items" :key="index">
-          <ListItem v-on:click="click" :item="item" class="boxes"/>
+          <ListItem v-on:click="deleteWord" :item="item" class="boxes"/>
         </div>
       </div>
 
@@ -59,6 +59,7 @@
 <script>
   import { Multiselect } from 'vue-multiselect';
   import ListItem from '@/components/ListItem.vue';
+  import Cookies from '@/components/Cookies.js';
 
   export default {
     name: 'CustomLists',
@@ -79,75 +80,60 @@
       }
     },
     created () {
-      if (this.$cookies.isKey('custom_word_lists.lists')) {
-        this.lists = this.$cookies.get('custom_word_lists.lists').split(',');
-      }
-      if (this.$cookies.isKey('custom_word_lists.words')) {
-        var words = this.$cookies.get('custom_word_lists.words').split('|').slice(0,-1);
-        for (var i = 0; i < words.length; i++) {
-          if (words[i].includes(',')) {
-            this.words.push(words[i].split(','));
-          } else {
-            this.words.push([words[i]]);
-          }
-        }
-      }
+      this.loadFromCookies();
     },
     methods: {
-      listSelected(list) {
-        this.words = JSON.parse('[' + this.$cookies.get(list) + ']');
+      loadFromCookies: function() {
+        this.lists = Cookies.getCustomListNames();
+
+        this.words = {};
+        for (let listName of this.lists) {
+          this.words[listName] = Cookies.getCustomList(listName);
+        }
       },
       onSelect(list) {
         this.current_list = list;
-        this.items = this.words[this.lists.indexOf(this.current_list)];
+        this.items = this.words[this.current_list];
       },
-      newList: function () {
-        if (!(this.lists.includes(this.new_list))) {
-          this.lists.push(this.new_list);
-          this.words.push([]);
-          alert("Category added: " + this.new_list);
-          this.new_list = "";
+      newList: function() {
+        if (!this.lists.includes(this.new_list)) {
+          Cookies.createCustomList(this.new_list);
+          alert('Category added: ' + this.new_list);
+          this.new_list = '';
         }
-      },
-      deleteList: function () {
-        var index = this.lists.indexOf(this.list_to_delete);
-        if (index !== -1) {
-          this.lists.splice(index, 1);
-          this.words.splice(index, 1);
-          alert("Category deleted: " + this.list_to_delete);
-          this.list_to_delete = "";
-        }
-      },
-      newWord: function () {
-        var index = this.lists.indexOf(this.current_list);
 
-        var alreadyExists = this.words[index].includes(this.new_word);
+        this.loadFromCookies();
+      },
+      deleteList: function() {
+        if (this.lists.includes(this.list_to_delete)) {
+          Cookies.deleteCustomList(this.list_to_delete);
+          alert('Category deleted: ' + this.list_to_delete);
+          this.list_to_delete = '';
+        }
+
+        this.loadFromCookies();
+      },
+      newWord: function() {
+        var alreadyExists = this.words[this.current_list].includes(this.new_word);
         var isEmpty = this.new_word === "";
         var isValidChars = /^[a-zA-Z ]+$/.test(this.new_word);
 
         if (!alreadyExists && !isEmpty && isValidChars) {
-          this.words[index].push(this.new_word.toLowerCase());
+          Cookies.addCustomWord(this.current_list, this.new_word);
           this.new_word = "";
         }
+
+        this.loadFromCookies();
+        this.items = this.words[this.current_list];
       },
-      click(val) {
-        var index = this.lists.indexOf(this.current_list);
-        this.words[index].splice(this.words[index].indexOf(val),1);
+      deleteWord(val) {
+        window.console.log(val);
+        Cookies.deleteCustomWord(this.current_list, val);
+
+        this.loadFromCookies();
+        this.items = this.words[this.current_list];
       }
     },
-    watch: {
-      'lists': function(val) {
-        this.$cookies.set('custom_word_lists.lists', val);
-      },
-      'words': function(val) {
-        var cookie = "";
-        for (var i = 0; i < val.length; i++) {
-          cookie += val[i];
-          cookie += '|'
-        }
-        this.$cookies.set('custom_word_lists.words', cookie);
-      }
-    }
   }
 </script>
 
