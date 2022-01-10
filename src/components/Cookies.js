@@ -71,5 +71,39 @@ export default {
     const setting = settings[name];
 
     Vue.$cookies.set(setting.key, val);
-  }
+  },
+
+  getCustomListNames: function() {
+    // --> ['listnames', 'go', 'here']
+  },
+  getCustomList: function(name) {
+    // --> ['words', 'go', 'here']
+  },
+  createCustomList: function(name) {
+    // -->
+  },
+  deleteCustomList: function(name) {
+    // -->
+  },
+  addCustomWord: function(listName, word) {
+    // -->
+  },
+  deleteCustomWord: function(listName, word) {
+    // -->
+  },
+
+  getSelectedBuiltInListNames: function() {
+    // --> ['listnames', 'go', 'here']
+  },
+  getSelectedCustomListNames: function () {
+    // --> ['listnames', 'go', 'here']
+  },
+  setBuiltInListSelected: function(listName, isSelected) {
+    // -->
+  },
+  setCustomListSelected: function (listName, isSelected) {
+    // -->
+  },
+
+
 }
