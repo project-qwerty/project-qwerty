@@ -79,21 +79,27 @@ export default {
     const customListNames = customListKeys
         .map(key => key.replace(/^custom_lists\./, ''));
 
-    return customListNames
+    return customListNames;
   },
   getCustomList: function(name) {
     const listKey = 'custom_lists.' + name;
 
     if (!Vue.$cookies.isKey(listKey)) {
-      throw new Error(`not a custom list: "${name}"`)
+      throw new Error(`not a custom list: "${name}"`);
     }
 
     const stringData = Vue.$cookies.get(listKey);
     return JSON.parse(stringData);
   },
-  // createCustomList: function(name) {
-  //   // -->
-  // },
+  createCustomList: function(name) {
+    const listKey = 'custom_lists.' + name;
+
+    if (Vue.$cookies.isKey(listKey)) {
+      throw new Error(`already a custom list: "${name}"`);
+    }
+
+    Vue.$cookies.set(listKey, '[]');
+  },
   // deleteCustomList: function(name) {
   //   // -->
   // },
