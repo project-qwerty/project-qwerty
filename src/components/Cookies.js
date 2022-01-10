@@ -158,7 +158,8 @@ export default {
     const key = 'selected_lists.builtin';
 
     if (!Vue.$cookies.isKey(key)) {
-      return [];  // no cookie, nothing selected
+      // no cookie, nothing selected
+      return [];
     }
 
     const stringData = Vue.$cookies.get(key);
@@ -168,18 +169,48 @@ export default {
     const key = 'selected_lists.custom';
 
     if (!Vue.$cookies.isKey(key)) {
-      return [];  // no cookie, nothing selected
+      // no cookie, nothing selected
+      return [];
     }
 
     const stringData = Vue.$cookies.get(key);
     return JSON.parse(stringData);
   },
-  // setBuiltInListSelected: function(listName, isSelected) {
-  //   // -->
-  // },
-  // setCustomListSelected: function (listName, isSelected) {
-  //   // -->
-  // },
+  setBuiltInListSelected: function(listName, isSelected) {
+    const key = 'selected_lists.builtin';
 
+    if (!Vue.$cookies.isKey(key)) {
+      // initialize cookie
+      Vue.$cookies.set(key, '[]');
+    }
+
+    const stringData = Vue.$cookies.get(key);
+    let selected = JSON.parse(stringData);
+
+    selected = selected.filter(x => x !== listName);
+    if (isSelected) {
+      selected.push(listName);
+    }
+
+    Vue.$cookies.set(key, JSON.stringify(selected));
+  },
+  setCustomListSelected: function (listName, isSelected) {
+    const key = 'selected_lists.custom';
+
+    if (!Vue.$cookies.isKey(key)) {
+      // initialize cookie
+      Vue.$cookies.set(key, '[]');
+    }
+
+    const stringData = Vue.$cookies.get(key);
+    let selected = JSON.parse(stringData);
+
+    selected = selected.filter(x => x !== listName);
+    if (isSelected) {
+      selected.push(listName);
+    }
+
+    Vue.$cookies.set(key, JSON.stringify(selected));
+  },
 
 }
