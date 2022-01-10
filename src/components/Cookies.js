@@ -56,6 +56,37 @@ const settings = {
   },
 }
 
+function getSelectedListNames(listType) {
+  const key = 'selected_lists.' + listType;
+
+  if (!Vue.$cookies.isKey(key)) {
+    // no cookie, nothing selected
+    return [];
+  }
+
+  const stringData = Vue.$cookies.get(key);
+  return JSON.parse(stringData);
+}
+
+function setListSelected(listType, listName, isSelected) {
+  const key = 'selected_lists.' + listType;
+
+  if (!Vue.$cookies.isKey(key)) {
+    // initialize cookie
+    Vue.$cookies.set(key, '[]');
+  }
+
+  const stringData = Vue.$cookies.get(key);
+  let selected = JSON.parse(stringData);
+
+  selected = selected.filter(x => x !== listName);
+  if (isSelected) {
+    selected.push(listName);
+  }
+
+  Vue.$cookies.set(key, JSON.stringify(selected));
+}
+
 export default {
   getSetting: function(name) {
     const setting = settings[name];
@@ -155,62 +186,16 @@ export default {
   },
 
   getSelectedBuiltInListNames: function() {
-    const key = 'selected_lists.builtin';
-
-    if (!Vue.$cookies.isKey(key)) {
-      // no cookie, nothing selected
-      return [];
-    }
-
-    const stringData = Vue.$cookies.get(key);
-    return JSON.parse(stringData);
+    return getSelectedListNames('builtin');
   },
   getSelectedCustomListNames: function () {
-    const key = 'selected_lists.custom';
-
-    if (!Vue.$cookies.isKey(key)) {
-      // no cookie, nothing selected
-      return [];
-    }
-
-    const stringData = Vue.$cookies.get(key);
-    return JSON.parse(stringData);
+    return getSelectedListNames('custom');
   },
   setBuiltInListSelected: function(listName, isSelected) {
-    const key = 'selected_lists.builtin';
-
-    if (!Vue.$cookies.isKey(key)) {
-      // initialize cookie
-      Vue.$cookies.set(key, '[]');
-    }
-
-    const stringData = Vue.$cookies.get(key);
-    let selected = JSON.parse(stringData);
-
-    selected = selected.filter(x => x !== listName);
-    if (isSelected) {
-      selected.push(listName);
-    }
-
-    Vue.$cookies.set(key, JSON.stringify(selected));
+    setListSelected('builtin', listName, isSelected);
   },
   setCustomListSelected: function (listName, isSelected) {
-    const key = 'selected_lists.custom';
-
-    if (!Vue.$cookies.isKey(key)) {
-      // initialize cookie
-      Vue.$cookies.set(key, '[]');
-    }
-
-    const stringData = Vue.$cookies.get(key);
-    let selected = JSON.parse(stringData);
-
-    selected = selected.filter(x => x !== listName);
-    if (isSelected) {
-      selected.push(listName);
-    }
-
-    Vue.$cookies.set(key, JSON.stringify(selected));
+    setListSelected('custom', listName, isSelected);
   },
 
 }
