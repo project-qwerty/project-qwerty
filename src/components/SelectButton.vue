@@ -1,23 +1,23 @@
 <template>
   <button v-on:click="toggle=!toggle" :class="{'selected':toggle===true}">
     <div class="text">{{title}}</div>
-    <img class="icon" alt="image" :src="require('@/assets/category-selection-images/'+image_path)">
+    <img class="icon" alt="image" :src="require('@/assets/category-selection-images/' + image_path)">
   </button>
 </template>
 
 
 <script>
-  export default{
+  export default {
     name: "select-component",
     props: ["index", "preset", "title", "image_path"],
     data: function() {
-      return{
+      return {
         toggle: false,
         image: null,
       }
     },
     created() {
-      this.toggle = this.preset
+      this.toggle = this.preset;
     },
     watch: {
       'toggle': function(val) {
@@ -29,20 +29,20 @@
 
 
 <style scoped>
-  .selected{
-    background-color: rgb(48, 209, 88) !important
+  .selected {
+    background-color: rgb(48, 209, 88) !important;
   }
 
-  .text{
+  .text {
     font-size: 32px;
     height: 96px;
   }
 
-  .icon{
+  .icon {
     height: 120px;
   }
 
-  button{
+  button {
     background-color: #fefefe;
     color: #212121;
     width: 200px;
