@@ -10,7 +10,7 @@
     </div>
 
     <div>
-      <WordList v-bind:wordlist="wordlist" v-bind:index="index" class="wordlist" v-bind:class="{ 'hidden': isHidden }" />
+      <WordList v-bind:wordlist="wordlist" v-bind:index="currentWordIndex" class="wordlist" v-bind:class="{ 'hidden': isHidden }" />
       <Output :output="output" />
       <FinishedSessionOverlay v-if="showFinishedSessionOverlay" />
       <NextWordOverlay v-if="showNextWordOverlay" v-on:update:buttonClicked="goToNextWord" />
@@ -47,7 +47,7 @@
       return {
         timer: null,
         wordlist: [],
-        index: 0,
+        currentWordIndex: 0,
         count: 1,
         showFinishedSessionOverlay: false,
         showNextWordOverlay: false,
@@ -71,7 +71,7 @@
     },
     // Variables to watch
     watch: {
-      'index': function() {
+      'currentWordIndex': function() {
         if (this.count !== parseInt(this.wordsPerSession)) {
           this.count += 1;
         }
@@ -133,7 +133,7 @@
     computed: {
       'enabledCharacters': function() {
         if (this.errorlessLearning) {
-          return this.wordlist[this.index][this.output.length];
+          return this.wordlist[this.currentWordIndex][this.output.length];
         }
         return 'abcdefghijklmnopqrstuvwxyz backspace';
       },
@@ -147,7 +147,7 @@
         }
         this.key_pressed = false;
 
-        var target_word = this.wordlist[this.index];
+        var target_word = this.wordlist[this.currentWordIndex];
 
         // If they aren't finished yet
         if (this.output.length !== target_word.length) {
@@ -167,7 +167,7 @@
 
         if (this.repetitionsRemaining == 1) {
           // move to next word
-          this.index += 1;
+          this.currentWordIndex += 1;
           this.output = "";
           this.repetitionsRemaining = this.wordRepetitions;
         } else {
@@ -184,15 +184,15 @@
 
         // If they finished the trials
         if (this.count == this.wordsPerSession && this.repetitionsRemaining == this.wordRepetitions) {
-          this.index = 0;
+          this.currentWordIndex = 0;
           this.output = "";
           this.isHidden = true;
           this.showFinishedSessionOverlay = true;
         }
 
         // If they finished the wordlist
-        if (this.index == this.wordlist.length) {
-          this.index = 0;
+        if (this.currentWordIndex == this.wordlist.length) {
+          this.currentWordIndex = 0;
         }
       })
     },
@@ -242,7 +242,7 @@
         this.output = "";
 
         if (this.repetitionsRemaining == 1) {
-          this.index += 1;
+          this.currentWordIndex += 1;
           this.repetitionsRemaining = this.wordRepetitions;
         } else {
           this.repetitionsRemaining -= 1;
@@ -253,15 +253,15 @@
 
         // If they finished the trials
         if (this.count == this.wordsPerSession && this.repetitionsRemaining == this.wordRepetitions) {
-          this.index = 0;
+          this.currentWordIndex = 0;
           this.output = "";
           this.isHidden = true;
           this.showFinishedSessionOverlay = true;
         }
 
         // If they finished the wordlist
-        if (this.index == this.wordlist.length) {
-          this.index = 0;
+        if (this.currentWordIndex == this.wordlist.length) {
+          this.currentWordIndex = 0;
         }
       },
       keypressed(char) {
@@ -274,7 +274,7 @@
         }
 
         // If they got the word correct
-        if (this.output === this.wordlist[this.index]) {
+        if (this.output === this.wordlist[this.currentWordIndex]) {
           this.correct_audio.play();
           this.isHidden = false;
 
@@ -290,7 +290,7 @@
         }
 
         // If they got the word wrong
-        if (this.output.length === this.wordlist[this.index].length) {
+        if (this.output.length === this.wordlist[this.currentWordIndex].length) {
           this.wrong_audio.play();
           return;
         }
