@@ -45,7 +45,6 @@
         selected: [],
         // Custom lists
         customLists: [],
-        customWords: [],
         customSelected: [],
         startButtonHidden: true,
         preset: {
@@ -93,17 +92,6 @@
         } else {
           // Set default to false
           this.preset.customSelected = Array.apply(null, Array(this.customLists.length)).map(Boolean.prototype.valueOf,false);
-        }
-      }
-
-      if (this.$cookies.isKey('custom_word_lists.words')) {
-        var words = this.$cookies.get('custom_word_lists.words').split('|').slice(0,-1);
-        for (var i = 0; i < words.length; i++) {
-          if (words[i].includes(',')) {
-            this.customWords.push(words[i].split(','));
-          } else {
-            this.customWords.push(words[i]);
-          }
         }
       }
 
