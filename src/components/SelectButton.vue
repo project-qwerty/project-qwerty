@@ -1,7 +1,7 @@
 <template>
   <button v-on:click="toggle=!toggle" :class="{'selected':toggle===true}">
     <div class="text">{{title}}</div>
-    <img class="icon" alt="image" :src="require('@/assets/category-selection-images/' + image_path)">
+    <img class="icon" :src="require('@/assets/category-selection-images/' + image_path)">
   </button>
 </template>
 
@@ -13,7 +13,6 @@
     data: function() {
       return {
         toggle: false,
-        image: null,
       }
     },
     created() {
