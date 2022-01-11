@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="selected =! selected" :class="{'selected': selected}">
+  <button v-on:click="isSelected =! isSelected" :class="{'selected': isSelected}">
     <div class="text">{{title}}</div>
     <img class="icon" :src="require('@/assets/category-selection-images/' + image_path)">
   </button>
@@ -9,10 +9,10 @@
 <script>
   export default {
     name: 'select-component',
-    props: ['title', 'selected', 'image_path'],
+    props: ['title', 'isSelected', 'image_path'],
     watch: {
-      'selected': function(val) {
-        this.$emit('update:value', {listName: this.title, selected: val});
+      'isSelected': function(val) {
+        this.$emit('update:value', {listName: this.title, isSelected: val});
       }
     }
   }
