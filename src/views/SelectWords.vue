@@ -52,8 +52,6 @@
         },
         inbuiltImagesLists: InbuiltImagesLists,
         inbuiltWordlists: InbuiltWordlists,
-        cookieNames: [],
-        cookieInitialValues: [],
       }
     },
     components: {
@@ -106,10 +104,6 @@
         for (var i = 0; i < wordlists.length; i++) {
           this.lists.push(Object.keys(wordlists[i])[0]);
         }
-      },
-      cookiesCreated(cookies) {
-        this.cookieNames.push(Object.values(cookies[0])[0]);
-        this.cookieInitialValues.push(Object.values(cookies[1])[0]);
       },
       wordListClicked(event) {
         // event is emitted by SelectButton
