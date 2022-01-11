@@ -8,8 +8,8 @@
 
 <script>
   export default {
-    name: "select-component",
-    props: ["index", "preset", "title", "image_path"],
+    name: 'select-component',
+    props: ['index', 'preset', 'title', 'image_path'],
     data: function() {
       return {
         toggle: false,
@@ -21,7 +21,7 @@
     },
     watch: {
       'toggle': function(val) {
-        this.$emit("update:value", {value: val, index: this.index});
+        this.$emit('update:value', {value: val, index: this.index});
       }
     }
   }
