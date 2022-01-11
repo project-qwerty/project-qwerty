@@ -56,7 +56,7 @@
         wordsPerSession: null,
         clickForNextWord: null,
         wordRepetitions: 1,
-        current_count: 1,
+        repetitionsRemaining: 1,
         key_pressed: false,
         InbuiltWordlists: InbuiltWordlists,
         errorlessLearning: true,  // Controls whether errorless is on or off
@@ -83,7 +83,7 @@
       // Add all the cookies here
       this.wordRepetitions = Cookies.getSetting('wordRepetitions');
 
-      this.current_count = this.wordRepetitions;
+      this.repetitionsRemaining = this.wordRepetitions;
 
       // Word number control
       this.wordsPerSession = Cookies.getSetting('wordsPerSession');
@@ -165,25 +165,25 @@
         this.correct_audio.play();
         this.isHidden = false;
 
-        if (this.current_count == 1) {
+        if (this.repetitionsRemaining == 1) {
           // move to next word
           this.index += 1;
           this.output = "";
-          this.current_count = this.wordRepetitions;
+          this.repetitionsRemaining = this.wordRepetitions;
         } else {
           // decrement repetitions
           // note: this branch appears to not get reached;
           //  instead, this decrementing happens in goToNextWord
           //  gonna leave it alone for now as it should get picked up and fixed
           //  in forthcoming refactors
-          this.current_count -= 1;
+          this.repetitionsRemaining -= 1;
         }
 
         clearTimeout(this.timer);
         this.timer = setTimeout(this.hide, this.settings.timer * 1000);
 
         // If they finished the trials
-        if (this.count == this.wordsPerSession && this.current_count == this.wordRepetitions) {
+        if (this.count == this.wordsPerSession && this.repetitionsRemaining == this.wordRepetitions) {
           this.index = 0;
           this.output = "";
           this.isHidden = true;
@@ -241,18 +241,18 @@
         this.showNextWordOverlay = false;
         this.output = "";
 
-        if (this.current_count == 1) {
+        if (this.repetitionsRemaining == 1) {
           this.index += 1;
-          this.current_count = this.wordRepetitions;
+          this.repetitionsRemaining = this.wordRepetitions;
         } else {
-          this.current_count -= 1;
+          this.repetitionsRemaining -= 1;
         }
 
         clearTimeout(this.timer);
         this.timer = setTimeout(this.hide, this.settings.timer * 1000);
 
         // If they finished the trials
-        if (this.count == this.wordsPerSession && this.current_count == this.wordRepetitions) {
+        if (this.count == this.wordsPerSession && this.repetitionsRemaining == this.wordRepetitions) {
           this.index = 0;
           this.output = "";
           this.isHidden = true;
