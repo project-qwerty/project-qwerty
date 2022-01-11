@@ -186,6 +186,7 @@ export default {
     Vue.$cookies.set(listKey, JSON.stringify(list));
   },
 
+  // TODO: delete from selected lists if the list doesn't exist (any more)
   getSelectedBuiltInListNames: function() {
     return getSelectedListNames('builtin');
   },

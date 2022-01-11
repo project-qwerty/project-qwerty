@@ -67,7 +67,6 @@
       loadSelected() {
         this.builtInSelected = Cookies.getSelectedBuiltInListNames();
         this.customSelected = Cookies.getSelectedCustomListNames();
-        // TODO: delete from selected lists if the list doesn't exist (any more)
       },
       setStartButtonVisibility() {
         const anyListsSelected = this.builtInSelected.length + this.customSelected.length > 0;
