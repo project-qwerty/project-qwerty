@@ -104,28 +104,10 @@
       this.wordDisplayCapitalization = Cookies.getSetting('wordDisplayCapitalization');
 
       // Import custom lists
-      if (this.$cookies.isKey('select_words.custom_selected')) {
-        // Get which lists are selected from cookies
-        var customSelected = this.$cookies.get('select_words.custom_selected').split(',');
-        customSelected = JSON.parse("[" + customSelected + "]")
-
-        if (!this.$cookies.isKey('custom_word_lists.words')) {
-          alert("There is an error with the cookies. Please enable cookies.");
-        } else {
-          // Get words from cookies
-          var customWords = this.$cookies.get('custom_word_lists.words').split('|').slice(0,-1);
-          var __cw_list = [];
-          for (var i = 0; i < customSelected.length; i++) {
-            if (!customSelected[i]) {
-              continue;
-            }
-
-            var __w_list = customWords[i].split(',');
-            __cw_list = __cw_list.concat(__w_list);
-          }
-          this.wordlist = this.wordlist.concat(__cw_list);
-        }
-      }
+      const selectedCustomLists = Cookies.getSelectedCustomListNames()
+          .map(listName => Cookies.getCustomList(listName));
+      const customWords = selectedCustomLists.flat();
+      this.wordlist = this.wordlist.concat(customWords);
 
       this.inbuiltCreated(this.InbuiltWordlists);
       this.wordlist = this.shuffleWordlist(this.wordlist);
@@ -137,7 +119,6 @@
         }
         return 'abcdefghijklmnopqrstuvwxyz backspace';
       },
-
     },
     updated: function () {
       this.$nextTick(function () {
@@ -202,24 +183,16 @@
         this.timer = setTimeout(this.hide, this.settings.timer * 1000);
       },
       inbuiltCreated(wordlists) {
-        // WordList Control
-        if (!this.$cookies.isKey('select_words.built_in_selected')) {
-          return;
-        }
-
-        var selected = this.$cookies.get('select_words.built_in_selected');
-        var indices = JSON.parse("[" + selected + "]");
-        var _cw_list = []; // cumulated word list
-        for (var i = 0; i < indices.length; i++) {
-          if (!indices[i]) {
-            continue;
+        const selectedBuiltInLists = Cookies.getSelectedBuiltInListNames();
+        // TODO: this gross code will be taken care of with the reworking of the inbuilt lists structure
+        for (let targetListName of selectedBuiltInLists) {
+          for (let list of wordlists) {
+            const thisListName = Object.keys(list)[0];
+            if (thisListName == targetListName) {
+              this.wordlist = this.wordlist.concat(list[thisListName]);
+            }
           }
-
-          var __w_array = wordlists[i][Object.keys(wordlists[i])[0]];
-          _cw_list = _cw_list.concat(__w_array);
         }
-        this.wordlist = this.wordlist.concat(_cw_list);
-
       },
       shuffleWordlist(array) {
         var currentIndex, temp, randomIndex;
