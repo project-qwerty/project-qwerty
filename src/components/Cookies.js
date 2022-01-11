@@ -88,6 +88,7 @@ function setListSelected(listType, listName, isSelected) {
 }
 
 export default {
+  // TODO: I think this object should be broken up into .settings, .customLists, .selectedLists
   getSetting: function(name) {
     const setting = settings[name];
 
@@ -188,13 +189,13 @@ export default {
   getSelectedBuiltInListNames: function() {
     return getSelectedListNames('builtin');
   },
-  getSelectedCustomListNames: function () {
+  getSelectedCustomListNames: function() {
     return getSelectedListNames('custom');
   },
   setBuiltInListSelected: function(listName, isSelected) {
     setListSelected('builtin', listName, isSelected);
   },
-  setCustomListSelected: function (listName, isSelected) {
+  setCustomListSelected: function(listName, isSelected) {
     setListSelected('custom', listName, isSelected);
   },
 
