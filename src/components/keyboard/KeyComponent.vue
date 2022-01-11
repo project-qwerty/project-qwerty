@@ -10,7 +10,7 @@
   export default {
     props: [
       'char',
-      'word',
+      'enabledCharacters',
       'correction',
     ],
     methods: {
@@ -25,10 +25,10 @@
     },
     computed: {
       'enable': function() {
-        if (this.word == null) {
+        if (this.enabledCharacters == null) {
           return true;
         }
-        return this.word.includes(this.char);
+        return this.enabledCharacters.includes(this.char);
       }
     }
   }

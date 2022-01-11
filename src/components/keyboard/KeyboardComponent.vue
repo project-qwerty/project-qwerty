@@ -7,7 +7,7 @@
       <div v-if="index === 3" style="padding-left:14%"></div>
       <div v-if="index === 4" style="padding-left:20%"></div>
       <div class="key" :key="index1" v-for="(key, index1) in keylist">
-          <key-component :word="word" :correction="correction" :char="key" v-on:update:click="click" v-on:update:error="error=$event"/>
+          <key-component :enabledCharacters="enabledCharacters" :correction="correction" :char="key" v-on:update:click="click" v-on:update:error="error=$event"/>
       </div>
       <div v-if="index === 0" style="padding-right:2%"></div>
       <div v-if="index === 1" style="padding-right:2%"></div>
@@ -52,7 +52,7 @@
         ],
       }
     },
-    props: ['word'],
+    props: ['enabledCharacters'],
     methods: {
       click(val) {
         this.$emit('update:keypressed', val);

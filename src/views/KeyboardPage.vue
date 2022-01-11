@@ -15,7 +15,7 @@
       <FinishedSessionOverlay v-if="showFinishedSessionOverlay" />
       <NextWordOverlay v-if="showNextWordOverlay" v-on:update:buttonClicked="goToNextWord" />
       <div class=keyboard>
-        <Keyboard :word="word" v-on:update:keypressed="keypressed" />
+        <Keyboard :enabledCharacters="enabledCharacters" v-on:update:keypressed="keypressed" />
       </div>
     </div>
 
@@ -131,7 +131,7 @@
       this.wordlist = this.shuffleWordlist(this.wordlist);
     },
     computed: {
-      'word': function() {
+      'enabledCharacters': function() {
         if (this.errorlessLearning) {
           return this.wordlist[this.index][this.output.length];
         }
