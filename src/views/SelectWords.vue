@@ -12,13 +12,14 @@
     <div class="categories-list">
 
       <!-- Built-in word lists -->
-      <div v-for="(list, index) in lists" v-bind:key="index" class="builtins-list">
-        <SelectButton :preset="preset.selected[index]" :index="index" :title="list" v-on:update:value="wordListClicked" :image_path="inbuiltImagesLists[index]"/>
+      <div v-for="list in builtInLists" v-bind:key="list" class="builtins-list">
+        <SelectButton :title="list" :isCustomList="false" :isSelected="builtInSelected.includes(list)" v-on:update:value="wordListClicked" :image_path="list + '.png'"/>
       </div>
 
       <!-- Custom word lists -->
-      <div v-for="(customList, index) in customLists" v-bind:key="index + inbuiltWordlists.length" class="customs-list">
-        <SelectButton :preset="preset.customSelected[index]" :index="index + inbuiltWordlists.length" :title="customList" v-on:update:value="wordListClicked" :image_path="inbuiltImagesLists[index + inbuiltWordlists.length]" />
+      <div v-for="(list, index) in customLists" v-bind:key="list" class="customs-list">
+        <SelectButton :title="list" :isCustomList="true" :isSelected="customSelected.includes(list)" v-on:update:value="wordListClicked" :image_path="'Custom_' + index + '.png'" />
+        <!-- TODO: this will fail after 5 custom lists, this needs to be fixed somehow before production -->
       </div>
 
     </div>
@@ -35,21 +36,19 @@
   import SelectButton from '@/components/SelectButton.vue';
   import InbuiltWordlists from '@/components/InbuiltWordlists.js';
   import InbuiltImagesLists from '@/components/InbuiltImageLists.js';
+  import Cookies from '@/components/Cookies.js';
 
   export default {
     data() {
       return {
-        // Inbuilt lists
-        lists: [],
-        selected: [],
-        // Custom lists
+        builtInLists: [],
+        builtInSelected: [],
+
         customLists: [],
         customSelected: [],
+
         startButtonHidden: true,
-        preset: {
-          selected: [],
-          customSelected: [],
-        },
+
         inbuiltImagesLists: InbuiltImagesLists,
         inbuiltWordlists: InbuiltWordlists,
       }
@@ -58,66 +57,43 @@
       'SelectButton': SelectButton,
     },
     created() {
-      // Import which inbuilt lists are selected from cookies
-      var size = this.inbuiltWordlists.length;
-      if (this.$cookies.isKey('select_words.built_in_selected')) {
-        // Set preset from cookie
-        var thisList = JSON.parse("[" + this.$cookies.get('select_words.built_in_selected') + "]")
-        this.preset.selected = thisList;
-        // This is for when we update the inbuilt lists - length of cookie doesn't match number of inbuilt lists
-        if (size !== this.preset.selected.length) {
-          this.preset.selected = Array.apply(null, Array(size)).map(Boolean.prototype.valueOf,false);
-        }
-      } else {
-        // Cookie doesn't exist
-        this.preset.selected = Array.apply(null, Array(size)).map(Boolean.prototype.valueOf,false);
-      }
-
-      // Importing the custom lists and whether they are selected from cookies
-      if (this.$cookies.isKey('custom_word_lists.lists')) {
-        // Make list from cookies
-        this.customLists = this.$cookies.get('custom_word_lists.lists').split(',');
-        if (this.$cookies.isKey('select_words.custom_selected')) {
-          // Set selected preset from cookie
-          this.preset.customSelected = JSON.parse("[" + this.$cookies.get('select_words.custom_selected') + "]");
-          // This is for when they have just made a new custom list
-          if (this.preset.customSelected.length !== this.customLists.length) {
-            // Set preset selected to all false (should incorporate any selections they have previously made but this is much easier)
-            this.preset.customSelected = Array.apply(null, Array(this.customLists.length)).map(Boolean.prototype.valueOf,false);
-          }
-        // They have just made their first custom list so they have custom lists but no selected cookie
-        } else {
-          // Set default to false
-          this.preset.customSelected = Array.apply(null, Array(this.customLists.length)).map(Boolean.prototype.valueOf,false);
-        }
-      }
-
-      this.selected = this.preset.selected;
-      this.customSelected = this.preset.customSelected;
-      this.inbuiltCreated(this.inbuiltWordlists);
-
-      const anyListsSelected = this.selected.includes(true) || this.customSelected.includes(true);
-      this.startButtonHidden = !anyListsSelected;
+      this.loadEverything();
     },
     methods: {
-      inbuiltCreated(wordlists) {
-        for (var i = 0; i < wordlists.length; i++) {
-          this.lists.push(Object.keys(wordlists[i])[0]);
+      loadLists() {
+        // TODO: gross code
+        this.builtInLists = [];
+        for (var i = 0; i < this.inbuiltWordlists.length; i++) {
+          this.builtInLists.push(Object.keys(this.inbuiltWordlists[i])[0]);
         }
+
+        this.customLists = Cookies.getCustomListNames();
+      },
+      loadSelected() {
+        this.builtInSelected = Cookies.getSelectedBuiltInListNames();
+        this.customSelected = Cookies.getSelectedCustomListNames();
+        // TODO: delete from selected lists if the list doesn't exist (any more)
+      },
+      setStartButtonVisibility() {
+        const anyListsSelected = this.builtInSelected.length + this.customSelected.length > 0;
+        this.startButtonHidden = !anyListsSelected;
+      },
+      loadEverything() {
+        this.loadLists();
+        this.loadSelected();
+        this.setStartButtonVisibility();
       },
       wordListClicked(event) {
         // event is emitted by SelectButton
-        //   {value: true/false, index: position_of_wordlist}
-        if (event.index < this.inbuiltWordlists.length) {
-          this.selected[event.index] = event.value;
-          this.$cookies.set('select_words.built_in_selected', this.selected);
+        //   {listName: name_of_list, isCustomList: true/false, isSelected: true/false}
+
+        if (!event.isCustomList) {
+          Cookies.setBuiltInListSelected(event.listName, event.isSelected);
         } else {
-          this.customSelected[event.index - this.inbuiltWordlists.length] = event.value;
-          this.$cookies.set('select_words.custom_selected', this.customSelected);
+          Cookies.setCustomListSelected(event.listName, event.isSelected);
         }
 
-        const anyListsSelected = this.selected.includes(true) || this.customSelected.includes(true);
-        this.startButtonHidden = !anyListsSelected;
+        this.loadEverything();
       },
     },
   }
