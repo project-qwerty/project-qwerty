@@ -61,12 +61,7 @@
     },
     methods: {
       loadLists() {
-        // TODO: gross code
-        this.builtInLists = [];
-        for (var i = 0; i < this.inbuiltWordlists.length; i++) {
-          this.builtInLists.push(Object.keys(this.inbuiltWordlists[i])[0]);
-        }
-
+        this.builtInLists = Object.keys(this.inbuiltWordlists);
         this.customLists = Cookies.getCustomListNames();
       },
       loadSelected() {

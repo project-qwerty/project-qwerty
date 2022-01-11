@@ -184,14 +184,8 @@
       },
       inbuiltCreated(wordlists) {
         const selectedBuiltInLists = Cookies.getSelectedBuiltInListNames();
-        // TODO: this gross code will be taken care of with the reworking of the inbuilt lists structure
-        for (let targetListName of selectedBuiltInLists) {
-          for (let list of wordlists) {
-            const thisListName = Object.keys(list)[0];
-            if (thisListName == targetListName) {
-              this.wordlist = this.wordlist.concat(list[thisListName]);
-            }
-          }
+        for (let listName of selectedBuiltInLists) {
+          this.wordlist = this.wordlist.concat(wordlists[listName]);
         }
       },
       shuffleWordlist(array) {
