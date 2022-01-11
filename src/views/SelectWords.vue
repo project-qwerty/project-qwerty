@@ -41,7 +41,6 @@
       return {
         // Inbuilt lists
         lists: [],
-        words: [],
         selected: [],
         // Custom lists
         customLists: [],
@@ -106,7 +105,6 @@
       inbuiltCreated(wordlists) {
         for (var i = 0; i < wordlists.length; i++) {
           this.lists.push(Object.keys(wordlists[i])[0]);
-          this.words.push(Object.values(wordlists[i])[0]);
         }
       },
       cookiesCreated(cookies) {
