@@ -9,10 +9,10 @@
 <script>
   export default {
     name: 'select-component',
-    props: ['title', 'isSelected', 'image_path'],
+    props: ['title', 'isCustomList', 'isSelected', 'image_path'],
     watch: {
       'isSelected': function(val) {
-        this.$emit('update:value', {listName: this.title, isSelected: val});
+        this.$emit('update:value', {listName: this.title, isCustomList: this.isCustomList, isSelected: val});
       }
     }
   }
