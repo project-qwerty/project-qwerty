@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="toggle=!toggle" :class="{'selected':toggle===true}">
+  <button v-on:click="selected =! selected" :class="{'selected': selected}">
     <div class="text">{{title}}</div>
     <img class="icon" :src="require('@/assets/category-selection-images/' + image_path)">
   </button>
@@ -9,18 +9,10 @@
 <script>
   export default {
     name: 'select-component',
-    props: ['index', 'preset', 'title', 'image_path'],
-    data: function() {
-      return {
-        toggle: false,
-      }
-    },
-    created() {
-      this.toggle = this.preset;
-    },
+    props: ['title', 'selected', 'image_path'],
     watch: {
-      'toggle': function(val) {
-        this.$emit('update:value', {value: val, index: this.index});
+      'selected': function(val) {
+        this.$emit('update:value', {listName: this.title, selected: val});
       }
     }
   }
