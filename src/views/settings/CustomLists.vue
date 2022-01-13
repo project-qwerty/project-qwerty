@@ -114,6 +114,10 @@
         this.loadFromStorage();
       },
       newWord: function() {
+        if (this.current_list === null || this.current_list === '') {
+          // in this case there are no custom categories, and to prevent errors we terminate here
+          return;
+        }
         var alreadyExists = this.words[this.current_list].includes(this.new_word);
         var isEmpty = this.new_word === '';
         var isValidChars = /^[a-zA-Z ]+$/.test(this.new_word);
