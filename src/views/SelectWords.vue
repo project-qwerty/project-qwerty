@@ -34,7 +34,6 @@
 <script>
   import SelectButton from '@/components/SelectButton.vue';
   import InbuiltWordlists from '@/components/InbuiltWordlists.js';
-  import InbuiltImagesLists from '@/components/InbuiltImageLists.js';
   import LocalStorage from '@/components/LocalStorage.js';
 
   export default {
@@ -48,7 +47,6 @@
 
         startButtonHidden: true,
 
-        inbuiltImagesLists: InbuiltImagesLists,
         inbuiltWordlists: InbuiltWordlists,
       }
     },
