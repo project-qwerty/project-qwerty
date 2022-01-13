@@ -71,10 +71,10 @@
       return {
         value: null,
         lists: [],
-        new_word: "",
-        new_list: "",
-        list_to_delete: "",
-        current_list: "",
+        new_word: '',
+        new_list: '',
+        list_to_delete: '',
+        current_list: '',
         words: [],
         items: []
       }
@@ -115,12 +115,12 @@
       },
       newWord: function() {
         var alreadyExists = this.words[this.current_list].includes(this.new_word);
-        var isEmpty = this.new_word === "";
+        var isEmpty = this.new_word === '';
         var isValidChars = /^[a-zA-Z ]+$/.test(this.new_word);
 
         if (!alreadyExists && !isEmpty && isValidChars) {
           LocalStorage.addCustomWord(this.current_list, this.new_word);
-          this.new_word = "";
+          this.new_word = '';
         }
 
         this.loadFromStorage();
