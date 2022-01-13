@@ -1,7 +1,7 @@
 <template>
   <button v-on:click="onClick" :class="{'selected': isSelected}">
     <div class="text">{{title}}</div>
-    <img class="icon" :src="require('@/assets/category-selection-images/' + image_path)">
+    <img class="icon" :src="image_path">
   </button>
 </template>
 
@@ -9,11 +9,18 @@
 <script>
   export default {
     name: 'select-component',
-    props: ['title', 'isCustomList', 'isSelected', 'image_path'],
+    props: ['title', 'isCustomList', 'isSelected', 'image'],
+    created() {
+      try {
+        this.image_path = require('@/assets/category-selection-images/' + this.image);
+      } catch (e) {
+        this.image_path = require('@/assets/category-selection-images/Default.png');
+      }
+    },
     methods: {
       onClick() {
         this.$emit('update:value', {listName: this.title, isCustomList: this.isCustomList, isSelected: !this.isSelected});
-      }
+      },
     }
   }
 </script>

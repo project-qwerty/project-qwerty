@@ -13,13 +13,12 @@
 
       <!-- Built-in word lists -->
       <div v-for="list in builtInLists" v-bind:key="list" class="builtins-list">
-        <SelectButton :title="list" :isCustomList="false" :isSelected="builtInSelected.includes(list)" v-on:update:value="wordListClicked" :image_path="list + '.png'"/>
+        <SelectButton :title="list" :isCustomList="false" :isSelected="builtInSelected.includes(list)" v-on:update:value="wordListClicked" :image="list + '.png'"/>
       </div>
 
       <!-- Custom word lists -->
       <div v-for="(list, index) in customLists" v-bind:key="list" class="customs-list">
-        <SelectButton :title="list" :isCustomList="true" :isSelected="customSelected.includes(list)" v-on:update:value="wordListClicked" :image_path="'Custom_' + index + '.png'" />
-        <!-- TODO: this will fail after 5 custom lists, this needs to be fixed somehow before production -->
+        <SelectButton :title="list" :isCustomList="true" :isSelected="customSelected.includes(list)" v-on:update:value="wordListClicked" :image="'Custom_' + index + '.png'" />
       </div>
 
     </div>
