@@ -1,4 +1,5 @@
 import Vue from "vue";
+import InbuiltWordlists from '@/components/InbuiltWordlists.js';
 
 // Note: all the functions are top-level in this file so that they can reference each other when necessary.
 // export default mostly just binds them to exported names for external access.
@@ -210,11 +211,26 @@ export default {
   addCustomWord: addCustomWord,
   deleteCustomWord: deleteCustomWord,
 
-  // TODO: delete from selected lists if the list doesn't exist (any more)
   getSelectedBuiltInListNames: function() {
+    // delete any selected lists that don't exist (any more)
+    const availableLists = Object.keys(InbuiltWordlists);
+    const selectedLists = getSelectedListNames('builtin');
+    const deadLists = selectedLists.filter(selectedList => !availableLists.includes(selectedList));
+    for (let listName of deadLists) {
+      setListSelected('builtin', listName, false);
+    }
+
     return getSelectedListNames('builtin');
   },
   getSelectedCustomListNames: function() {
+    // delete any selected lists that don't exist (any more)
+    const availableLists = getCustomListNames();
+    const selectedLists = getSelectedListNames('custom');
+    const deadLists = selectedLists.filter(selectedList => !availableLists.includes(selectedList));
+    for (let listName of deadLists) {
+      setListSelected('custom', listName, false);
+    }
+
     return getSelectedListNames('custom');
   },
   setBuiltInListSelected: function(listName, isSelected) {
