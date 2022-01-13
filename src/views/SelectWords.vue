@@ -35,7 +35,7 @@
   import SelectButton from '@/components/SelectButton.vue';
   import InbuiltWordlists from '@/components/InbuiltWordlists.js';
   import InbuiltImagesLists from '@/components/InbuiltImageLists.js';
-  import Cookies from '@/components/Cookies.js';
+  import LocalStorage from '@/components/LocalStorage.js';
 
   export default {
     data() {
@@ -61,11 +61,11 @@
     methods: {
       loadLists() {
         this.builtInLists = Object.keys(this.inbuiltWordlists);
-        this.customLists = Cookies.getCustomListNames();
+        this.customLists = LocalStorage.getCustomListNames();
       },
       loadSelected() {
-        this.builtInSelected = Cookies.getSelectedBuiltInListNames();
-        this.customSelected = Cookies.getSelectedCustomListNames();
+        this.builtInSelected = LocalStorage.getSelectedBuiltInListNames();
+        this.customSelected = LocalStorage.getSelectedCustomListNames();
       },
       setStartButtonVisibility() {
         const anyListsSelected = this.builtInSelected.length + this.customSelected.length > 0;
@@ -81,9 +81,9 @@
         //   {listName: name_of_list, isCustomList: true/false, isSelected: true/false}
 
         if (!event.isCustomList) {
-          Cookies.setBuiltInListSelected(event.listName, event.isSelected);
+          LocalStorage.setBuiltInListSelected(event.listName, event.isSelected);
         } else {
-          Cookies.setCustomListSelected(event.listName, event.isSelected);
+          LocalStorage.setCustomListSelected(event.listName, event.isSelected);
         }
 
         this.loadEverything();

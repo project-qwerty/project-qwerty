@@ -81,7 +81,7 @@ min is the minimum value and max the maximum value-->
   import veeno from 'veeno';
   import 'nouislider/distribute/nouislider.min.css';
   import Switch from '@/components/Switch.vue';
-  import Cookies from '@/components/Cookies.js';
+  import LocalStorage from '@/components/LocalStorage.js';
 
   export default {
     data() {
@@ -106,17 +106,17 @@ min is the minimum value and max the maximum value-->
     },
     // This sets the sliders so that they remember there last location.
     created() {
-      this.preset.value_wordRepetitions = Cookies.getSetting('wordRepetitions').toString();
-      this.value_wordDisplayTime = Cookies.getSetting('wordDisplayTime');
-      this.value_wordsPerSession = Cookies.getSetting('wordsPerSession');
+      this.preset.value_wordRepetitions = LocalStorage.getSetting('wordRepetitions').toString();
+      this.value_wordDisplayTime = LocalStorage.getSetting('wordDisplayTime');
+      this.value_wordsPerSession = LocalStorage.getSetting('wordsPerSession');
 
-      var errorlessLearningCookie = Cookies.getSetting('errorlessLearning');
-      this.preset.value_errorlessLearning = errorlessLearningCookie ? 'ON' : 'OFF'
+      var errorlessLearningSetting = LocalStorage.getSetting('errorlessLearning');
+      this.preset.value_errorlessLearning = errorlessLearningSetting ? 'ON' : 'OFF'
 
-      var clickForNextWordCookie = Cookies.getSetting('clickForNextWord');
-      this.preset.value_clickForNextWord = clickForNextWordCookie ? 'ON' : 'OFF'
+      var clickForNextWordSetting = LocalStorage.getSetting('clickForNextWord');
+      this.preset.value_clickForNextWord = clickForNextWordSetting ? 'ON' : 'OFF'
 
-      this.preset.value_wordDisplayCapitalization = Cookies.getSetting('wordDisplayCapitalization');
+      this.preset.value_wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
       if (this.preset.value_wordDisplayCapitalization === 'LOWERCASE') {
         this.preset.value_wordDisplayCapitalization = 'lowercase';
       }
@@ -125,10 +125,10 @@ min is the minimum value and max the maximum value-->
       'veeno': veeno,
       'switch-component': Switch
     },
-    // This stores the values into local cookies so that they can be accessed by the keyboard page.
+    // This stores the values into localStorage so that they can be accessed by the keyboard page.
     watch: {
       'value_wordRepetitions': function(val) {
-        Cookies.setSetting('wordRepetitions', val);
+        LocalStorage.setSetting('wordRepetitions', val);
       },
       'value_wordDisplayTime': function(val) {
         if (parseInt(val) !== 0) {
@@ -136,20 +136,20 @@ min is the minimum value and max the maximum value-->
         } else {
           this.display_wordDisplayTime = "OFF";
         }
-        Cookies.setSetting('wordDisplayTime', parseInt(val));
+        LocalStorage.setSetting('wordDisplayTime', parseInt(val));
       },
       'value_wordsPerSession': function(val) {
         this.display_wordsPerSession = parseInt(val) + ' words';
-        Cookies.setSetting('wordsPerSession', parseInt(val));
+        LocalStorage.setSetting('wordsPerSession', parseInt(val));
       },
       'value_errorlessLearning': function(val) {
-        Cookies.setSetting('errorlessLearning', val === 'ON');
+        LocalStorage.setSetting('errorlessLearning', val === 'ON');
       },
       'value_clickForNextWord': function(val) {
-        Cookies.setSetting('clickForNextWord', val === 'ON');
+        LocalStorage.setSetting('clickForNextWord', val === 'ON');
       },
       'value_wordDisplayCapitalization': function(val) {
-        Cookies.setSetting('wordDisplayCapitalization', val.toUpperCase());
+        LocalStorage.setSetting('wordDisplayCapitalization', val.toUpperCase());
       },
     },
   }

@@ -1,4 +1,3 @@
-import Vue from "vue";
 import InbuiltWordlists from '@/components/InbuiltWordlists.js';
 
 // Note: all the functions are top-level in this file so that they can reference each other when necessary.
@@ -6,7 +5,7 @@ import InbuiltWordlists from '@/components/InbuiltWordlists.js';
 
 // Settings handling
 
-function parseCookieInt(val) {
+function parseStoredInt(val) {
   var parsed = parseInt(val);
   if (isNaN(parsed)) {
     return null;
@@ -14,7 +13,7 @@ function parseCookieInt(val) {
   return parsed;
 }
 
-function parseCookieBool(val) {
+function parseStoredBool(val) {
   switch (val) {
     case 'true':
       return true;
@@ -25,39 +24,39 @@ function parseCookieBool(val) {
   }
 }
 
-function parseCookieStringCaps(val) {
+function parseStoredStringCaps(val) {
   return val.toUpperCase();
 }
 
 const settings = {
   wordRepetitions: {
     key: 'settings.wordRepetitions',
-    parser: parseCookieInt,
+    parser: parseStoredInt,
     default: 1,
   },
   wordDisplayTime: {
     key: 'settings.wordDisplayTime',
-    parser: parseCookieInt,
+    parser: parseStoredInt,
     default: 0,  // TODO: there may be a better way to store 'no timer' than zero
   },
   wordsPerSession: {
     key: 'settings.wordsPerSession',
-    parser: parseCookieInt,
+    parser: parseStoredInt,
     default: 5,
   },
   errorlessLearning: {
     key: 'settings.errorlessLearning',
-    parser: parseCookieBool,
+    parser: parseStoredBool,
     default: false,
   },
   clickForNextWord: {
     key: 'settings.clickForNextWord',
-    parser: parseCookieBool,
+    parser: parseStoredBool,
     default: true,
   },
   wordDisplayCapitalization: {
     key: 'settings.wordDisplayCapitalization',
-    parser: parseCookieStringCaps,
+    parser: parseStoredStringCaps,
     default: 'UPPERCASE',
   },
 }
@@ -65,24 +64,24 @@ const settings = {
 function getSetting(name) {
   const setting = settings[name];
 
-  if (!Vue.$cookies.isKey(setting.key)) {
-    Vue.$cookies.set(setting.key, setting.default);
+  if (!localStorage.hasOwnProperty(setting.key)) {
+    localStorage.setItem(setting.key, setting.default);
   }
 
-  var cookieVal = Vue.$cookies.get(setting.key);
-  return setting.parser(cookieVal);
+  var storedVal = localStorage.getItem(setting.key);
+  return setting.parser(storedVal);
 }
 
 function setSetting(name, val) {
   const setting = settings[name];
 
-  Vue.$cookies.set(setting.key, val);
+  localStorage.setItem(setting.key, val);
 }
 
 // Custom lists handling
 
 function getCustomListNames() {
-  const customListKeys = Vue.$cookies.keys()
+  const customListKeys = Object.keys(localStorage)
     .filter(key => key.startsWith('custom_lists.'));
   const customListNames = customListKeys
     .map(key => key.replace(/^custom_lists\./, ''));
@@ -93,42 +92,42 @@ function getCustomListNames() {
 function getCustomList(name) {
   const listKey = 'custom_lists.' + name;
 
-  if (!Vue.$cookies.isKey(listKey)) {
+  if (!localStorage.hasOwnProperty(listKey)) {
     throw new Error(`not a custom list: "${name}"`);
   }
 
-  const stringData = Vue.$cookies.get(listKey);
+  const stringData = localStorage.getItem(listKey);
   return JSON.parse(stringData);
 }
 
 function createCustomList(name) {
   const listKey = 'custom_lists.' + name;
 
-  if (Vue.$cookies.isKey(listKey)) {
+  if (localStorage.hasOwnProperty(listKey)) {
     throw new Error(`already a custom list: "${name}"`);
   }
 
-  Vue.$cookies.set(listKey, '[]');
+  localStorage.setItem(listKey, '[]');
 }
 
 function deleteCustomList(name) {
   const listKey = 'custom_lists.' + name;
 
-  if (!Vue.$cookies.isKey(listKey)) {
+  if (!localStorage.hasOwnProperty(listKey)) {
     throw new Error(`not a custom list: "${name}"`);
   }
 
-  Vue.$cookies.remove(listKey);
+  localStorage.removeItem(listKey);
 }
 
 function addCustomWord(listName, word) {
   const listKey = 'custom_lists.' + listName;
 
-  if (!Vue.$cookies.isKey(listKey)) {
+  if (!localStorage.hasOwnProperty(listKey)) {
     throw new Error(`not a custom list: "${listName}"`);
   }
 
-  const listStringData = Vue.$cookies.get(listKey);
+  const listStringData = localStorage.getItem(listKey);
   let list = JSON.parse(listStringData);
 
   // we normalize the words to lowercase
@@ -139,19 +138,19 @@ function addCustomWord(listName, word) {
     return;
   }
 
-  // add the word and save it to the cookie
+  // add the word and save it to storage
   list.push(word);
-  Vue.$cookies.set(listKey, JSON.stringify(list));
+  localStorage.setItem(listKey, JSON.stringify(list));
 }
 
 function deleteCustomWord(listName, word) {
   const listKey = 'custom_lists.' + listName;
 
-  if (!Vue.$cookies.isKey(listKey)) {
+  if (!localStorage.hasOwnProperty(listKey)) {
     throw new Error(`not a custom list: "${listName}"`);
   }
 
-  const listStringData = Vue.$cookies.get(listKey);
+  const listStringData = localStorage.getItem(listKey);
   let list = JSON.parse(listStringData);
 
   // we normalize the words to lowercase
@@ -162,9 +161,9 @@ function deleteCustomWord(listName, word) {
     return;
   }
 
-  // delete the word and save it to the cookie
+  // delete the word and save it to storage
   list = list.filter(x => x !== word);
-  Vue.$cookies.set(listKey, JSON.stringify(list));
+  localStorage.setItem(listKey, JSON.stringify(list));
 }
 
 // Selected lists handling
@@ -172,24 +171,24 @@ function deleteCustomWord(listName, word) {
 function getSelectedListNames(listType) {
   const key = 'selected_lists.' + listType;
 
-  if (!Vue.$cookies.isKey(key)) {
-    // no cookie, nothing selected
+  if (!localStorage.hasOwnProperty(key)) {
+    // nothing stored means nothing selected
     return [];
   }
 
-  const stringData = Vue.$cookies.get(key);
+  const stringData = localStorage.getItem(key);
   return JSON.parse(stringData);
 }
 
 function setListSelected(listType, listName, isSelected) {
   const key = 'selected_lists.' + listType;
 
-  if (!Vue.$cookies.isKey(key)) {
-    // initialize cookie
-    Vue.$cookies.set(key, '[]');
+  if (!localStorage.hasOwnProperty(key)) {
+    // initialize storage
+    localStorage.setItem(key, '[]');
   }
 
-  const stringData = Vue.$cookies.get(key);
+  const stringData = localStorage.getItem(key);
   let selected = JSON.parse(stringData);
 
   selected = selected.filter(x => x !== listName);
@@ -197,7 +196,7 @@ function setListSelected(listType, listName, isSelected) {
     selected.push(listName);
   }
 
-  Vue.$cookies.set(key, JSON.stringify(selected));
+  localStorage.setItem(key, JSON.stringify(selected));
 }
 
 export default {

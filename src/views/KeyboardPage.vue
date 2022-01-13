@@ -31,7 +31,7 @@
   import Progress from '../components/Progress';
   import InbuiltWordlists from '@/components/InbuiltWordlists.js';
   import Output from '@/components/Output.vue';
-  import Cookies from '@/components/Cookies.js';
+  import LocalStorage from '@/components/LocalStorage.js';
 
   export default {
     name: 'app',
@@ -80,32 +80,31 @@
 
     // Run on loading of page
     created() {
-      // Add all the cookies here
-      this.wordRepetitions = Cookies.getSetting('wordRepetitions');
+      this.wordRepetitions = LocalStorage.getSetting('wordRepetitions');
 
       this.repetitionsRemaining = this.wordRepetitions;
 
       // Word number control
-      this.wordsPerSession = Cookies.getSetting('wordsPerSession');
+      this.wordsPerSession = LocalStorage.getSetting('wordsPerSession');
 
       // Click to see next word
-      this.clickForNextWord = Cookies.getSetting('clickForNextWord');
+      this.clickForNextWord = LocalStorage.getSetting('clickForNextWord');
 
       // Timer Control
-      this.settings.timer = Cookies.getSetting('wordDisplayTime');
+      this.settings.timer = LocalStorage.getSetting('wordDisplayTime');
       this.timerOnOff = this.settings.timer != 0;
 
       this.timer = setTimeout(this.hide, this.settings.timer * 1000);
 
       // Errorless Control
-      this.errorlessLearning = Cookies.getSetting('errorlessLearning');
+      this.errorlessLearning = LocalStorage.getSetting('errorlessLearning');
 
       // Text display capitalization case
-      this.wordDisplayCapitalization = Cookies.getSetting('wordDisplayCapitalization');
+      this.wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
 
       // Import custom lists
-      const selectedCustomLists = Cookies.getSelectedCustomListNames()
-          .map(listName => Cookies.getCustomList(listName));
+      const selectedCustomLists = LocalStorage.getSelectedCustomListNames()
+          .map(listName => LocalStorage.getCustomList(listName));
       const customWords = selectedCustomLists.flat();
       this.wordlist = this.wordlist.concat(customWords);
 
@@ -183,7 +182,7 @@
         this.timer = setTimeout(this.hide, this.settings.timer * 1000);
       },
       inbuiltCreated(wordlists) {
-        const selectedBuiltInLists = Cookies.getSelectedBuiltInListNames();
+        const selectedBuiltInLists = LocalStorage.getSelectedBuiltInListNames();
         for (let listName of selectedBuiltInLists) {
           this.wordlist = this.wordlist.concat(wordlists[listName]);
         }

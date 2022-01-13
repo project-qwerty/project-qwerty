@@ -4,13 +4,10 @@ import router from './router'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCog, faChevronRight, faChevronLeft, faEye, faBackspace } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import VueCookies  from 'vue-cookies'
 import BFormInput from 'bootstrap-vue';
 import { FormInputPlugin } from 'bootstrap-vue';
-Vue.use(VueCookies)
 Vue.use(BFormInput)
 Vue.use(FormInputPlugin)
-Vue.$cookies.config('365d') //365d = the cookie expires after 365 days
 
 Vue.config.productionTip = false
 library.add(faCog)

@@ -59,7 +59,7 @@
 <script>
   import { Multiselect } from 'vue-multiselect';
   import ListItem from '@/components/ListItem.vue';
-  import Cookies from '@/components/Cookies.js';
+  import LocalStorage from '@/components/LocalStorage.js';
 
   export default {
     name: 'CustomLists',
@@ -80,15 +80,15 @@
       }
     },
     created () {
-      this.loadFromCookies();
+      this.loadFromStorage();
     },
     methods: {
-      loadFromCookies: function() {
-        this.lists = Cookies.getCustomListNames();
+      loadFromStorage: function() {
+        this.lists = LocalStorage.getCustomListNames();
 
         this.words = {};
         for (let listName of this.lists) {
-          this.words[listName] = Cookies.getCustomList(listName);
+          this.words[listName] = LocalStorage.getCustomList(listName);
         }
       },
       onSelect(list) {
@@ -97,21 +97,21 @@
       },
       newList: function() {
         if (!this.lists.includes(this.new_list)) {
-          Cookies.createCustomList(this.new_list);
+          LocalStorage.createCustomList(this.new_list);
           alert('Category added: ' + this.new_list);
           this.new_list = '';
         }
 
-        this.loadFromCookies();
+        this.loadFromStorage();
       },
       deleteList: function() {
         if (this.lists.includes(this.list_to_delete)) {
-          Cookies.deleteCustomList(this.list_to_delete);
+          LocalStorage.deleteCustomList(this.list_to_delete);
           alert('Category deleted: ' + this.list_to_delete);
           this.list_to_delete = '';
         }
 
-        this.loadFromCookies();
+        this.loadFromStorage();
       },
       newWord: function() {
         var alreadyExists = this.words[this.current_list].includes(this.new_word);
@@ -119,18 +119,18 @@
         var isValidChars = /^[a-zA-Z ]+$/.test(this.new_word);
 
         if (!alreadyExists && !isEmpty && isValidChars) {
-          Cookies.addCustomWord(this.current_list, this.new_word);
+          LocalStorage.addCustomWord(this.current_list, this.new_word);
           this.new_word = "";
         }
 
-        this.loadFromCookies();
+        this.loadFromStorage();
         this.items = this.words[this.current_list];
       },
       deleteWord(val) {
         window.console.log(val);
-        Cookies.deleteCustomWord(this.current_list, val);
+        LocalStorage.deleteCustomWord(this.current_list, val);
 
-        this.loadFromCookies();
+        this.loadFromStorage();
         this.items = this.words[this.current_list];
       }
     },
