@@ -1,5 +1,10 @@
 import Vue from "vue";
 
+// Note: all the functions are top-level in this file so that they can reference each other when necessary.
+// export default mostly just binds them to exported names for external access.
+
+// Settings handling
+
 function parseCookieInt(val) {
   var parsed = parseInt(val);
   if (isNaN(parsed)) {
@@ -56,6 +61,113 @@ const settings = {
   },
 }
 
+function getSetting(name) {
+  const setting = settings[name];
+
+  if (!Vue.$cookies.isKey(setting.key)) {
+    Vue.$cookies.set(setting.key, setting.default);
+  }
+
+  var cookieVal = Vue.$cookies.get(setting.key);
+  return setting.parser(cookieVal);
+}
+
+function setSetting(name, val) {
+  const setting = settings[name];
+
+  Vue.$cookies.set(setting.key, val);
+}
+
+// Custom lists handling
+
+function getCustomListNames() {
+  const customListKeys = Vue.$cookies.keys()
+    .filter(key => key.startsWith('custom_lists.'));
+  const customListNames = customListKeys
+    .map(key => key.replace(/^custom_lists\./, ''));
+
+  return customListNames;
+}
+
+function getCustomList(name) {
+  const listKey = 'custom_lists.' + name;
+
+  if (!Vue.$cookies.isKey(listKey)) {
+    throw new Error(`not a custom list: "${name}"`);
+  }
+
+  const stringData = Vue.$cookies.get(listKey);
+  return JSON.parse(stringData);
+}
+
+function createCustomList(name) {
+  const listKey = 'custom_lists.' + name;
+
+  if (Vue.$cookies.isKey(listKey)) {
+    throw new Error(`already a custom list: "${name}"`);
+  }
+
+  Vue.$cookies.set(listKey, '[]');
+}
+
+function deleteCustomList(name) {
+  const listKey = 'custom_lists.' + name;
+
+  if (!Vue.$cookies.isKey(listKey)) {
+    throw new Error(`not a custom list: "${name}"`);
+  }
+
+  Vue.$cookies.remove(listKey);
+}
+
+function addCustomWord(listName, word) {
+  const listKey = 'custom_lists.' + listName;
+
+  if (!Vue.$cookies.isKey(listKey)) {
+    throw new Error(`not a custom list: "${listName}"`);
+  }
+
+  const listStringData = Vue.$cookies.get(listKey);
+  let list = JSON.parse(listStringData);
+
+  // we normalize the words to lowercase
+  word = word.toLowerCase();
+
+  if (list.includes(word)) {
+    // silently don't add the word in twice
+    return;
+  }
+
+  // add the word and save it to the cookie
+  list.push(word);
+  Vue.$cookies.set(listKey, JSON.stringify(list));
+}
+
+function deleteCustomWord(listName, word) {
+  const listKey = 'custom_lists.' + listName;
+
+  if (!Vue.$cookies.isKey(listKey)) {
+    throw new Error(`not a custom list: "${listName}"`);
+  }
+
+  const listStringData = Vue.$cookies.get(listKey);
+  let list = JSON.parse(listStringData);
+
+  // we normalize the words to lowercase
+  word = word.toLowerCase();
+
+  if (!list.includes(word)) {
+    // silently do nothing
+    return;
+  }
+
+  // delete the word and save it to the cookie
+  list = list.filter(x => x !== word);
+  Vue.$cookies.set(listKey, JSON.stringify(list));
+}
+
+// Selected lists handling
+
 function getSelectedListNames(listType) {
   const key = 'selected_lists.' + listType;
 
@@ -88,103 +200,15 @@ function setListSelected(listType, listName, isSelected) {
 }
 
 export default {
-  // TODO: I think this object should be broken up into .settings, .customLists, .selectedLists
-  getSetting: function(name) {
-    const setting = settings[name];
+  getSetting: getSetting,
+  setSetting: setSetting,
 
-    if (!Vue.$cookies.isKey(setting.key)) {
-      Vue.$cookies.set(setting.key, setting.default);
-    }
-
-    var cookieVal = Vue.$cookies.get(setting.key);
-    return setting.parser(cookieVal);
-  },
-  setSetting: function(name, val) {
-    const setting = settings[name];
-
-    Vue.$cookies.set(setting.key, val);
-  },
-
-  getCustomListNames: function() {
-    const customListKeys = Vue.$cookies.keys()
-        .filter(key => key.startsWith('custom_lists.'));
-    const customListNames = customListKeys
-        .map(key => key.replace(/^custom_lists\./, ''));
-
-    return customListNames;
-  },
-  getCustomList: function(name) {
-    const listKey = 'custom_lists.' + name;
-
-    if (!Vue.$cookies.isKey(listKey)) {
-      throw new Error(`not a custom list: "${name}"`);
-    }
-
-    const stringData = Vue.$cookies.get(listKey);
-    return JSON.parse(stringData);
-  },
-  createCustomList: function(name) {
-    const listKey = 'custom_lists.' + name;
-
-    if (Vue.$cookies.isKey(listKey)) {
-      throw new Error(`already a custom list: "${name}"`);
-    }
-
-    Vue.$cookies.set(listKey, '[]');
-  },
-  deleteCustomList: function(name) {
-    const listKey = 'custom_lists.' + name;
-
-    if (!Vue.$cookies.isKey(listKey)) {
-      throw new Error(`not a custom list: "${name}"`);
-    }
-
-    Vue.$cookies.remove(listKey);
-  },
-  addCustomWord: function(listName, word) {
-    const listKey = 'custom_lists.' + listName;
-
-    if (!Vue.$cookies.isKey(listKey)) {
-      throw new Error(`not a custom list: "${listName}"`);
-    }
-
-    const listStringData = Vue.$cookies.get(listKey);
-    let list = JSON.parse(listStringData);
-
-    // we normalize the words to lowercase
-    word = word.toLowerCase();
-
-    if (list.includes(word)) {
-      // silently don't add the word in twice
-      return;
-    }
-
-    // add the word and save it to the cookie
-    list.push(word);
-    Vue.$cookies.set(listKey, JSON.stringify(list));
-  },
-  deleteCustomWord: function(listName, word) {
-    const listKey = 'custom_lists.' + listName;
-
-    if (!Vue.$cookies.isKey(listKey)) {
-      throw new Error(`not a custom list: "${listName}"`);
-    }
-
-    const listStringData = Vue.$cookies.get(listKey);
-    let list = JSON.parse(listStringData);
-
-    // we normalize the words to lowercase
-    word = word.toLowerCase();
-
-    if (!list.includes(word)) {
-      // silently do nothing
-      return;
-    }
-
-    // delete the word and save it to the cookie
-    list = list.filter(x => x !== word);
-    Vue.$cookies.set(listKey, JSON.stringify(list));
-  },
+  getCustomListNames: getCustomListNames,
+  getCustomList: getCustomList,
+  createCustomList: createCustomList,
+  deleteCustomList: deleteCustomList,
+  addCustomWord: addCustomWord,
+  deleteCustomWord: deleteCustomWord,
 
   // TODO: delete from selected lists if the list doesn't exist (any more)
   getSelectedBuiltInListNames: function() {
