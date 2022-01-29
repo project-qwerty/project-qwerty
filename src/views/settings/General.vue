@@ -158,8 +158,8 @@ min is the minimum value and max the maximum value-->
 
 <style scoped>
   .settings {
-    display:flex;
-    min-height:100px;
+    display: flex;
+    min-height: 100px;
   }
 
   .setting-heading {
@@ -169,15 +169,18 @@ min is the minimum value and max the maximum value-->
   }
 
   .page-wrapper {
-    width:600px; padding-left:48px;text-align:left
+    width: 600px;
+    padding-left: 48px;
+    text-align: left;
   }
 
   .page-title {
-    font-weight:bold; color:black;
+    font-weight: bold;
+    color: black;
   }
 
   .slider-heading {
-    margin-bottom:35px
+    margin-bottom: 35px;
   }
 
   .setting-heading-icon {
@@ -185,10 +188,11 @@ min is the minimum value and max the maximum value-->
   }
 
   .slider {
-    margin-top:26px; margin-bottom:52px
+    margin-top: 26px;
+    margin-bottom: 52px;
   }
 
   .switch {
-    margin-bottom:35px
+    margin-bottom: 35px;
   }
 </style>
