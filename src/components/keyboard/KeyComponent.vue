@@ -1,5 +1,5 @@
 <template>
-  <div class="key" :class="{'disabled': correction && !enable}" @mousedown="click">
+  <div class="key" :class="{'disabled': !enable}" @mousedown="click">
     <font-awesome-icon v-if="char == 'backspace'" class="backspace-icon" icon="backspace" />
     <p>{{char}}</p>
   </div>
@@ -11,15 +11,11 @@
     props: [
       'char',
       'enabledCharacters',
-      'correction',
     ],
     methods: {
       click() {
         if (this.enable) {
           this.$emit('update:click', this.char);
-          this.$emit('update:error', false);
-        } else {
-          this.$emit('update:error', true);
         }
       }
     },

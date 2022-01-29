@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="row" :key="index" v-for="(keylist, index) in keys">
+    <div class="row" :key="index" v-for="(keyRow, index) in keys">
       <div v-if="index === 0" style="padding-left:78%"></div>
       <div v-if="index === 1" style="padding-left:2%"></div>
       <div v-if="index === 2" style="padding-left:5%"></div>
       <div v-if="index === 3" style="padding-left:14%"></div>
       <div v-if="index === 4" style="padding-left:20%"></div>
-      <div class="key" :key="index1" v-for="(key, index1) in keylist">
-          <key-component :enabledCharacters="enabledCharacters" :correction="correction" :char="key" v-on:update:click="click" v-on:update:error="error=$event"/>
+      <div class="key" :key="char" v-for="char in keyRow">
+          <key-component :enabledCharacters="enabledCharacters" :char="char" v-on:update:click="click" />
       </div>
       <div v-if="index === 0" style="padding-right:2%"></div>
       <div v-if="index === 1" style="padding-right:2%"></div>
@@ -42,7 +42,6 @@
     name: 'keys',
     data() {
       return {
-        error: false,
         keys: [
                                       [ 'backspace' ],
           [ 'q','w','e','r','t','y','u','i','o','p' ],
@@ -56,11 +55,6 @@
     methods: {
       click(val) {
         this.$emit('update:keypressed', val);
-      }
-    },
-    computed: {
-      'correction': function() {
-        return this.error;
       }
     },
     components: {

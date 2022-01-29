@@ -60,6 +60,7 @@
         key_pressed: false,
         InbuiltWordlists: InbuiltWordlists,
         errorlessLearning: true,  // Controls whether errorless is on or off
+        assistanceOn: false,
         timerOnOff: false,  // Controls whether the timer is on or off
         correct_audio: new Audio(require('@/assets/correct.mp3')),
         wrong_audio: new Audio(require('@/assets/wrong_2.mp3')),
@@ -113,7 +114,7 @@
     },
     computed: {
       'enabledCharacters': function() {
-        if (this.errorlessLearning) {
+        if (this.errorlessLearning && this.assistanceOn) {
           return this.wordlist[this.currentWordIndex][this.output.length];
         }
         return 'abcdefghijklmnopqrstuvwxyz backspace';
@@ -231,6 +232,15 @@
         }
       },
       keypressed(char) {
+        // Turn on/off assistance
+        let targetChar = this.wordlist[this.currentWordIndex][this.output.length];
+        if (this.errorlessLearning && char !== targetChar) {
+          this.assistanceOn = true;
+          return;
+        } else {
+          this.assistanceOn = false;
+        }
+
         // If button pressed wasn't backspace
         if (char !== "backspace") {
           this.output += char;
