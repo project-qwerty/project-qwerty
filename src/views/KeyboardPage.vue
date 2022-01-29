@@ -59,8 +59,8 @@
         repetitionsRemaining: 1,
         key_pressed: false,
         InbuiltWordlists: InbuiltWordlists,
-        errorlessLearning: true,  // Controls whether errorless is on or off
-        assistanceOn: false,
+        assistanceLevel: null,
+        mistakeMade: false,
         timerOnOff: false,  // Controls whether the timer is on or off
         correct_audio: new Audio(require('@/assets/correct.mp3')),
         wrong_audio: new Audio(require('@/assets/wrong_2.mp3')),
@@ -97,8 +97,8 @@
 
       this.timer = setTimeout(this.hide, this.settings.timer * 1000);
 
-      // Errorless Control
-      this.errorlessLearning = LocalStorage.getSetting('errorlessLearning');
+      // Assistance Control
+      this.assistanceLevel = LocalStorage.getSetting('assistanceLevel');
 
       // Text display capitalization case
       this.wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
@@ -113,8 +113,19 @@
       this.wordlist = this.shuffleWordlist(this.wordlist);
     },
     computed: {
+      'assistanceOn': function() {
+        if (this.assistanceLevel === 'NONE') {
+          return false;
+        }
+
+        if (this.assistanceLevel === 'MAX') {
+          return true;
+        }
+
+        return this.mistakeMade;
+      },
       'enabledCharacters': function() {
-        if (this.errorlessLearning && this.assistanceOn) {
+        if (this.assistanceOn) {
           return this.wordlist[this.currentWordIndex][this.output.length];
         }
         return 'abcdefghijklmnopqrstuvwxyz backspace';
@@ -232,13 +243,12 @@
         }
       },
       keypressed(char) {
-        // Turn on/off assistance
         let targetChar = this.wordlist[this.currentWordIndex][this.output.length];
-        if (this.errorlessLearning && char !== targetChar) {
-          this.assistanceOn = true;
+        this.mistakeMade = char !== targetChar;
+
+        // on MIN assistance, if a wrong letter is typed, we shouldn't process the keystroke, other than to set mistakeMade
+        if (this.assistanceLevel === 'MIN' && this.mistakeMade) {
           return;
-        } else {
-          this.assistanceOn = false;
         }
 
         // If button pressed wasn't backspace
