@@ -14,15 +14,32 @@ min is the minimum value and max the maximum value-->
       :connect="[true, false]"
       :tooltips="false"
       v-model='value_wordDisplayTime'
-      :pipsy = "{
-      mode: 'steps', // mode is steps
-      density: 100
+      :pipsy="{
+        mode: 'steps',
+        density: 100,
+        format: {
+          // 'to' the formatted value. Receives a number.
+          to: function(value) {
+            if (value === 0) {
+              return 'OFF';
+            }
+            return String(value);
+          },
+          // 'from' the formatted value.
+          // Receives a string, should return a number.
+          from: function(value) {
+            if (value === 'OFF') {
+              return 0;
+            }
+            return Number(value);
+          },
+        },
       }"
-      :handles = "[this.value_wordDisplayTime]"
-      :step = "5"
-      :range = "{
-      'min': [  0 ],
-      'max': [ 30 ]
+      :handles="[this.value_wordDisplayTime]"
+      :step="5"
+      :range="{
+        'min': [  0 ],
+        'max': [ 30 ],
       }"
       class="slider"
     >{{display_wordDisplayTime}}</veeno>
@@ -35,15 +52,15 @@ min is the minimum value and max the maximum value-->
       :connect="[true, false]"
       :tooltips="false"
       v-model='value_wordsPerSession'
-      :pipsy = "{
-      mode: 'steps', // mode is steps
-      density: 10
+      :pipsy="{
+        mode: 'steps',
+        density: 10,
       }"
-      :handles = "[this.value_wordsPerSession]"
-      :step = "5"
-      :range = "{
-      'min': [  5 ],
-      'max': [ 50 ]
+      :handles="[this.value_wordsPerSession]"
+      :step="5"
+      :range="{
+        'min': [  5 ],
+        'max': [ 50 ],
       }"
       class="slider"
     >{{display_wordsPerSession}}</veeno>
@@ -129,11 +146,16 @@ min is the minimum value and max the maximum value-->
         LocalStorage.setSetting('wordRepetitions', val);
       },
       'value_wordDisplayTime': function(val) {
+        if (val === 'OFF') {
+          val = 0;
+        }
+
         if (parseInt(val) !== 0) {
           this.display_wordDisplayTime = parseInt(val) + ' seconds';
         } else {
-          this.display_wordDisplayTime = "OFF";
+          this.display_wordDisplayTime = 'OFF';
         }
+
         LocalStorage.setSetting('wordDisplayTime', parseInt(val));
       },
       'value_wordsPerSession': function(val) {
