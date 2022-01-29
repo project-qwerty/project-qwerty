@@ -50,9 +50,9 @@ min is the minimum value and max the maximum value-->
 
     <p class="setting-heading">
       <img class="setting-heading-icon" src="@/assets/setting-icons/Errorless.png">
-      Errorless Learning
+      Assistance
     </p>
-    <switch-component class="switch" :preset="preset.value_errorlessLearning" :options="['OFF', 'ON']" v-on:update:value="value_errorlessLearning=$event"/>
+    <switch-component class="switch" :preset="preset.value_assistanceLevel" :options="['NONE', 'MIN', 'MAX']" v-on:update:value="value_assistanceLevel=$event"/>
 
     <p class="setting-heading">
       <img class="setting-heading-icon" src="@/assets/setting-icons/Click_for_next.png">
@@ -94,12 +94,12 @@ min is the minimum value and max the maximum value-->
         value_wordsPerSession: null,
         // the variables related to buttons
         value_wordRepetitions: null,
-        value_errorlessLearning: null,
+        value_assistanceLevel: null,
         value_clickForNextWord: null,
         value_wordDisplayCapitalization: null,
         preset: {
           value_wordRepetitions: null,
-          value_errorlessLearning: null,
+          value_assistanceLevel: null,
           value_clickForNextWord: null,
         }
       }
@@ -109,12 +109,10 @@ min is the minimum value and max the maximum value-->
       this.preset.value_wordRepetitions = LocalStorage.getSetting('wordRepetitions').toString();
       this.value_wordDisplayTime = LocalStorage.getSetting('wordDisplayTime');
       this.value_wordsPerSession = LocalStorage.getSetting('wordsPerSession');
-
-      var errorlessLearningSetting = LocalStorage.getSetting('errorlessLearning');
-      this.preset.value_errorlessLearning = errorlessLearningSetting ? 'ON' : 'OFF'
+      this.preset.value_assistanceLevel = LocalStorage.getSetting('assistanceLevel');
 
       var clickForNextWordSetting = LocalStorage.getSetting('clickForNextWord');
-      this.preset.value_clickForNextWord = clickForNextWordSetting ? 'ON' : 'OFF'
+      this.preset.value_clickForNextWord = clickForNextWordSetting ? 'ON' : 'OFF';
 
       this.preset.value_wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
       if (this.preset.value_wordDisplayCapitalization === 'LOWERCASE') {
@@ -142,8 +140,8 @@ min is the minimum value and max the maximum value-->
         this.display_wordsPerSession = parseInt(val) + ' words';
         LocalStorage.setSetting('wordsPerSession', parseInt(val));
       },
-      'value_errorlessLearning': function(val) {
-        LocalStorage.setSetting('errorlessLearning', val === 'ON');
+      'value_assistanceLevel': function(val) {
+        LocalStorage.setSetting('assistanceLevel', val);
       },
       'value_clickForNextWord': function(val) {
         LocalStorage.setSetting('clickForNextWord', val === 'ON');

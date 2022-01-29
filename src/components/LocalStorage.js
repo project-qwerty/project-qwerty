@@ -44,10 +44,10 @@ const settings = {
     parser: parseStoredInt,
     default: 5,
   },
-  errorlessLearning: {
-    key: 'settings.errorlessLearning',
-    parser: parseStoredBool,
-    default: false,
+  assistanceLevel: {
+    key: 'settings.assistanceLevel',
+    parser: parseStoredStringCaps,
+    default: 'NONE',  // potential values: NONE, MIN, MAX
   },
   clickForNextWord: {
     key: 'settings.clickForNextWord',
@@ -57,7 +57,7 @@ const settings = {
   wordDisplayCapitalization: {
     key: 'settings.wordDisplayCapitalization',
     parser: parseStoredStringCaps,
-    default: 'UPPERCASE',
+    default: 'UPPERCASE',  // potential values: UPPPERCASE, LOWERCASE
   },
 }
 
