@@ -51,7 +51,7 @@
         count: 1,
         showFinishedSessionOverlay: false,
         showNextWordOverlay: false,
-        output: "",
+        output: '',
         isHidden: false,
         wordsPerSession: null,
         clickForNextWord: null,
@@ -149,7 +149,7 @@
         if (this.repetitionsRemaining == 1) {
           // move to next word
           this.currentWordIndex += 1;
-          this.output = "";
+          this.output = '';
           this.repetitionsRemaining = this.wordRepetitions;
         } else {
           // decrement repetitions
@@ -166,7 +166,7 @@
         // If they finished the trials
         if (this.count == this.wordsPerSession && this.repetitionsRemaining == this.wordRepetitions) {
           this.currentWordIndex = 0;
-          this.output = "";
+          this.output = '';
           this.isHidden = true;
           this.showFinishedSessionOverlay = true;
         }
@@ -206,7 +206,7 @@
       },
       goToNextWord() {
         this.showNextWordOverlay = false;
-        this.output = "";
+        this.output = '';
 
         if (this.repetitionsRemaining == 1) {
           this.currentWordIndex += 1;
@@ -221,7 +221,7 @@
         // If they finished the trials
         if (this.count == this.wordsPerSession && this.repetitionsRemaining == this.wordRepetitions) {
           this.currentWordIndex = 0;
-          this.output = "";
+          this.output = '';
           this.isHidden = true;
           this.showFinishedSessionOverlay = true;
         }
@@ -242,7 +242,7 @@
         }
 
         // If button pressed wasn't backspace
-        if (char !== "backspace") {
+        if (char !== 'backspace') {
           this.output += char;
         } else {
           // If button pressed was backspace
