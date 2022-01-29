@@ -48,7 +48,7 @@
         timer: null,
         wordlist: [],
         currentWordIndex: 0,
-        count: 1,
+        count: 1,  // this is basically just currentWordIndex + 1 at all times and probably should be refactored out
         showFinishedSessionOverlay: false,
         showNextWordOverlay: false,
         output: '',
@@ -264,7 +264,9 @@
           this.correct_audio.play();
           this.isHidden = false;
 
-          if (this.clickForNextWord) {
+          // show NextWordOverlay, unless clickForNextWord is off, or there isn't a next word
+          let noMoreWordsLeft = this.currentWordIndex + 1 === this.wordsPerSession;
+          if (this.clickForNextWord && !noMoreWordsLeft) {
             // in this case, goToNextWord will be called when the "Next word" alert button is clicked
             this.showNextWordOverlay = true;
           } else {
