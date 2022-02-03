@@ -59,7 +59,9 @@
     methods: {
       loadLists() {
         this.builtInLists = Object.keys(this.inbuiltWordlists);
-        this.customLists = LocalStorage.getCustomListNames();
+        this.customLists = LocalStorage.getCustomListNames()
+          // don't let the user select lists with no words
+          .filter(listName => LocalStorage.getCustomList(listName).length > 0);
       },
       loadSelected() {
         this.builtInSelected = LocalStorage.getSelectedBuiltInListNames();
