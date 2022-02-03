@@ -166,6 +166,46 @@ function deleteCustomWord(listName, word) {
   localStorage.setItem(listKey, JSON.stringify(list));
 }
 
+function exportListToJson(listName) {
+  const list = getCustomList(listName);  // this can throw errors
+  const data = {
+    name: listName,
+    words: list,
+  };
+  return JSON.stringify(data);
+}
+
+function getParsedDataOrNull(stringData) {
+  let data;
+  try {
+    data = JSON.parse(stringData);
+  } catch (e) {
+    return null;
+  }
+
+  let nameOkay = typeof data.name === 'string';
+  let listOkay = Array.isArray(data.words) && data.words.every(x => typeof x === 'string');
+
+  if (!nameOkay || !listOkay) {
+    return null;
+  }
+
+  return data;
+}
+
+function importListFromJson(stringData) {
+  const data = getParsedDataOrNull(stringData);
+
+  if (data === null) {
+    throw new Error('JSON data is invalid');
+  }
+
+  createCustomList(data.name);
+  for (let word of data.words) {
+    addCustomWord(data.name, word);
+  }
+}
+
 // Selected lists handling
 
 function getSelectedListNames(listType) {
@@ -209,6 +249,8 @@ export default {
   deleteCustomList: deleteCustomList,
   addCustomWord: addCustomWord,
   deleteCustomWord: deleteCustomWord,
+  exportListToJson: exportListToJson,
+  importListFromJson: importListFromJson,
 
   getSelectedBuiltInListNames: function() {
     // delete any selected lists that don't exist (any more)

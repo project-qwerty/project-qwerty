@@ -2,7 +2,7 @@
   <div class="page-wrapper">
     <h1 class="page-header">Custom Categories</h1>
     <div>
-<!--        Create new list-->
+      <!-- Create new list -->
       <p class="heading">
         <img class="icon" src="@/assets/setting-icons/New_Category.png">
         Make a new Category
@@ -12,14 +12,33 @@
         <button v-on:click="this.newList" class="boxes">Submit</button>
       </div>
 
-<!--        Current lists-->
+      <!-- Import list -->
+      <p class="heading">
+        <font-awesome-icon class="" icon="cloud-upload-alt" />
+        Import Category from JSON
+      </p>
+      <div class="input-wrapper">
+        <BFormInput v-model="import_data" placeholder="Paste JSON here" class="boxes"></BFormInput>
+        <button v-on:click="this.importList" class="boxes">Import</button>
+      </div>
+
+      <!-- Current lists -->
       <p class="heading">
         <img class="icon" src="@/assets/setting-icons/Select_Category.png">
         Select Category
       </p>
       <Multiselect v-model="value" :preselect-first="true" :options="lists" :searchable="false" :show-labels="false" @select="onSelect" class="boxes"/>
 
-<!--        Add words to selected list-->
+      <!-- Export list -->
+      <p class="heading">
+        <font-awesome-icon class="" icon="cloud-download-alt" />
+        Export Category to JSON
+      </p>
+      <div class="input-wrapper">
+        <button v-on:click="this.exportList" class="boxes">{{ exportButtonText }}</button>
+      </div>
+
+      <!-- Add words to selected list -->
       <p class="heading">
         <img class="icon" src="@/assets/setting-icons/New_Word.png">
         Add Words to Category
@@ -30,7 +49,7 @@
         <button v-on:click="this.newWord" class="boxes">Submit</button>
       </div>
 
-<!--        Current list-->
+      <!-- Current list -->
       <p class="heading">
         <img class="icon" src="@/assets/setting-icons/Current_Category.png">
         Current Category
@@ -41,7 +60,7 @@
         </div>
       </div>
 
-<!--        Delete list-->
+      <!-- Delete list -->
       <p class="heading">
         <img class="icon" src="@/assets/setting-icons/Delete_Category.png">
         Delete a Category
@@ -75,8 +94,10 @@
         new_list: '',
         list_to_delete: '',
         current_list: '',
+        import_data: '',
         words: [],
-        items: []
+        items: [],
+        exportButtonText: 'Copy to clipboard',
       }
     },
     created () {
@@ -94,6 +115,7 @@
       onSelect(list) {
         this.current_list = list;
         this.items = this.words[this.current_list];
+        this.exportButtonText = 'Copy to clipboard';
       },
       newList: function() {
         if (!this.lists.includes(this.new_list)) {
@@ -136,7 +158,26 @@
 
         this.loadFromStorage();
         this.items = this.words[this.current_list];
-      }
+      },
+      importList() {
+        try {
+          LocalStorage.importListFromJson(this.import_data);
+          this.import_data = '';
+        } catch (e) {
+          this.import_data = e.message;
+        }
+      },
+      exportList() {
+        const data = LocalStorage.exportListToJson(this.current_list);
+
+        window.navigator.clipboard.writeText(data)
+          .then(
+            // success
+            () => this.exportButtonText = 'Copied!',
+            // failure
+            () => this.exportButtonText = 'Copy failed!'
+          );
+      },
     },
   }
 </script>
