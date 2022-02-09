@@ -67,8 +67,9 @@ min is the minimum value and max the maximum value-->
 
     <p class="setting-heading">
       <img class="setting-heading-icon" src="@/assets/setting-icons/Errorless.png">
-      Assistance
+      Assistance level
     </p>
+    <p>{{ assistanceLevelDescriptions[value_assistanceLevel] }}</p>
     <switch-component class="switch" :preset="preset.value_assistanceLevel" :options="['NONE', 'MIN', 'MAX']" v-on:update:value="value_assistanceLevel=$event"/>
 
     <p class="setting-heading">
@@ -118,7 +119,12 @@ min is the minimum value and max the maximum value-->
           value_wordRepetitions: null,
           value_assistanceLevel: null,
           value_clickForNextWord: null,
-        }
+        },
+        assistanceLevelDescriptions: {
+          'MAX': 'Maximum: The next letter will always be highlighted.',
+          'MIN': 'Minimum: The next letter will be highlighted if a mistake is made.',
+          'NONE': 'None: Letter highlighting is turned off.',
+        },
       }
     },
     // This sets the sliders so that they remember there last location.
