@@ -70,7 +70,7 @@ min is the minimum value and max the maximum value-->
       Assistance level
     </p>
     <p>{{ assistanceLevelDescriptions[value_assistanceLevel] }}</p>
-    <switch-component class="switch" :preset="preset.value_assistanceLevel" :options="['NONE', 'MIN', 'MAX']" v-on:update:value="value_assistanceLevel=$event"/>
+    <switch-component class="switch" :preset="preset.value_assistanceLevel" :options="['MAX', 'MIN', 'NONE']" v-on:update:value="value_assistanceLevel=$event"/>
 
     <p class="setting-heading">
       <img class="setting-heading-icon" src="@/assets/setting-icons/Click_for_next.png">

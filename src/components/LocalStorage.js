@@ -47,7 +47,7 @@ const settings = {
   assistanceLevel: {
     key: 'settings.assistanceLevel',
     parser: parseStoredStringCaps,
-    default: 'NONE',  // potential values: NONE, MIN, MAX
+    default: 'MAX',  // potential values: NONE, MIN, MAX
   },
   clickForNextWord: {
     key: 'settings.clickForNextWord',
