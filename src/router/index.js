@@ -1,12 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Keyboard from '../views/KeyboardPage.vue'
+import Keyboard from '../views/Keyboard.vue'
 import Settings from '../views/Settings.vue'
-import SelectWords from '../views/SelectWords.vue'
-import General from '../views/settings/General.vue'
-import CustomLists from '../views/settings/CustomLists.vue'
-import About from '../views/settings/About.vue'
+import SelectLists from '../views/SelectLists.vue'
+import CustomLists from '../views/CustomLists.vue'
+import About from '../views/About.vue'
 
 Vue.use(VueRouter)
 
@@ -14,36 +13,32 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: About,
+  },
+  {
+    path: '/select-lists',
+    name: 'select-lists',
+    component: SelectLists,
   },
   {
     path: '/keyboard',
     name: 'keyboard',
-    component: Keyboard
+    component: Keyboard,
   },
   {
     path: '/settings',
     name: 'settings',
     component: Settings,
-    children: [
-      {
-        path: '',
-        component: General
-      },
-      {
-        path: 'custom-lists',
-        component: CustomLists
-      },
-      {
-        path: 'about',
-        component: About
-      },
-    ]
   },
   {
-    path: '/select_words',
-    name: 'select_words',
-    component: SelectWords
+    path: '/custom-lists',
+    name: 'custom-lists',
+    component: CustomLists,
   },
 ]
 

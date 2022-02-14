@@ -19,7 +19,7 @@
         this.$router.go(1);
       },
       to2() {
-        this.$router.push('/select_words');
+        this.$router.push('/select-lists');
         this.$router.go(1);
       },
       to3() {

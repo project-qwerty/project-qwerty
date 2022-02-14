@@ -2,7 +2,7 @@
   <div id="keyboard" v-bind:style="{ 'text-transform': wordDisplayCapitalization }">
 
     <div class="top-area-container">
-      <router-link to="/select_words">
+      <router-link to="/select-lists">
         <font-awesome-icon class="top-area-back-button" icon="chevron-left"/>
       </router-link>
       <Progress :total="wordsPerSession" :current="this.count" />

@@ -7,19 +7,19 @@
       :bold="true" />
     <RowButton
       text="Practice"
-      destination="/select_words"
+      destination="/select-lists"
       icon="play" />
     <RowButton
       text="Customize"
-      destination="/settings/custom-lists"
+      destination="/custom-lists"
       icon="hand-sparkles" />
     <RowButton
       text="Settings"
-      destination="/settings/"
+      destination="/settings"
       icon="cog" />
     <RowButton
       text="About"
-      destination="/settings/about"
+      destination="/about"
       icon="info-circle" />
   </nav>
 </template>
@@ -36,8 +36,8 @@
 </script>
 
 
-<style scoped>
-  nav.sidebar {
+<style>
+  .sidebar {
     /* external shape */
     position: fixed;
     width: var(--sidebar-width);
@@ -50,10 +50,16 @@
     border-right: solid 1px var(--faint-colour);
   }
 
-  nav.sidebar a {
+  .sidebar a {
     border-bottom: solid 1px var(--faint-colour);
 
     font-size: 24px;
     padding: 20px;
+  }
+
+  .sidebar-page-content {
+    position: absolute;
+    left: var(--sidebar-width);
+    right: 0;
   }
 </style>

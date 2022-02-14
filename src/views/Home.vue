@@ -23,8 +23,8 @@
     },
     data() {
       return {
-        selectWords: "/select_words",
-        about: "/settings/about",
+        selectWords: "/select-lists",
+        about: "/about",
       }
     }
   }
