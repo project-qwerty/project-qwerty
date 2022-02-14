@@ -1,0 +1,12 @@
+:root {
+    --foreground-colour: #000000;
+    --background-colour: #ffffff;
+    --primary-colour: #2f80ed;
+    --faint-colour: #e6e6e6;
+
+    --sidebar-width: 320px;
+}
+
+body {
+    margin: 0;
+}

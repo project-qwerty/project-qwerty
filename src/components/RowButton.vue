@@ -1,0 +1,79 @@
+<template>
+  <router-link
+      :to="destination"
+      :class="{'active': active, 'bold': bold,}">
+    <span v-if="icon" class="icon" :style="`background-color: ${iconColour};`">
+      <font-awesome-icon :icon="icon" />
+    </span>
+
+    <span class="text">{{ text }}</span>
+  </router-link>
+</template>
+
+
+<script>
+  export default {
+    props: {
+      destination: {
+        type: String,
+        required: true,
+      },
+      text: {
+        type: String,
+        required: true,
+      },
+      icon: {
+        type: String,
+        default: null,
+      },
+      iconColour: {
+        type: String,
+        default: 'initial',
+      },
+      active: {
+        type: Boolean,
+        default: false,
+      },
+      bold: {
+        type: Boolean,
+        default: false,
+      }
+    },
+  }
+</script>
+
+
+<style scoped>
+  a {
+    /* disable default styling for links */
+    text-decoration: none;
+    color: inherit;
+
+    text-align: left;
+  }
+
+  .icon {
+    display: inline-block;
+    text-align: center;
+
+    /* give the icon its shape */
+    width: 1em;
+    height: 1em;
+    padding: 0.6em;
+    border-radius: 10px;
+  }
+
+  .text {
+    margin-left: 10px;
+  }
+
+  .active {
+    /* swap the colours around */
+    color: var(--background-colour);
+    background-color: var(--primary-colour);
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+</style>

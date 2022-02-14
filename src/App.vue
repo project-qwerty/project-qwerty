@@ -6,6 +6,8 @@
 
 
 <style>
+  @import './assets/css/global.css';
+
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -13,15 +15,16 @@
     text-align: center;
     color: black;
     user-select: none;
+    height: 100%;
   }
 
-  main {
-    height: 100%
+  html {
+    height: 100%;
   }
 
   body {
     line-height: 1.4;
-    height: 100%
+    height: 100%;
   }
 
   .start-button {
