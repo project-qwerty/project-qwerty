@@ -1,26 +1,11 @@
 <template>
   <nav class="sidebar">
-    <RowButton
-      text="Project QWERTY"
-      destination="/"
-      icon="chevron-left"
-      :bold="true" />
-    <RowButton
-      text="Practice"
-      destination="/select-lists"
-      icon="play" />
-    <RowButton
-      text="Customize"
-      destination="/custom-lists"
-      icon="hand-sparkles" />
-    <RowButton
-      text="Settings"
-      destination="/settings"
-      icon="cog" />
-    <RowButton
-      text="About"
-      destination="/about"
-      icon="info-circle" />
+    <RowButton v-for="button in navLinks" :key="button.path"
+      :destination="button.path"
+      :text="button.text"
+      :icon="button.icon"
+      :bold="button.bold"
+      :active="$route.path === button.path"/>
   </nav>
 </template>
 
@@ -31,6 +16,17 @@
   export default {
     components: {
       RowButton,
+    },
+    data() {
+      return {
+        navLinks: [
+          { path: '/',             text: 'Project QWERTY', icon: 'chevron-left',  bold: true,  },
+          { path: '/select-lists', text: 'Practice',       icon: 'play',          bold: false, },
+          { path: '/custom-lists', text: 'Customize',      icon: 'hand-sparkles', bold: false, },
+          { path: '/settings',     text: 'Settings',       icon: 'cog',           bold: false, },
+          { path: '/about',        text: 'About',          icon: 'info-circle',   bold: false, },
+        ],
+      }
     },
   }
 </script>
