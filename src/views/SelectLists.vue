@@ -5,7 +5,7 @@
       <div class="heading">Select a category to practise</div>
       <!-- Link to settings -->
       <router-link class="link-to-settings" to="/settings">
-        <font-awesome-icon class="link-to-settings-cog" icon="cog" />
+        <font-awesome-icon class="link-to-settings-cog" icon="gear" />
       </router-link>
     </div>
 
