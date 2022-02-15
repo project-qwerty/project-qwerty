@@ -26,8 +26,8 @@
           { path: '/',             text: 'Project QWERTY', icon: 'chevron-left',  bold: true,  },
           { path: '/select-lists', text: 'Practice',       icon: 'play',          bold: false, },
           { path: '/custom-lists', text: 'Customize',      icon: 'hand-sparkles', bold: false, },
-          { path: '/settings',     text: 'Settings',       icon: 'cog',           bold: false, },
-          { path: '/about',        text: 'About',          icon: 'info-circle',   bold: false, },
+          { path: '/settings',     text: 'Settings',       icon: 'gear',          bold: false, },
+          { path: '/about',        text: 'About',          icon: 'circle-info',   bold: false, },
         ],
       }
     },

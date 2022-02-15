@@ -2,7 +2,18 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCog, faChevronRight, faChevronLeft, faEye, faBackspace, faCloudUploadAlt, faCloudDownloadAlt, faPlay, faHandSparkles, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import {
+  faGear,
+  faChevronRight,
+  faChevronLeft,
+  faEye,
+  faBackspace,
+  faCloudUploadAlt,
+  faCloudDownloadAlt,
+  faPlay,
+  faHandSparkles,
+  faInfoCircle,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import BFormInput from 'bootstrap-vue'
 import { FormInputPlugin } from 'bootstrap-vue'
@@ -12,7 +23,7 @@ Vue.use(FormInputPlugin)
 Vue.config.productionTip = false
 
 // TODO: there has to be a better way than this
-library.add(faCog)
+library.add(faGear)
 library.add(faChevronRight)
 library.add(faChevronLeft)
 library.add(faEye)
