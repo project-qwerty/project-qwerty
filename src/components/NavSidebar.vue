@@ -1,11 +1,14 @@
 <template>
   <nav class="sidebar">
-    <RowButton v-for="button in navLinks" :key="button.path"
-      :destination="button.path"
-      :text="button.text"
-      :icon="button.icon"
-      :bold="button.bold"
-      :active="$route.path === button.path"/>
+    <router-link
+        v-for="button in navLinks" :key="button.path"
+        :to="button.path">
+      <RowButton
+          :text="button.text"
+          :icon="button.icon"
+          :bold="button.bold"
+          :active="$route.path === button.path"/>
+    </router-link>
   </nav>
 </template>
 
@@ -50,7 +53,10 @@
     border-bottom: solid 1px var(--faint-colour);
 
     font-size: 24px;
-    padding: 20px;
+
+    /* disable default styling for links */
+    text-decoration: none;
+    color: inherit;
   }
 
   .sidebar-page-content {

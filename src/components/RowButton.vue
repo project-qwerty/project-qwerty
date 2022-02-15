@@ -1,23 +1,17 @@
 <template>
-  <router-link
-      :to="destination"
-      :class="{'active': active, 'bold': bold,}">
+  <div class="container" :class="{'active': active, 'bold': bold,}">
     <span v-if="icon" class="icon" :style="`background-color: ${iconColour};`">
       <font-awesome-icon :icon="icon" />
     </span>
 
     <span class="text">{{ text }}</span>
-  </router-link>
+  </div>
 </template>
 
 
 <script>
   export default {
     props: {
-      destination: {
-        type: String,
-        required: true,
-      },
       text: {
         type: String,
         required: true,
@@ -44,10 +38,8 @@
 
 
 <style scoped>
-  a {
-    /* disable default styling for links */
-    text-decoration: none;
-    color: inherit;
+  .container {
+    padding: 20px;
 
     text-align: left;
   }
