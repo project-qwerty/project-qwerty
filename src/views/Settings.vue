@@ -7,12 +7,9 @@
 
     <!--Need to use getValue to use the slider as an input-->
     <div class="sidebar-page-content page-wrapper">
-      <h1 class="page-title">General Settings</h1>
+      <IconHeader major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
 
-      <p class="setting-heading slider-heading">
-        <img class="setting-heading-icon" src="@/assets/setting-icons/Timer.png">
-        Timer
-      </p>
+      <IconHeader text="Timer" icon="stopwatch" />
       <veeno
         :connect="[true, false]"
         :tooltips="false"
@@ -47,10 +44,7 @@
         class="slider"
       >{{display_wordDisplayTime}}</veeno>
 
-      <p class="setting-heading slider-heading">
-        <img class="setting-heading-icon" src="@/assets/setting-icons/Words.png">
-        Words
-      </p>
+      <IconHeader text="Words" icon="list" />
       <veeno
         :connect="[true, false]"
         :tooltips="false"
@@ -68,10 +62,7 @@
         class="slider"
       >{{display_wordsPerSession}}</veeno>
 
-      <p class="setting-heading">
-        <img class="setting-heading-icon" src="@/assets/setting-icons/Errorless.png">
-        Assistance level
-      </p>
+      <IconHeader text="Assistance level" icon="check" />
       <p>{{ assistanceLevelDescriptions[assistanceLevel] }}</p>
       <ShowAllSelector :options="[
             { label: 'Max.', val: 'MAX', },
@@ -81,10 +72,7 @@
           :activeValue="assistanceLevel"
           v-on:update="assistanceLevel = $event" />
 
-      <p class="setting-heading">
-        <img class="setting-heading-icon" src="@/assets/setting-icons/Click_for_next.png">
-        Click for next word
-      </p>
+      <IconHeader text="Click for next word" icon="hand-pointer" />
       <ShowAllSelector :options="[
             { label: 'On', val: true, },
             { label: 'Off', val: false, },
@@ -92,10 +80,7 @@
           :activeValue="clickForNextWord"
           v-on:update="clickForNextWord = $event" />
 
-      <p class="setting-heading">
-        <img class="setting-heading-icon" src="@/assets/setting-icons/Repetitions.png">
-        Repetitions
-      </p>
+      <IconHeader text="Repetitions" icon="repeat" />
       <ShowAllSelector :options="[
             { label: '1', val: 1, },
             { label: '3', val: 3, },
@@ -103,10 +88,7 @@
           :activeValue="wordRepetitions"
           v-on:update="wordRepetitions = $event" />
 
-      <p class="setting-heading">
-        <img class="setting-heading-icon" src="@/assets/setting-icons/Capitals.png">
-        Capitalization
-      </p>
+      <IconHeader text="Capitalization" icon="font" />
       <ShowAllSelector :options="[
             { label: 'UPPERCASE', val: 'UPPERCASE', },
             { label: 'lowercase', val: 'LOWERCASE', },
@@ -126,6 +108,7 @@
   import LocalStorage from '@/components/LocalStorage.js';
   import NavSidebar from '@/components/NavSidebar.vue';
   import ShowAllSelector from '@/components/ShowAllSelector.vue';
+  import IconHeader from '@/components/IconHeader.vue';
 
   export default {
     data() {
@@ -164,6 +147,7 @@
       veeno,
       NavSidebar,
       ShowAllSelector,
+      IconHeader,
     },
     // This stores the values into localStorage so that they can be accessed by the keyboard page.
     watch: {
@@ -202,42 +186,14 @@
 
 
 <style scoped>
-  .settings {
-    display: flex;
-    min-height: 100px;
-  }
-
-  .setting-heading {
-    font-size: 30px;
-    margin: auto;
-    color: black;
-  }
-
   .page-wrapper {
     width: 600px;
     padding-left: 48px;
     text-align: left;
   }
 
-  .page-title {
-    font-weight: bold;
-    color: black;
-  }
-
-  .slider-heading {
-    margin-bottom: 35px;
-  }
-
-  .setting-heading-icon {
-    height: 20px;
-  }
-
   .slider {
     margin-top: 26px;
     margin-bottom: 52px;
-  }
-
-  .switch {
-    margin-bottom: 35px;
   }
 </style>

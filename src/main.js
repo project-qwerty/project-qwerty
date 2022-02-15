@@ -13,6 +13,12 @@ import {
   faPlay,
   faHandSparkles,
   faInfoCircle,
+  faHandPointer,
+  faCheck,
+  faRepeat,
+  faFont,
+  faList,
+  faStopwatch,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import BFormInput from 'bootstrap-vue'
@@ -33,6 +39,12 @@ library.add(faCloudDownloadAlt)
 library.add(faPlay)
 library.add(faHandSparkles)
 library.add(faInfoCircle)
+library.add(faHandPointer)
+library.add(faCheck)
+library.add(faRepeat)
+library.add(faFont)
+library.add(faList)
+library.add(faStopwatch)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
