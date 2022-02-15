@@ -72,26 +72,47 @@
         <img class="setting-heading-icon" src="@/assets/setting-icons/Errorless.png">
         Assistance level
       </p>
-      <p>{{ assistanceLevelDescriptions[value_assistanceLevel] }}</p>
-      <switch-component class="switch" :preset="preset.value_assistanceLevel" :options="['MAX', 'MIN', 'NONE']" v-on:update:value="value_assistanceLevel=$event"/>
+      <p>{{ assistanceLevelDescriptions[assistanceLevel] }}</p>
+      <ShowAllSelector :options="[
+            { label: 'Max.', val: 'MAX', },
+            { label: 'Min.', val: 'MIN', },
+            { label: 'None', val: 'NONE', },
+          ]"
+          :activeValue="assistanceLevel"
+          v-on:update="assistanceLevel = $event" />
 
       <p class="setting-heading">
         <img class="setting-heading-icon" src="@/assets/setting-icons/Click_for_next.png">
         Click for next word
       </p>
-      <switch-component class="switch" :preset="preset.value_clickForNextWord" :options="['OFF', 'ON']" v-on:update:value="value_clickForNextWord=$event"/>
+      <ShowAllSelector :options="[
+            { label: 'On', val: true, },
+            { label: 'Off', val: false, },
+          ]"
+          :activeValue="clickForNextWord"
+          v-on:update="clickForNextWord = $event" />
 
       <p class="setting-heading">
         <img class="setting-heading-icon" src="@/assets/setting-icons/Repetitions.png">
         Repetitions
       </p>
-      <switch-component class="switch" :preset="preset.value_wordRepetitions" :options="['1', '3']" v-on:update:value="value_wordRepetitions=$event"/>
+      <ShowAllSelector :options="[
+            { label: '1', val: 1, },
+            { label: '3', val: 3, },
+          ]"
+          :activeValue="wordRepetitions"
+          v-on:update="wordRepetitions = $event" />
 
       <p class="setting-heading">
         <img class="setting-heading-icon" src="@/assets/setting-icons/Capitals.png">
         Capitalization
       </p>
-      <switch-component class="switch" :preset="preset.value_wordDisplayCapitalization" :options="['UPPERCASE', 'lowercase']" v-on:update:value="value_wordDisplayCapitalization=$event"/>
+      <ShowAllSelector :options="[
+            { label: 'UPPERCASE', val: 'UPPERCASE', },
+            { label: 'lowercase', val: 'LOWERCASE', },
+          ]"
+          :activeValue="wordDisplayCapitalization"
+          v-on:update="wordDisplayCapitalization = $event" />
 
     </div>
   </div>
@@ -102,13 +123,19 @@
   // Importing the slider from a plug in, the slider is called veeno.
   import veeno from 'veeno';
   import 'nouislider/distribute/nouislider.min.css';
-  import Switch from '@/components/Switch.vue';
-  import NavSidebar from '@/components/NavSidebar.vue';
   import LocalStorage from '@/components/LocalStorage.js';
+  import NavSidebar from '@/components/NavSidebar.vue';
+  import ShowAllSelector from '@/components/ShowAllSelector.vue';
 
   export default {
     data() {
       return {
+        clickForNextWord: null,
+        assistanceLevel: null,
+        wordRepetitions: null,
+        wordDisplayCapitalization: null,
+
+
         display_wordDisplayTime: null,
         display_wordsPerSession: null,
 
@@ -116,15 +143,6 @@
         // value is intially set to zero, however the value is changed as the slider is moved
         value_wordsPerSession: null,
         // the variables related to buttons
-        value_wordRepetitions: null,
-        value_assistanceLevel: null,
-        value_clickForNextWord: null,
-        value_wordDisplayCapitalization: null,
-        preset: {
-          value_wordRepetitions: null,
-          value_assistanceLevel: null,
-          value_clickForNextWord: null,
-        },
         assistanceLevelDescriptions: {
           'MAX': 'Maximum: The next letter will always be highlighted.',
           'MIN': 'Minimum: The next letter will be highlighted if a mistake is made.',
@@ -134,27 +152,22 @@
     },
     // This sets the sliders so that they remember there last location.
     created() {
-      this.preset.value_wordRepetitions = LocalStorage.getSetting('wordRepetitions').toString();
       this.value_wordDisplayTime = LocalStorage.getSetting('wordDisplayTime');
       this.value_wordsPerSession = LocalStorage.getSetting('wordsPerSession');
-      this.preset.value_assistanceLevel = LocalStorage.getSetting('assistanceLevel');
 
-      var clickForNextWordSetting = LocalStorage.getSetting('clickForNextWord');
-      this.preset.value_clickForNextWord = clickForNextWordSetting ? 'ON' : 'OFF';
-
-      this.preset.value_wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
-      if (this.preset.value_wordDisplayCapitalization === 'LOWERCASE') {
-        this.preset.value_wordDisplayCapitalization = 'lowercase';
-      }
+      this.assistanceLevel = LocalStorage.getSetting('assistanceLevel');
+      this.clickForNextWord = LocalStorage.getSetting('clickForNextWord');
+      this.wordRepetitions = LocalStorage.getSetting('wordRepetitions');
+      this.wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
     },
     components: {
-      'veeno': veeno,
-      'switch-component': Switch,
-      'NavSidebar': NavSidebar,
+      veeno,
+      NavSidebar,
+      ShowAllSelector,
     },
     // This stores the values into localStorage so that they can be accessed by the keyboard page.
     watch: {
-      'value_wordRepetitions': function(val) {
+      wordRepetitions: function(val) {
         LocalStorage.setSetting('wordRepetitions', val);
       },
       'value_wordDisplayTime': function(val) {
@@ -174,14 +187,14 @@
         this.display_wordsPerSession = parseInt(val) + ' words';
         LocalStorage.setSetting('wordsPerSession', parseInt(val));
       },
-      'value_assistanceLevel': function(val) {
+      assistanceLevel: function(val) {
         LocalStorage.setSetting('assistanceLevel', val);
       },
-      'value_clickForNextWord': function(val) {
-        LocalStorage.setSetting('clickForNextWord', val === 'ON');
+      clickForNextWord: function(val) {
+        LocalStorage.setSetting('clickForNextWord', val);
       },
-      'value_wordDisplayCapitalization': function(val) {
-        LocalStorage.setSetting('wordDisplayCapitalization', val.toUpperCase());
+      'wordDisplayCapitalization': function(val) {
+        LocalStorage.setSetting('wordDisplayCapitalization', val);
       },
     },
   }
