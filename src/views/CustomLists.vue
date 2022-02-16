@@ -17,7 +17,7 @@
 
         <!-- Import list -->
         <p class="heading">
-          <font-awesome-icon class="" icon="cloud-upload-alt" />
+          <font-awesome-icon class="" icon="cloud-arrow-up" />
           Import Category from JSON
         </p>
         <div class="input-wrapper">
@@ -34,7 +34,7 @@
 
         <!-- Export list -->
         <p class="heading">
-          <font-awesome-icon class="" icon="cloud-download-alt" />
+          <font-awesome-icon class="" icon="cloud-arrow-down" />
           Export Category to JSON
         </p>
         <div class="input-wrapper">

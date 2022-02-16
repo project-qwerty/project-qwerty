@@ -8,8 +8,8 @@ import {
   faChevronLeft,
   faEye,
   faBackspace,
-  faCloudUploadAlt,
-  faCloudDownloadAlt,
+  faCloudArrowUp,
+  faCloudArrowDown,
   faPlay,
   faHandSparkles,
   faInfoCircle,
@@ -34,8 +34,8 @@ library.add(faChevronRight)
 library.add(faChevronLeft)
 library.add(faEye)
 library.add(faBackspace)
-library.add(faCloudUploadAlt)
-library.add(faCloudDownloadAlt)
+library.add(faCloudArrowUp)
+library.add(faCloudArrowDown)
 library.add(faPlay)
 library.add(faHandSparkles)
 library.add(faInfoCircle)
