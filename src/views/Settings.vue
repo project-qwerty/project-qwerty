@@ -7,60 +7,36 @@
 
     <!--Need to use getValue to use the slider as an input-->
     <div class="sidebar-page-content page-wrapper">
-      <IconHeader major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
+      <IconHeader :major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
 
       <IconHeader text="Timer" icon="stopwatch" />
-      <veeno
-        :connect="[true, false]"
-        :tooltips="false"
-        v-model='value_wordDisplayTime'
-        :pipsy="{
-          mode: 'steps',
-          density: 100,
-          format: {
-            // 'to' the formatted value. Receives a number.
-            to: function(value) {
-              if (value === 0) {
-                return 'OFF';
-              }
-              return String(value);
-            },
-            // 'from' the formatted value.
-            // Receives a string, should return a number.
-            from: function(value) {
-              if (value === 'OFF') {
-                return 0;
-              }
-              return Number(value);
-            },
-          },
-        }"
-        :handles="[this.value_wordDisplayTime]"
-        :step="5"
-        :range="{
-          'min': [  0 ],
-          'max': [ 30 ],
-        }"
-        class="slider"
-      >{{display_wordDisplayTime}}</veeno>
+      <ShowCurrentSelector :options="[
+          { label: 'Always shown', val: 0, },
+          { label: '5',            val: 5, },
+          { label: '10',           val: 10, },
+          { label: '15',           val: 15, },
+          { label: '20',           val: 20, },
+          { label: '25',           val: 25, },
+          { label: '30',           val: 30, },
+        ]"
+        :initialValue="wordDisplayTime"
+        v-on:update="wordDisplayTime = $event" />
 
       <IconHeader text="Words" icon="list" />
-      <veeno
-        :connect="[true, false]"
-        :tooltips="false"
-        v-model='value_wordsPerSession'
-        :pipsy="{
-          mode: 'steps',
-          density: 10,
-        }"
-        :handles="[this.value_wordsPerSession]"
-        :step="5"
-        :range="{
-          'min': [  5 ],
-          'max': [ 50 ],
-        }"
-        class="slider"
-      >{{display_wordsPerSession}}</veeno>
+      <ShowCurrentSelector :options="[
+          { label: '5',  val: 5, },
+          { label: '10', val: 10, },
+          { label: '15', val: 15, },
+          { label: '20', val: 20, },
+          { label: '25', val: 25, },
+          { label: '30', val: 30, },
+          { label: '35', val: 35, },
+          { label: '40', val: 40, },
+          { label: '45', val: 45, },
+          { label: '50', val: 50, },
+        ]"
+        :initialValue="wordsPerSession"
+        v-on:update="wordsPerSession = $event" />
 
       <IconHeader text="Assistance level" icon="check" />
       <p>{{ assistanceLevelDescriptions[assistanceLevel] }}</p>
@@ -74,7 +50,7 @@
 
       <IconHeader text="Click for next word" icon="hand-pointer" />
       <ShowAllSelector :options="[
-            { label: 'On', val: true, },
+            { label: 'On',  val: true, },
             { label: 'Off', val: false, },
           ]"
           :activeValue="clickForNextWord"
@@ -103,29 +79,22 @@
 
 <script>
   // Importing the slider from a plug in, the slider is called veeno.
-  import veeno from 'veeno';
-  import 'nouislider/distribute/nouislider.min.css';
   import LocalStorage from '@/components/LocalStorage.js';
   import NavSidebar from '@/components/NavSidebar.vue';
   import ShowAllSelector from '@/components/ShowAllSelector.vue';
   import IconHeader from '@/components/IconHeader.vue';
+  import ShowCurrentSelector from '@/components/ShowCurrentSelector.vue';
 
   export default {
     data() {
       return {
+        wordDisplayTime: null,
+        wordsPerSession: null,
         clickForNextWord: null,
         assistanceLevel: null,
         wordRepetitions: null,
         wordDisplayCapitalization: null,
 
-
-        display_wordDisplayTime: null,
-        display_wordsPerSession: null,
-
-        value_wordDisplayTime: null,
-        // value is intially set to zero, however the value is changed as the slider is moved
-        value_wordsPerSession: null,
-        // the variables related to buttons
         assistanceLevelDescriptions: {
           'MAX': 'Maximum: The next letter will always be highlighted.',
           'MIN': 'Minimum: The next letter will be highlighted if a mistake is made.',
@@ -135,41 +104,29 @@
     },
     // This sets the sliders so that they remember there last location.
     created() {
-      this.value_wordDisplayTime = LocalStorage.getSetting('wordDisplayTime');
-      this.value_wordsPerSession = LocalStorage.getSetting('wordsPerSession');
-
+      this.wordDisplayTime = LocalStorage.getSetting('wordDisplayTime');
+      this.wordsPerSession = LocalStorage.getSetting('wordsPerSession');
       this.assistanceLevel = LocalStorage.getSetting('assistanceLevel');
       this.clickForNextWord = LocalStorage.getSetting('clickForNextWord');
       this.wordRepetitions = LocalStorage.getSetting('wordRepetitions');
       this.wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
     },
     components: {
-      veeno,
       NavSidebar,
       ShowAllSelector,
       IconHeader,
+      ShowCurrentSelector,
     },
     // This stores the values into localStorage so that they can be accessed by the keyboard page.
     watch: {
       wordRepetitions: function(val) {
         LocalStorage.setSetting('wordRepetitions', val);
       },
-      'value_wordDisplayTime': function(val) {
-        if (val === 'OFF') {
-          val = 0;
-        }
-
-        if (parseInt(val) !== 0) {
-          this.display_wordDisplayTime = parseInt(val) + ' seconds';
-        } else {
-          this.display_wordDisplayTime = 'OFF';
-        }
-
-        LocalStorage.setSetting('wordDisplayTime', parseInt(val));
+      wordDisplayTime: function(val) {
+        LocalStorage.setSetting('wordDisplayTime', val);
       },
-      'value_wordsPerSession': function(val) {
-        this.display_wordsPerSession = parseInt(val) + ' words';
-        LocalStorage.setSetting('wordsPerSession', parseInt(val));
+      wordsPerSession: function(val) {
+        LocalStorage.setSetting('wordsPerSession', val);
       },
       assistanceLevel: function(val) {
         LocalStorage.setSetting('assistanceLevel', val);
@@ -177,7 +134,7 @@
       clickForNextWord: function(val) {
         LocalStorage.setSetting('clickForNextWord', val);
       },
-      'wordDisplayCapitalization': function(val) {
+      wordDisplayCapitalization: function(val) {
         LocalStorage.setSetting('wordDisplayCapitalization', val);
       },
     },
