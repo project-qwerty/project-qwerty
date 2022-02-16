@@ -31,6 +31,7 @@
     border: solid 1px var(--faint-colour);
     border-radius: 0.5em;
 
+    font-size: 20px;
     font-weight: bold;
   }
 
