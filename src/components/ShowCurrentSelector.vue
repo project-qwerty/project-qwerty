@@ -79,7 +79,7 @@
   }
 
   .display {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     text-align: center;
 
