@@ -12,7 +12,8 @@ import {
   faCloudArrowDown,
   faPlay,
   faHandSparkles,
-  faInfoCircle,
+  faCircleInfo,
+  faCircleQuestion,
   faHandPointer,
   faCheck,
   faRepeat,
@@ -38,7 +39,8 @@ library.add(faCloudArrowUp)
 library.add(faCloudArrowDown)
 library.add(faPlay)
 library.add(faHandSparkles)
-library.add(faInfoCircle)
+library.add(faCircleInfo)
+library.add(faCircleQuestion)
 library.add(faHandPointer)
 library.add(faCheck)
 library.add(faRepeat)
