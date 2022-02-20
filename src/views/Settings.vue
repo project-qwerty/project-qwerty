@@ -188,6 +188,8 @@
 
   .control-row .control {
     flex-shrink: 0;
+
     width: 300px;
+    padding-left: 20px;
   }
 </style>
