@@ -3,27 +3,33 @@
     <NavSidebar />
 
     <div class="sidebar-page-content about-page-content">
-      <h1><img class="icon" src="@/assets/setting-icons/About.png"> About</h1>
-      <p>Welcome to Project QWERTY, this is an <strong>app</strong> for people with <strong>aphasia</strong>.</p>
-      <p>Project QWERTY is an app made by Monash University <strong>students</strong> and Monash Health <strong>Speech Pathologists</strong> in partnership with <strong>people with aphasia</strong>.</p>
-      <p>This app is a <strong>work in progress</strong>.</p>
-      <p>We are <strong>working</strong> on making the app fully functional on all web browsers.</p>
-      <br>
-      <h1><img class="icon" src="@/assets/setting-icons/FAQ.png"> Frequently Asked Questions (FAQs)</h1>
-      <p><em><strong>What is</strong> Project QWERTY?</em></p>
-      <p>Project QWERTY is an app for people with <strong>aphasia</strong>. It targets <strong>spelling</strong> and <strong>typing</strong> through the use of pre-programmed word lists and the option to create custom word lists.</p>
-      <br>
-      <p><em>Nothing happens when I press <strong>start</strong>. What do I do?</em></p>
-      <p>1.	If you are using an <strong>iPad</strong>, access this app via the <strong>Google app</strong>.</p>
-      <p>OR</p>
-      <p>If you are using a <strong>computer</strong> or other <strong>tablet</strong> device, access this app via <strong>Google Chrome</strong>.</p>
-      <p>2.Turn <strong>off</strong> private browsing / incognito mode.</p>
-      <br>
-      <p><em>Who do I contact if I have a <strong>question</strong> about Project QWERTY?</em></p>
-      <p>Please <strong>email</strong> us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a>.</p>
-      <br>
-      <p><em>How do I report an <strong>error / bug?</strong></em></p>
-      <p>We are sorry you are experiencing an error. Please <strong>email</strong> us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a> with a <strong>description</strong> and <strong>screenshot</strong> of the error.</p>
+      <IconHeader :major="true" text="About" icon="circle-info" iconColour="var(--primary-colour)" />
+
+      <p>Welcome to Project QWERTY, this is an app for people with aphasia.</p>
+      <p>Project QWERTY is an app made by Monash University students and Monash Health Speech Pathologists in partnership with people with aphasia.</p>
+      <p>This app is a work in progress.</p>
+      <p>We are working on making the app fully functional on all web browsers.</p>
+
+      <IconHeader :major="true" text="FAQs" icon="circle-question" iconColour="var(--primary-colour)" />
+
+      <CollapsibleSection summary="What is Project QWERTY?" >
+        <p>Project QWERTY is an app for people with aphasia. It targets spelling and typing through the use of pre-programmed word lists and the option to create custom word lists.</p>
+      </CollapsibleSection>
+
+      <CollapsibleSection summary="Nothing happens when I press start. What do I do?" >
+        <p>1.	If you are using an iPad, access this app via the Google app.</p>
+        <p>OR</p>
+        <p>If you are using a computer or other tablet device, access this app via Google Chrome.</p>
+        <p>2.Turn off private browsing / incognito mode.</p>
+      </CollapsibleSection>
+
+      <CollapsibleSection summary="Who do I contact if I have a question about Project QWERTY?" >
+        <p>Please email us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a>.</p>
+      </CollapsibleSection>
+
+      <CollapsibleSection summary="How do I report an error or bug?" >
+        <p>We are sorry you are experiencing an error. Please email us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a> with a description and screenshot of the error.</p>
+      </CollapsibleSection>
     </div>
   </div>
 </template>
@@ -31,10 +37,14 @@
 
 <script>
 import NavSidebar from '@/components/NavSidebar.vue';
+import CollapsibleSection from '@/components/CollapsibleSection.vue';
+import IconHeader from '@/components/IconHeader.vue';
 
 export default {
   components: {
     NavSidebar,
+    CollapsibleSection,
+    IconHeader,
   },
 }
 </script>
@@ -43,15 +53,8 @@ export default {
 <style scoped>
   .about-page-content {
     padding-left: 48px;
+    padding-right: 48px;
+
     text-align: left;
-    width: 100%;
-  }
-
-  h1 {
-    font-weight: normal;
-  }
-
-  .icon {
-    height: 25px;
   }
 </style>
