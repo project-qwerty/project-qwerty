@@ -180,7 +180,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-end;
 
     padding-bottom: 24px;
     border-bottom: solid 1px var(--faint-colour);
