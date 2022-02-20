@@ -61,6 +61,10 @@
     color: inherit;
   }
 
+  .sidebar a:first-of-type {
+    font-weight: bold;
+  }
+
   .sidebar-page-content {
     /* take up the remaining space on the right */
     position: absolute;

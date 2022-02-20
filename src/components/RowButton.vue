@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :class="{'active': active, 'bold': bold,}">
+  <div class="container" :class="{'active': active}">
     <span v-if="icon" class="icon" :style="`background-color: ${iconColour};`">
       <font-awesome-icon :icon="icon" />
     </span>
@@ -28,10 +28,6 @@
         type: Boolean,
         default: false,
       },
-      bold: {
-        type: Boolean,
-        default: false,
-      }
     },
   }
 </script>
@@ -63,9 +59,5 @@
     /* swap the colours around */
     color: var(--background-colour);
     background-color: var(--primary-colour);
-  }
-
-  .bold {
-    font-weight: bold;
   }
 </style>
