@@ -54,7 +54,7 @@
   .sidebar a {
     border-bottom: solid 1px var(--faint-colour);
 
-    font-size: 24px;
+    font-size: 20px;
 
     /* disable default styling for links */
     text-decoration: none;
@@ -70,5 +70,7 @@
     text-align: left;
     padding-left: 48px;
     padding-right: 48px;
+
+    padding-bottom: 96px;
   }
 </style>

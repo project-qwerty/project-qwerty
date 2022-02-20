@@ -39,7 +39,7 @@
 
 <style scoped>
   .container {
-    padding: 20px;
+    padding: 0.5em;
 
     text-align: left;
   }
