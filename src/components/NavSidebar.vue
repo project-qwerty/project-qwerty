@@ -36,6 +36,8 @@
 
 
 <style>
+  /* This style is !!! NOT !!! scoped - it exports the sidebar-page-content class for pages with the navbar to use */
+
   .sidebar {
     /* external shape */
     position: fixed;
@@ -60,8 +62,13 @@
   }
 
   .sidebar-page-content {
+    /* take up the remaining space on the right */
     position: absolute;
     left: var(--sidebar-width);
     right: 0;
+
+    text-align: left;
+    padding-left: 48px;
+    padding-right: 48px;
   }
 </style>

@@ -12,6 +12,8 @@
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    /* TODO: delete all these global styles */
     text-align: center;
     color: black;
     user-select: none;

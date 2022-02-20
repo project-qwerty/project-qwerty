@@ -2,7 +2,7 @@
   <div>
     <NavSidebar />
 
-    <div class="sidebar-page-content about-page-content">
+    <div class="sidebar-page-content">
       <IconHeader :major="true" text="About" icon="circle-info" iconColour="var(--primary-colour)" />
 
       <p>Welcome to Project QWERTY, this is an app for people with aphasia.</p>
@@ -51,10 +51,5 @@ export default {
 
 
 <style scoped>
-  .about-page-content {
-    padding-left: 48px;
-    padding-right: 48px;
 
-    text-align: left;
-  }
 </style>

@@ -2,7 +2,7 @@
   <div>
     <NavSidebar />
 
-    <div class="sidebar-page-content page-wrapper">
+    <div class="sidebar-page-content">
       <IconHeader :major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
 
       <IconHeader text="Words" icon="list" />
@@ -176,13 +176,6 @@
 
 
 <style scoped>
-  .page-wrapper {
-    padding-left: 48px;
-    padding-right: 48px;
-
-    text-align: left;
-  }
-
   .control-row {
     display: flex;
     flex-direction: row;

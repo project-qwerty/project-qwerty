@@ -2,7 +2,7 @@
   <div>
     <NavSidebar />
 
-    <div class="sidebar-page-content page-wrapper">
+    <div class="sidebar-page-content">
       <h1 class="page-header">Custom Categories</h1>
       <div>
         <!-- Create new list -->
@@ -206,12 +206,6 @@
 
   .icon {
     height: 20px;
-  }
-
-  .page-wrapper {
-    width: 600px;
-    padding-left: 48px;
-    text-align: left;
   }
 
   .page-header {
