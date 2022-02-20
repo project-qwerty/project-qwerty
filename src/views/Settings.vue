@@ -150,13 +150,9 @@
 
 <style scoped>
   .page-wrapper {
-    width: 600px;
     padding-left: 48px;
-    text-align: left;
-  }
+    padding-right: 48px;
 
-  .slider {
-    margin-top: 26px;
-    margin-bottom: 52px;
+    text-align: left;
   }
 </style>
