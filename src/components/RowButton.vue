@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: convert to button tags everywhere -->
   <div class="container" :class="{'active': active}">
     <span v-if="icon" class="icon" :style="`background-color: ${iconColour};`">
       <font-awesome-icon :icon="icon" />
