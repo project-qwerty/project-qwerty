@@ -1,40 +1,57 @@
 <template>
   <div>
-    <div class="header">
-      <!-- Page header -->
-      <div class="heading">Select a category to practise</div>
-      <!-- Link to settings -->
-      <router-link class="link-to-settings" to="/settings">
-        <font-awesome-icon class="link-to-settings-cog" icon="gear" />
-      </router-link>
-    </div>
+    <NavSidebar />
 
-    <div class="categories-list">
+    <div class="sidebar-page-content">
+      <header>
+        <IconHeader
+            icon="keyboard"
+            iconColour="var(--primary-colour)"
+            text="Let's practice"
+            :major="true" />
 
-      <!-- Built-in word lists -->
-      <div v-for="list in builtInLists" v-bind:key="list" class="builtins-list">
-        <SelectButton :title="list" :isCustomList="false" :isSelected="builtInSelected.includes(list)" v-on:update:value="wordListClicked" :image="list + '.png'"/>
+        <ActionButton
+            class="start-button"
+            text="Start"
+            :enabled="anyListsSelected()"
+            v-on:click="$router.push('/keyboard')" />
+      </header>
+
+      <IconHeader text="Built-in lists" />
+
+      <div class="tiles">
+        <ToggleTile
+            v-for="(listName, index) in builtInLists" v-bind:key="index"
+            class="tile"
+            :text="listName"
+            :icon="inbuiltWordLists[listName].icon"
+            :colour="`var(--bright-colour-${(index % 16) + 1})`"
+            :enabled="listIsSelected(listName)"
+            v-on:update="wordListClicked($event)" />
       </div>
 
-      <!-- Custom word lists -->
-      <div v-for="(list, index) in customLists" v-bind:key="list" class="customs-list">
-        <SelectButton :title="list" :isCustomList="true" :isSelected="customSelected.includes(list)" v-on:update:value="wordListClicked" :image="'Custom_' + index + '.png'" />
+      <IconHeader text="Custom lists" />
+
+      <div class="tiles">
+        <ToggleTile
+            v-for="(listName, index) in customLists" v-bind:key="index"
+            class="tile"
+            :text="listName"
+            :colour="`var(--bright-colour-${(index % 16) + 1})`"
+            :enabled="listIsSelected(listName)"
+            v-on:update="wordListClicked($event)" />
       </div>
-
     </div>
-
-    <!-- Start button -->
-    <router-link class="start-button" to="/keyboard" v-if="!startButtonHidden">
-      <p class="start-text">START</p>
-      <font-awesome-icon class="start-chevron" icon="chevron-right" />
-    </router-link>
   </div>
 </template>
 
 <script>
-  import SelectButton from '@/components/SelectButton.vue';
-  import InbuiltWordlists from '@/components/InbuiltWordlists.js';
+  import InbuiltWordLists from '@/components/InbuiltWordlists.js';
   import LocalStorage from '@/components/LocalStorage.js';
+  import ActionButton from '@/components/ActionButton.vue';
+  import ToggleTile from '@/components/ToggleTile.vue';
+  import NavSidebar from '@/components/NavSidebar.vue';
+  import IconHeader from '@/components/IconHeader.vue';
 
   export default {
     data() {
@@ -45,45 +62,53 @@
         customLists: [],
         customSelected: [],
 
-        startButtonHidden: true,
-
-        inbuiltWordlists: InbuiltWordlists,
+        inbuiltWordLists: InbuiltWordLists,
       }
     },
     components: {
-      'SelectButton': SelectButton,
+      ActionButton,
+      ToggleTile,
+      NavSidebar,
+      IconHeader,
     },
     created() {
       this.loadEverything();
     },
     methods: {
+      listIsSelected(listName) {
+        return this.builtInSelected.includes(listName) || this.customSelected.includes(listName);
+      },
+      anyListsSelected() {
+        return this.builtInSelected.length + this.customSelected.length > 0;
+      },
       loadLists() {
-        this.builtInLists = Object.keys(this.inbuiltWordlists);
+        // the filters prevent the user from selecting lists with no words
+        this.builtInLists = Object.keys(this.inbuiltWordLists)
+          .filter(listName => this.inbuiltWordLists[listName].list.length > 0);
         this.customLists = LocalStorage.getCustomListNames()
-          // don't let the user select lists with no words
           .filter(listName => LocalStorage.getCustomList(listName).length > 0);
       },
       loadSelected() {
         this.builtInSelected = LocalStorage.getSelectedBuiltInListNames();
         this.customSelected = LocalStorage.getSelectedCustomListNames();
       },
-      setStartButtonVisibility() {
-        const anyListsSelected = this.builtInSelected.length + this.customSelected.length > 0;
-        this.startButtonHidden = !anyListsSelected;
-      },
       loadEverything() {
         this.loadLists();
         this.loadSelected();
-        this.setStartButtonVisibility();
       },
       wordListClicked(event) {
-        // event is emitted by SelectButton
-        //   {listName: name_of_list, isCustomList: true/false, isSelected: true/false}
+        // event is emitted by ToggleTile
+        //   {text: name_of_list, enabled: true/false}
 
-        if (!event.isCustomList) {
-          LocalStorage.setBuiltInListSelected(event.listName, event.isSelected);
+        const listName = event.text;
+        const isNowEnabled = event.enabled;
+
+        const isCustomList = this.builtInLists.includes(listName);
+
+        if (isCustomList) {
+          LocalStorage.setBuiltInListSelected(listName, isNowEnabled);
         } else {
-          LocalStorage.setCustomListSelected(event.listName, event.isSelected);
+          LocalStorage.setCustomListSelected(listName, isNowEnabled);
         }
 
         this.loadEverything();
@@ -94,44 +119,30 @@
 
 
 <style scoped>
-  .header {
+  header {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
   }
 
-  .heading {
-    font-size: 40px;
-    flex-grow: 1;
-  }
+  .start-button {
+    font-size: 24px;
 
-  .link-to-settings {
-    text-decoration: none;
-  }
-
-  .link-to-settings-cog {
-    font-size: 50px;
-    color: rgba(142, 142, 147);
-  }
-
-  .categories-list {
     display: flex;
     align-items: center;
-    justify-content: left;
+  }
+
+  .tiles {
+    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    margin-top: 10px;
+    gap: 20px;
   }
 
-  .builtins-list {
-    display: flex;
-    align-items: center;
-    margin: 10px;
-  }
+  .tile {
+    font-size: 16px;
 
-  .customs-list {
-    display: flex;
-    align-items: center;
-    margin: 10px;
+    width: 10em;
+    height: 8em;
   }
 </style>

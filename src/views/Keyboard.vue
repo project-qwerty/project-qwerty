@@ -196,7 +196,7 @@
       inbuiltCreated(wordlists) {
         const selectedBuiltInLists = LocalStorage.getSelectedBuiltInListNames();
         for (let listName of selectedBuiltInLists) {
-          this.wordlist = this.wordlist.concat(wordlists[listName]);
+          this.wordlist = this.wordlist.concat(wordlists[listName].list);
         }
       },
       shuffleWordlist(array) {

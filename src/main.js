@@ -20,6 +20,16 @@ import {
   faFont,
   faList,
   faStopwatch,
+  faStar,
+  faPerson,
+  faBasketShopping,
+  faStethoscope,
+  faCalculator,
+  faFaceGrinWide,
+  faMessage,
+  faClock,
+  faBriefcase,
+  faKeyboard,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import BFormInput from 'bootstrap-vue'
@@ -47,6 +57,16 @@ library.add(faRepeat)
 library.add(faFont)
 library.add(faList)
 library.add(faStopwatch)
+library.add(faStar)
+library.add(faPerson)
+library.add(faBasketShopping)
+library.add(faStethoscope)
+library.add(faCalculator)
+library.add(faFaceGrinWide)
+library.add(faMessage)
+library.add(faClock)
+library.add(faBriefcase)
+library.add(faKeyboard)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

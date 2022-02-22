@@ -64,7 +64,10 @@
     /* constant */
     --ring-diameter: 5px;
 
+    /* styling for the whole component */
     color: var(--background-colour);
+    text-align: center;
+
     /* --outer-colour is a dynamic variable */
     background-color: var(--outer-colour);
 

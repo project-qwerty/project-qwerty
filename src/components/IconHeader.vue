@@ -47,9 +47,9 @@
   }
 
   .minor {
-    font-size: 24px;
-    margin-top: 24px;
-    margin-bottom: 24px;
+    font-size: 28px;
+    margin-top: 28px;
+    margin-bottom: 28px;
   }
 
   .icon {
