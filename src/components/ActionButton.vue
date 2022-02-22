@@ -1,6 +1,8 @@
 <template>
   <div class="button-wrapper">
-    <div class="button">
+    <div class="button"
+        :class="{ disabled: !enabled, }"
+        v-on:click="onClick">
       <font-awesome-icon class="icon" v-if="icon" :icon="icon" />
       <span class="text">{{ text }}</span>
     </div>
@@ -10,10 +12,25 @@
 
 <script>
   export default {
-    props: [
-      'icon',
-      'text',
-    ],
+    props: {
+      icon: {
+        type: String,
+      },
+      text: {
+        type: String,
+      },
+      enabled: {
+        type: Boolean,
+        default: true,
+      },
+    },
+    methods: {
+      onClick() {
+        if (this.enabled) {
+          this.$emit('click');
+        }
+      },
+    },
   }
 </script>
 
@@ -46,5 +63,9 @@
 
   .text {
     font-weight: bold;
+  }
+
+  .disabled {
+    background-color: var(--faint-colour);
   }
 </style>
