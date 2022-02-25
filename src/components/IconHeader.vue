@@ -19,7 +19,7 @@
     props: {
       text: {
         type: String,
-        required: true,
+        default: '',
       },
       icon: {
         type: String,
