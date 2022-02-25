@@ -1,6 +1,8 @@
 <template>
   <!-- TODO: convert to button tags everywhere -->
-  <div class="container" :class="{'active': active}">
+  <div class="container"
+      :class="{'active': active}"
+      v-on:click="$emit('click')">
     <span v-if="icon" class="icon" :style="`background-color: ${iconColour};`">
       <font-awesome-icon :icon="icon" />
     </span>
@@ -54,6 +56,8 @@
 
   .text {
     margin-left: 10px;
+
+    padding-right: 1em;
   }
 
   .active {
