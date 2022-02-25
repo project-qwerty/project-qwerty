@@ -25,7 +25,7 @@
             class="tile"
             :text="listName"
             :icon="inbuiltWordLists[listName].icon"
-            :colour="`var(--bright-colour-${(index % 16) + 1})`"
+            :colour="`var(--bright-colour-${15 - (index % 16) + 1})`"
             :enabled="listIsSelected(listName)"
             v-on:update="wordListClicked($event)" />
       </div>
@@ -37,7 +37,7 @@
             v-for="(listName, index) in customLists" v-bind:key="index"
             class="tile"
             :text="listName"
-            :colour="`var(--bright-colour-${15 - (index % 16) + 1})`"
+            :colour="`var(--bright-colour-${(index % 16) + 1})`"
             :enabled="listIsSelected(listName)"
             v-on:update="wordListClicked($event)" />
       </div>
