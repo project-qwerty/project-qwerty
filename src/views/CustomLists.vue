@@ -30,7 +30,7 @@
             v-on:click="selectedList = listName"
             :text="listName"
             icon="list"
-            :iconColour="`var(--bright-colour-${(index % 16) + 1})`" />
+            :iconColour="Colours.stringToColour(listName)" />
       </div>
 
       <div class="individual-category-section"
@@ -67,6 +67,7 @@
 
 <script>
   import LocalStorage from '@/functions/LocalStorage.js'
+  import Colours from '@/functions/Colours.js'
 
   import NavSidebar from '@/components/NavSidebar.vue';
   import Modal from '@/components/Modal.vue';
@@ -93,6 +94,9 @@
         showNewCategoryModal: false,
         showImportCategoryModal: false,
       }
+    },
+    beforeCreate() {
+      this.Colours = Colours;
     },
     methods: {
       getLists() {

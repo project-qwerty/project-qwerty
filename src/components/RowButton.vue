@@ -3,7 +3,11 @@
   <div class="container"
       :class="{'active': active}"
       v-on:click="$emit('click')">
-    <span v-if="icon" class="icon" :style="`background-color: ${iconColour};`">
+    <span
+        v-if="icon"
+        class="icon"
+        :class="{ colouredIcon: iconColour !== null }"
+        :style="`--icon-colour: ${iconColour};`">
       <font-awesome-icon :icon="icon" />
     </span>
 
@@ -25,7 +29,7 @@
       },
       iconColour: {
         type: String,
-        default: 'initial',
+        default: null,
       },
       active: {
         type: Boolean,
@@ -50,8 +54,13 @@
     /* give the icon its shape */
     width: 1em;
     height: 1em;
-    padding: 0.6em;
-    border-radius: 10px;
+    padding: 0.5em;
+    border-radius: 0.5em;
+  }
+
+  .colouredIcon {
+    color: var(--background-colour);
+    background-color: var(--icon-colour);
   }
 
   .text {

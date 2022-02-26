@@ -1,11 +1,10 @@
 <template>
   <div>
     <header>
-      <!-- TODO: implement dynamic iconColour handling -->
       <IconHeader
           class="list-title"
           icon="list"
-          iconColour="teal"
+          :iconColour="Colours.stringToColour(listName)"
           :text="listName" />
 
       <ActionButton
@@ -58,6 +57,8 @@
 
 <script>
   import LocalStorage from '@/functions/LocalStorage.js';
+  import Colours from '@/functions/Colours.js'
+
   import IconHeader from '@/components/IconHeader.vue';
   import ActionButton from '@/components/ActionButton.vue';
   import Dropdown from '@/components/Dropdown.vue';
@@ -79,6 +80,9 @@
         showExportListModal: false,
         showDeleteListModal: false,
       }
+    },
+    beforeCreate() {
+      this.Colours = Colours;
     },
     methods: {
       getWords() {

@@ -25,9 +25,9 @@
             class="tile"
             :text="listName"
             :icon="BuiltInWordLists[listName].icon"
-            :colour="`var(--bright-colour-${15 - (index % 16) + 1})`"
-            :enabled="listIsSelected(listName)"
-            v-on:update="wordListClicked($event)" />
+            :colour="Colours.indexToColour(index)"
+            :enabled="builtInSelected.includes(listName)"
+            v-on:update="builtInListClicked($event)" />
       </div>
 
       <IconHeader text="Custom lists" />
@@ -37,9 +37,9 @@
             v-for="(listName, index) in customLists" v-bind:key="index"
             class="tile"
             :text="listName"
-            :colour="`var(--bright-colour-${(index % 16) + 1})`"
-            :enabled="listIsSelected(listName)"
-            v-on:update="wordListClicked($event)" />
+            :colour="Colours.stringToColour(listName)"
+            :enabled="customSelected.includes(listName)"
+            v-on:update="customListClicked($event)" />
       </div>
     </div>
   </div>
@@ -48,12 +48,20 @@
 <script>
   import BuiltInWordLists from '@/functions/BuiltInWordLists.js';
   import LocalStorage from '@/functions/LocalStorage.js';
+  import Colours from '@/functions/Colours.js'
+
   import ActionButton from '@/components/ActionButton.vue';
   import ToggleTile from '@/components/ToggleTile.vue';
   import NavSidebar from '@/components/NavSidebar.vue';
   import IconHeader from '@/components/IconHeader.vue';
 
   export default {
+    components: {
+      ActionButton,
+      ToggleTile,
+      NavSidebar,
+      IconHeader,
+    },
     data() {
       return {
         builtInLists: [],
@@ -61,23 +69,16 @@
 
         customLists: [],
         customSelected: [],
-
-        BuiltInWordLists: BuiltInWordLists,
       }
     },
-    components: {
-      ActionButton,
-      ToggleTile,
-      NavSidebar,
-      IconHeader,
+    beforeCreate() {
+      this.BuiltInWordLists = BuiltInWordLists;
+      this.Colours = Colours;
     },
     created() {
       this.loadEverything();
     },
     methods: {
-      listIsSelected(listName) {
-        return this.builtInSelected.includes(listName) || this.customSelected.includes(listName);
-      },
       anyListsSelected() {
         return this.builtInSelected.length + this.customSelected.length > 0;
       },
@@ -96,20 +97,17 @@
         this.loadLists();
         this.loadSelected();
       },
-      wordListClicked(event) {
+      builtInListClicked(event) {
         // event is emitted by ToggleTile
         //   {text: name_of_list, enabled: true/false}
+        LocalStorage.setBuiltInListSelected(event.text, event.enabled);
 
-        const listName = event.text;
-        const isNowEnabled = event.enabled;
-
-        const isCustomList = this.builtInLists.includes(listName);
-
-        if (isCustomList) {
-          LocalStorage.setBuiltInListSelected(listName, isNowEnabled);
-        } else {
-          LocalStorage.setCustomListSelected(listName, isNowEnabled);
-        }
+        this.loadEverything();
+      },
+      customListClicked(event) {
+        // event is emitted by ToggleTile
+        //   {text: name_of_list, enabled: true/false}
+        LocalStorage.setCustomListSelected(event.text, event.enabled);
 
         this.loadEverything();
       },

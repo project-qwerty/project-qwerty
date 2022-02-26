@@ -111,8 +111,8 @@
 
 
 <script>
-  // Importing the slider from a plug in, the slider is called veeno.
   import LocalStorage from '@/functions/LocalStorage.js';
+
   import NavSidebar from '@/components/NavSidebar.vue';
   import ShowAllSelector from '@/components/ShowAllSelector.vue';
   import IconHeader from '@/components/IconHeader.vue';
@@ -135,7 +135,6 @@
         },
       }
     },
-    // This sets the sliders so that they remember there last location.
     created() {
       this.wordDisplayTime = LocalStorage.getSetting('wordDisplayTime');
       this.wordsPerSession = LocalStorage.getSetting('wordsPerSession');

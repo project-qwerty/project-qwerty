@@ -67,6 +67,7 @@
     /* styling for the whole component */
     color: var(--background-colour);
     text-align: center;
+    text-shadow: 0px 0px 3px black;
 
     /* --outer-colour is a dynamic variable */
     background-color: var(--outer-colour);

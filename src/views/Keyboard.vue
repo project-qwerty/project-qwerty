@@ -24,14 +24,15 @@
 
 
 <script>
+  import BuiltInWordLists from '@/functions/BuiltInWordLists.js';
+  import LocalStorage from '@/functions/LocalStorage.js';
+
   import Keyboard from '../components/keyboard/KeyboardComponent';
   import WordList from '../components/WordList';
   import FinishedSessionOverlay from '../components/FinishedSessionOverlay';
   import NextWordOverlay from '@/components/NextWordOverlay.vue';
   import Progress from '../components/Progress';
-  import BuiltInWordLists from '@/functions/BuiltInWordLists.js';
   import Output from '@/components/Output.vue';
-  import LocalStorage from '@/functions/LocalStorage.js';
 
   export default {
     name: 'app',
