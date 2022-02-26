@@ -29,7 +29,7 @@
   import FinishedSessionOverlay from '../components/FinishedSessionOverlay';
   import NextWordOverlay from '@/components/NextWordOverlay.vue';
   import Progress from '../components/Progress';
-  import InbuiltWordlists from '@/components/InbuiltWordlists.js';
+  import BuiltInWordLists from '@/functions/BuiltInWordLists.js';
   import Output from '@/components/Output.vue';
   import LocalStorage from '@/functions/LocalStorage.js';
 
@@ -58,7 +58,7 @@
         wordRepetitions: 1,
         repetitionsRemaining: 1,
         key_pressed: false,
-        InbuiltWordlists: InbuiltWordlists,
+        BuiltInWordLists: BuiltInWordLists,
         assistanceLevel: null,
         mistakeMade: false,
         timerOnOff: false,  // Controls whether the timer is on or off
@@ -109,7 +109,7 @@
       const customWords = selectedCustomLists.flat();
       this.wordlist = this.wordlist.concat(customWords);
 
-      this.inbuiltCreated(this.InbuiltWordlists);
+      this.inbuiltCreated(this.BuiltInWordLists);
       this.wordlist = this.shuffleWordlist(this.wordlist);
     },
     computed: {

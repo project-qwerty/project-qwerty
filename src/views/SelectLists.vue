@@ -24,7 +24,7 @@
             v-for="(listName, index) in builtInLists" v-bind:key="index"
             class="tile"
             :text="listName"
-            :icon="inbuiltWordLists[listName].icon"
+            :icon="BuiltInWordLists[listName].icon"
             :colour="`var(--bright-colour-${15 - (index % 16) + 1})`"
             :enabled="listIsSelected(listName)"
             v-on:update="wordListClicked($event)" />
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-  import InbuiltWordLists from '@/components/InbuiltWordlists.js';
+  import BuiltInWordLists from '@/functions/BuiltInWordLists.js';
   import LocalStorage from '@/functions/LocalStorage.js';
   import ActionButton from '@/components/ActionButton.vue';
   import ToggleTile from '@/components/ToggleTile.vue';
@@ -62,7 +62,7 @@
         customLists: [],
         customSelected: [],
 
-        inbuiltWordLists: InbuiltWordLists,
+        BuiltInWordLists: BuiltInWordLists,
       }
     },
     components: {
@@ -83,8 +83,8 @@
       },
       loadLists() {
         // the filters prevent the user from selecting lists with no words
-        this.builtInLists = Object.keys(this.inbuiltWordLists)
-          .filter(listName => this.inbuiltWordLists[listName].list.length > 0);
+        this.builtInLists = Object.keys(this.BuiltInWordLists)
+          .filter(listName => this.BuiltInWordLists[listName].list.length > 0);
         this.customLists = LocalStorage.getCustomListNames()
           .filter(listName => LocalStorage.getCustomList(listName).length > 0);
       },

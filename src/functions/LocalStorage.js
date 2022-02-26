@@ -1,4 +1,4 @@
-import InbuiltWordlists from '@/components/InbuiltWordlists.js';
+import BuiltInWordLists from '@/functions/BuiltInWordLists.js';
 
 // Note: all the functions are top-level in this file so that they can reference each other when necessary.
 // export default mostly just binds them to exported names for external access.
@@ -254,7 +254,7 @@ export default {
 
   getSelectedBuiltInListNames: function() {
     // delete any selected lists that don't exist (any more)
-    const availableLists = Object.keys(InbuiltWordlists);
+    const availableLists = Object.keys(BuiltInWordLists);
     const selectedLists = getSelectedListNames('builtin');
     const deadLists = selectedLists.filter(selectedList => !availableLists.includes(selectedList));
     for (let listName of deadLists) {
