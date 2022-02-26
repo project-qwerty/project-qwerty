@@ -1,6 +1,7 @@
 <template>
   <div class="overlay" :class="{ hidden: !shown, }">
-    <div class="modal"
+    <div ref="modal"
+        class="modal"
         :style="{
           width: width,
           height: height,
@@ -27,6 +28,22 @@
       height: {
         type: String,
         default: '400px',
+      },
+    },
+    created() {
+      // the 'true' param means other click handlers will be processed too
+      window.addEventListener('click', this.handleGlobalClick, true);
+    },
+    beforeDestroy() {
+      window.removeEventListener('click', this.handleGlobalClick);
+    },
+    methods: {
+      handleGlobalClick(event) {
+        let clickIsInsideModal = this.$refs['modal'].contains(event.target);
+
+        if (this.shown && !clickIsInsideModal) {
+          this.$emit('click-out');
+        }
       },
     },
     watch: {
