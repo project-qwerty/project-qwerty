@@ -44,8 +44,16 @@
     },
     methods: {
       handleGlobalClick(event) {
+        const ellipsis = this.$refs['ellipsis'];
+
+        // this prevents an error which kinda crashes the page
+        // haven't figured out how to fix the error yet
+        if (!ellipsis) {
+          return;
+        }
+
+        let clickIsInsideEllipsis = ellipsis.contains(event.target);
         let currentlyClosed = !this.open;
-        let clickIsInsideEllipsis = this.$refs['ellipsis'].contains(event.target);
 
         this.open = currentlyClosed && clickIsInsideEllipsis;
       },

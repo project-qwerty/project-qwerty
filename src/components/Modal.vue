@@ -39,7 +39,15 @@
     },
     methods: {
       handleGlobalClick(event) {
-        let clickIsInsideModal = this.$refs['modal'].contains(event.target);
+        const modal = this.$refs['modal'];
+
+        // this prevents an error which kinda crashes the page
+        // haven't figured out how to fix the error yet
+        if (!modal) {
+          return;
+        }
+
+        let clickIsInsideModal = modal.contains(event.target);
 
         if (this.shown && !clickIsInsideModal) {
           this.$emit('click-out');
