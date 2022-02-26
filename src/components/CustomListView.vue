@@ -57,7 +57,7 @@
 
 
 <script>
-  import LocalStorage from '@/components/LocalStorage.js';
+  import LocalStorage from '@/functions/LocalStorage.js';
   import IconHeader from '@/components/IconHeader.vue';
   import ActionButton from '@/components/ActionButton.vue';
   import Dropdown from '@/components/Dropdown.vue';

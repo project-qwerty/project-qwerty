@@ -47,7 +47,7 @@
 
 <script>
   import InbuiltWordLists from '@/components/InbuiltWordlists.js';
-  import LocalStorage from '@/components/LocalStorage.js';
+  import LocalStorage from '@/functions/LocalStorage.js';
   import ActionButton from '@/components/ActionButton.vue';
   import ToggleTile from '@/components/ToggleTile.vue';
   import NavSidebar from '@/components/NavSidebar.vue';

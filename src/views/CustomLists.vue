@@ -66,7 +66,7 @@
 
 
 <script>
-  import LocalStorage from '@/components/LocalStorage.js'
+  import LocalStorage from '@/functions/LocalStorage.js'
 
   import NavSidebar from '@/components/NavSidebar.vue';
   import Modal from '@/components/Modal.vue';

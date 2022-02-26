@@ -112,7 +112,7 @@
 
 <script>
   // Importing the slider from a plug in, the slider is called veeno.
-  import LocalStorage from '@/components/LocalStorage.js';
+  import LocalStorage from '@/functions/LocalStorage.js';
   import NavSidebar from '@/components/NavSidebar.vue';
   import ShowAllSelector from '@/components/ShowAllSelector.vue';
   import IconHeader from '@/components/IconHeader.vue';

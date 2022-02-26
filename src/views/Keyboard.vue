@@ -31,7 +31,7 @@
   import Progress from '../components/Progress';
   import InbuiltWordlists from '@/components/InbuiltWordlists.js';
   import Output from '@/components/Output.vue';
-  import LocalStorage from '@/components/LocalStorage.js';
+  import LocalStorage from '@/functions/LocalStorage.js';
 
   export default {
     name: 'app',
