@@ -1,7 +1,11 @@
 <template>
   <div class="button-wrapper">
     <div class="button"
-        :class="{ disabled: !enabled, }"
+        :class="{
+          disabled: !enabled,
+          major: major,
+          minor: !major,
+        }"
         v-on:click="onClick">
       <font-awesome-icon class="icon" v-if="icon" :icon="icon" />
       <span class="text">{{ text }}</span>
@@ -20,6 +24,10 @@
         type: String,
       },
       enabled: {
+        type: Boolean,
+        default: true,
+      },
+      major: {
         type: Boolean,
         default: true,
       },
@@ -45,9 +53,6 @@
     flex-direction: row;
     justify-content: center;
 
-    color: var(--background-colour);
-    background-color: var(--primary-colour);
-
     border-radius: 2em;
 
     padding: 1em;
@@ -65,7 +70,23 @@
     font-weight: bold;
   }
 
-  .disabled {
+  .major {
+    color: var(--background-colour);
+    background-color: var(--primary-colour);
+  }
+
+  .minor {
+    color: var(--primary-colour);
+    background-color: transparent;
+  }
+
+  .disabled.major {
+    color: var(--background-colour);
     background-color: var(--faint-colour);
+  }
+
+  .disabled.minor {
+    color: var(--faint-colour);
+    background-color: transparent;
   }
 </style>
