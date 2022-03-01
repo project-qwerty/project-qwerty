@@ -1,11 +1,7 @@
 <template>
   <div class="button-wrapper">
     <div class="button"
-        :class="{
-          disabled: !enabled,
-          major: major,
-          minor: !major,
-        }"
+        :style="colourStyle()"
         v-on:click="onClick">
       <font-awesome-icon class="icon" v-if="icon" :icon="icon" />
       <span class="text">{{ text }}</span>
@@ -23,6 +19,10 @@
       text: {
         type: String,
       },
+      colour: {
+        type: String,
+        default: 'var(--primary-colour)',
+      },
       enabled: {
         type: Boolean,
         default: true,
@@ -36,6 +36,27 @@
       onClick() {
         if (this.enabled) {
           this.$emit('click');
+        }
+      },
+      colourStyle() {
+        var foreground = 'var(--background-colour)';
+        var background = this.colour;
+        var border = 'transparent';
+
+        if (!this.enabled) {
+          background = 'var(--faint-colour)';
+        }
+
+        if (!this.major) {
+          foreground = background;
+          background = 'transparent';
+          border = 'var(--faint-colour)';
+        }
+
+        return {
+          '--this-foreground-colour': foreground,
+          '--this-background-colour': background,
+          '--this-border-colour': border,
         }
       },
     },
@@ -60,6 +81,10 @@
     padding-right: 2em;
 
     min-width: 5em;
+
+    color: var(--this-foreground-colour);
+    background-color: var(--this-background-colour);
+    border: solid 1px var(--this-border-colour);
   }
 
   .icon {
