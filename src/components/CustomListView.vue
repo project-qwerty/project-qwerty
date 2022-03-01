@@ -22,10 +22,11 @@
           v-on:click="handleDropdownClick" />
     </header>
 
-    <div
-        v-for="word in getWords()"
-        v-bind:key="word">
-      <input :value="word">
+    <div class="words-wrapper">
+      <input
+          v-for="word in getWords()" v-bind:key="word"
+          class="qwerty-text-input"
+          :value="word">
     </div>
 
     <Modal
@@ -47,9 +48,18 @@
     <Modal
         :shown="showDeleteListModal"
         v-on:click-out="showDeleteListModal = false">
-      <h1>Delete list</h1>
-      <p>confirm the user really intends to delete the list</p>
-      <ActionButton text="yeah whatever just do it" v-on:click="showDeleteListModal = false" />
+      <h1>Delete category</h1>
+      <p class="delete-warning">Are you sure you want to delete <strong>{{ listName }}</strong>? This can't be undone.</p>
+      <div class="buttons-row">
+        <ActionButton
+            text="Cancel"
+            :major="false"
+            v-on:click="clickCancelDeleteCategory" />
+        <ActionButton
+            text="Delete"
+            colour="red"
+            v-on:click="clickDeleteCategory" />
+      </div>
     </Modal>
   </div>
 </template>
@@ -101,6 +111,15 @@
           this.showDeleteListModal = true;
         }
       },
+      clickCancelDeleteCategory() {
+        this.showDeleteListModal = false;
+      },
+      clickDeleteCategory() {
+        LocalStorage.deleteCustomList(this.listName);
+
+        this.showDeleteListModal = false;
+        this.$emit('close');
+      },
     },
   }
 </script>
@@ -125,5 +144,30 @@
 
   .new-word-button {
     margin-right: 16px;
+  }
+
+  .words-wrapper {
+    border-top: solid 1px var(--faint-colour);
+    border-bottom: solid 1px var(--faint-colour);
+  }
+
+  .qwerty-text-input {
+    display: block;
+
+    margin: 1em;
+
+    font-size: 20px;
+  }
+
+  .delete-warning {
+    font-size: 20px;
+  }
+
+  .buttons-row {
+    display: flex;
+    justify-content: end;
+
+    padding-left: 5em;
+    gap: 1em;
   }
 </style>

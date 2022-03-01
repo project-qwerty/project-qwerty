@@ -41,7 +41,9 @@
             text="Back"
             v-on:click="selectedList = null" />
 
-        <CustomListView :listName="selectedList" />
+        <CustomListView
+            :listName="selectedList"
+            v-on:close="selectedList = null"/>
       </div>
 
       <Modal
@@ -56,7 +58,7 @@
           <ActionButton
               text="Cancel"
               :major="false"
-              v-on:click="clickCancelCategory" />
+              v-on:click="clickCancelCreateCategory" />
           <ActionButton
               text="Create category"
               :enabled="isValidCategoryName(inputCategoryName)"
@@ -127,7 +129,7 @@
 
         return !isWhitespace && !isAlreadyAList;
       },
-      clickCancelCategory() {
+      clickCancelCreateCategory() {
         this.showNewCategoryModal = false;
         this.inputCategoryName = '';
       },
@@ -179,6 +181,9 @@
   .buttons-row {
     display: flex;
     justify-content: end;
+
+    padding-left: 5em;
+    gap: 1em;
   }
 
   .custom-list {
