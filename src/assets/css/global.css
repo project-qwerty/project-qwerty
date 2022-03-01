@@ -1,29 +1,41 @@
 :root {
-    --foreground-colour: #000000;
-    --background-colour: #ffffff;
-    --primary-colour: #2f80ed;
-    --faint-colour: #cccccc;
+  --foreground-colour: #000000;
+  --background-colour: #ffffff;
+  --primary-colour: #2f80ed;
+  --faint-colour: #cccccc;
 
-    --material-colour-1: #f44336;
-    --material-colour-2: #e91e63;
-    --material-colour-3: #9c27b0;
-    --material-colour-4: #673ab7;
-    --material-colour-5: #3f51b5;
-    --material-colour-6: #2196f3;
-    --material-colour-7: #03a9f4;
-    --material-colour-8: #00bcd4;
-    --material-colour-9: #009688;
-    --material-colour-10: #4caf50;
-    --material-colour-11: #8bc34a;
-    --material-colour-12: #cddc39;
-    --material-colour-13: #ffeb3b;
-    --material-colour-14: #ffc107;
-    --material-colour-15: #ff9800;
-    --material-colour-16: #ff5722;
+  --material-colour-1: #f44336;
+  --material-colour-2: #e91e63;
+  --material-colour-3: #9c27b0;
+  --material-colour-4: #673ab7;
+  --material-colour-5: #3f51b5;
+  --material-colour-6: #2196f3;
+  --material-colour-7: #03a9f4;
+  --material-colour-8: #00bcd4;
+  --material-colour-9: #009688;
+  --material-colour-10: #4caf50;
+  --material-colour-11: #8bc34a;
+  --material-colour-12: #cddc39;
+  --material-colour-13: #ffeb3b;
+  --material-colour-14: #ffc107;
+  --material-colour-15: #ff9800;
+  --material-colour-16: #ff5722;
 
-    --sidebar-width: 280px;
+  --sidebar-width: 280px;
 }
 
 body {
-    margin: 0;
+  margin: 0;
+}
+
+/* global classes */
+
+.qwerty-text-input {
+  /* this makes width: 100% work correctly with the padding */
+  box-sizing: border-box;
+
+  padding: 0.5em;
+
+  border: solid 2px var(--faint-colour);
+  border-radius: 0.5em;
 }

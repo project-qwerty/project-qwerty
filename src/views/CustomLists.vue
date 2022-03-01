@@ -49,7 +49,7 @@
           v-on:click-out="showNewCategoryModal = false">
         <h1>Add category</h1>
         <input
-            class="new-category"
+            class="qwerty-text-input"
             placeholder="New category"
             v-model="inputCategoryName">
         <div class="buttons-row">
@@ -168,16 +168,10 @@
     margin-bottom: 1em;
   }
 
-  input.new-category {
+  .qwerty-text-input {
     width: 100%;
-    /* this makes width: 100% work correctly with the padding */
-    box-sizing: border-box;
 
-    padding: 0.5em;
     margin-bottom: 1em;
-
-    border: solid 2px var(--faint-colour);
-    border-radius: 0.5em;
 
     font-size: 20px;
   }
