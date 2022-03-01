@@ -23,11 +23,11 @@
       },
       width: {
         type: String,
-        default: '600px',
+        default: 'initial',
       },
       height: {
         type: String,
-        default: '400px',
+        default: 'initial',
       },
     },
     created() {
