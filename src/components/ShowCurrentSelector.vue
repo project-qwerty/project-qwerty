@@ -96,6 +96,8 @@
   }
 
   .button-outer {
+    cursor: pointer;
+
     /* shape */
     width: 1em;
     height: 1em;

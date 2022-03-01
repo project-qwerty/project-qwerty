@@ -40,6 +40,8 @@
   }
 
   .option {
+    cursor: pointer;
+
     /* this makes all the options equally sized */
     flex: 1 1 0px;
 

@@ -61,6 +61,8 @@
 
 <style scoped>
   .tile-outer {
+    cursor: pointer;
+
     /* constant */
     --ring-diameter: 5px;
 

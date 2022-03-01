@@ -69,6 +69,8 @@
   }
 
   .ellipsis {
+    cursor: pointer;
+
     font-size: 28px;
 
     /* center the ellipsis icon */

@@ -180,7 +180,7 @@
 
   .buttons-row {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 
     padding-left: 5em;
     gap: 1em;

@@ -70,6 +70,8 @@
   }
 
   .button {
+    cursor: pointer;
+
     display: flex;
     flex-direction: row;
     justify-content: center;

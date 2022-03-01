@@ -42,6 +42,8 @@
 
 <style scoped>
   .container {
+    cursor: pointer;
+
     padding: 0.5em;
 
     text-align: left;

@@ -25,6 +25,8 @@
   }
 
   summary {
+    cursor: pointer;
+
     padding-top: 24px;
     padding-bottom: 24px;
 
