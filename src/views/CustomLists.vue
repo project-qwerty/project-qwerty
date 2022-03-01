@@ -48,8 +48,20 @@
           :shown="showNewCategoryModal"
           v-on:click-out="showNewCategoryModal = false">
         <h1>Add category</h1>
-        <input placeholder="this is where you will type the category name">
-        <ActionButton text="ok bye" v-on:click="showNewCategoryModal = false" />
+        <input
+            class="new-category"
+            placeholder="New category"
+            v-model="inputCategoryName">
+        <div class="buttons-row">
+          <ActionButton
+              text="Cancel"
+              :major="false"
+              v-on:click="clickCancelCategory" />
+          <ActionButton
+              text="Create category"
+              :enabled="isValidCategoryName(inputCategoryName)"
+              v-on:click="clickCreateCategory" />
+        </div>
       </Modal>
 
       <Modal
@@ -93,6 +105,8 @@
 
         showNewCategoryModal: false,
         showImportCategoryModal: false,
+
+        inputCategoryName: '',
       }
     },
     beforeCreate() {
@@ -106,6 +120,29 @@
         if (operation === 'import') {
           this.showImportCategoryModal = true;
         }
+      },
+      isValidCategoryName(input) {
+        const isWhitespace = input.replace(/\s/g, '') === '';
+        const isAlreadyAList = this.getLists().some(listName => listName === input);
+
+        return !isWhitespace && !isAlreadyAList;
+      },
+      clickCancelCategory() {
+        this.showNewCategoryModal = false;
+        this.inputCategoryName = '';
+      },
+      clickCreateCategory() {
+        // prevent creating categories with invalid names
+        // the action button should be disabled but you never know
+        if (!this.isValidCategoryName(this.inputCategoryName)) {
+          return;
+        }
+
+        LocalStorage.createCustomList(this.inputCategoryName);
+
+        // clean up
+        this.showNewCategoryModal = false;
+        this.inputCategoryName = '';
       },
     },
   }
@@ -125,6 +162,29 @@
 
   .new-category-button {
     margin-right: 16px;
+  }
+
+  h1 {
+    margin-bottom: 1em;
+  }
+
+  input.new-category {
+    width: 100%;
+    /* this makes width: 100% work correctly with the padding */
+    box-sizing: border-box;
+
+    padding: 0.5em;
+    margin-bottom: 1em;
+
+    border: solid 2px var(--faint-colour);
+    border-radius: 0.5em;
+
+    font-size: 20px;
+  }
+
+  .buttons-row {
+    display: flex;
+    justify-content: end;
   }
 
   .custom-list {

@@ -80,6 +80,7 @@ function setSetting(name, val) {
 
 // Custom lists handling
 
+// TODO: the order of lists isn't stable, that's not great
 function getCustomListNames() {
   const customListKeys = Object.keys(localStorage)
     .filter(key => key.startsWith('custom_lists.'));
