@@ -1,6 +1,6 @@
 <template>
   <div class="key" :class="{'disabled': !enable}" @mousedown="click">
-    <font-awesome-icon v-if="char == 'backspace'" class="backspace-icon" icon="backspace" />
+    <font-awesome-icon v-if="char == 'backspace'" class="backspace-icon" icon="delete-left" />
     <p>{{char}}</p>
   </div>
 </template>
