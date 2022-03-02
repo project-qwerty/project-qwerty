@@ -10,8 +10,7 @@
       <ActionButton
           class="new-word-button"
           icon="plus"
-          text="New word"
-          v-on:click="showNewWordModal = true" />
+          text="New word"/>
 
       <Dropdown
           class="options-menu"
@@ -24,18 +23,11 @@
 
     <div class="words-wrapper">
       <input
-          v-for="word in getWords()" v-bind:key="word"
+          v-for="(word, index) in wordValues" v-bind:key="index"
           class="qwerty-text-input"
-          :value="word">
+          v-model="wordValues[index]"
+          @input="updateWord(index)">
     </div>
-
-    <Modal
-        :shown="showNewWordModal"
-        v-on:click-out="showNewWordModal = false">
-      <h1>Add word</h1>
-      <ActionButton text="yes, that is the plan" v-on:click="showNewWordModal = false" />
-      <p>actually this modal probably won't exist at all and the button will just immediately create a new word</p>
-    </Modal>
 
     <Modal
         :shown="showExportListModal"
@@ -89,7 +81,14 @@
         showNewWordModal: false,
         showExportListModal: false,
         showDeleteListModal: false,
+
+        wordValues: null,
       }
+    },
+    watch: {
+      listName() {
+        this.wordValues = this.getWords();
+      },
     },
     beforeCreate() {
       this.Colours = Colours;
@@ -99,7 +98,7 @@
         // this conditional allows us to create the view without a list provided,
         // with the intent to change it later
         if (!this.listName) {
-          return [];
+          return null;
         }
 
         return LocalStorage.getCustomList(this.listName);
@@ -119,6 +118,9 @@
 
         this.showDeleteListModal = false;
         this.$emit('close');
+      },
+      updateWord(index) {
+        LocalStorage.editCustomWord(this.listName, index, this.wordValues[index]);
       },
     },
   }
@@ -165,7 +167,7 @@
 
   .buttons-row {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 
     padding-left: 5em;
     gap: 1em;
