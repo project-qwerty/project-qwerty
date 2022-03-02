@@ -106,7 +106,7 @@
 
       // Import custom lists
       const selectedCustomLists = LocalStorage.getSelectedCustomListNames()
-          .map(listName => LocalStorage.getCustomList(listName));
+          .map(listName => LocalStorage.getCustomListValidWords(listName));
       const customWords = selectedCustomLists.flat();
       this.wordlist = this.wordlist.concat(customWords);
 

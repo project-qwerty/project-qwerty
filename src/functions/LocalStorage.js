@@ -1,4 +1,5 @@
 import BuiltInWordLists from '@/functions/BuiltInWordLists.js';
+import Validation from '@/functions/Validation.js';
 
 // Note: all the functions are top-level in this file so that they can reference each other when necessary.
 // export default mostly just binds them to exported names for external access.
@@ -99,6 +100,12 @@ function getCustomList(name) {
 
   const stringData = localStorage.getItem(listKey);
   return JSON.parse(stringData);
+}
+
+function getCustomListValidWords(name) {
+  var list = getCustomList(name);
+  list = list.filter(Validation.isValidWord);
+  return list;
 }
 
 function createCustomList(name) {
@@ -267,6 +274,7 @@ export default {
 
   getCustomListNames: getCustomListNames,
   getCustomList: getCustomList,
+  getCustomListValidWords: getCustomListValidWords,
   createCustomList: createCustomList,
   deleteCustomList: deleteCustomList,
   addCustomWord: addCustomWord,
