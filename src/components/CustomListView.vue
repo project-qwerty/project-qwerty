@@ -27,6 +27,7 @@
       <input
           v-for="(word, index) in wordValues" v-bind:key="index"
           class="qwerty-text-input"
+          :class="{ invalid: !Validation.isValidWord(word) }"
           v-model="wordValues[index]"
           @input="updateWord(index)">
     </div>
@@ -62,6 +63,7 @@
 <script>
   import LocalStorage from '@/functions/LocalStorage.js';
   import Colours from '@/functions/Colours.js'
+  import Validation from '@/functions/Validation.js';
 
   import IconHeader from '@/components/IconHeader.vue';
   import ActionButton from '@/components/ActionButton.vue';
@@ -96,6 +98,7 @@
     },
     beforeCreate() {
       this.Colours = Colours;
+      this.Validation = Validation;
     },
     methods: {
       loadWords() {
@@ -180,6 +183,10 @@
     margin: 1em;
 
     font-size: 20px;
+  }
+
+  .qwerty-text-input.invalid {
+    border: solid 2px red;
   }
 
   .delete-warning {
