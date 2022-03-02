@@ -17,6 +17,7 @@
           class="options-menu"
           :options="[
             { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
+            // TODO: rename category
             { label: 'Delete category', icon: 'trash-can', action: 'delete' },
           ]"
           v-on:click="handleDropdownClick" />
@@ -135,7 +136,11 @@
         this.loadWords();
       },
       updateWord(index) {
-        LocalStorage.editCustomWord(this.listName, index, this.wordValues[index]);
+        var newValue = this.wordValues[index];
+
+        newValue = newValue.replace(/[^A-Za-z ]/g, '');
+
+        LocalStorage.editCustomWord(this.listName, index, newValue);
         this.loadWords();
       },
     },
