@@ -10,7 +10,8 @@
       <ActionButton
           class="new-word-button"
           icon="plus"
-          text="New word"/>
+          text="New word"
+          v-on:click="clickAddWord" />
 
       <Dropdown
           class="options-menu"
@@ -78,6 +79,8 @@
     },
     data() {
       return {
+        newWordPlaceholder: 'new word',
+
         showNewWordModal: false,
         showExportListModal: false,
         showDeleteListModal: false,
@@ -87,13 +90,16 @@
     },
     watch: {
       listName() {
-        this.wordValues = this.getWords();
+        this.loadWords();
       },
     },
     beforeCreate() {
       this.Colours = Colours;
     },
     methods: {
+      loadWords() {
+        this.wordValues = this.getWords();
+      },
       getWords() {
         // this conditional allows us to create the view without a list provided,
         // with the intent to change it later
@@ -119,8 +125,18 @@
         this.showDeleteListModal = false;
         this.$emit('close');
       },
+      clickAddWord() {
+        // we don't want the user to add more than one word at a time
+        if (this.wordValues[-1] === this.newWordPlaceholder) {
+          return;
+        }
+
+        LocalStorage.addCustomWord(this.listName, this.newWordPlaceholder);
+        this.loadWords();
+      },
       updateWord(index) {
         LocalStorage.editCustomWord(this.listName, index, this.wordValues[index]);
+        this.loadWords();
       },
     },
   }
