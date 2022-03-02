@@ -32,7 +32,7 @@
     },
     created() {
       // the 'true' param means other click handlers will be processed too
-      window.addEventListener('click', this.handleGlobalClick, true);
+      window.addEventListener('click', this.handleGlobalClick, { passive: true, capture: true });
     },
     beforeDestroy() {
       window.removeEventListener('click', this.handleGlobalClick);
