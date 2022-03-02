@@ -144,6 +144,27 @@ function addCustomWord(listName, word) {
   localStorage.setItem(listKey, JSON.stringify(list));
 }
 
+function editCustomWord(listName, index, newValue) {
+  const listKey = 'custom_lists.' + listName;
+
+  if (!localStorage.hasOwnProperty(listKey)) {
+    throw new Error(`not a custom list: "${listName}"`);
+  }
+
+  const listStringData = localStorage.getItem(listKey);
+  let list = JSON.parse(listStringData);
+
+  if (index >= list.length) {
+    throw new Error(`index out of bounds: index = "${index}", ${listName}.length = ${list.length}`);
+  }
+
+  // we normalize the words to lowercase
+  newValue = newValue.toLowerCase();
+
+  list[index] = newValue;
+  localStorage.setItem(listKey, JSON.stringify(list));
+}
+
 function deleteCustomWord(listName, word) {
   const listKey = 'custom_lists.' + listName;
 
@@ -249,6 +270,7 @@ export default {
   createCustomList: createCustomList,
   deleteCustomList: deleteCustomList,
   addCustomWord: addCustomWord,
+  editCustomWord: editCustomWord,
   deleteCustomWord: deleteCustomWord,
   exportListToJson: exportListToJson,
   importListFromJson: importListFromJson,
