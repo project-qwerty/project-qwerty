@@ -48,7 +48,7 @@
 
       <Modal
           :shown="showNewCategoryModal"
-          v-on:click-out="showNewCategoryModal = false">
+          v-on:click-out="cleanUpCreateCategory">
         <h1>Add category</h1>
         <input
             class="qwerty-text-input"
@@ -58,7 +58,7 @@
           <ActionButton
               text="Cancel"
               :major="false"
-              v-on:click="clickCancelCreateCategory" />
+              v-on:click="cleanUpCreateCategory" />
           <ActionButton
               text="Create category"
               :enabled="Validation.isValidCategoryName(inputCategoryName)"
@@ -125,7 +125,7 @@
           this.showImportCategoryModal = true;
         }
       },
-      clickCancelCreateCategory() {
+      cleanUpCreateCategory() {
         this.showNewCategoryModal = false;
         this.inputCategoryName = '';
       },
@@ -138,9 +138,7 @@
 
         LocalStorage.createCustomList(this.inputCategoryName);
 
-        // clean up
-        this.showNewCategoryModal = false;
-        this.inputCategoryName = '';
+        this.cleanUpCreateCategory();
       },
     },
   }

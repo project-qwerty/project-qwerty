@@ -51,8 +51,8 @@
 
     <Modal
         :shown="showRenameListModal"
-        v-on:click-out="clickCancelRenameCategory">
-      <h1>Rename list</h1>
+        v-on:click-out="cleanUpRenameCategory">
+      <h1>Rename category</h1>
       <input
           class="qwerty-text-input modal-text-input"
           placeholder="New category name"
@@ -61,7 +61,7 @@
         <ActionButton
             text="Cancel"
             :major="false"
-            v-on:click="clickCancelRenameCategory" />
+            v-on:click="cleanUpRenameCategory" />
         <ActionButton
             text="Rename category"
             :enabled="Validation.isValidCategoryName(inputCategoryName)"
@@ -71,14 +71,14 @@
 
     <Modal
         :shown="showDeleteListModal"
-        v-on:click-out="showDeleteListModal = false">
+        v-on:click-out="cleanUpDeleteCategory">
       <h1>Delete category</h1>
       <p class="delete-warning">Are you sure you want to delete <strong>{{ listName }}</strong>? This can't be undone.</p>
       <div class="buttons-row">
         <ActionButton
             text="Cancel"
             :major="false"
-            v-on:click="clickCancelDeleteCategory" />
+            v-on:click="cleanUpDeleteCategory" />
         <ActionButton
             text="Delete"
             colour="red"
@@ -121,7 +121,7 @@
 
         wordValues: null,
 
-        inputCategoryName: this.listName,
+        inputCategoryName: null,
       }
     },
     watch: {
@@ -136,6 +136,7 @@
     methods: {
       loadWords() {
         this.wordValues = this.getWords();
+        this.inputCategoryName = this.listName;
       },
       getWords() {
         // this conditional allows us to create the view without a list provided,
@@ -155,8 +156,7 @@
           this.showDeleteListModal = true;
         }
       },
-      // TODO: convert to cleanUpRenameCategory
-      clickCancelRenameCategory() {
+      cleanUpRenameCategory() {
         this.showRenameListModal = false;
         this.inputCategoryName = this.listName;
       },
@@ -170,17 +170,15 @@
         LocalStorage.renameCustomList(this.listName, this.inputCategoryName);
         this.listName = this.inputCategoryName;
 
-        // clean up
-        this.showRenameListModal = false;
-        this.inputCategoryName = this.listName;
+        this.cleanUpRenameCategory();
       },
-      clickCancelDeleteCategory() {
+      cleanUpDeleteCategory() {
         this.showDeleteListModal = false;
       },
       clickDeleteCategory() {
         LocalStorage.deleteCustomList(this.listName);
 
-        this.showDeleteListModal = false;
+        this.cleanUpDeleteCategory();
         this.$emit('close');
       },
       clickAddWord() {
