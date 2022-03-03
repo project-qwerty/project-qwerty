@@ -118,6 +118,24 @@ function createCustomList(name) {
   localStorage.setItem(listKey, '[]');
 }
 
+function renameCustomList(oldName, newName) {
+  const oldListKey = 'custom_lists.' + oldName;
+
+  if (!localStorage.hasOwnProperty(oldListKey)) {
+    throw new Error(`not a custom list: "${oldName}"`);
+  }
+
+  const newListKey = 'custom_lists.' + newName;
+
+  if (localStorage.hasOwnProperty(newListKey)) {
+    throw new Error(`already a custom list: "${newName}"`);
+  }
+
+  const listContents = localStorage.getItem(oldListKey);
+  localStorage.setItem(newListKey, listContents);
+  localStorage.removeItem(oldListKey);
+}
+
 function deleteCustomList(name) {
   const listKey = 'custom_lists.' + name;
 
@@ -268,6 +286,7 @@ export default {
   getCustomList: getCustomList,
   getCustomListValidWords: getCustomListValidWords,
   createCustomList: createCustomList,
+  renameCustomList: renameCustomList,
   deleteCustomList: deleteCustomList,
   addCustomWord: addCustomWord,
   editCustomWord: editCustomWord,

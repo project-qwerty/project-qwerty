@@ -36,6 +36,7 @@ import {
   faRightFromBracket,
   faRightToBracket,
   faX,
+  faICursor,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import BFormInput from 'bootstrap-vue'
@@ -79,6 +80,7 @@ library.add(faTrashCan)
 library.add(faRightFromBracket)
 library.add(faRightToBracket)
 library.add(faX)
+library.add(faICursor)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

@@ -61,7 +61,7 @@
               v-on:click="clickCancelCreateCategory" />
           <ActionButton
               text="Create category"
-              :enabled="isValidCategoryName(inputCategoryName)"
+              :enabled="Validation.isValidCategoryName(inputCategoryName)"
               v-on:click="clickCreateCategory" />
         </div>
       </Modal>
@@ -82,6 +82,7 @@
 <script>
   import LocalStorage from '@/functions/LocalStorage.js'
   import Colours from '@/functions/Colours.js'
+  import Validation from '@/functions/Validation.js';
 
   import NavSidebar from '@/components/NavSidebar.vue';
   import Modal from '@/components/Modal.vue';
@@ -113,6 +114,7 @@
     },
     beforeCreate() {
       this.Colours = Colours;
+      this.Validation = Validation;
     },
     methods: {
       getLists() {
@@ -123,12 +125,6 @@
           this.showImportCategoryModal = true;
         }
       },
-      isValidCategoryName(input) {
-        const isWhitespace = input.replace(/\s/g, '') === '';
-        const isAlreadyAList = this.getLists().some(listName => listName === input);
-
-        return !isWhitespace && !isAlreadyAList;
-      },
       clickCancelCreateCategory() {
         this.showNewCategoryModal = false;
         this.inputCategoryName = '';
@@ -136,7 +132,7 @@
       clickCreateCategory() {
         // prevent creating categories with invalid names
         // the action button should be disabled but you never know
-        if (!this.isValidCategoryName(this.inputCategoryName)) {
+        if (!Validation.isValidCategoryName(this.inputCategoryName)) {
           return;
         }
 

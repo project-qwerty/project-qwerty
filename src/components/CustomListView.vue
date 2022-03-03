@@ -17,7 +17,7 @@
           class="options-menu"
           :options="[
             { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
-            // TODO: rename category
+            { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
             { label: 'Delete category', icon: 'trash-can', action: 'delete' },
           ]"
           v-on:click="handleDropdownClick" />
@@ -47,6 +47,26 @@
       <h1>Export list</h1>
       <p>We will probably have a click to copy button and also a copyable text area</p>
       <ActionButton text="ok you do that" v-on:click="showExportListModal = false" />
+    </Modal>
+
+    <Modal
+        :shown="showRenameListModal"
+        v-on:click-out="clickCancelRenameCategory">
+      <h1>Rename list</h1>
+      <input
+          class="qwerty-text-input modal-text-input"
+          placeholder="New category name"
+          v-model="inputCategoryName">
+      <div class="buttons-row">
+        <ActionButton
+            text="Cancel"
+            :major="false"
+            v-on:click="clickCancelRenameCategory" />
+        <ActionButton
+            text="Rename category"
+            :enabled="Validation.isValidCategoryName(inputCategoryName)"
+            v-on:click="clickRenameCategory" />
+      </div>
     </Modal>
 
     <Modal
@@ -95,11 +115,13 @@
       return {
         newWordPlaceholder: 'new word',
 
-        showNewWordModal: false,
+        showRenameListModal: false,
         showExportListModal: false,
         showDeleteListModal: false,
 
         wordValues: null,
+
+        inputCategoryName: this.listName,
       }
     },
     watch: {
@@ -125,11 +147,32 @@
         return LocalStorage.getCustomList(this.listName);
       },
       handleDropdownClick(operation) {
-        if (operation === 'export') {
+        if (operation === 'rename') {
+          this.showRenameListModal = true;
+        } else if (operation === 'export') {
           this.showExportListModal = true;
         } else if (operation === 'delete') {
           this.showDeleteListModal = true;
         }
+      },
+      // TODO: convert to cleanUpRenameCategory
+      clickCancelRenameCategory() {
+        this.showRenameListModal = false;
+        this.inputCategoryName = this.listName;
+      },
+      clickRenameCategory() {
+        // prevent renaming to an invalid name
+        // the action button should be disabled but you never know
+        if (!Validation.isValidCategoryName(this.inputCategoryName)) {
+          return;
+        }
+
+        LocalStorage.renameCustomList(this.listName, this.inputCategoryName);
+        this.listName = this.inputCategoryName;
+
+        // clean up
+        this.showRenameListModal = false;
+        this.inputCategoryName = this.listName;
       },
       clickCancelDeleteCategory() {
         this.showDeleteListModal = false;
@@ -204,12 +247,20 @@
     margin-right: 1em;
   }
 
-  .qwerty-text-input {
+  .word-row .qwerty-text-input {
     display: block;
   }
 
   .qwerty-text-input.invalid {
     border: solid 2px red;
+  }
+
+  .modal-text-input {
+    width: 100%;
+
+    margin-bottom: 1em;
+
+    font-size: 20px;
   }
 
   .delete-warning {
