@@ -23,13 +23,22 @@
           v-on:click="handleDropdownClick" />
     </header>
 
-    <div class="words-wrapper">
-      <input
-          v-for="(word, index) in wordValues" v-bind:key="index"
-          class="qwerty-text-input"
-          :class="{ invalid: !Validation.isValidWord(word) }"
-          v-model="wordValues[index]"
-          @input="updateWord(index)">
+    <div class="word-list-wrapper">
+      <div
+          class="word-row"
+          v-for="(word, index) in wordValues" v-bind:key="index">
+
+        <input
+            class="qwerty-text-input"
+            :class="{ invalid: !Validation.isValidWord(word) }"
+            v-model="wordValues[index]"
+            @input="updateWord(index)">
+
+        <IconButton
+            icon="x"
+            v-on:click="clickDeleteWord(index)" />
+
+      </div>
     </div>
 
     <Modal
@@ -69,6 +78,7 @@
   import ActionButton from '@/components/ActionButton.vue';
   import Dropdown from '@/components/Dropdown.vue';
   import Modal from '@/components/Modal.vue';
+  import IconButton from '@/components/IconButton.vue';
 
   export default {
     components: {
@@ -76,6 +86,7 @@
       ActionButton,
       Dropdown,
       Modal,
+      IconButton,
     },
     props: {
       listName: String,
@@ -142,6 +153,10 @@
         LocalStorage.editCustomWord(this.listName, index, this.wordValues[index]);
         this.loadWords();
       },
+      clickDeleteWord(index) {
+        LocalStorage.deleteCustomWord(this.listName, index);
+        this.loadWords();
+      },
     },
   }
 </script>
@@ -168,17 +183,29 @@
     margin-right: 16px;
   }
 
-  .words-wrapper {
+  .word-list-wrapper {
     border-top: solid 1px var(--faint-colour);
     border-bottom: solid 1px var(--faint-colour);
   }
 
+  .word-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .word-row * {
+    font-size: 20px;
+
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+
   .qwerty-text-input {
     display: block;
-
-    margin: 1em;
-
-    font-size: 20px;
   }
 
   .qwerty-text-input.invalid {
