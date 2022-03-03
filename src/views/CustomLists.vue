@@ -73,6 +73,8 @@
         <textarea placeholder="this is where you will paste the JSON"></textarea>
         <ActionButton text="ok bye" v-on:click="showImportCategoryModal = false" />
       </Modal>
+
+      <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
     </div>
   </div>
 </template>
@@ -122,7 +124,7 @@
       },
       handleDropdownClick(operation) {
         if (operation === 'import') {
-          this.showImportCategoryModal = true;
+          this.clickImportCategory();
         }
       },
       cleanUpCreateCategory() {
@@ -139,6 +141,20 @@
         LocalStorage.createCustomList(this.inputCategoryName);
 
         this.cleanUpCreateCategory();
+      },
+      getFilePicker() {
+        return this.$refs['file-picker'];
+      },
+      clickImportCategory() {
+        this.getFilePicker().click();
+      },
+      async handleImportFiles(event) {
+        for (const file of event.target.files) {
+          const contents = await file.text();
+          LocalStorage.importListFromJson(contents);
+        }
+
+        this.$forceUpdate();
       },
     },
   }

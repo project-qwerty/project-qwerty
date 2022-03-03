@@ -239,7 +239,7 @@ function importListFromJson(stringData) {
     throw new Error('JSON data is invalid');
   }
 
-  createCustomList(data.name);
+  createCustomList(data.name);  // this can throw errors
   for (let word of data.words) {
     addCustomWord(data.name, word);
   }
