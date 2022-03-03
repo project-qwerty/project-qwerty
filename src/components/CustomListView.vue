@@ -16,8 +16,8 @@
       <Dropdown
           class="options-menu"
           :options="[
-            { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
             { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
+            { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
             { label: 'Delete category', icon: 'trash-can', action: 'delete' },
           ]"
           v-on:click="handleDropdownClick" />
@@ -151,7 +151,7 @@
         if (operation === 'rename') {
           this.showRenameListModal = true;
         } else if (operation === 'export') {
-          this.showExportListModal = true;
+          this.clickExportCategory();
         } else if (operation === 'delete') {
           this.showDeleteListModal = true;
         }
@@ -171,6 +171,30 @@
         this.listName = this.inputCategoryName;
 
         this.cleanUpRenameCategory();
+      },
+      sanitizeFileName(fileName) {
+        const illegalCharacters = ['<', '>', ':', '"', '/', '\\', '|', '?', '*'];
+
+        for (const char of illegalCharacters) {
+          fileName = fileName.replace(char, '_');
+        }
+
+        return fileName;
+      },
+      downloadTextAsJson(text) {
+        // adapted from https://stackoverflow.com/a/60377870/4809728
+        const tempElement = document.createElement('a');
+        tempElement.href = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+
+        const fileName = this.sanitizeFileName(this.listName) + '.json';
+        tempElement.setAttribute('download', fileName);
+
+        document.body.appendChild(tempElement);
+        tempElement.click();
+        document.body.removeChild(tempElement);
+      },
+      clickExportCategory() {
+        this.downloadTextAsJson(LocalStorage.exportListToJson(this.listName));
       },
       cleanUpDeleteCategory() {
         this.showDeleteListModal = false;
