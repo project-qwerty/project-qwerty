@@ -172,7 +172,7 @@ function editCustomWord(listName, index, newValue) {
   localStorage.setItem(listKey, JSON.stringify(list));
 }
 
-function deleteCustomWord(listName, word) {
+function deleteCustomWord(listName, index) {
   const listKey = 'custom_lists.' + listName;
 
   if (!localStorage.hasOwnProperty(listKey)) {
@@ -182,16 +182,8 @@ function deleteCustomWord(listName, word) {
   const listStringData = localStorage.getItem(listKey);
   let list = JSON.parse(listStringData);
 
-  // we normalize the words to lowercase
-  word = word.toLowerCase();
-
-  if (!list.includes(word)) {
-    // silently do nothing
-    return;
-  }
-
   // delete the word and save it to storage
-  list = list.filter(x => x !== word);
+  list.splice(index, 1);
   localStorage.setItem(listKey, JSON.stringify(list));
 }
 
