@@ -139,11 +139,7 @@
         this.loadWords();
       },
       updateWord(index) {
-        var newValue = this.wordValues[index];
-
-        newValue = newValue.replace(/[^A-Za-z ]/g, '');
-
-        LocalStorage.editCustomWord(this.listName, index, newValue);
+        LocalStorage.editCustomWord(this.listName, index, this.wordValues[index]);
         this.loadWords();
       },
     },
