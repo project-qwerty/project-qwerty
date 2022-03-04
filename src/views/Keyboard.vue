@@ -1,5 +1,6 @@
 <template>
   <main>
+
     <header>
       <IconButton
           icon="x"
@@ -47,6 +48,44 @@
       </div>
     </div>
 
+    <Modal
+        :shown="showNextWordModal"
+        width="600px">
+      <div class="modal-contents">
+        <font-awesome-icon
+            class="green-check"
+            icon="circle-check" />
+        <h1>{{ words[currentWordIndex] }}</h1>
+        <ActionButton
+            class="next-word-button"
+            text="Next word"
+            v-on:click="clickNextWord" />
+      </div>
+    </Modal>
+
+    <Modal
+        :shown="showFinishedModal"
+        width="600px">
+      <div class="modal-contents">
+        <font-awesome-icon
+            class="trophy"
+            icon="trophy" />
+        <h1>You did it!</h1>
+        <div class="button-row">
+          <ActionButton
+              icon="arrow-rotate-right"
+              text="Repeat"
+              :major="false"
+              v-on:click="clickRepeat" />
+
+          <ActionButton
+              icon="check"
+              text="Finish"
+              v-on:click="clickFinish" />
+        </div>
+      </div>
+    </Modal>
+
   </main>
 </template>
 
@@ -56,10 +95,14 @@
   // import LocalStorage from '@/functions/LocalStorage.js';
 
   import IconButton from '@/components/IconButton.vue';
+  import Modal from '@/components/Modal.vue';
+  import ActionButton from '@/components/ActionButton.vue';
 
   export default {
     components: {
       IconButton,
+      Modal,
+      ActionButton,
     },
     data() {
       return {
@@ -69,13 +112,22 @@
           ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
         ],
 
-        words: ['beagle', 'two', 'three', 'four', 'five'],
-
+        words: ['beagle', 'two', 'three'],
         currentWordIndex: 0,
+
+        repetitionCount: 1,
         currentRepetitionIndex: 0,
 
         input: '',
       }
+    },
+    computed: {
+      showNextWordModal() {
+        return this.input === this.words[this.currentWordIndex];
+      },
+      showFinishedModal() {
+        return this.currentWordIndex === this.words.length;
+      },
     },
     methods: {
       handleKeystroke(key) {
@@ -87,6 +139,23 @@
       },
       renderedInput(input) {
         return input.replaceAll(' ', '\xa0\xa0');
+      },
+      clickNextWord() {
+        this.input = '';
+
+        this.currentRepetitionIndex += 1;
+
+        if (this.currentRepetitionIndex === this.repetitionCount) {
+          this.currentWordIndex += 1;
+          this.currentRepetitionIndex = 0;
+        }
+      },
+      clickRepeat() {
+        this.currentWordIndex = 0;
+        this.currentRepetitionIndex = 0;
+      },
+      clickFinish() {
+        this.$router.push('/');
       },
     },
   }
@@ -212,5 +281,43 @@
 
   .keyboard .key.space {
     width: 31em;
+  }
+
+  .modal-contents {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal-contents h1 {
+    font-size: 64px;
+  }
+
+  .green-check {
+    font-size: 96px;
+    color: var(--positive-colour);
+
+    margin-top: 32px;
+  }
+
+  .trophy {
+    font-size: 96px;
+    color: gold;
+
+    margin-top: 32px;
+  }
+
+  .next-word-button {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .button-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 </style>

@@ -37,6 +37,9 @@ import {
   faRightToBracket,
   faX,
   faICursor,
+  faCircleCheck,
+  faTrophy,
+  faArrowRotateRight,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import BFormInput from 'bootstrap-vue'
@@ -81,6 +84,9 @@ library.add(faRightFromBracket)
 library.add(faRightToBracket)
 library.add(faX)
 library.add(faICursor)
+library.add(faCircleCheck)
+library.add(faTrophy)
+library.add(faArrowRotateRight)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

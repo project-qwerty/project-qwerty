@@ -96,7 +96,9 @@
   }
 
   .modal-inner {
-    margin: 2em;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 2em;
   }
 
   .hidden {
