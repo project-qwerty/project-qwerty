@@ -10,7 +10,7 @@
     </header>
 
     <div class="readout">
-      <div class="target">{{ words[currentWordIndex] }}</div>
+      <div class="target">{{ renderedText(words[currentWordIndex]) }}</div>
       <div class="input">{{ renderedInput(input) }}</div>
     </div>
 
@@ -19,7 +19,7 @@
         <div class="key"
             v-for="letter in letters[0]" v-bind:key="letter"
             v-on:click="handleKeystroke(letter)">
-          {{ letter }}
+          {{ renderedText(letter) }}
         </div>
         <div class="key backspace"
             v-on:click="handleKeystroke('backspace')">
@@ -32,14 +32,14 @@
         <div class="key"
             v-for="letter in letters[1]" v-bind:key="letter"
             v-on:click="handleKeystroke(letter)">
-          {{ letter }}
+          {{ renderedText(letter) }}
         </div>
       </div>
       <div class="row row-z">
         <div class="key"
             v-for="letter in letters[2]" v-bind:key="letter"
             v-on:click="handleKeystroke(letter)">
-          {{ letter }}
+          {{ renderedText(letter) }}
         </div>
       </div>
       <div class="row row-space">
@@ -55,7 +55,7 @@
         <font-awesome-icon
             class="green-check"
             icon="circle-check" />
-        <h1>{{ words[currentWordIndex] }}</h1>
+        <h1>{{ renderedText(words[currentWordIndex]) }}</h1>
         <ActionButton
             class="next-word-button"
             text="Next word"
@@ -118,7 +118,7 @@
           wordsPerSession: LocalStorage.getSetting('wordsPerSession'),
           // assistanceLevel: LocalStorage.getSetting('assistanceLevel'),
           // clickForNextWord: LocalStorage.getSetting('clickForNextWord'),
-          // wordDisplayCapitalization: LocalStorage.getSetting('wordDisplayCapitalization'),
+          wordDisplayCapitalization: LocalStorage.getSetting('wordDisplayCapitalization'),
         },
 
         words: null,
@@ -181,8 +181,19 @@
           this.input += key;
         }
       },
+      renderedText(text) {
+        if (text === null || text === undefined) {
+          return '';
+        }
+
+        if (this.settings.wordDisplayCapitalization === 'UPPERCASE') {
+          return text.toUpperCase();
+        } else {
+          return text.toLowerCase();
+        }
+      },
       renderedInput(input) {
-        return input.replaceAll(' ', '\xa0\xa0');
+        return this.renderedText(input).replaceAll(' ', '\xa0\xa0');
       },
       clickNextWord() {
         this.input = '';
