@@ -91,8 +91,8 @@
 
 
 <script>
-  // import BuiltInWordLists from '@/functions/BuiltInWordLists.js';
-  // import LocalStorage from '@/functions/LocalStorage.js';
+  import BuiltInWordLists from '@/functions/BuiltInWordLists.js';
+  import LocalStorage from '@/functions/LocalStorage.js';
 
   import IconButton from '@/components/IconButton.vue';
   import Modal from '@/components/Modal.vue';
@@ -112,14 +112,58 @@
           ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
         ],
 
-        words: ['beagle', 'two', 'three'],
+        settings: {
+          wordRepetitions: LocalStorage.getSetting('wordRepetitions'),
+          // wordDisplayTime: LocalStorage.getSetting('wordDisplayTime'),
+          wordsPerSession: LocalStorage.getSetting('wordsPerSession'),
+          // assistanceLevel: LocalStorage.getSetting('assistanceLevel'),
+          // clickForNextWord: LocalStorage.getSetting('clickForNextWord'),
+          // wordDisplayCapitalization: LocalStorage.getSetting('wordDisplayCapitalization'),
+        },
+
+        words: null,
         currentWordIndex: 0,
-
-        repetitionCount: 1,
         currentRepetitionIndex: 0,
-
         input: '',
       }
+    },
+    created() {
+      // load words
+      this.words = [];
+
+      const builtInSelected = LocalStorage.getSelectedBuiltInListNames();
+
+      for (const listName of builtInSelected) {
+        const words = BuiltInWordLists[listName].list;
+        this.words = this.words.concat(words);
+      }
+
+      const customSelected = LocalStorage.getSelectedCustomListNames();
+
+      for (const listName of customSelected) {
+        const words = LocalStorage.getCustomList(listName);
+        this.words = this.words.concat(words);
+      }
+
+      // shuffle words
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
+
+      shuffle(this.words);
+
+      // pad words
+      while (this.words.length < this.settings.wordsPerSession) {
+        let wordsCopy = [...this.words];
+        shuffle(wordsCopy);
+        this.words = this.words.concat(wordsCopy);
+      }
+
+      // truncate words
+      this.words = this.words.slice(0, this.settings.wordsPerSession);
     },
     computed: {
       showNextWordModal() {
@@ -145,7 +189,7 @@
 
         this.currentRepetitionIndex += 1;
 
-        if (this.currentRepetitionIndex === this.repetitionCount) {
+        if (this.currentRepetitionIndex === this.settings.wordRepetitions) {
           this.currentWordIndex += 1;
           this.currentRepetitionIndex = 0;
         }
