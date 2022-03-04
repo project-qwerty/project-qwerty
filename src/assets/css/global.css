@@ -1,9 +1,11 @@
 :root {
   --foreground-colour: #000000;
   --background-colour: #ffffff;
+  --faint-colour: #e2e4e8;
   --primary-colour: #2f80ed;
   --primary-colour-dark: #2941ce;
-  --faint-colour: #e2e4e8;
+  --positive-colour: #219653;
+  --negative-colour: red;
 
   --material-colour-1: #f44336;
   --material-colour-2: #e91e63;

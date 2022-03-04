@@ -81,7 +81,7 @@
             v-on:click="cleanUpDeleteCategory" />
         <ActionButton
             text="Delete"
-            colour="red"
+            colour="var(--negative-colour)"
             v-on:click="clickDeleteCategory" />
       </div>
     </Modal>
@@ -237,7 +237,7 @@
 
   /* this turns the final option (delete) red */
   /deep/ .options-menu .dropdown-item:last-of-type {
-    color: red;
+    color: var(--negative-colour);
   }
 
   .list-title {
@@ -274,7 +274,7 @@
   }
 
   .qwerty-text-input.invalid {
-    border: solid 2px red;
+    border: solid 2px var(--negative-colour);
   }
 
   .modal-text-input {
