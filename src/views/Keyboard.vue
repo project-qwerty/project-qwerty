@@ -182,11 +182,14 @@
         return this.currentWordIndex === this.words.length;
       },
       nextLetter() {
-        if (this.currentWordIndex === this.words.length) {
+        const targetWord = this.words[this.currentWordIndex];
+
+        // no more words, or no more letters in word
+        if (this.currentWordIndex === this.words.length
+            || this.input.length === targetWord.length) {
           return null;
         }
 
-        const targetWord = this.words[this.currentWordIndex];
         const nextLetterIndex = this.input.length;
         return targetWord[nextLetterIndex];
       },
