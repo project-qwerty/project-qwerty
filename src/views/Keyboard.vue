@@ -148,6 +148,11 @@
           wordDisplayCapitalization: LocalStorage.getSetting('wordDisplayCapitalization'),
         },
 
+        sound: {
+          correct: new Audio(require('@/assets/correct.mp3')),
+          wrong: new Audio(require('@/assets/wrong.mp3')),
+        },
+
         words: null,
         currentWordIndex: 0,
         currentRepetitionIndex: 0,
@@ -217,6 +222,11 @@
         return this.settings.wordDisplayTime === 0 || this.displaySecondsRemaining > 0;
       },
       targetWord() {
+        if (this.currentWordIndex === this.words.length) {
+          // no more words
+          return null;
+        }
+
         return this.words[this.currentWordIndex];
       },
       nextLetter() {
@@ -235,8 +245,27 @@
     },
     watch: {
       input() {
+        if (this.targetWord === null) {
+          // no more words, don't do anything
+          return;
+        }
+
+        // don't do anything if they're still going
+        if (this.input.length < this.targetWord.length) {
+          return;
+        }
+
+        // they've finished typing, but got it wrong
+        if (this.input !== this.targetWord) {
+          this.sound.wrong.play();
+          return;
+        }
+
+        // they got it right
+        this.sound.correct.play();
+
         // skip the modal and advance to next word automatically if clickForNextWord = false
-        if (this.input === this.targetWord && !this.settings.clickForNextWord) {
+        if (!this.settings.clickForNextWord) {
           this.advanceWord();
         }
       },
@@ -262,6 +291,14 @@
         return this.renderedText(input).replaceAll(' ', '\xa0\xa0');
       },
       isEnabled(key) {
+        const inputIsWrong = this.targetWord !== null
+            && this.input.length === this.targetWord.length
+            && this.input !== this.targetWord;
+
+        if (inputIsWrong) {
+          return key === 'backspace';
+        }
+
         const noNextLetter = this.nextLetter === null;
         const noAssistance = this.settings.assistanceLevel === 'NONE';
         const noMistakeYet = this.settings.assistanceLevel === 'MIN' && !this.mistakeMade;
