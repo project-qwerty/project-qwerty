@@ -12,14 +12,14 @@
       <footer>
         <p>Made with love by</p>
         <div class="logo-row">
-          <img :src="require('@/assets/mime-logo.png')" />
-          <img :src="require('@/assets/mymi-logo.png')" />
-          <img :src="require('@/assets/monash-partners-logo.jpg')" />
+          <img :src="require('@/assets/img/logo-mime.png')" />
+          <img :src="require('@/assets/img/logo-mymi.png')" />
+          <img :src="require('@/assets/img/logo-monash-partners.jpg')" />
         </div>
       </footer>
     </div>
     <div class="right">
-      <img :src="require('@/assets/ipad.png')" />
+      <img :src="require('@/assets/img/ipad-shadow-cropped.png')" />
       <div class="upper"></div>
       <div class="lower"></div>
     </div>
@@ -110,7 +110,7 @@
     left: 0;
     right: 0;
 
-    width: 80%;
+    width: 100%;
   }
 
   .right > .upper {

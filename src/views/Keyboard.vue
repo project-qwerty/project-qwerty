@@ -149,8 +149,8 @@
         },
 
         sound: {
-          correct: new Audio(require('@/assets/correct.mp3')),
-          wrong: new Audio(require('@/assets/wrong.mp3')),
+          correct: new Audio(require('@/assets/audio/correct.mp3')),
+          wrong: new Audio(require('@/assets/audio/wrong.mp3')),
         },
 
         words: null,
