@@ -14,8 +14,8 @@
           v-if="showShowWordButton"
           v-on:click="clickShowWordButton"/>
 
-      <div v-if="showTimer">
-        <font-awesome-icon class="stopwatch" icon="stopwatch" />
+      <div class="timer-display" v-if="showTimer">
+        <font-awesome-icon icon="stopwatch" />
         <span>{{ timerDisplay }}</span>
       </div>
 
@@ -387,8 +387,11 @@
     font-size: 13px;
   }
 
-  header .stopwatch {
-    margin-right: 0.5em;
+  header .timer-display {
+    width: 3em;
+
+    display: flex;
+    gap: 0.5em;
   }
 
   /* readout (word displays) */
