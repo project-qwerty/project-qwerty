@@ -18,11 +18,13 @@
       <div class="row row-q">
         <div class="key"
             v-for="letter in letters[0]" v-bind:key="letter"
-            v-on:click="handleKeystroke(letter)">
+            v-on:click="handleKeystroke(letter)"
+            :class="{ disabled: !isEnabled(letter) }">
           {{ renderedText(letter) }}
         </div>
         <div class="key backspace"
-            v-on:click="handleKeystroke('backspace')">
+            v-on:click="handleKeystroke('backspace')"
+            :class="{ disabled: !isEnabled('backspace') }">
           <font-awesome-icon
               class="backspace-icon"
               icon="delete-left" />
@@ -31,20 +33,23 @@
       <div class="row row-a">
         <div class="key"
             v-for="letter in letters[1]" v-bind:key="letter"
-            v-on:click="handleKeystroke(letter)">
+            v-on:click="handleKeystroke(letter)"
+            :class="{ disabled: !isEnabled(letter) }">
           {{ renderedText(letter) }}
         </div>
       </div>
       <div class="row row-z">
         <div class="key"
             v-for="letter in letters[2]" v-bind:key="letter"
-            v-on:click="handleKeystroke(letter)">
+            v-on:click="handleKeystroke(letter)"
+            :class="{ disabled: !isEnabled(letter) }">
           {{ renderedText(letter) }}
         </div>
       </div>
       <div class="row row-space">
         <div class="key space"
-            v-on:click="handleKeystroke(' ')"></div>
+            v-on:click="handleKeystroke(' ')"
+            :class="{ disabled: !isEnabled(' ') }"></div>
       </div>
     </div>
 
@@ -118,7 +123,7 @@
           wordRepetitions: LocalStorage.getSetting('wordRepetitions'),
           // wordDisplayTime: LocalStorage.getSetting('wordDisplayTime'),
           wordsPerSession: LocalStorage.getSetting('wordsPerSession'),
-          // assistanceLevel: LocalStorage.getSetting('assistanceLevel'),
+          assistanceLevel: LocalStorage.getSetting('assistanceLevel'),
           // clickForNextWord: LocalStorage.getSetting('clickForNextWord'),
           wordDisplayCapitalization: LocalStorage.getSetting('wordDisplayCapitalization'),
         },
@@ -127,6 +132,8 @@
         currentWordIndex: 0,
         currentRepetitionIndex: 0,
         input: '',
+
+        mistakeMade: false,
       }
     },
     created() {
@@ -174,15 +181,17 @@
       showFinishedModal() {
         return this.currentWordIndex === this.words.length;
       },
+      nextLetter() {
+        if (this.currentWordIndex === this.words.length) {
+          return null;
+        }
+
+        const targetWord = this.words[this.currentWordIndex];
+        const nextLetterIndex = this.input.length;
+        return targetWord[nextLetterIndex];
+      },
     },
     methods: {
-      handleKeystroke(key) {
-        if (key === 'backspace') {
-          this.input = this.input.slice(0, -1);
-        } else {
-          this.input += key;
-        }
-      },
       renderedText(text) {
         if (text === null || text === undefined) {
           return '';
@@ -196,6 +205,36 @@
       },
       renderedInput(input) {
         return this.renderedText(input).replaceAll(' ', '\xa0\xa0');
+      },
+      isEnabled(key) {
+        const noNextLetter = this.nextLetter === null;
+        const noAssistance = this.settings.assistanceLevel === 'NONE';
+        const noMistakeYet = this.settings.assistanceLevel === 'MIN' && !this.mistakeMade;
+
+        if (noNextLetter || noAssistance || noMistakeYet) {
+          return true;
+        }
+
+        return key === this.nextLetter;
+      },
+      handleKeystroke(key) {
+        if (!this.isEnabled(key)) {
+          return;
+        }
+
+        if (key === 'backspace') {
+          this.input = this.input.slice(0, -1);
+          return;
+        }
+
+        this.mistakeMade = key !== this.nextLetter;
+
+        if (this.settings.assistanceLevel === 'MIN' && this.mistakeMade) {
+          // don't add to input
+          return;
+        }
+
+        this.input += key;
       },
       clickNextWord() {
         this.input = '';
@@ -328,7 +367,7 @@
     align-items: center;
   }
 
-  .keyboard .key:active {
+  .keyboard .key:not(.disabled):active {
     filter: brightness(75%);
   }
 
