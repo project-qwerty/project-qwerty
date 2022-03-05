@@ -42,11 +42,7 @@ import {
   faArrowRotateRight,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import BFormInput from 'bootstrap-vue'
-import { FormInputPlugin } from 'bootstrap-vue'
 
-Vue.use(BFormInput)
-Vue.use(FormInputPlugin)
 Vue.config.productionTip = false
 
 // TODO: there has to be a better way than this
