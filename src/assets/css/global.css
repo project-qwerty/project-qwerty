@@ -29,6 +29,9 @@
 
 body {
   margin: 0;
+
+  /* disable double-tap zoom */
+  touch-action: manipulation;
 }
 
 /* global classes */
