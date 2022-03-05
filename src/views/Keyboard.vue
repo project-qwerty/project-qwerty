@@ -6,23 +6,40 @@
           icon="x"
           v-on:click="$router.back()" />
 
+      <ActionButton
+          class="show-word-button"
+          icon="eye"
+          text="Show word"
+          :major="false"
+          v-if="showShowWordButton"
+          v-on:click="clickShowWordButton"/>
+
+      <div v-if="showTimer">
+        <font-awesome-icon class="stopwatch" icon="stopwatch" />
+        <span>{{ timerDisplay }}</span>
+      </div>
+
       <div>{{ currentWordIndex + 1 }} / {{ words.length }}</div>
     </header>
 
     <div class="readout">
-      <div class="target">{{ renderedText(targetWord) }}</div>
+      <div class="target"
+          :class="{ invisible: !showTargetWord }">{{ renderedText(targetWord) }}</div>
       <div class="input">{{ renderedInput(input) }}</div>
     </div>
 
     <div class="keyboard">
       <div class="row row-q">
+        <!-- ontouchstart="" makes the :active class trigger on iOS -->
         <div class="key"
+            ontouchstart=""
             v-for="letter in letters[0]" v-bind:key="letter"
             v-on:click="handleKeystroke(letter)"
             :class="{ disabled: !isEnabled(letter) }">
           {{ renderedText(letter) }}
         </div>
         <div class="key backspace"
+            ontouchstart=""
             v-on:click="handleKeystroke('backspace')"
             :class="{ disabled: !isEnabled('backspace') }">
           <font-awesome-icon
@@ -32,6 +49,7 @@
       </div>
       <div class="row row-a">
         <div class="key"
+            ontouchstart=""
             v-for="letter in letters[1]" v-bind:key="letter"
             v-on:click="handleKeystroke(letter)"
             :class="{ disabled: !isEnabled(letter) }">
@@ -40,6 +58,7 @@
       </div>
       <div class="row row-z">
         <div class="key"
+            ontouchstart=""
             v-for="letter in letters[2]" v-bind:key="letter"
             v-on:click="handleKeystroke(letter)"
             :class="{ disabled: !isEnabled(letter) }">
@@ -48,6 +67,7 @@
       </div>
       <div class="row row-space">
         <div class="key space"
+            ontouchstart=""
             v-on:click="handleKeystroke(' ')"
             :class="{ disabled: !isEnabled(' ') }"></div>
       </div>
@@ -121,7 +141,7 @@
 
         settings: {
           wordRepetitions: LocalStorage.getSetting('wordRepetitions'),
-          // wordDisplayTime: LocalStorage.getSetting('wordDisplayTime'),
+          wordDisplayTime: LocalStorage.getSetting('wordDisplayTime'),
           wordsPerSession: LocalStorage.getSetting('wordsPerSession'),
           assistanceLevel: LocalStorage.getSetting('assistanceLevel'),
           clickForNextWord: LocalStorage.getSetting('clickForNextWord'),
@@ -134,6 +154,8 @@
         input: '',
 
         mistakeMade: false,
+
+        displaySecondsRemaining: null,
       }
     },
     created() {
@@ -173,6 +195,10 @@
 
       // truncate words
       this.words = this.words.slice(0, this.settings.wordsPerSession);
+
+
+      // initialize timer
+      this.displaySecondsRemaining = LocalStorage.getSetting('wordDisplayTime');
     },
     computed: {
       showNextWordModal() {
@@ -180,6 +206,15 @@
       },
       showFinishedModal() {
         return this.currentWordIndex === this.words.length;
+      },
+      showShowWordButton() {
+        return this.settings.wordDisplayTime > 0 && !this.displaySecondsRemaining > 0;
+      },
+      showTimer() {
+        return this.displaySecondsRemaining > 0;
+      },
+      showTargetWord() {
+        return this.settings.wordDisplayTime === 0 || this.displaySecondsRemaining > 0;
       },
       targetWord() {
         return this.words[this.currentWordIndex];
@@ -194,12 +229,20 @@
         const nextLetterIndex = this.input.length;
         return this.targetWord[nextLetterIndex];
       },
+      timerDisplay() {
+        return `${this.displaySecondsRemaining}s`
+      },
     },
     watch: {
       input() {
         // skip the modal and advance to next word automatically if clickForNextWord = false
         if (this.input === this.targetWord && !this.settings.clickForNextWord) {
           this.advanceWord();
+        }
+      },
+      displaySecondsRemaining() {
+        if (this.displaySecondsRemaining > 0) {
+          setTimeout(() => { this.displaySecondsRemaining -= 1; }, 1000);
         }
       },
     },
@@ -268,6 +311,9 @@
       clickFinish() {
         this.$router.push('/select-lists');
       },
+      clickShowWordButton() {
+        this.displaySecondsRemaining = this.settings.wordDisplayTime;
+      },
     },
   }
 </script>
@@ -295,6 +341,14 @@
     padding-right: 24px;
 
     font-size: 24px;
+  }
+
+  header .show-word-button {
+    font-size: 13px;
+  }
+
+  header .stopwatch {
+    margin-right: 0.5em;
   }
 
   .readout {
@@ -438,5 +492,9 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+  }
+
+  .invisible {
+    visibility: hidden;
   }
 </style>
