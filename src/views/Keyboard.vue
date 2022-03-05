@@ -10,7 +10,7 @@
     </header>
 
     <div class="readout">
-      <div class="target">{{ renderedText(words[currentWordIndex]) }}</div>
+      <div class="target">{{ renderedText(targetWord) }}</div>
       <div class="input">{{ renderedInput(input) }}</div>
     </div>
 
@@ -61,7 +61,7 @@
         <font-awesome-icon
             class="green-check"
             icon="circle-check" />
-        <h1>{{ renderedText(words[currentWordIndex]) }}</h1>
+        <h1>{{ renderedText(targetWord) }}</h1>
         <ActionButton
             class="next-word-button"
             text="Next word"
@@ -124,7 +124,7 @@
           // wordDisplayTime: LocalStorage.getSetting('wordDisplayTime'),
           wordsPerSession: LocalStorage.getSetting('wordsPerSession'),
           assistanceLevel: LocalStorage.getSetting('assistanceLevel'),
-          // clickForNextWord: LocalStorage.getSetting('clickForNextWord'),
+          clickForNextWord: LocalStorage.getSetting('clickForNextWord'),
           wordDisplayCapitalization: LocalStorage.getSetting('wordDisplayCapitalization'),
         },
 
@@ -176,22 +176,31 @@
     },
     computed: {
       showNextWordModal() {
-        return this.input === this.words[this.currentWordIndex];
+        return this.settings.clickForNextWord && this.input === this.targetWord;
       },
       showFinishedModal() {
         return this.currentWordIndex === this.words.length;
       },
+      targetWord() {
+        return this.words[this.currentWordIndex];
+      },
       nextLetter() {
-        const targetWord = this.words[this.currentWordIndex];
-
         // no more words, or no more letters in word
         if (this.currentWordIndex === this.words.length
-            || this.input.length === targetWord.length) {
+            || this.input.length === this.targetWord.length) {
           return null;
         }
 
         const nextLetterIndex = this.input.length;
-        return targetWord[nextLetterIndex];
+        return this.targetWord[nextLetterIndex];
+      },
+    },
+    watch: {
+      input() {
+        // skip the modal and advance to next word automatically if clickForNextWord = false
+        if (this.input === this.targetWord && !this.settings.clickForNextWord) {
+          this.advanceWord();
+        }
       },
     },
     methods: {
@@ -239,7 +248,7 @@
 
         this.input += key;
       },
-      clickNextWord() {
+      advanceWord() {
         this.input = '';
 
         this.currentRepetitionIndex += 1;
@@ -248,6 +257,9 @@
           this.currentWordIndex += 1;
           this.currentRepetitionIndex = 0;
         }
+      },
+      clickNextWord() {
+        this.advanceWord();
       },
       clickRepeat() {
         this.currentWordIndex = 0;
