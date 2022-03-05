@@ -328,6 +328,8 @@
     justify-content: space-between;
   }
 
+  /* header (top bar) */
+
   header {
     display: flex;
     justify-content: space-between;
@@ -344,12 +346,15 @@
   }
 
   header .show-word-button {
+    /* any bigger than this and it impacts the header's size */
     font-size: 13px;
   }
 
   header .stopwatch {
     margin-right: 0.5em;
   }
+
+  /* readout (word displays) */
 
   .readout {
     font-weight: bold;
@@ -381,6 +386,13 @@
     width: 50%;
     border-bottom: 1px solid var(--faint-colour);
   }
+
+  /* for when invisible because of the timer */
+  .invisible {
+    visibility: hidden;
+  }
+
+  /* keyboard */
 
   .keyboard {
     padding: 40px;
@@ -425,25 +437,30 @@
   }
 
   .keyboard .key {
+    /* shape */
     width: 4em;
     height: 3em;
     border-radius: 0.5em;
 
     background-color: var(--background-colour);
 
+    /* centre contents */
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
+  /* visually respond to keypresses */
   .keyboard .key:not(.disabled):active {
     filter: brightness(75%);
   }
 
+  /* for when disabled by assistance features */
   .keyboard .key.disabled {
     background-color: var(--faint-colour);
   }
 
+  /* special keys (space and backspace) */
   .keyboard .key.backspace {
     width: 6em;
   }
@@ -455,6 +472,8 @@
   .keyboard .key.space {
     width: 31em;
   }
+
+  /* modals */
 
   .modal-contents {
     height: 100%;
@@ -492,9 +511,5 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-  }
-
-  .invisible {
-    visibility: hidden;
   }
 </style>

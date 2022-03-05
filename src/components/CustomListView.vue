@@ -274,7 +274,7 @@
   }
 
   .qwerty-text-input.invalid {
-    border: solid 2px var(--negative-colour);
+    border-color: var(--negative-colour);
   }
 
   .modal-text-input {
