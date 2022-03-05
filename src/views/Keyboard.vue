@@ -50,7 +50,8 @@
 
     <Modal
         :shown="showNextWordModal"
-        width="600px">
+        width="600px"
+        height="480px">
       <div class="modal-contents">
         <font-awesome-icon
             class="green-check"
@@ -65,7 +66,8 @@
 
     <Modal
         :shown="showFinishedModal"
-        width="600px">
+        width="600px"
+        height="480px">
       <div class="modal-contents">
         <font-awesome-icon
             class="trophy"
@@ -210,7 +212,7 @@
         this.currentRepetitionIndex = 0;
       },
       clickFinish() {
-        this.$router.push('/');
+        this.$router.push('/select-lists');
       },
     },
   }
@@ -324,6 +326,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .keyboard .key:active {
+    filter: brightness(75%);
+  }
+
+  .keyboard .key.disabled {
+    background-color: var(--faint-colour);
   }
 
   .keyboard .key.backspace {
