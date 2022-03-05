@@ -37,6 +37,7 @@
     beforeDestroy() {
       window.removeEventListener('click', this.handleGlobalClick);
 
+      // re-activate scrolling if it was disabled
       document.body.style.overflow = 'auto';
     },
     methods: {

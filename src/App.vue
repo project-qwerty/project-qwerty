@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" onclick="void(0)">
     <router-view></router-view>
   </div>
 </template>
