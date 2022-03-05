@@ -36,6 +36,8 @@
     },
     beforeDestroy() {
       window.removeEventListener('click', this.handleGlobalClick);
+
+      document.body.style.overflow = 'auto';
     },
     methods: {
       handleGlobalClick(event) {
