@@ -65,7 +65,7 @@ const settings = {
 function getSetting(name) {
   const setting = settings[name];
 
-  if (!localStorage.hasOwnProperty(setting.key)) {
+  if (localStorage.getItem(setting.key) === null) {
     localStorage.setItem(setting.key, setting.default);
   }
 
@@ -94,7 +94,7 @@ function getCustomListNames() {
 function getCustomList(name) {
   const listKey = 'custom_lists.' + name;
 
-  if (!localStorage.hasOwnProperty(listKey)) {
+  if (localStorage.getItem(listKey) === null) {
     throw new Error(`not a custom list: "${name}"`);
   }
 
@@ -111,7 +111,7 @@ function getCustomListValidWords(name) {
 function createCustomList(name) {
   const listKey = 'custom_lists.' + name;
 
-  if (localStorage.hasOwnProperty(listKey)) {
+  if (localStorage.getItem(listKey) !== null) {
     throw new Error(`already a custom list: "${name}"`);
   }
 
@@ -121,13 +121,13 @@ function createCustomList(name) {
 function renameCustomList(oldName, newName) {
   const oldListKey = 'custom_lists.' + oldName;
 
-  if (!localStorage.hasOwnProperty(oldListKey)) {
+  if (localStorage.getItem(oldListKey) === null) {
     throw new Error(`not a custom list: "${oldName}"`);
   }
 
   const newListKey = 'custom_lists.' + newName;
 
-  if (localStorage.hasOwnProperty(newListKey)) {
+  if (localStorage.getItem(newListKey) !== null) {
     throw new Error(`already a custom list: "${newName}"`);
   }
 
@@ -139,7 +139,7 @@ function renameCustomList(oldName, newName) {
 function deleteCustomList(name) {
   const listKey = 'custom_lists.' + name;
 
-  if (!localStorage.hasOwnProperty(listKey)) {
+  if (localStorage.getItem(listKey) === null) {
     throw new Error(`not a custom list: "${name}"`);
   }
 
@@ -149,7 +149,7 @@ function deleteCustomList(name) {
 function addCustomWord(listName, word) {
   const listKey = 'custom_lists.' + listName;
 
-  if (!localStorage.hasOwnProperty(listKey)) {
+  if (localStorage.getItem(listKey) === null) {
     throw new Error(`not a custom list: "${listName}"`);
   }
 
@@ -172,7 +172,7 @@ function addCustomWord(listName, word) {
 function editCustomWord(listName, index, newValue) {
   const listKey = 'custom_lists.' + listName;
 
-  if (!localStorage.hasOwnProperty(listKey)) {
+  if (localStorage.getItem(listKey) === null) {
     throw new Error(`not a custom list: "${listName}"`);
   }
 
@@ -193,7 +193,7 @@ function editCustomWord(listName, index, newValue) {
 function deleteCustomWord(listName, index) {
   const listKey = 'custom_lists.' + listName;
 
-  if (!localStorage.hasOwnProperty(listKey)) {
+  if (localStorage.getItem(listKey) === null) {
     throw new Error(`not a custom list: "${listName}"`);
   }
 
@@ -250,7 +250,7 @@ function importListFromJson(stringData) {
 function getSelectedListNames(listType) {
   const key = 'selected_lists.' + listType;
 
-  if (!localStorage.hasOwnProperty(key)) {
+  if (localStorage.getItem(key) === null) {
     // nothing stored means nothing selected
     return [];
   }
@@ -262,7 +262,7 @@ function getSelectedListNames(listType) {
 function setListSelected(listType, listName, isSelected) {
   const key = 'selected_lists.' + listType;
 
-  if (!localStorage.hasOwnProperty(key)) {
+  if (localStorage.getItem(key) === null) {
     // initialize storage
     localStorage.setItem(key, '[]');
   }
