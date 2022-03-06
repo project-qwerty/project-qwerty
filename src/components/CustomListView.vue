@@ -168,7 +168,8 @@
         }
 
         LocalStorage.renameCustomList(this.listName, this.inputCategoryName);
-        this.listName = this.inputCategoryName;
+
+        this.$emit('change-category', this.inputCategoryName);
 
         this.cleanUpRenameCategory();
       },

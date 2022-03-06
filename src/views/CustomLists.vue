@@ -43,7 +43,8 @@
 
         <CustomListView
             :listName="selectedList"
-            v-on:close="selectedList = null"/>
+            v-on:close="selectedList = null"
+            v-on:change-category="selectedList = $event" />
       </div>
 
       <Modal
