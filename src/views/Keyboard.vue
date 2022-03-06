@@ -75,8 +75,8 @@
 
     <Modal
         :shown="showNextWordModal"
-        width="600px"
-        height="480px">
+        minWidth="600px"
+        minHeight="480px">
       <div class="modal-contents">
         <font-awesome-icon
             class="green-check"
@@ -91,8 +91,8 @@
 
     <Modal
         :shown="showFinishedModal"
-        width="600px"
-        height="480px">
+        minWidth="600px"
+        minHeight="480px">
       <div class="modal-contents">
         <font-awesome-icon
             class="trophy"

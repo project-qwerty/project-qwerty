@@ -1,12 +1,13 @@
 <template>
-  <div class="overlay" :class="{ hidden: !shown, }">
+  <div class="overlay"
+      :class="{ hidden: !shown, }">
     <div ref="modal"
-        class="modal"
-        :style="{
-          width: width,
-          height: height,
-        }">
-      <div class="modal-inner">
+        class="modal">
+      <div class="modal-inner"
+          :style="{
+            '--min-width': minWidth,
+            '--min-height': minHeight,
+          }">
         <slot></slot>
       </div>
     </div>
@@ -21,11 +22,11 @@
         type: Boolean,
         default: false,
       },
-      width: {
+      minWidth: {
         type: String,
         default: 'initial',
       },
-      height: {
+      minHeight: {
         type: String,
         default: 'initial',
       },
@@ -99,9 +100,18 @@
   }
 
   .modal-inner {
-    box-sizing: border-box;
-    height: 100%;
-    padding: 2em;
+    --padding: 2em;
+
+    padding: var(--padding);
+
+    min-width: calc(var(--min-width) - var(--padding) * 2);
+    min-height: calc(var(--min-height) - var(--padding) * 2);
+  }
+
+  .modal-inner > * {
+    /* this is needed because of this issue: */
+    /* https://stackoverflow.com/questions/8468066/child-inside-parent-with-min-height-100-not-inheriting-height */
+    min-height: inherit;
   }
 
   .hidden {
