@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Keyboard from '../views/Keyboard.vue'
+import Practice from '../views/Practice.vue'
 import Settings from '../views/Settings.vue'
 import SelectLists from '../views/SelectLists.vue'
 import CustomLists from '../views/CustomLists.vue'
@@ -26,10 +26,9 @@ const routes = [
     component: SelectLists,
   },
   {
-    // TODO: maybe this would be better as /practice
-    path: '/keyboard',
-    name: 'keyboard',
-    component: Keyboard,
+    path: '/practice',
+    name: 'practice',
+    component: Practice,
   },
   {
     path: '/settings',

@@ -14,7 +14,7 @@
             class="start-button"
             text="Start"
             :enabled="anyListsSelected()"
-            v-on:click="$router.push('/keyboard')" />
+            v-on:click="$router.push('/practice')" />
       </header>
 
       <IconHeader text="Built-in lists" />
