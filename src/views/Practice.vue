@@ -31,45 +31,46 @@
     <div class="keyboard">
       <div class="row row-q">
         <!-- ontouchstart="" makes the :active class trigger on iOS -->
-        <div class="key"
+        <button
             ontouchstart=""
             v-for="letter in letters[0]" v-bind:key="letter"
             v-on:click="handleKeystroke(letter)"
             :class="{ disabled: !isEnabled(letter) }">
           {{ renderedText(letter) }}
-        </div>
-        <div class="key backspace"
+        </button>
+        <button class="backspace"
             ontouchstart=""
             v-on:click="handleKeystroke('backspace')"
             :class="{ disabled: !isEnabled('backspace') }">
           <font-awesome-icon
               class="backspace-icon"
               icon="delete-left" />
-        </div>
+        </button>
       </div>
       <div class="row row-a">
-        <div class="key"
+        <button
             ontouchstart=""
             v-for="letter in letters[1]" v-bind:key="letter"
             v-on:click="handleKeystroke(letter)"
             :class="{ disabled: !isEnabled(letter) }">
           {{ renderedText(letter) }}
-        </div>
+        </button>
       </div>
       <div class="row row-z">
-        <div class="key"
+        <button
             ontouchstart=""
             v-for="letter in letters[2]" v-bind:key="letter"
             v-on:click="handleKeystroke(letter)"
             :class="{ disabled: !isEnabled(letter) }">
           {{ renderedText(letter) }}
-        </div>
+        </button>
       </div>
       <div class="row row-space">
-        <div class="key space"
+        <button class="space"
             ontouchstart=""
             v-on:click="handleKeystroke(' ')"
-            :class="{ disabled: !isEnabled(' ') }"></div>
+            :class="{ disabled: !isEnabled(' ') }">
+        </button>
       </div>
     </div>
 
@@ -501,7 +502,7 @@
     padding-right: 2em;
   }
 
-  .keyboard .key {
+  .keyboard button {
     /* shape */
     width: 4em;
     height: 3em;
@@ -516,25 +517,25 @@
   }
 
   /* visually respond to keypresses */
-  .keyboard .key:not(.disabled):active {
+  .keyboard button:not(.disabled):active {
     filter: brightness(75%);
   }
 
   /* for when disabled by assistance features */
-  .keyboard .key.disabled {
+  .keyboard button.disabled {
     background-color: var(--faint-colour);
   }
 
   /* special keys (space and backspace) */
-  .keyboard .key.backspace {
+  .keyboard button.backspace {
     width: 6em;
   }
 
-  .keyboard .key .backspace-icon {
+  .keyboard button .backspace-icon {
     font-size: 36px;
   }
 
-  .keyboard .key.space {
+  .keyboard button.space {
     width: 31em;
   }
 

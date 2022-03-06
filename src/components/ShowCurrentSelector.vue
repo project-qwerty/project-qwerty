@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <div class="button-outer"
+    <button
         v-on:click="minusClicked"
         :class="{ disabled: firstOptionIsSelected }">
-      <div class="button-inner">-</div>
-    </div>
+      <font-awesome-icon class="icon" icon="minus" />
+    </button>
     <div class="display">{{ selectedOption.label }}</div>
-    <div class="button-outer"
+    <button
         v-on:click="plusClicked"
         :class="{ disabled: lastOptionIsSelected }">
-      <div class="button-inner">+</div>
-    </div>
+      <font-awesome-icon class="icon" icon="plus" />
+    </button>
   </div>
 </template>
 
@@ -95,9 +95,7 @@
     margin-right: 1em;
   }
 
-  .button-outer {
-    cursor: pointer;
-
+  button {
     /* shape */
     width: 1em;
     height: 1em;
@@ -114,8 +112,8 @@
     background-color: var(--primary-colour);
   }
 
-  .button-inner {
-    font-size: 32px;
+  .icon {
+    font-size: 24px;
   }
 
   .disabled {

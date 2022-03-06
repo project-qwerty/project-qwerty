@@ -1,6 +1,5 @@
 <template>
-  <!-- TODO: convert to button tags everywhere -->
-  <div class="container"
+  <button
       :class="{'active': active}"
       v-on:click="$emit('click')">
     <span
@@ -12,7 +11,7 @@
     </span>
 
     <span class="text">{{ text }}</span>
-  </div>
+  </button>
 </template>
 
 
@@ -41,8 +40,10 @@
 
 
 <style scoped>
-  .container {
-    cursor: pointer;
+  button {
+    box-sizing: border-box;
+
+    width: 100%;
 
     padding: 0.5em;
   }

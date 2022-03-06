@@ -1,10 +1,9 @@
 <template>
   <div class="wrapper">
-    <div ref="ellipsis"
-        class="ellipsis"
+    <button ref="ellipsis"
         :class="{ active: open }">
       <font-awesome-icon icon="ellipsis-vertical" />
-    </div>
+    </button>
     <div class="dropdown"
         :class="{ hidden: !open }">
       <RowButton
@@ -68,7 +67,7 @@
     display: inline-block;
   }
 
-  .ellipsis {
+  .wrapper > button {
     cursor: pointer;
 
     font-size: 28px;

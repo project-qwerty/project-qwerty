@@ -1,9 +1,7 @@
 <template>
-  <div
-      class="button"
-      v-on:click="$emit('click')">
+  <button v-on:click="$emit('click')">
     <font-awesome-icon class="icon" :icon="icon" />
-  </div>
+  </button>
 </template>
 
 
@@ -17,9 +15,7 @@
 
 
 <style scoped>
-  .button {
-    cursor: pointer;
-
+  button {
     /* give it the circle shape */
     padding: 0.5em;
     border-radius: 1em;

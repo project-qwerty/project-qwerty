@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <div class="option"
+    <button
         v-for="option in options" :key="option.val"
         :class="{'active': option.val === activeValue}"
         v-on:click="$emit('update', option.val)"
         >
       {{ option.label }}
-    </div>
+    </button>
   </div>
 </template>
 
@@ -35,13 +35,11 @@
     font-weight: bold;
   }
 
-  .container .option + .option {
+  .container button + button {
     border-left: solid 1px var(--faint-colour);
   }
 
-  .option {
-    cursor: pointer;
-
+  button {
     /* this makes all the options equally sized */
     flex: 1 1 0px;
 

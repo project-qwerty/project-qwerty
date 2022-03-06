@@ -47,6 +47,22 @@ body {
   touch-action: manipulation;
 }
 
+button {
+  /* reset default button style */
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  outline: inherit;
+  text-align: inherit;
+
+  display: block;
+  box-sizing: content-box;
+
+  cursor: pointer;
+}
+
 /* global classes */
 
 .qwerty-text-input {

@@ -1,11 +1,11 @@
 <template>
   <div class="button-wrapper">
-    <div class="button"
+    <button
         :style="colourStyle()"
         v-on:click="onClick">
       <font-awesome-icon class="icon" v-if="icon" :icon="icon" />
       <span class="text">{{ text }}</span>
-    </div>
+    </button>
   </div>
 </template>
 
@@ -69,9 +69,7 @@
     display: inline-block;
   }
 
-  .button {
-    cursor: pointer;
-
+  button {
     display: flex;
     flex-direction: row;
     justify-content: center;
