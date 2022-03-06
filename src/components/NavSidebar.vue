@@ -71,7 +71,6 @@
     left: var(--sidebar-width);
     right: 0;
 
-    text-align: left;
     padding-left: 48px;
     padding-right: 48px;
 

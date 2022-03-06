@@ -59,6 +59,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    text-align: center;
   }
 
   .logo {

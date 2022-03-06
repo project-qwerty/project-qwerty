@@ -421,6 +421,7 @@
   /* readout (word displays) */
 
   .readout {
+    text-align: center;
     font-weight: bold;
   }
 

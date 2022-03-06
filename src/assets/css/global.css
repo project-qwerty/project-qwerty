@@ -27,6 +27,19 @@
   --sidebar-width: 280px;
 }
 
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  user-select: none;
+}
+
+html, body, #app {
+  height: 100%;
+}
+
 body {
   margin: 0;
 
