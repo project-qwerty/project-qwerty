@@ -115,7 +115,7 @@
     height: 40px;
     border-radius: 20px;
 
-    background: var(--primary-colour);
+    background-color: var(--primary-colour);
 
     /* center the check within */
     display: flex;

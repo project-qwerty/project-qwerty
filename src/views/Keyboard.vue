@@ -161,6 +161,7 @@
         mistakeMade: false,
 
         displaySecondsRemaining: null,
+        alreadyCountingDown: false,
       }
     },
     created() {
@@ -270,9 +271,24 @@
         }
       },
       displaySecondsRemaining() {
-        if (this.displaySecondsRemaining > 0) {
-          setTimeout(() => { this.displaySecondsRemaining -= 1; }, 1000);
+        // prevent multiple "threads" ticking down concurrently
+        if (this.alreadyCountingDown) {
+          return;
         }
+
+        // don't tick down below zero
+        if (!this.displaySecondsRemaining > 0) {
+          return;
+        }
+
+        this.alreadyCountingDown = true;
+        setTimeout(
+          () => {
+            this.displaySecondsRemaining -= 1;
+            this.alreadyCountingDown = false;
+          },
+          1000
+        );
       },
     },
     methods: {
@@ -331,11 +347,18 @@
       advanceWord() {
         this.input = '';
 
+        // advance repetition
         this.currentRepetitionIndex += 1;
 
+        // if repetitions done, advance word
         if (this.currentRepetitionIndex === this.settings.wordRepetitions) {
           this.currentWordIndex += 1;
           this.currentRepetitionIndex = 0;
+        }
+
+        // start the timer again, if there's another word
+        if (this.targetWord !== null) {
+          this.displaySecondsRemaining = this.settings.wordDisplayTime;
         }
       },
       clickNextWord() {
@@ -344,6 +367,7 @@
       clickRepeat() {
         this.currentWordIndex = 0;
         this.currentRepetitionIndex = 0;
+        this.displaySecondsRemaining = this.settings.wordDisplayTime;
       },
       clickFinish() {
         this.$router.push('/select-lists');

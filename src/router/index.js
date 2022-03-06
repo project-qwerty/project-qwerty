@@ -26,6 +26,7 @@ const routes = [
     component: SelectLists,
   },
   {
+    // TODO: maybe this would be better as /practice
     path: '/keyboard',
     name: 'keyboard',
     component: Keyboard,
