@@ -42,14 +42,6 @@
     </div>
 
     <Modal
-        :shown="showExportListModal"
-        v-on:click-out="showExportListModal = false">
-      <h1>Export list</h1>
-      <p>We will probably have a click to copy button and also a copyable text area</p>
-      <ActionButton text="ok you do that" v-on:click="showExportListModal = false" />
-    </Modal>
-
-    <Modal
         :shown="showRenameListModal"
         v-on:click-out="cleanUpRenameCategory">
       <h1>Rename category</h1>
@@ -116,7 +108,6 @@
         newWordPlaceholder: 'new word',
 
         showRenameListModal: false,
-        showExportListModal: false,
         showDeleteListModal: false,
 
         wordValues: null,
