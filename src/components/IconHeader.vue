@@ -4,7 +4,7 @@
         minor: !major,
       }">
     <span v-if="icon" class="icon"
-        :class="{ colouredIcon: iconColour !== null }"
+        :class="{ 'coloured-icon': iconColour !== null }"
         :style="`--icon-colour: ${iconColour};`">
       <font-awesome-icon :icon="icon" />
     </span>
@@ -57,7 +57,7 @@
     text-align: center;
   }
 
-  .colouredIcon {
+  .coloured-icon {
     /* give the icon its shape */
     width: 1em;
     height: 1em;

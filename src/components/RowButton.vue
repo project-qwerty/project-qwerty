@@ -5,7 +5,7 @@
     <span
         v-if="icon"
         class="icon"
-        :class="{ colouredIcon: iconColour !== null }"
+        :class="{ 'coloured-icon': iconColour !== null }"
         :style="`--icon-colour: ${iconColour};`">
       <font-awesome-icon :icon="icon" />
     </span>
@@ -59,7 +59,7 @@
     border-radius: 0.5em;
   }
 
-  .colouredIcon {
+  .coloured-icon {
     color: var(--background-colour);
     background-color: var(--icon-colour);
   }
