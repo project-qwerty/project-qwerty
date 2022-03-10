@@ -3,7 +3,6 @@
     <NavSidebar />
 
     <div class="sidebar-page-content">
-      <!-- category list view -->
       <div class="category-list-section"
           :class="{ hidden: selectedList !== null }">
         <header>
