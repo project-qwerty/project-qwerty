@@ -3,8 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Practice from '../views/Practice.vue'
 import Settings from '../views/Settings.vue'
-import SelectLists from '../views/SelectLists.vue'
-import CustomLists from '../views/CustomLists.vue'
+import SelectCategories from '../views/SelectCategories.vue'
+import CustomCategories from '../views/CustomCategories.vue'
 import About from '../views/About.vue'
 
 Vue.use(VueRouter)
@@ -21,9 +21,9 @@ const routes = [
     component: About,
   },
   {
-    path: '/select-lists',
-    name: 'select-lists',
-    component: SelectLists,
+    path: '/select-categories',
+    name: 'select-categories',
+    component: SelectCategories,
   },
   {
     path: '/practice',
@@ -36,9 +36,9 @@ const routes = [
     component: Settings,
   },
   {
-    path: '/custom-lists',
-    name: 'custom-lists',
-    component: CustomLists,
+    path: '/custom-categories',
+    name: 'custom-categories',
+    component: CustomCategories,
   },
 ]
 

@@ -4,7 +4,7 @@
 
     <div class="sidebar-page-content">
       <div class="category-list-section"
-          :class="{ hidden: selectedList !== null }">
+          :class="{ hidden: selectedCategory !== null }">
         <header>
           <IconHeader
               class="page-header"
@@ -24,26 +24,26 @@
               v-on:click="handleDropdownClick" />
         </header>
 
-        <RowButton class="custom-list"
-            v-for="(listName, index) in getLists()" v-bind:key="index"
-            v-on:click="selectedList = listName"
-            :text="listName"
+        <RowButton class="custom-category"
+            v-for="(categoryName, index) in getLists()" v-bind:key="index"
+            v-on:click="selectedCategory = categoryName"
+            :text="categoryName"
             icon="list"
-            :iconColour="Colours.stringToColour(listName)" />
+            :iconColour="Colours.stringToColour(categoryName)" />
       </div>
 
       <div class="individual-category-section"
-          :class="{ hidden: selectedList === null }">
+          :class="{ hidden: selectedCategory === null }">
         <RowButton
             class="back-button"
             icon="chevron-left"
             text="Back"
-            v-on:click="selectedList = null" />
+            v-on:click="selectedCategory = null" />
 
-        <CustomListView
-            :listName="selectedList"
-            v-on:close="selectedList = null"
-            v-on:change-category="selectedList = $event" />
+        <CustomCategoryView
+            :categoryName="selectedCategory"
+            v-on:close="selectedCategory = null"
+            v-on:change-category="selectedCategory = $event" />
       </div>
 
       <Modal
@@ -92,7 +92,7 @@
   import IconHeader from '@/components/IconHeader.vue';
   import RowButton from '@/components/RowButton.vue';
   import Dropdown from '@/components/Dropdown.vue';
-  import CustomListView from '@/components/CustomListView.vue';
+  import CustomCategoryView from '@/components/CustomCategoryView.vue';
 
   export default {
     components: {
@@ -102,11 +102,11 @@
       IconHeader,
       RowButton,
       Dropdown,
-      CustomListView,
+      CustomCategoryView,
     },
     data () {
       return {
-        selectedList: null,
+        selectedCategory: null,
 
         showNewCategoryModal: false,
         showImportCategoryModal: false,
@@ -120,7 +120,7 @@
     },
     methods: {
       getLists() {
-        return LocalStorage.getCustomListNames();
+        return LocalStorage.getCustomCategoryNames();
       },
       handleDropdownClick(operation) {
         if (operation === 'import') {
@@ -138,7 +138,7 @@
           return;
         }
 
-        LocalStorage.createCustomList(this.inputCategoryName);
+        LocalStorage.createCustomCategory(this.inputCategoryName);
 
         this.cleanUpCreateCategory();
       },
@@ -151,7 +151,7 @@
       async handleImportFiles(event) {
         for (const file of event.target.files) {
           const contents = await file.text();
-          LocalStorage.importListFromJson(contents);
+          LocalStorage.importCategoryFromJson(contents);
         }
 
         this.$forceUpdate();
@@ -196,7 +196,7 @@
     gap: 1em;
   }
 
-  .custom-list {
+  .custom-category {
     position: relative;
 
     font-size: 24px;

@@ -2,10 +2,10 @@
   <div>
     <header>
       <IconHeader
-          class="list-title"
+          class="category-title"
           icon="list"
-          :iconColour="Colours.stringToColour(listName)"
-          :text="listName" />
+          :iconColour="Colours.stringToColour(categoryName)"
+          :text="categoryName" />
 
       <ActionButton
           class="new-word-button"
@@ -42,7 +42,7 @@
     </div>
 
     <Modal
-        :shown="showRenameListModal"
+        :shown="showRenameCategoryModal"
         v-on:click-out="cleanUpRenameCategory">
       <h1>Rename category</h1>
       <input
@@ -62,10 +62,10 @@
     </Modal>
 
     <Modal
-        :shown="showDeleteListModal"
+        :shown="showDeleteCategoryModal"
         v-on:click-out="cleanUpDeleteCategory">
       <h1>Delete category</h1>
-      <p class="delete-warning">Are you sure you want to delete <strong>{{ listName }}</strong>? This can't be undone.</p>
+      <p class="delete-warning">Are you sure you want to delete <strong>{{ categoryName }}</strong>? This can't be undone.</p>
       <div class="buttons-row">
         <ActionButton
             text="Cancel"
@@ -101,14 +101,14 @@
       IconButton,
     },
     props: {
-      listName: String,
+      categoryName: String,
     },
     data() {
       return {
         newWordPlaceholder: 'new word',
 
-        showRenameListModal: false,
-        showDeleteListModal: false,
+        showRenameCategoryModal: false,
+        showDeleteCategoryModal: false,
 
         wordValues: null,
 
@@ -116,7 +116,7 @@
       }
     },
     watch: {
-      listName() {
+      categoryName() {
         this.loadWords();
       },
     },
@@ -127,29 +127,28 @@
     methods: {
       loadWords() {
         this.wordValues = this.getWords();
-        this.inputCategoryName = this.listName;
+        this.inputCategoryName = this.categoryName;
       },
       getWords() {
-        // this conditional allows us to create the view without a list provided,
-        // with the intent to change it later
-        if (!this.listName) {
+        // this conditional allows us to create the view without a category provided, with the intent to change it later
+        if (!this.categoryName) {
           return null;
         }
 
-        return LocalStorage.getCustomList(this.listName);
+        return LocalStorage.getCustomCategory(this.categoryName);
       },
       handleDropdownClick(operation) {
         if (operation === 'rename') {
-          this.showRenameListModal = true;
+          this.showRenameCategoryModal = true;
         } else if (operation === 'export') {
           this.clickExportCategory();
         } else if (operation === 'delete') {
-          this.showDeleteListModal = true;
+          this.showDeleteCategoryModal = true;
         }
       },
       cleanUpRenameCategory() {
-        this.showRenameListModal = false;
-        this.inputCategoryName = this.listName;
+        this.showRenameCategoryModal = false;
+        this.inputCategoryName = this.categoryName;
       },
       clickRenameCategory() {
         // prevent renaming to an invalid name
@@ -158,7 +157,7 @@
           return;
         }
 
-        LocalStorage.renameCustomList(this.listName, this.inputCategoryName);
+        LocalStorage.renameCustomCategory(this.categoryName, this.inputCategoryName);
 
         this.$emit('change-category', this.inputCategoryName);
 
@@ -178,7 +177,7 @@
         const tempElement = document.createElement('a');
         tempElement.href = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
 
-        const fileName = this.sanitizeFileName(this.listName) + '.json';
+        const fileName = this.sanitizeFileName(this.categoryName) + '.json';
         tempElement.setAttribute('download', fileName);
 
         document.body.appendChild(tempElement);
@@ -186,13 +185,13 @@
         document.body.removeChild(tempElement);
       },
       clickExportCategory() {
-        this.downloadTextAsJson(LocalStorage.exportListToJson(this.listName));
+        this.downloadTextAsJson(LocalStorage.exportCategoryToJson(this.categoryName));
       },
       cleanUpDeleteCategory() {
-        this.showDeleteListModal = false;
+        this.showDeleteCategoryModal = false;
       },
       clickDeleteCategory() {
-        LocalStorage.deleteCustomList(this.listName);
+        LocalStorage.deleteCustomCategory(this.categoryName);
 
         this.cleanUpDeleteCategory();
         this.$emit('close');
@@ -203,15 +202,15 @@
           return;
         }
 
-        LocalStorage.addCustomWord(this.listName, this.newWordPlaceholder);
+        LocalStorage.addCustomWord(this.categoryName, this.newWordPlaceholder);
         this.loadWords();
       },
       updateWord(index) {
-        LocalStorage.editCustomWord(this.listName, index, this.wordValues[index]);
+        LocalStorage.editCustomWord(this.categoryName, index, this.wordValues[index]);
         this.loadWords();
       },
       clickDeleteWord(index) {
-        LocalStorage.deleteCustomWord(this.listName, index);
+        LocalStorage.deleteCustomWord(this.categoryName, index);
         this.loadWords();
       },
     },
@@ -232,7 +231,7 @@
     color: var(--negative-colour);
   }
 
-  .list-title {
+  .category-title {
     flex-grow: 1;
   }
 

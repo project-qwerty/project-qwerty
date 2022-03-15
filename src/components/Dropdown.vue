@@ -100,7 +100,7 @@
 
     white-space: nowrap;
 
-    /* the dropdown was rendering under the list buttons on the custom-lists page; this was the quick fix */
+    /* the dropdown was rendering beneath the category row buttons on the custom-categories page; this was the quick fix */
     z-index: 1;
   }
 

@@ -29,7 +29,7 @@
     created() {
       const indexOfInitialValue = this.options.findIndex(opt => opt.val === this.initialValue);
 
-      // leave it at the default if the supplied value isn't in the list
+      // leave it at the default if the supplied value isn't an option
       if (indexOfInitialValue === -1) {
         return;
       }

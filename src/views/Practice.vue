@@ -119,7 +119,7 @@
 
 
 <script>
-  import BuiltInWordLists from '@/functions/BuiltInWordLists.js';
+  import BuiltInCategories from '@/functions/BuiltInCategories.js';
   import LocalStorage from '@/functions/LocalStorage.js';
 
   import IconButton from '@/components/IconButton.vue';
@@ -168,17 +168,17 @@
       // load words
       this.words = [];
 
-      const builtInSelected = LocalStorage.getSelectedBuiltInListNames();
+      const builtInSelected = LocalStorage.getSelectedBuiltInCategoryNames();
 
-      for (const listName of builtInSelected) {
-        const words = BuiltInWordLists[listName].list;
+      for (const categoryName of builtInSelected) {
+        const words = BuiltInCategories[categoryName].words;
         this.words = this.words.concat(words);
       }
 
-      const customSelected = LocalStorage.getSelectedCustomListNames();
+      const customSelected = LocalStorage.getSelectedCustomCategoryNames();
 
-      for (const listName of customSelected) {
-        const words = LocalStorage.getCustomList(listName);
+      for (const categoryName of customSelected) {
+        const words = LocalStorage.getCustomCategory(categoryName);
         this.words = this.words.concat(words);
       }
 
@@ -365,7 +365,7 @@
         this.displaySecondsRemaining = this.settings.wordDisplayTime;
       },
       clickFinish() {
-        this.$router.push('/select-lists');
+        this.$router.push('/select-categories');
       },
       clickShowWordButton() {
         this.displaySecondsRemaining = this.settings.wordDisplayTime;

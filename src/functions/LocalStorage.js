@@ -1,4 +1,4 @@
-import BuiltInWordLists from '@/functions/BuiltInWordLists.js';
+import BuiltInCategories from '@/functions/BuiltInCategories.js';
 import Validation from '@/functions/Validation.js';
 
 // Note: all the functions are top-level in this file so that they can reference each other when necessary.
@@ -63,137 +63,137 @@ function setSetting(name, val) {
   localStorage.setItem(setting.key, val);
 }
 
-// Custom lists handling
+// Custom categories handling
 
-// TODO: the order of lists isn't stable, that's not great
-function getCustomListNames() {
-  const customListKeys = Object.keys(localStorage)
-    .filter(key => key.startsWith('custom_lists.'));
-  const customListNames = customListKeys
-    .map(key => key.replace(/^custom_lists\./, ''));
+// TODO: the order of categories isn't stable, that's not great
+function getCustomCategoryNames() {
+  const customCategoryKeys = Object.keys(localStorage)
+    .filter(key => key.startsWith('custom_categories.'));
+  const customCategoryNames = customCategoryKeys
+    .map(key => key.replace(/^custom_categories\./, ''));
 
-  return customListNames;
+  return customCategoryNames;
 }
 
-function getCustomList(name) {
-  const listKey = 'custom_lists.' + name;
+function getCustomCategory(name) {
+  const categoryKey = 'custom_categories.' + name;
 
-  if (localStorage.getItem(listKey) === null) {
-    throw new Error(`not a custom list: "${name}"`);
+  if (localStorage.getItem(categoryKey) === null) {
+    throw new Error(`not a custom category: "${name}"`);
   }
 
-  const stringData = localStorage.getItem(listKey);
+  const stringData = localStorage.getItem(categoryKey);
   return JSON.parse(stringData);
 }
 
-function getCustomListValidWords(name) {
-  var list = getCustomList(name);
-  list = list.filter(Validation.isValidWord);
-  return list;
+function getCustomCategoryValidWords(name) {
+  var category = getCustomCategory(name);
+  category = category.filter(Validation.isValidWord);
+  return category;
 }
 
-function createCustomList(name) {
-  const listKey = 'custom_lists.' + name;
+function createCustomCategory(name) {
+  const categoryKey = 'custom_categories.' + name;
 
-  if (localStorage.getItem(listKey) !== null) {
-    throw new Error(`already a custom list: "${name}"`);
+  if (localStorage.getItem(categoryKey) !== null) {
+    throw new Error(`already a custom category: "${name}"`);
   }
 
-  localStorage.setItem(listKey, '[]');
+  localStorage.setItem(categoryKey, '[]');
 }
 
-function renameCustomList(oldName, newName) {
-  const oldListKey = 'custom_lists.' + oldName;
+function renameCustomCategory(oldName, newName) {
+  const oldCategoryKey = 'custom_categories.' + oldName;
 
-  if (localStorage.getItem(oldListKey) === null) {
-    throw new Error(`not a custom list: "${oldName}"`);
+  if (localStorage.getItem(oldCategoryKey) === null) {
+    throw new Error(`not a custom category: "${oldName}"`);
   }
 
-  const newListKey = 'custom_lists.' + newName;
+  const newCategoryKey = 'custom_categories.' + newName;
 
-  if (localStorage.getItem(newListKey) !== null) {
-    throw new Error(`already a custom list: "${newName}"`);
+  if (localStorage.getItem(newCategoryKey) !== null) {
+    throw new Error(`already a custom category: "${newName}"`);
   }
 
-  const listContents = localStorage.getItem(oldListKey);
-  localStorage.setItem(newListKey, listContents);
-  localStorage.removeItem(oldListKey);
+  const categoryContents = localStorage.getItem(oldCategoryKey);
+  localStorage.setItem(newCategoryKey, categoryContents);
+  localStorage.removeItem(oldCategoryKey);
 }
 
-function deleteCustomList(name) {
-  const listKey = 'custom_lists.' + name;
+function deleteCustomCategory(name) {
+  const categoryKey = 'custom_categories.' + name;
 
-  if (localStorage.getItem(listKey) === null) {
-    throw new Error(`not a custom list: "${name}"`);
+  if (localStorage.getItem(categoryKey) === null) {
+    throw new Error(`not a custom category: "${name}"`);
   }
 
-  localStorage.removeItem(listKey);
+  localStorage.removeItem(categoryKey);
 }
 
-function addCustomWord(listName, word) {
-  const listKey = 'custom_lists.' + listName;
+function addCustomWord(categoryName, word) {
+  const categoryKey = 'custom_categories.' + categoryName;
 
-  if (localStorage.getItem(listKey) === null) {
-    throw new Error(`not a custom list: "${listName}"`);
+  if (localStorage.getItem(categoryKey) === null) {
+    throw new Error(`not a custom category: "${categoryName}"`);
   }
 
-  const listStringData = localStorage.getItem(listKey);
-  let list = JSON.parse(listStringData);
+  const categoryStringData = localStorage.getItem(categoryKey);
+  let category = JSON.parse(categoryStringData);
 
   // we normalize the words to lowercase
   word = word.toLowerCase();
 
-  if (list.includes(word)) {
+  if (category.includes(word)) {
     // silently don't add the word in twice
     return;
   }
 
   // add the word and save it to storage
-  list.push(word);
-  localStorage.setItem(listKey, JSON.stringify(list));
+  category.push(word);
+  localStorage.setItem(categoryKey, JSON.stringify(category));
 }
 
-function editCustomWord(listName, index, newValue) {
-  const listKey = 'custom_lists.' + listName;
+function editCustomWord(categoryName, index, newValue) {
+  const categoryKey = 'custom_categories.' + categoryName;
 
-  if (localStorage.getItem(listKey) === null) {
-    throw new Error(`not a custom list: "${listName}"`);
+  if (localStorage.getItem(categoryKey) === null) {
+    throw new Error(`not a custom category: "${categoryName}"`);
   }
 
-  const listStringData = localStorage.getItem(listKey);
-  let list = JSON.parse(listStringData);
+  const categoryStringData = localStorage.getItem(categoryKey);
+  let category = JSON.parse(categoryStringData);
 
-  if (index >= list.length) {
-    throw new Error(`index out of bounds: index = "${index}", ${listName}.length = ${list.length}`);
+  if (index >= category.length) {
+    throw new Error(`index out of bounds: index = "${index}", ${categoryName}.length = ${category.length}`);
   }
 
   // we normalize the words to lowercase
   newValue = newValue.toLowerCase();
 
-  list[index] = newValue;
-  localStorage.setItem(listKey, JSON.stringify(list));
+  category[index] = newValue;
+  localStorage.setItem(categoryKey, JSON.stringify(category));
 }
 
-function deleteCustomWord(listName, index) {
-  const listKey = 'custom_lists.' + listName;
+function deleteCustomWord(categoryName, index) {
+  const categoryKey = 'custom_categories.' + categoryName;
 
-  if (localStorage.getItem(listKey) === null) {
-    throw new Error(`not a custom list: "${listName}"`);
+  if (localStorage.getItem(categoryKey) === null) {
+    throw new Error(`not a custom category: "${categoryName}"`);
   }
 
-  const listStringData = localStorage.getItem(listKey);
-  let list = JSON.parse(listStringData);
+  const categoryStringData = localStorage.getItem(categoryKey);
+  let category = JSON.parse(categoryStringData);
 
   // delete the word and save it to storage
-  list.splice(index, 1);
-  localStorage.setItem(listKey, JSON.stringify(list));
+  category.splice(index, 1);
+  localStorage.setItem(categoryKey, JSON.stringify(category));
 }
 
-function exportListToJson(listName) {
-  const list = getCustomList(listName);  // this can throw errors
+function exportCategoryToJson(categoryName) {
+  const category = getCustomCategory(categoryName);  // this can throw errors
   const data = {
-    name: listName,
-    words: list,
+    name: categoryName,
+    words: category,
   };
   return JSON.stringify(data);
 }
@@ -216,23 +216,23 @@ function getParsedDataOrNull(stringData) {
   return data;
 }
 
-function importListFromJson(stringData) {
+function importCategoryFromJson(stringData) {
   const data = getParsedDataOrNull(stringData);
 
   if (data === null) {
     throw new Error('JSON data is invalid');
   }
 
-  createCustomList(data.name);  // this can throw errors
+  createCustomCategory(data.name);  // this can throw errors
   for (let word of data.words) {
     addCustomWord(data.name, word);
   }
 }
 
-// Selected lists handling
+// Selected categories handling
 
-function getSelectedListNames(listType) {
-  const key = 'selected_lists.' + listType;
+function getSelectedCategoryNames(categoryType) {
+  const key = 'selected_categories.' + categoryType;
 
   if (localStorage.getItem(key) === null) {
     // nothing stored means nothing selected
@@ -243,8 +243,8 @@ function getSelectedListNames(listType) {
   return JSON.parse(stringData);
 }
 
-function setListSelected(listType, listName, isSelected) {
-  const key = 'selected_lists.' + listType;
+function setCategorySelected(categoryType, categoryName, isSelected) {
+  const key = 'selected_categories.' + categoryType;
 
   if (localStorage.getItem(key) === null) {
     // initialize storage
@@ -254,9 +254,9 @@ function setListSelected(listType, listName, isSelected) {
   const stringData = localStorage.getItem(key);
   let selected = JSON.parse(stringData);
 
-  selected = selected.filter(x => x !== listName);
+  selected = selected.filter(x => x !== categoryName);
   if (isSelected) {
-    selected.push(listName);
+    selected.push(categoryName);
   }
 
   localStorage.setItem(key, JSON.stringify(selected));
@@ -266,45 +266,45 @@ export default {
   getSetting: getSetting,
   setSetting: setSetting,
 
-  getCustomListNames: getCustomListNames,
-  getCustomList: getCustomList,
-  getCustomListValidWords: getCustomListValidWords,
-  createCustomList: createCustomList,
-  renameCustomList: renameCustomList,
-  deleteCustomList: deleteCustomList,
+  getCustomCategoryNames: getCustomCategoryNames,
+  getCustomCategory: getCustomCategory,
+  getCustomCategoryValidWords: getCustomCategoryValidWords,
+  createCustomCategory: createCustomCategory,
+  renameCustomCategory: renameCustomCategory,
+  deleteCustomCategory: deleteCustomCategory,
   addCustomWord: addCustomWord,
   editCustomWord: editCustomWord,
   deleteCustomWord: deleteCustomWord,
-  exportListToJson: exportListToJson,
-  importListFromJson: importListFromJson,
+  exportCategoryToJson: exportCategoryToJson,
+  importCategoryFromJson: importCategoryFromJson,
 
-  getSelectedBuiltInListNames: function() {
-    // delete any selected lists that don't exist (any more)
-    const availableLists = Object.keys(BuiltInWordLists);
-    const selectedLists = getSelectedListNames('builtin');
-    const deadLists = selectedLists.filter(selectedList => !availableLists.includes(selectedList));
-    for (let listName of deadLists) {
-      setListSelected('builtin', listName, false);
+  getSelectedBuiltInCategoryNames: function() {
+    // delete any selected categories that don't exist (any more)
+    const availableCategories = Object.keys(BuiltInCategories);
+    const selectedCategories = getSelectedCategoryNames('builtin');
+    const deadCategories = selectedCategories.filter(selectedCategory => !availableCategories.includes(selectedCategory));
+    for (let categoryName of deadCategories) {
+      setCategorySelected('builtin', categoryName, false);
     }
 
-    return getSelectedListNames('builtin');
+    return getSelectedCategoryNames('builtin');
   },
-  getSelectedCustomListNames: function() {
-    // delete any selected lists that don't exist (any more)
-    const availableLists = getCustomListNames();
-    const selectedLists = getSelectedListNames('custom');
-    const deadLists = selectedLists.filter(selectedList => !availableLists.includes(selectedList));
-    for (let listName of deadLists) {
-      setListSelected('custom', listName, false);
+  getSelectedCustomCategoryNames: function() {
+    // delete any selected categories that don't exist (any more)
+    const availableCategories = getCustomCategoryNames();
+    const selectedCategories = getSelectedCategoryNames('custom');
+    const deadCategories = selectedCategories.filter(selectedCategory => !availableCategories.includes(selectedCategory));
+    for (let categoryName of deadCategories) {
+      setCategorySelected('custom', categoryName, false);
     }
 
-    return getSelectedListNames('custom');
+    return getSelectedCategoryNames('custom');
   },
-  setBuiltInListSelected: function(listName, isSelected) {
-    setListSelected('builtin', listName, isSelected);
+  setBuiltInCategorySelected: function(categoryName, isSelected) {
+    setCategorySelected('builtin', categoryName, isSelected);
   },
-  setCustomListSelected: function(listName, isSelected) {
-    setListSelected('custom', listName, isSelected);
+  setCustomCategorySelected: function(categoryName, isSelected) {
+    setCategorySelected('custom', categoryName, isSelected);
   },
 
 }

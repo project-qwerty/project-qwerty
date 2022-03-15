@@ -7,7 +7,7 @@
         <ActionButton
             class="start-button"
             text="Start"
-            v-on:click="$router.push('/select-lists')"/>
+            v-on:click="$router.push('/select-categories')"/>
       </div>
       <footer>
         <p>Made with love by</p>

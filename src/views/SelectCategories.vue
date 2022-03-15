@@ -13,40 +13,40 @@
         <ActionButton
             class="start-button"
             text="Start"
-            :enabled="anyListsSelected()"
+            :enabled="anyCategoriesSelected()"
             v-on:click="$router.push('/practice')" />
       </header>
 
-      <IconHeader text="Built-in lists" />
+      <IconHeader text="Built-in categories" />
 
       <div class="tiles">
         <ToggleTile
-            v-for="(listName, index) in builtInLists" v-bind:key="index"
+            v-for="(categoryName, index) in builtInCategories" v-bind:key="index"
             class="tile"
-            :text="listName"
-            :icon="BuiltInWordLists[listName].icon"
+            :text="categoryName"
+            :icon="BuiltInCategories[categoryName].icon"
             :colour="Colours.indexToColour(index)"
-            :enabled="builtInSelected.includes(listName)"
-            v-on:update="builtInListClicked($event)" />
+            :enabled="builtInSelected.includes(categoryName)"
+            v-on:update="builtInCategoryClicked($event)" />
       </div>
 
-      <IconHeader text="Custom lists" />
+      <IconHeader text="Custom categories" />
 
       <div class="tiles">
         <ToggleTile
-            v-for="(listName, index) in customLists" v-bind:key="index"
+            v-for="(categoryName, index) in customCategories" v-bind:key="index"
             class="tile"
-            :text="listName"
-            :colour="Colours.stringToColour(listName)"
-            :enabled="customSelected.includes(listName)"
-            v-on:update="customListClicked($event)" />
+            :text="categoryName"
+            :colour="Colours.stringToColour(categoryName)"
+            :enabled="customSelected.includes(categoryName)"
+            v-on:update="customCategoryClicked($event)" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import BuiltInWordLists from '@/functions/BuiltInWordLists.js';
+  import BuiltInCategories from '@/functions/BuiltInCategories.js';
   import LocalStorage from '@/functions/LocalStorage.js';
   import Colours from '@/functions/Colours.js'
 
@@ -64,50 +64,50 @@
     },
     data() {
       return {
-        builtInLists: [],
+        builtInCategories: [],
         builtInSelected: [],
 
-        customLists: [],
+        customCategories: [],
         customSelected: [],
       }
     },
     beforeCreate() {
-      this.BuiltInWordLists = BuiltInWordLists;
+      this.BuiltInCategories = BuiltInCategories;
       this.Colours = Colours;
     },
     created() {
       this.loadEverything();
     },
     methods: {
-      anyListsSelected() {
+      anyCategoriesSelected() {
         return this.builtInSelected.length + this.customSelected.length > 0;
       },
-      loadLists() {
-        // the filters prevent the user from selecting lists with no words
-        this.builtInLists = Object.keys(this.BuiltInWordLists)
-          .filter(listName => this.BuiltInWordLists[listName].list.length > 0);
-        this.customLists = LocalStorage.getCustomListNames()
-          .filter(listName => LocalStorage.getCustomList(listName).length > 0);
+      loadCategories() {
+        // the filters prevent the user from selecting categories with no words
+        this.builtInCategories = Object.keys(this.BuiltInCategories)
+          .filter(categoryName => this.BuiltInCategories[categoryName].words.length > 0);
+        this.customCategories = LocalStorage.getCustomCategoryNames()
+          .filter(categoryName => LocalStorage.getCustomCategory(categoryName).length > 0);
       },
       loadSelected() {
-        this.builtInSelected = LocalStorage.getSelectedBuiltInListNames();
-        this.customSelected = LocalStorage.getSelectedCustomListNames();
+        this.builtInSelected = LocalStorage.getSelectedBuiltInCategoryNames();
+        this.customSelected = LocalStorage.getSelectedCustomCategoryNames();
       },
       loadEverything() {
-        this.loadLists();
+        this.loadCategories();
         this.loadSelected();
       },
-      builtInListClicked(event) {
+      builtInCategoryClicked(event) {
         // event is emitted by ToggleTile
-        //   {text: name_of_list, enabled: true/false}
-        LocalStorage.setBuiltInListSelected(event.text, event.enabled);
+        //   {text: name_of_category, enabled: true/false}
+        LocalStorage.setBuiltInCategorySelected(event.text, event.enabled);
 
         this.loadEverything();
       },
-      customListClicked(event) {
+      customCategoryClicked(event) {
         // event is emitted by ToggleTile
-        //   {text: name_of_list, enabled: true/false}
-        LocalStorage.setCustomListSelected(event.text, event.enabled);
+        //   {text: name_of_category, enabled: true/false}
+        LocalStorage.setCustomCategorySelected(event.text, event.enabled);
 
         this.loadEverything();
       },

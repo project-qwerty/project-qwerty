@@ -17,8 +17,8 @@ export default {
     }
 
     const isWhitespace = input.replace(/\s/g, '') === '';
-    const isAlreadyAList = LocalStorage.getCustomListNames().some(listName => listName === input);
+    const isAlreadyACategory = LocalStorage.getCustomCategoryNames().some(categoryName => categoryName === input);
 
-    return !isWhitespace && !isAlreadyAList;
+    return !isWhitespace && !isAlreadyACategory;
   },
 }
