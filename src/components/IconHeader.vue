@@ -53,8 +53,9 @@
   }
 
   .icon {
-    display: inline-block;
-    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .coloured-icon {
