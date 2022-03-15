@@ -138,7 +138,7 @@
   }
 
   .tile {
-    font-size: 16px;
+    font-size: 20px;
 
     width: 10em;
     height: 8em;
