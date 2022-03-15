@@ -145,7 +145,6 @@
           wordDisplayTime: LocalStorage.getSetting('wordDisplayTime'),
           wordsPerSession: LocalStorage.getSetting('wordsPerSession'),
           assistanceLevel: LocalStorage.getSetting('assistanceLevel'),
-          clickForNextWord: LocalStorage.getSetting('clickForNextWord'),
           wordDisplayCapitalization: LocalStorage.getSetting('wordDisplayCapitalization'),
         },
 
@@ -209,7 +208,7 @@
     },
     computed: {
       showNextWordModal() {
-        return this.settings.clickForNextWord && this.input === this.targetWord;
+        return this.input === this.targetWord;
       },
       showFinishedModal() {
         return this.currentWordIndex === this.words.length;
@@ -265,11 +264,6 @@
 
         // they got it right
         this.sound.correct.play();
-
-        // skip the modal and advance to next word automatically if clickForNextWord = false
-        if (!this.settings.clickForNextWord) {
-          this.advanceWord();
-        }
       },
       displaySecondsRemaining() {
         // prevent multiple "threads" ticking down concurrently

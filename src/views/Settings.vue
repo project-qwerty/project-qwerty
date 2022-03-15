@@ -64,20 +64,6 @@
         </div>
       </div>
 
-      <IconHeader text="Click for next word" icon="hand-pointer" />
-      <div class="control-row">
-        <p><strong>Click</strong> or <strong>tap</strong> for the next word</p>
-
-        <div class="control">
-          <ShowAllSelector :options="[
-                { label: 'On',  val: true, },
-                { label: 'Off', val: false, },
-              ]"
-              :activeValue="clickForNextWord"
-              v-on:update="clickForNextWord = $event" />
-        </div>
-      </div>
-
       <IconHeader text="Repetitions" icon="repeat" />
       <div class="control-row">
         <p><strong>How many times</strong> would you like to practice each word?</p>
@@ -123,7 +109,6 @@
       return {
         wordDisplayTime: null,
         wordsPerSession: null,
-        clickForNextWord: null,
         assistanceLevel: null,
         wordRepetitions: null,
         wordDisplayCapitalization: null,
@@ -139,7 +124,6 @@
       this.wordDisplayTime = LocalStorage.getSetting('wordDisplayTime');
       this.wordsPerSession = LocalStorage.getSetting('wordsPerSession');
       this.assistanceLevel = LocalStorage.getSetting('assistanceLevel');
-      this.clickForNextWord = LocalStorage.getSetting('clickForNextWord');
       this.wordRepetitions = LocalStorage.getSetting('wordRepetitions');
       this.wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
     },
@@ -162,9 +146,6 @@
       },
       assistanceLevel: function(val) {
         LocalStorage.setSetting('assistanceLevel', val);
-      },
-      clickForNextWord: function(val) {
-        LocalStorage.setSetting('clickForNextWord', val);
       },
       wordDisplayCapitalization: function(val) {
         LocalStorage.setSetting('wordDisplayCapitalization', val);

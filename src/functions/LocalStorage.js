@@ -14,17 +14,6 @@ function parseStoredInt(val) {
   return parsed;
 }
 
-function parseStoredBool(val) {
-  switch (val) {
-    case 'true':
-      return true;
-    case 'false':
-      return false;
-    default:
-      return null;
-  }
-}
-
 function parseStoredStringCaps(val) {
   return val.toUpperCase();
 }
@@ -49,11 +38,6 @@ const settings = {
     key: 'settings.assistanceLevel',
     parser: parseStoredStringCaps,
     default: 'MAX',  // potential values: NONE, MIN, MAX
-  },
-  clickForNextWord: {
-    key: 'settings.clickForNextWord',
-    parser: parseStoredBool,
-    default: true,
   },
   wordDisplayCapitalization: {
     key: 'settings.wordDisplayCapitalization',
