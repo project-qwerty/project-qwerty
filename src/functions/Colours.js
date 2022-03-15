@@ -1,5 +1,5 @@
 // this is according to global.css
-const altColourCount = 16;
+const altColourCount = 14;
 
 // taken from https://stackoverflow.com/a/52171480/4809728
 function hash(str, seed = 0) {
