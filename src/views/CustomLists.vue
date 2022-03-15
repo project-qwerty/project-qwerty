@@ -209,6 +209,7 @@
 
   .back-button {
     display: inline-block;
+    width: auto;
 
     font-size: 24px;
 
