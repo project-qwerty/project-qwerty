@@ -182,6 +182,9 @@
         this.words = this.words.concat(words);
       }
 
+      // normalize words to lowercase (to match the case of this.letters)
+      this.words = this.words.map(word => word.toLowerCase());
+
       // shuffle words
       function shuffle(array) {
         for (let i = array.length - 1; i > 0; i--) {

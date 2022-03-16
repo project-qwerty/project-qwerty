@@ -140,9 +140,6 @@ function addCustomWord(categoryName, word) {
   const categoryStringData = localStorage.getItem(categoryKey);
   let category = JSON.parse(categoryStringData);
 
-  // we normalize the words to lowercase
-  word = word.toLowerCase();
-
   if (category.includes(word)) {
     // silently don't add the word in twice
     return;
@@ -166,9 +163,6 @@ function editCustomWord(categoryName, index, newValue) {
   if (index >= category.length) {
     throw new Error(`index out of bounds: index = "${index}", ${categoryName}.length = ${category.length}`);
   }
-
-  // we normalize the words to lowercase
-  newValue = newValue.toLowerCase();
 
   category[index] = newValue;
   localStorage.setItem(categoryKey, JSON.stringify(category));
