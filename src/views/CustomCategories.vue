@@ -9,6 +9,8 @@
           <IconHeader
               class="page-header"
               text="My categories"
+              icon="pen"
+              iconColour="var(--primary-colour)"
               :major="true" />
 
           <ActionButton
