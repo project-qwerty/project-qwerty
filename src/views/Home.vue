@@ -15,6 +15,7 @@
           <img :src="require('@/assets/img/logo-mime.png')" />
           <img :src="require('@/assets/img/logo-mymi.png')" />
           <img :src="require('@/assets/img/logo-monash-partners.jpg')" />
+          <img :src="require('@/assets/img/logo-monash-health.png')" />
         </div>
       </footer>
     </div>
@@ -86,11 +87,11 @@
   footer .logo-row {
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: 30px;
   }
 
   footer img {
-    height: 40px;
+    height: 32px;
   }
 
   .right {
