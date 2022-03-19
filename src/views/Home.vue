@@ -13,7 +13,7 @@
           <button
               class="info-button"
               v-on:click="$router.push('/about')">
-            <font-awesome-icon icon="info-circle" />
+            <font-awesome-icon icon="circle-info" />
           </button>
         </div>
 
