@@ -4,10 +4,19 @@
       <QwertyLogo class="logo" />
       <div>
         <h1>Spelling practice for people with aphasia</h1>
-        <ActionButton
-            class="start-button"
-            text="Start"
-            v-on:click="$router.push('/select-categories')"/>
+        <div class="button-row">
+          <div class="balancer"></div>
+          <ActionButton
+              class="start-button"
+              text="Start"
+              v-on:click="$router.push('/select-categories')"/>
+          <button
+              class="info-button"
+              v-on:click="$router.push('/about')">
+            <font-awesome-icon icon="info-circle" />
+          </button>
+        </div>
+
       </div>
       <footer>
         <p>Made with love by</p>
@@ -75,8 +84,29 @@
     font-size: 48px;
   }
 
+  .button-row {
+    --i-icon-width: 48px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 30px;
+  }
+
+  .balancer {
+    width: var(--i-icon-width);
+  }
+
   .start-button {
     font-size: 24px;
+  }
+
+  .info-button {
+    font-size: var(--i-icon-width);
+    line-height: 0;
+
+    color: var(--faint-colour);
   }
 
   footer {
