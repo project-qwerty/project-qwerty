@@ -6,7 +6,7 @@ export default {
       return false;
     }
 
-    const isAlphaSpace = input.match(/^[A-Za-z ]+$/);
+    const isAlphaSpace = /^[A-Za-z ]+$/.test(input);
     const isWhitespace = input.replace(/\s/g, '') === '';
 
     return isAlphaSpace && !isWhitespace;
