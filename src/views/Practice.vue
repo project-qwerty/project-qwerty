@@ -178,7 +178,7 @@
       const customSelected = LocalStorage.getSelectedCustomCategoryNames();
 
       for (const categoryName of customSelected) {
-        const words = LocalStorage.getCustomCategory(categoryName);
+        const words = LocalStorage.getCustomCategoryUsableWords(categoryName);
         this.words = this.words.concat(words);
       }
 

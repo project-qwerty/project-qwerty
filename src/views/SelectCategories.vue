@@ -83,11 +83,8 @@
         return this.builtInSelected.length + this.customSelected.length > 0;
       },
       loadCategories() {
-        // the filters prevent the user from selecting categories with no words
-        this.builtInCategories = Object.keys(this.BuiltInCategories)
-          .filter(categoryName => this.BuiltInCategories[categoryName].words.length > 0);
-        this.customCategories = LocalStorage.getCustomCategoryNames()
-          .filter(categoryName => LocalStorage.getCustomCategory(categoryName).length > 0);
+        this.builtInCategories = Object.keys(this.BuiltInCategories);
+        this.customCategories = LocalStorage.getUsableCustomCategoryNames();
       },
       loadSelected() {
         this.builtInSelected = LocalStorage.getSelectedBuiltInCategoryNames();

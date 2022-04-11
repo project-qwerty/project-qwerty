@@ -27,7 +27,7 @@
         </header>
 
         <RowButton class="custom-category"
-            v-for="(categoryName, index) in getLists()" v-bind:key="index"
+            v-for="(categoryName, index) in getCategories()" v-bind:key="index"
             v-on:click="selectedCategory = categoryName"
             :text="categoryName"
             icon="list"
@@ -121,7 +121,7 @@
       this.Validation = Validation;
     },
     methods: {
-      getLists() {
+      getCategories() {
         return LocalStorage.getCustomCategoryNames();
       },
       handleDropdownClick(operation) {

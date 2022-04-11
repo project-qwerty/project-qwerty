@@ -75,6 +75,11 @@ function getCustomCategoryNames() {
   return customCategoryNames;
 }
 
+function getUsableCustomCategoryNames() {
+  return getCustomCategoryNames()
+      .filter(categoryName => getCustomCategoryUsableWords(categoryName).length > 0);
+}
+
 function getCustomCategory(name) {
   const categoryKey = 'custom_categories.' + name;
 
@@ -86,10 +91,9 @@ function getCustomCategory(name) {
   return JSON.parse(stringData);
 }
 
-function getCustomCategoryValidWords(name) {
-  var category = getCustomCategory(name);
-  category = category.filter(Validation.isValidWord);
-  return category;
+function getCustomCategoryUsableWords(name) {
+  return getCustomCategory(name)
+      .filter(Validation.isValidWord);
 }
 
 function createCustomCategory(name) {
@@ -233,7 +237,26 @@ function getSelectedCategoryNames(categoryType) {
     return [];
   }
 
-  const stringData = localStorage.getItem(key);
+  let stringData = localStorage.getItem(key);
+  let selectedCategories = JSON.parse(stringData);
+
+  // for built in categories, we assume they're all 'usable'
+  if (categoryType === 'builtin') {
+    return selectedCategories;
+  }
+
+  // for custom categories, which can be 'unusable' through user entry,
+  // we need to filter out unusable categories that might be selected
+  const usableCategories = getUsableCustomCategoryNames();
+
+  for (const categoryName of selectedCategories) {
+    if (!usableCategories.includes(categoryName)) {
+      setCategorySelected('custom', categoryName, false);
+    }
+  }
+
+  // now that we've done that we get the selected categories again
+  stringData = localStorage.getItem(key);
   return JSON.parse(stringData);
 }
 
@@ -261,14 +284,19 @@ export default {
   setSetting: setSetting,
 
   getCustomCategoryNames: getCustomCategoryNames,
+  getUsableCustomCategoryNames: getUsableCustomCategoryNames,
+
   getCustomCategory: getCustomCategory,
-  getCustomCategoryValidWords: getCustomCategoryValidWords,
+  getCustomCategoryUsableWords: getCustomCategoryUsableWords,
+
   createCustomCategory: createCustomCategory,
   renameCustomCategory: renameCustomCategory,
   deleteCustomCategory: deleteCustomCategory,
+
   addCustomWord: addCustomWord,
   editCustomWord: editCustomWord,
   deleteCustomWord: deleteCustomWord,
+
   exportCategoryToJson: exportCategoryToJson,
   importCategoryFromJson: importCategoryFromJson,
 
