@@ -31,6 +31,7 @@
         <input
             class="qwerty-text-input"
             :class="{ invalid: !Validation.isValidWord(word) }"
+            placeholder="new word"
             v-model="wordValues[index]"
             @input="updateWord(index)">
 
@@ -105,8 +106,6 @@
     },
     data() {
       return {
-        newWordPlaceholder: 'new word',
-
         showRenameCategoryModal: false,
         showDeleteCategoryModal: false,
 
@@ -198,11 +197,12 @@
       },
       clickAddWord() {
         // we don't want the user to add more than one word at a time
-        if (this.wordValues[-1] === this.newWordPlaceholder) {
+        const alreadyHaveABlank = this.wordValues.some(word => word === '');
+        if (alreadyHaveABlank) {
           return;
         }
 
-        LocalStorage.addCustomWord(this.categoryName, this.newWordPlaceholder);
+        LocalStorage.addCustomWord(this.categoryName, '');
         this.loadWords();
       },
       updateWord(index) {
