@@ -1,0 +1,57 @@
+<template>
+  <div class="wrapper">
+    <div class="row"
+        v-for="row in text" v-bind:key="row">
+      <div class="letter"
+          v-for="letter in row" v-bind:key="letter">
+        {{ letter }}
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<script>
+  export default {
+    data() {
+      return {
+        text: [
+          'PROJECT',
+          'QWERTY ',
+        ],
+      }
+    },
+  }
+</script>
+
+
+<style scoped>
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+
+    align-self: center;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+
+    gap: 0.3em;
+    margin-bottom: 0.3em;
+  }
+
+  .letter {
+    background-color: var(--faint-colour);
+
+    width: 3em;
+    height: 3em;
+    border-radius: 0.3em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bold;
+  }
+</style>

@@ -1,0 +1,75 @@
+:root {
+  --foreground-colour: #000000;
+  --background-colour: #ffffff;
+  --faint-colour: #e2e4e8;
+  --primary-colour: #2f80ed;
+  --primary-colour-dark: #2941ce;
+  --positive-colour: #219653;
+  --negative-colour: red;
+
+  --material-colour-1: #f44336;
+  --material-colour-2: #e91e63;
+  --material-colour-3: #9c27b0;
+  --material-colour-4: #673ab7;
+  --material-colour-5: #3f51b5;
+  --material-colour-6: #2196f3;
+  --material-colour-7: #03a9f4;
+  --material-colour-8: #00bcd4;
+  --material-colour-9: #009688;
+  --material-colour-10: #4caf50;
+  --material-colour-11: #8bc34a;
+  --material-colour-12: #ffc107;
+  --material-colour-13: #ff9800;
+  --material-colour-14: #ff5722;
+
+  --sidebar-width: 280px;
+}
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  user-select: none;
+}
+
+html, body, #app {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+
+  /* disable double-tap zoom */
+  touch-action: manipulation;
+}
+
+button {
+  /* reset default button style */
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  outline: inherit;
+  text-align: inherit;
+
+  display: block;
+  box-sizing: content-box;
+
+  cursor: pointer;
+}
+
+/* global classes */
+
+.qwerty-text-input {
+  /* this makes width: 100% work correctly with the padding */
+  box-sizing: border-box;
+
+  padding: 0.5em;
+
+  border: solid 2px var(--faint-colour);
+  border-radius: 0.5em;
+}

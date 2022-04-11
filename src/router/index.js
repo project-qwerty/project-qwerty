@@ -1,12 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Keyboard from '../views/KeyboardPage.vue'
+import Practice from '../views/Practice.vue'
 import Settings from '../views/Settings.vue'
-import SelectWords from '../views/SelectWords.vue'
-import General from '../views/settings/General.vue'
-import CustomLists from '../views/settings/CustomLists.vue'
-import About from '../views/settings/About.vue'
+import SelectCategories from '../views/SelectCategories.vue'
+import CustomCategories from '../views/CustomCategories.vue'
+import About from '../views/About.vue'
 
 Vue.use(VueRouter)
 
@@ -14,36 +13,32 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
   },
   {
-    path: '/keyboard',
-    name: 'keyboard',
-    component: Keyboard
+    path: '/about',
+    name: 'about',
+    component: About,
+  },
+  {
+    path: '/select-categories',
+    name: 'select-categories',
+    component: SelectCategories,
+  },
+  {
+    path: '/practice',
+    name: 'practice',
+    component: Practice,
   },
   {
     path: '/settings',
     name: 'settings',
     component: Settings,
-    children: [
-      {
-        path: '',
-        component: General
-      },
-      {
-        path: 'custom-lists',
-        component: CustomLists
-      },
-      {
-        path: 'about',
-        component: About
-      },
-    ]
   },
   {
-    path: '/select_words',
-    name: 'select_words',
-    component: SelectWords
+    path: '/custom-categories',
+    name: 'custom-categories',
+    component: CustomCategories,
   },
 ]
 

@@ -2,24 +2,14 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCog, faChevronRight, faChevronLeft, faEye, faBackspace, faCloudUploadAlt, faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import BFormInput from 'bootstrap-vue'
-import { FormInputPlugin } from 'bootstrap-vue'
+import { faGear, faChevronLeft, faEye, faBackspace, faPlay, faHandSparkles, faCircleInfo, faCircleQuestion, faCheck, faRepeat, faFont, faList, faStopwatch, faStar, faBasketShopping, faStethoscope, faCalculator, faFaceGrinWide, faMessage, faClock, faBriefcase, faKeyboard, faPlus, faEllipsisVertical, faTrashCan, faRightFromBracket, faRightToBracket, faX, faICursor, faCircleCheck, faTrophy, faArrowRotateRight, faMinus, faPen } from '@fortawesome/free-solid-svg-icons'
 
-Vue.use(BFormInput)
-Vue.use(FormInputPlugin)
-Vue.config.productionTip = false
-
-library.add(faCog)
-library.add(faChevronRight)
-library.add(faChevronLeft)
-library.add(faEye)
-library.add(faBackspace)
-library.add(faCloudUploadAlt)
-library.add(faCloudDownloadAlt)
+library.add(faGear, faChevronLeft, faEye, faBackspace, faPlay, faHandSparkles, faCircleInfo, faCircleQuestion, faCheck, faRepeat, faFont, faList, faStopwatch, faStar, faBasketShopping, faStethoscope, faCalculator, faFaceGrinWide, faMessage, faClock, faBriefcase, faKeyboard, faPlus, faEllipsisVertical, faTrashCan, faRightFromBracket, faRightToBracket, faX, faICursor, faCircleCheck, faTrophy, faArrowRotateRight, faMinus, faPen)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+Vue.config.productionTip = false
 
 new Vue({
   router,
