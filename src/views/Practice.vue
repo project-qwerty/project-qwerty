@@ -114,6 +114,24 @@
       </div>
     </Modal>
 
+    <Modal
+        minWidth="400px"
+        minHeight="300px"
+        :shown="showNoKeyboardModal">
+      <div class="modal-contents">
+        <img
+            class="no-keyboard-icon"
+            :src="require('@/assets/img/icon-nokeyboard.svg')" />
+        <p>Use your mouse to select each letter</p>
+        <div class="button-row">
+          <div></div>
+          <ActionButton
+              text="Ok"
+              v-on:click="showNoKeyboardModal = false" />
+        </div>
+      </div>
+    </Modal>
+
   </main>
 </template>
 
@@ -162,6 +180,8 @@
 
         displaySecondsRemaining: null,
         alreadyCountingDown: false,
+
+        showNoKeyboardModal: false,
       }
     },
     created() {
@@ -208,6 +228,12 @@
 
       // initialize timer
       this.displaySecondsRemaining = LocalStorage.getSetting('wordDisplayTime');
+
+      // initialize keyboard handler
+      window.addEventListener('keydown', this.handleKeyDown);
+    },
+    beforeDestroy() {
+      window.removeEventListener('keydown', this.handleKeyDown);
     },
     computed: {
       showNextWordModal() {
@@ -372,6 +398,21 @@
       },
       clickShowWordButton() {
         this.displaySecondsRemaining = this.settings.wordDisplayTime;
+      },
+      handleKeyDown(event) {
+        // this may seem overly complex but it's actually quite necessary
+        // e.g. the modal shouldn't trigger on F11 (making the page fullscreen)
+        // or Ctrl+T to open a new tab
+        const isLetterKey = 64 < event.keyCode && event.keyCode < 91;
+        const isBackspace = event.keyCode === 8;
+        const isSpace = event.keyCode === 32;
+        const isTypingKey = isLetterKey || isBackspace || isSpace;
+
+        const isModified = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
+
+        if (isTypingKey && !isModified) {
+          this.showNoKeyboardModal = true;
+        }
       },
     },
   }
@@ -549,6 +590,14 @@
 
   .modal-contents h1 {
     font-size: 64px;
+  }
+
+  .modal-contents p {
+    font-weight: bold;
+  }
+
+  .modal-contents .no-keyboard-icon {
+    width: 96px;
   }
 
   .green-check {
