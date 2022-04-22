@@ -293,6 +293,14 @@
 
         // they got it right
         this.sound.correct.play();
+
+        // skip the next word modal if they just finished the last word
+        let wasLastRepetition = this.currentRepetitionIndex + 1 === this.settings.wordRepetitions;
+        let wasLastWord = this.currentWordIndex + 1 === this.words.length;
+
+        if (wasLastRepetition && wasLastWord) {
+          this.advanceWord();
+        }
       },
       displaySecondsRemaining() {
         // prevent multiple "threads" ticking down concurrently
