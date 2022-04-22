@@ -204,6 +204,8 @@
 
       // normalize words to lowercase (to match the case of this.letters)
       this.words = this.words.map(word => word.toLowerCase());
+      // remove any leading or trailing spaces
+      this.words = this.words.map(word => word.trim());
 
       // shuffle words
       function shuffle(array) {
