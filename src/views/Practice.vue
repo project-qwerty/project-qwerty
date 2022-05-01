@@ -202,7 +202,7 @@
         this.words = this.words.concat(words);
       }
 
-      // normalize words to lowercase (to match the case of this.letters)
+      // normalise words to lowercase (to match the case of this.letters)
       this.words = this.words.map(word => word.toLowerCase());
       // remove any leading or trailing spaces
       this.words = this.words.map(word => word.trim());
@@ -228,10 +228,10 @@
       this.words = this.words.slice(0, this.settings.wordsPerSession);
 
 
-      // initialize timer
+      // initialise timer
       this.displaySecondsRemaining = LocalStorage.getSetting('wordDisplayTime');
 
-      // initialize keyboard handler
+      // initialise keyboard handler
       window.addEventListener('keydown', this.handleKeyDown);
     },
     beforeDestroy() {

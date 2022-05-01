@@ -162,7 +162,7 @@
 
         this.cleanUpRenameCategory();
       },
-      sanitizeFileName(fileName) {
+      sanitiseFileName(fileName) {
         const illegalCharacters = ['<', '>', ':', '"', '/', '\\', '|', '?', '*'];
 
         for (const char of illegalCharacters) {
@@ -176,7 +176,7 @@
         const tempElement = document.createElement('a');
         tempElement.href = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
 
-        const fileName = this.sanitizeFileName(this.categoryName) + '.json';
+        const fileName = this.sanitiseFileName(this.categoryName) + '.json';
         tempElement.setAttribute('download', fileName);
 
         document.body.appendChild(tempElement);

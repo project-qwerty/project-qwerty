@@ -264,7 +264,7 @@ function setCategorySelected(categoryType, categoryName, isSelected) {
   const key = 'selected_categories.' + categoryType;
 
   if (localStorage.getItem(key) === null) {
-    // initialize storage
+    // initialise storage
     localStorage.setItem(key, '[]');
   }
 
