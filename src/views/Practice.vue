@@ -272,7 +272,8 @@
         return this.input === this.targetWord;
       },
       showFinishedModal() {
-        return this.currentWordIndex === this.words.length;
+        return !this.showSurveyModal  // don't show both modals at once
+            && this.currentWordIndex === this.words.length;
       },
       showShowWordButton() {
         return this.settings.wordDisplayTime > 0 && !this.displaySecondsRemaining > 0;
@@ -434,13 +435,21 @@
         this.displaySecondsRemaining = this.settings.wordDisplayTime;
       },
       clickFinish() {
+        if (true) {  // TODO: check localStorage
+          this.showSurveyModal = true;
+          return;
+        }
+
         this.$router.push('/select-categories');
       },
       clickAcceptSurvey() {
-        // TODO
+        // TODO: set localStorage
+        window.open('https://www.w3schools.com');  // TODO: put the actual survey link here when it's ready
+        this.$router.push('/select-categories');
       },
       clickDeclineSurvey() {
-        // TODO
+        // TODO: set localStorage
+        this.$router.push('/select-categories');
       },
       clickShowWordButton() {
         this.displaySecondsRemaining = this.settings.wordDisplayTime;
