@@ -5,6 +5,8 @@
         class="modal">
       <div class="modal-inner"
           :style="{
+            '--width': width,
+            '--height': height,
             '--min-width': minWidth,
             '--min-height': minHeight,
           }">
@@ -21,6 +23,14 @@
       shown: {
         type: Boolean,
         default: false,
+      },
+      width: {
+        type: String,
+        default: 'initial',
+      },
+      height: {
+        type: String,
+        default: 'initial',
       },
       minWidth: {
         type: String,
@@ -104,6 +114,8 @@
 
     padding: var(--padding);
 
+    width: calc(var(--width) - var(--padding) * 2);
+    height: calc(var(--height) - var(--padding) * 2);
     min-width: calc(var(--min-width) - var(--padding) * 2);
     min-height: calc(var(--min-height) - var(--padding) * 2);
   }
