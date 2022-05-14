@@ -18,6 +18,17 @@ function parseStoredStringCaps(val) {
   return val.toUpperCase();
 }
 
+function parseStoredBool(val) {
+  switch (val.toUpperCase()) {
+    case 'TRUE':
+      return true;
+    case 'FALSE':
+      return false;
+    default:
+      throw Error(`can't parse stored boolean: ${val}`)
+  }
+}
+
 const settings = {
   wordRepetitions: {
     key: 'settings.wordRepetitions',
@@ -61,6 +72,22 @@ function setSetting(name, val) {
   const setting = settings[name];
 
   localStorage.setItem(setting.key, val);
+}
+
+// App state handling
+
+function getSurveyRequestShown() {
+  var storedVal = localStorage.getItem('app_state.surveyRequestShown');
+
+  if (storedVal === null) {
+    return false;
+  }
+
+  return parseStoredBool(storedVal);
+}
+
+function setSurveyRequestShown(isShown) {
+  localStorage.setItem('app_state.surveyRequestShown', isShown);
 }
 
 // Custom categories handling
@@ -280,9 +307,16 @@ function setCategorySelected(categoryType, categoryName, isSelected) {
 }
 
 export default {
+  // settings
+  // TODO: I think the settings shouldn't be bundled into get/setSetting
   getSetting: getSetting,
   setSetting: setSetting,
 
+  // app state
+  getSurveyRequestShown: getSurveyRequestShown,
+  setSurveyRequestShown: setSurveyRequestShown,
+
+  // custom categories
   getCustomCategoryNames: getCustomCategoryNames,
   getUsableCustomCategoryNames: getUsableCustomCategoryNames,
 
@@ -300,6 +334,8 @@ export default {
   exportCategoryToJson: exportCategoryToJson,
   importCategoryFromJson: importCategoryFromJson,
 
+  // selected categories
+  // TODO: these functions shouldn't be here in export default
   getSelectedBuiltInCategoryNames: function() {
     // delete any selected categories that don't exist (any more)
     const availableCategories = Object.keys(BuiltInCategories);

@@ -435,7 +435,8 @@
         this.displaySecondsRemaining = this.settings.wordDisplayTime;
       },
       clickFinish() {
-        if (true) {  // TODO: check localStorage
+        const requestHasBeenShown = LocalStorage.getSurveyRequestShown();
+        if (!requestHasBeenShown) {
           this.showSurveyModal = true;
           return;
         }
@@ -443,12 +444,14 @@
         this.$router.push('/select-categories');
       },
       clickAcceptSurvey() {
-        // TODO: set localStorage
+        LocalStorage.setSurveyRequestShown(true);
+
         window.open('https://www.w3schools.com');  // TODO: put the actual survey link here when it's ready
         this.$router.push('/select-categories');
       },
       clickDeclineSurvey() {
-        // TODO: set localStorage
+        LocalStorage.setSurveyRequestShown(true);
+
         this.$router.push('/select-categories');
       },
       clickShowWordButton() {
