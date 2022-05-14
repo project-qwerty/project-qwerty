@@ -115,6 +115,35 @@
     </Modal>
 
     <Modal
+        class="survey-modal"
+        width="600px"
+        height="480px"
+        :shown="showSurveyModal">
+      <div class="modal-contents">
+        <div class="star-row">
+          <font-awesome-icon icon="star" />
+          <font-awesome-icon icon="star" />
+          <font-awesome-icon icon="star" />
+          <font-awesome-icon icon="star" />
+          <font-awesome-icon icon="star" />
+        </div>
+
+        <h1>Help us make Project QWERTY better</h1>
+
+        <div class="button-column">
+          <ActionButton
+              text="Give feedback"
+              v-on:click="clickAcceptSurvey" />
+
+          <ActionButton
+              text="No, thanks"
+              :major="false"
+              v-on:click="clickDeclineSurvey" />
+        </div>
+      </div>
+    </Modal>
+
+    <Modal
         minWidth="400px"
         minHeight="300px"
         :shown="showNoKeyboardModal">
@@ -182,6 +211,7 @@
         alreadyCountingDown: false,
 
         showNoKeyboardModal: false,
+        showSurveyModal: false,
       }
     },
     created() {
@@ -406,6 +436,12 @@
       clickFinish() {
         this.$router.push('/select-categories');
       },
+      clickAcceptSurvey() {
+        // TODO
+      },
+      clickDeclineSurvey() {
+        // TODO
+      },
       clickShowWordButton() {
         this.displaySecondsRemaining = this.settings.wordDisplayTime;
       },
@@ -596,10 +632,15 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    padding-top: 32px;
+
+    box-sizing: border-box;
   }
 
   .modal-contents h1 {
     font-size: 64px;
+    text-align: center;
   }
 
   .modal-contents p {
@@ -610,18 +651,39 @@
     width: 96px;
   }
 
+  .survey-modal .modal-contents {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .survey-modal .star-row {
+    display: flex;
+    flex-direction: row;
+
+    color: gold;
+    font-size: 42px;
+  }
+
+  .survey-modal h1 {
+    font-size: 42px;
+  }
+
+  .survey-modal .button-column {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    gap: 10px;
+  }
+
   .green-check {
     font-size: 96px;
     color: var(--positive-colour);
-
-    margin-top: 32px;
   }
 
   .trophy {
     font-size: 96px;
     color: gold;
-
-    margin-top: 32px;
   }
 
   .next-word-button {
