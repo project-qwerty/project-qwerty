@@ -115,11 +115,10 @@
       Modal,
       IconButton,
     },
-    props: {
-      categoryName: String,
-    },
     data() {
       return {
+        categoryName: null,  // should be set in created()
+
         showRenameCategoryModal: false,
         showDeleteCategoryModal: false,
 
