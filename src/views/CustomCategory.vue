@@ -247,6 +247,9 @@
     background-color: var(--background-colour);
 
     border-bottom: solid 1px var(--faint-colour);
+
+    position: sticky;
+    top: 0;
   }
 
   /* this turns the final option (delete) red */
