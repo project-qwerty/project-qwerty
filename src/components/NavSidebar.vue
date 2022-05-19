@@ -7,7 +7,7 @@
           :text="button.text"
           :icon="button.icon"
           :bold="button.bold"
-          :active="$route.path === button.path"/>
+          :active="$route.path.startsWith(button.path) && button.path !== '/'" />
     </router-link>
   </nav>
 </template>

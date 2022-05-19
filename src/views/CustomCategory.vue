@@ -1,50 +1,60 @@
 <template>
   <div>
-    <header>
-      <IconHeader
-          class="category-title"
-          icon="list"
-          :iconColour="Colours.stringToColour(categoryName)"
-          :text="categoryName" />
+    <NavSidebar />
 
-      <ActionButton
-          class="new-word-button"
-          icon="plus"
-          text="New word"
-          v-on:click="clickAddWord" />
+    <div class="sidebar-page-content">
+      <RowButton
+          class="back-button"
+          icon="chevron-left"
+          text="Back"
+          v-on:click="$router.back()" />
 
-      <Dropdown
-          class="options-menu"
-          :options="[
-            { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
-            { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
-            { label: 'Delete category', icon: 'trash-can', action: 'delete' },
-          ]"
-          v-on:click="handleDropdownClick" />
-    </header>
+      <header>
+        <IconHeader
+            class="category-title"
+            icon="list"
+            :iconColour="Colours.stringToColour(categoryName)"
+            :text="categoryName" />
 
-    <div class="word-list-wrapper">
-      <div
-          class="word-row"
-          v-for="(word, index) in wordValues" v-bind:key="index">
+        <ActionButton
+            class="new-word-button"
+            icon="plus"
+            text="New word"
+            v-on:click="clickAddWord" />
 
-        <input
-            class="qwerty-text-input"
-            :class="{ invalid: !Validation.isValidWord(word) }"
-            placeholder="new word"
-            v-model="wordValues[index]"
-            @input="updateWord(index)">
+        <Dropdown
+            class="options-menu"
+            :options="[
+              { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
+              { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
+              { label: 'Delete category', icon: 'trash-can', action: 'delete' },
+            ]"
+            v-on:click="handleDropdownClick" />
+      </header>
 
-        <IconButton
-            icon="x"
-            v-on:click="clickDeleteWord(index)" />
+      <div class="word-list-wrapper">
+        <div
+            class="word-row"
+            v-for="(word, index) in wordValues" v-bind:key="index">
 
+          <input
+              class="qwerty-text-input"
+              :class="{ invalid: !Validation.isValidWord(word) }"
+              placeholder="new word"
+              v-model="wordValues[index]"
+              @input="updateWord(index)">
+
+          <IconButton
+              icon="x"
+              v-on:click="clickDeleteWord(index)" />
+
+        </div>
       </div>
     </div>
 
     <Modal
         :shown="showRenameCategoryModal"
-        v-on:click-out="cleanUpRenameCategory">
+        v-on:click-out="clickCancelRenameCategory">
       <h1>Rename category</h1>
       <input
           class="qwerty-text-input modal-text-input"
@@ -54,7 +64,7 @@
         <ActionButton
             text="Cancel"
             :major="false"
-            v-on:click="cleanUpRenameCategory" />
+            v-on:click="clickCancelRenameCategory" />
         <ActionButton
             text="Rename category"
             :enabled="Validation.isValidCategoryName(inputCategoryName)"
@@ -64,14 +74,14 @@
 
     <Modal
         :shown="showDeleteCategoryModal"
-        v-on:click-out="cleanUpDeleteCategory">
+        v-on:click-out="clickCancelDeleteCategory">
       <h1>Delete category</h1>
       <p class="delete-warning">Are you sure you want to delete <strong>{{ categoryName }}</strong>? This can't be undone.</p>
       <div class="buttons-row">
         <ActionButton
             text="Cancel"
             :major="false"
-            v-on:click="cleanUpDeleteCategory" />
+            v-on:click="clickCancelDeleteCategory" />
         <ActionButton
             text="Delete"
             colour="var(--negative-colour)"
@@ -87,6 +97,8 @@
   import Colours from '@/functions/Colours.js'
   import Validation from '@/functions/Validation.js';
 
+  import NavSidebar from '@/components/NavSidebar.vue';
+  import RowButton from '@/components/RowButton.vue';
   import IconHeader from '@/components/IconHeader.vue';
   import ActionButton from '@/components/ActionButton.vue';
   import Dropdown from '@/components/Dropdown.vue';
@@ -95,6 +107,8 @@
 
   export default {
     components: {
+      NavSidebar,
+      RowButton,
       IconHeader,
       ActionButton,
       Dropdown,
@@ -123,17 +137,15 @@
       this.Colours = Colours;
       this.Validation = Validation;
     },
+    created() {
+      this.categoryName = this.$route.params['name'];
+    },
     methods: {
       loadWords() {
         this.wordValues = this.getWords();
         this.inputCategoryName = this.categoryName;
       },
       getWords() {
-        // this conditional allows us to create the view without a category provided, with the intent to change it later
-        if (!this.categoryName) {
-          return null;
-        }
-
         return LocalStorage.getCustomCategory(this.categoryName);
       },
       handleDropdownClick(operation) {
@@ -145,7 +157,7 @@
           this.showDeleteCategoryModal = true;
         }
       },
-      cleanUpRenameCategory() {
+      clickCancelRenameCategory() {
         this.showRenameCategoryModal = false;
         this.inputCategoryName = this.categoryName;
       },
@@ -158,9 +170,7 @@
 
         LocalStorage.renameCustomCategory(this.categoryName, this.inputCategoryName);
 
-        this.$emit('change-category', this.inputCategoryName);
-
-        this.cleanUpRenameCategory();
+        this.$router.back();
       },
       sanitiseFileName(fileName) {
         const illegalCharacters = ['<', '>', ':', '"', '/', '\\', '|', '?', '*'];
@@ -186,14 +196,13 @@
       clickExportCategory() {
         this.downloadTextAsJson(LocalStorage.exportCategoryToJson(this.categoryName));
       },
-      cleanUpDeleteCategory() {
+      clickCancelDeleteCategory() {
         this.showDeleteCategoryModal = false;
       },
       clickDeleteCategory() {
         LocalStorage.deleteCustomCategory(this.categoryName);
 
-        this.cleanUpDeleteCategory();
-        this.$emit('close');
+        this.$router.back();
       },
       clickAddWord() {
         // we don't want the user to add more than one word at a time
@@ -219,11 +228,25 @@
 
 
 <style scoped>
+  .back-button {
+    display: inline-block;
+    width: auto;  /* this keeps the button from taking up the whole width */
+
+    font-size: 24px;
+
+    margin-top: 36px;
+    padding-left: 0;
+  }
+
   header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    background-color: var(--background-colour);
+
+    border-bottom: solid 1px var(--faint-colour);
   }
 
   /* this turns the final option (delete) red */
@@ -240,7 +263,6 @@
   }
 
   .word-list-wrapper {
-    border-top: solid 1px var(--faint-colour);
     border-bottom: solid 1px var(--faint-colour);
   }
 

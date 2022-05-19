@@ -28,24 +28,10 @@
 
         <RowButton class="custom-category"
             v-for="(categoryName, index) in getCategories()" v-bind:key="index"
-            v-on:click="selectedCategory = categoryName"
+            v-on:click="$router.push('/custom-categories/' + categoryName)"
             :text="categoryName"
             icon="list"
             :iconColour="Colours.stringToColour(categoryName)" />
-      </div>
-
-      <div class="individual-category-section"
-          :class="{ hidden: selectedCategory === null }">
-        <RowButton
-            class="back-button"
-            icon="chevron-left"
-            text="Back"
-            v-on:click="selectedCategory = null" />
-
-        <CustomCategoryView
-            :categoryName="selectedCategory"
-            v-on:close="selectedCategory = null"
-            v-on:change-category="selectedCategory = $event" />
       </div>
 
       <Modal
@@ -94,7 +80,6 @@
   import IconHeader from '@/components/IconHeader.vue';
   import RowButton from '@/components/RowButton.vue';
   import Dropdown from '@/components/Dropdown.vue';
-  import CustomCategoryView from '@/components/CustomCategoryView.vue';
 
   export default {
     components: {
@@ -104,7 +89,6 @@
       IconHeader,
       RowButton,
       Dropdown,
-      CustomCategoryView,
     },
     data () {
       return {
@@ -207,16 +191,6 @@
     padding-bottom: 1em;
 
     border-bottom: solid 1px var(--faint-colour);
-  }
-
-  .back-button {
-    display: inline-block;
-    width: auto;
-
-    font-size: 24px;
-
-    margin-top: 36px;
-    padding-left: 0;
   }
 
   .hidden {
