@@ -16,9 +16,12 @@ export default {
       return false;
     }
 
+    const bannedCharacters = /[/\\#&?]/;
+
     const isWhitespace = input.replace(/\s/g, '') === '';
     const isAlreadyACategory = LocalStorage.getCustomCategoryNames().some(categoryName => categoryName === input);
+    const containsBannedCharacters = bannedCharacters.test(input);
 
-    return !isWhitespace && !isAlreadyACategory;
+    return !isWhitespace && !isAlreadyACategory && !containsBannedCharacters;
   },
 }
