@@ -2,6 +2,7 @@
   <div class="outer">
     <div class="left">
       <QwertyLogo class="logo" />
+
       <div>
         <h1>Spelling practice for people with aphasia</h1>
         <div class="button-row">
@@ -16,8 +17,8 @@
             <font-awesome-icon icon="circle-info" />
           </button>
         </div>
-
       </div>
+
       <footer>
         <p>Made with love by</p>
         <div class="logo-row">
@@ -77,7 +78,6 @@
     font-size: 16px;
 
     margin-top: 60px;
-    margin-bottom: 60px;
   }
 
   h1 {
@@ -110,7 +110,6 @@
   }
 
   footer {
-    margin-top: 60px;
     margin-bottom: 60px;
   }
 
