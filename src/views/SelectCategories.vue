@@ -17,8 +17,6 @@
             v-on:click="$router.push('/practice')" />
       </header>
 
-      <IconHeader text="Built-in categories" />
-
       <div class="tiles">
         <ToggleTile
             v-for="(categoryName, index) in builtInCategories" v-bind:key="index"
@@ -30,7 +28,7 @@
             v-on:update="builtInCategoryClicked($event)" />
       </div>
 
-      <IconHeader text="Custom categories" />
+      <IconHeader text="Custom words and phrases" />
 
       <div class="tiles">
         <ToggleTile
