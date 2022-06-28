@@ -54,14 +54,6 @@
         </div>
       </Modal>
 
-      <Modal
-          :shown="showImportCategoryModal"
-          v-on:click-out="showImportCategoryModal = false">
-        <h1>Import category</h1>
-        <textarea placeholder="this is where you will paste the JSON"></textarea>
-        <ActionButton text="ok bye" v-on:click="showImportCategoryModal = false" />
-      </Modal>
-
       <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
     </div>
   </div>
@@ -95,7 +87,6 @@
         selectedCategory: null,
 
         showNewCategoryModal: false,
-        showImportCategoryModal: false,
 
         inputCategoryName: '',
       }
