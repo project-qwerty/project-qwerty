@@ -202,6 +202,15 @@
         this.words = this.words.concat(words);
       }
 
+      // if there's nothing selected and the user navigates directly to /practice (ergo there are no words to practice),
+      // just use all of the built in lists
+      if (this.words.length === 0) {
+        for (const categoryName in BuiltInCategories) {
+          const words = BuiltInCategories[categoryName].words;
+          this.words = this.words.concat(words);
+        }
+      }
+
       // normalise words to lowercase (to match the case of this.letters)
       this.words = this.words.map(word => word.toLowerCase());
       // remove any leading or trailing spaces
