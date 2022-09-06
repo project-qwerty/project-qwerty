@@ -1,6 +1,6 @@
 <template>
   <div class="outer">
-    <div class="left">
+    <div class="content-panel">
       <QwertyLogo class="logo" />
 
       <div>
@@ -29,7 +29,7 @@
         </div>
       </footer>
     </div>
-    <div class="right">
+    <div class="ipad-panel">
       <img :src="require('@/assets/img/ipad-shadow-cropped.png')" />
       <div class="upper"></div>
       <div class="lower"></div>
@@ -60,7 +60,7 @@
     flex-direction: row;
   }
 
-  .left {
+  .content-panel {
     width: 100%;
     height: 100%;
 
@@ -123,7 +123,7 @@
     height: 32px;
   }
 
-  .right {
+  .ipad-panel {
     width: 100%;
     height: 100%;
 
@@ -134,7 +134,7 @@
     position: relative;
   }
 
-  .right > img {
+  .ipad-panel > img {
     position: absolute;
     margin: auto;
     top: 0;
@@ -145,14 +145,14 @@
     width: 100%;
   }
 
-  .right > .upper {
+  .ipad-panel > .upper {
     width: 100%;
     height: 100%;
 
     background-color: var(--primary-colour);
   }
 
-  .right > .lower {
+  .ipad-panel > .lower {
     width: 100%;
     height: 100%;
 
