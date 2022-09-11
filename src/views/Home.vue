@@ -68,9 +68,6 @@
     width: 100%;
     height: 100%;
 
-    margin-left: 40px;
-    margin-right: 40px;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -80,8 +77,6 @@
 
   .logo {
     font-size: 16px;
-
-    margin-top: 60px;
   }
 
   h1 {
@@ -114,7 +109,6 @@
   }
 
   footer {
-    margin-bottom: 60px;
   }
 
   footer .logo-row {
