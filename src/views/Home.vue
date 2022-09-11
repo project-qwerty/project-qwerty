@@ -129,7 +129,7 @@
     height: 32px;
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 960px) {
     .outer {
       flex-direction: column-reverse;
       height: initial;
@@ -142,7 +142,7 @@
     }
 
     .ipad-panel {
-      height: 250px;
+      height: 320px;
     }
 
     .button-row {
