@@ -58,6 +58,12 @@
     flex-direction: row;
   }
 
+  @media screen and (max-width: 800px) {
+    .outer {
+      flex-direction: column-reverse;
+    }
+  }
+
   .content-panel {
     width: 100%;
     height: 100%;
