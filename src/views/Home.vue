@@ -29,11 +29,7 @@
         </div>
       </footer>
     </div>
-    <div class="ipad-panel">
-      <img :src="require('@/assets/img/ipad-shadow-cropped.png')" />
-      <div class="upper"></div>
-      <div class="lower"></div>
-    </div>
+    <iPadLogoBox />
   </div>
 </template>
 
@@ -41,11 +37,13 @@
 <script>
   import QwertyLogo from '@/components/QwertyLogo.vue';
   import ActionButton from '@/components/ActionButton.vue';
+  import iPadLogoBox from '@/components/iPadLogoBox.vue';
 
   export default {
     components: {
       QwertyLogo,
       ActionButton,
+      iPadLogoBox,
     },
   }
 </script>
@@ -121,41 +119,5 @@
 
   footer img {
     height: 32px;
-  }
-
-  .ipad-panel {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-
-    /* this makes the img position work */
-    position: relative;
-  }
-
-  .ipad-panel > img {
-    position: absolute;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    width: 100%;
-  }
-
-  .ipad-panel > .upper {
-    width: 100%;
-    height: 100%;
-
-    background-color: var(--primary-colour);
-  }
-
-  .ipad-panel > .lower {
-    width: 100%;
-    height: 100%;
-
-    background-color: var(--primary-colour-dark);
   }
 </style>
