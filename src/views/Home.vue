@@ -29,7 +29,7 @@
         </div>
       </footer>
     </div>
-    <iPadLogoBox />
+    <iPadLogoBox class="ipad-panel" />
   </div>
 </template>
 
@@ -51,6 +51,10 @@
 
 <style scoped>
   .outer {
+    --fat-gap: 60px;
+    --medium-gap: 30px;
+    --thin-gap: 10px;
+
     width: 100%;
     height: 100%;
 
@@ -58,15 +62,15 @@
     flex-direction: row;
   }
 
-  @media screen and (max-width: 800px) {
-    .outer {
-      flex-direction: column-reverse;
-    }
-  }
-
   .content-panel {
     width: 100%;
     height: 100%;
+
+    box-sizing: border-box;
+    padding-left: var(--fat-gap);
+    padding-right: var(--fat-gap);
+    padding-top: var(--fat-gap);
+    padding-bottom: var(--fat-gap);
 
     display: flex;
     flex-direction: column;
@@ -77,6 +81,8 @@
 
   .logo {
     font-size: 16px;
+
+    margin-bottom: var(--fat-gap);
   }
 
   h1 {
@@ -90,7 +96,7 @@
     justify-content: center;
     align-items: center;
 
-    gap: 30px;
+    gap: var(--medium-gap);
   }
 
   .balancer {
@@ -109,16 +115,38 @@
   }
 
   footer {
+    margin-top: var(--fat-gap);
   }
 
   footer .logo-row {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: var(--medium-gap);
   }
 
   footer img {
     height: 32px;
+  }
+
+  @media screen and (max-width: 800px) {
+    .outer {
+      flex-direction: column-reverse;
+      height: initial;
+    }
+
+    .content-panel {
+      height: initial;
+      padding-left: var(--thin-gap);
+      padding-right: var(--thin-gap);
+    }
+
+    .ipad-panel {
+      height: 250px;
+    }
+
+    .button-row {
+      gap: var(--thin-gap);
+    }
   }
 </style>
