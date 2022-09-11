@@ -44,8 +44,8 @@
   .letter {
     background-color: var(--faint-colour);
 
-    width: 3em;
-    height: 3em;
+    width: 2.5em;
+    height: 2.5em;
     border-radius: 0.3em;
 
     display: flex;
