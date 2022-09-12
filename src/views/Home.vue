@@ -77,6 +77,8 @@
     justify-content: space-between;
 
     text-align: center;
+
+    overflow: auto;
   }
 
   .logo {
@@ -129,6 +131,7 @@
     height: 32px;
   }
 
+  /* TODO: should make the responsive break width consistent across the whole app */
   @media screen and (max-width: 960px) {
     .outer {
       flex-direction: column-reverse;
@@ -136,7 +139,6 @@
     }
 
     .content-panel {
-      height: initial;
       padding-left: var(--thin-gap);
       padding-right: var(--thin-gap);
     }
