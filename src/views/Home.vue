@@ -82,11 +82,11 @@
   .logo {
     font-size: 16px;
 
-    margin-bottom: var(--fat-gap);
+    margin-bottom: var(--medium-gap);
   }
 
   h1 {
-    font-size: 48px;
+    font-size: 40px;
   }
 
   .button-row {
@@ -115,7 +115,7 @@
   }
 
   footer {
-    margin-top: var(--fat-gap);
+    margin-top: var(--medium-gap);
   }
 
   footer .logo-row {
