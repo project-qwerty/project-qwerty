@@ -96,7 +96,7 @@
     justify-content: center;
     align-items: center;
 
-    gap: var(--medium-gap);
+    gap: var(--thin-gap);
   }
 
   .balancer {
@@ -143,10 +143,6 @@
 
     .ipad-panel {
       height: 320px;
-    }
-
-    .button-row {
-      gap: var(--thin-gap);
     }
   }
 </style>
