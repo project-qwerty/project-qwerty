@@ -51,7 +51,8 @@
 
 <style scoped>
   .outer {
-    --fat-gap: 60px;
+    /* space sizes we're going to be using throughout the page */
+    --thick-gap: 60px;
     --medium-gap: 30px;
     --thin-gap: 10px;
 
@@ -66,11 +67,12 @@
     width: 100%;
     height: 100%;
 
+    /* add edge spacing (will be less thick on mobile) */
     box-sizing: border-box;
-    padding-left: var(--fat-gap);
-    padding-right: var(--fat-gap);
-    padding-top: var(--fat-gap);
-    padding-bottom: var(--fat-gap);
+    padding-left: var(--thick-gap);
+    padding-right: var(--thick-gap);
+    padding-top: var(--thick-gap);
+    padding-bottom: var(--thick-gap);
 
     display: flex;
     flex-direction: column;
@@ -78,6 +80,7 @@
 
     text-align: center;
 
+    /* if there just isn't enough vertical space to fit the contents, make it scroll */
     overflow: auto;
   }
 
@@ -122,8 +125,8 @@
 
   footer .logo-row {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
     gap: var(--medium-gap);
   }
 
@@ -131,19 +134,22 @@
     height: 32px;
   }
 
-  /* TODO: should make the responsive break width consistent across the whole app */
   @media screen and (max-width: 960px) {
     .outer {
+      /* make the iPad go to the top */
       flex-direction: column-reverse;
+      /* make the page a normal scroller instead of height-locked */
       height: initial;
     }
 
     .content-panel {
+      /* allow the content to take up more of the screen width */
       padding-left: var(--thin-gap);
       padding-right: var(--thin-gap);
     }
 
     .ipad-panel {
+      /* make the iPad a fixed size header of sorts */
       height: 320px;
     }
   }
