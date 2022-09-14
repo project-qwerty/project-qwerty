@@ -28,50 +28,11 @@
       <div class="input">{{ renderedInput(input) }}</div>
     </div>
 
-    <div class="keyboard">
-      <div class="row row-q">
-        <!-- ontouchstart="" makes the :active class trigger on iOS -->
-        <button
-            ontouchstart=""
-            v-for="letter in letters[0]" v-bind:key="letter"
-            v-on:click="handleKeystroke(letter)"
-            :class="{ disabled: !isEnabled(letter) }">
-          {{ renderedText(letter) }}
-        </button>
-        <button class="backspace"
-            ontouchstart=""
-            v-on:click="handleKeystroke('backspace')"
-            :class="{ disabled: !isEnabled('backspace') }">
-          <font-awesome-icon
-              class="backspace-icon"
-              icon="delete-left" />
-        </button>
-      </div>
-      <div class="row row-a">
-        <button
-            ontouchstart=""
-            v-for="letter in letters[1]" v-bind:key="letter"
-            v-on:click="handleKeystroke(letter)"
-            :class="{ disabled: !isEnabled(letter) }">
-          {{ renderedText(letter) }}
-        </button>
-      </div>
-      <div class="row row-z">
-        <button
-            ontouchstart=""
-            v-for="letter in letters[2]" v-bind:key="letter"
-            v-on:click="handleKeystroke(letter)"
-            :class="{ disabled: !isEnabled(letter) }">
-          {{ renderedText(letter) }}
-        </button>
-      </div>
-      <div class="row row-space">
-        <button class="space"
-            ontouchstart=""
-            v-on:click="handleKeystroke(' ')"
-            :class="{ disabled: !isEnabled(' ') }">
-        </button>
-      </div>
+    <div class="keyboard-wrapper">
+      <Keyboard
+          :enabledKeys="enabledKeys"
+          :uppercase="settings.wordDisplayCapitalization === 'UPPERCASE'"
+          v-on:keystroke="handleKeystroke($event)" />
     </div>
 
     <Modal
@@ -140,24 +101,20 @@
   import BuiltInCategories from '@/functions/BuiltInCategories.js';
   import LocalStorage from '@/functions/LocalStorage.js';
 
+  import Keyboard from '@/components/Keyboard.vue';
   import IconButton from '@/components/IconButton.vue';
   import Modal from '@/components/Modal.vue';
   import ActionButton from '@/components/ActionButton.vue';
 
   export default {
     components: {
+      Keyboard,
       IconButton,
       Modal,
       ActionButton,
     },
     data() {
       return {
-        letters: [
-          ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-          ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-          ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
-        ],
-
         settings: {
           wordRepetitions: LocalStorage.getSetting('wordRepetitions'),
           wordDisplayTime: LocalStorage.getSetting('wordDisplayTime'),
@@ -247,6 +204,25 @@
       window.removeEventListener('keydown', this.handleKeyDown);
     },
     computed: {
+      enabledKeys() {
+        const inputIsWrong = this.targetWord !== null
+            && this.input.length === this.targetWord.length
+            && this.input !== this.targetWord;
+
+        if (inputIsWrong) {
+          return ['backspace'];
+        }
+
+        const noNextLetter = this.nextLetter === null;
+        const noAssistance = this.settings.assistanceLevel === 'NONE';
+        const noMistakeYet = this.settings.assistanceLevel === 'MIN' && !this.mistakeMade;
+
+        if (noNextLetter || noAssistance || noMistakeYet) {
+          return 'qwertyuiopasdfghjklzxcvbnm '.split('').concat('backspace');
+        }
+
+        return [this.nextLetter];
+      },
       showNextWordModal() {
         return this.input === this.targetWord;
       },
@@ -349,27 +325,8 @@
       renderedInput(input) {
         return this.renderedText(input).replaceAll(' ', '\xa0\xa0');
       },
-      isEnabled(key) {
-        const inputIsWrong = this.targetWord !== null
-            && this.input.length === this.targetWord.length
-            && this.input !== this.targetWord;
-
-        if (inputIsWrong) {
-          return key === 'backspace';
-        }
-
-        const noNextLetter = this.nextLetter === null;
-        const noAssistance = this.settings.assistanceLevel === 'NONE';
-        const noMistakeYet = this.settings.assistanceLevel === 'MIN' && !this.mistakeMade;
-
-        if (noNextLetter || noAssistance || noMistakeYet) {
-          return true;
-        }
-
-        return key === this.nextLetter;
-      },
       handleKeystroke(key) {
-        if (!this.isEnabled(key)) {
+        if (!this.enabledKeys.includes(key)) {
           return;
         }
 
@@ -517,83 +474,12 @@
 
   /* keyboard */
 
-  .keyboard {
+  .keyboard-wrapper {
     padding: 40px;
 
     background-color: var(--faint-colour);
 
     font-size: 20px;
-  }
-
-  .keyboard > .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-    margin-bottom: 0.5em;
-    gap: 0.5em;
-  }
-
-  /* these are the styles that give you a natural keyboard */
-  /* .keyboard > .row-a {
-    padding-right: 8em;
-  }
-
-  .keyboard > .row-z {
-    padding-right: 13em;
-  }
-
-  .keyboard > .row-space {
-    padding-right: 13em;
-  } */
-
-  .keyboard > .row-a {
-    padding-right: 2em;
-  }
-
-  .keyboard > .row-z {
-    padding-right: 2em;
-  }
-
-  .keyboard > .row-space {
-    padding-right: 2em;
-  }
-
-  .keyboard button {
-    /* shape */
-    width: 4em;
-    height: 3em;
-    border-radius: 0.5em;
-
-    background-color: var(--background-colour);
-
-    /* centre contents */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* visually respond to keypresses */
-  .keyboard button:not(.disabled):active {
-    filter: brightness(75%);
-  }
-
-  /* for when disabled by assistance features */
-  .keyboard button.disabled {
-    background-color: var(--faint-colour);
-  }
-
-  /* special keys (space and backspace) */
-  .keyboard button.backspace {
-    width: 6em;
-  }
-
-  .keyboard button .backspace-icon {
-    font-size: 36px;
-  }
-
-  .keyboard button.space {
-    width: 31em;
   }
 
   /* modals */
