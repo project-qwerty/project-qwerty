@@ -54,6 +54,12 @@
         <p>Your custom categories are always kept <strong>on your device</strong>. They are <strong>never</strong> shared with the Project QWERTY team or anyone else.</p>
       </CollapsibleSection>
 
+      <CollapsibleSection summary="How can I contact the Project QWERTY team?" >
+        <p>You can email us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a>. We'd love to hear from you!</p>
+
+        <p>Let us know about your experience with the app, any comments or suggestions you might have, or if you think you've found a problem with the website.</p>
+      </CollapsibleSection>
+
       <CollapsibleSection summary="Open Source" >
         <p>Project QWERTY is <strong>open source</strong> software. The source code is available on <a href="https://github.com/project-qwerty/project-qwerty">GitHub</a>.</p>
       </CollapsibleSection>
