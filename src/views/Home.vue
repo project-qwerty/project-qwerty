@@ -1,6 +1,6 @@
 <template>
   <div class="outer">
-    <div class="left">
+    <div class="content-panel">
       <QwertyLogo class="logo" />
 
       <div>
@@ -29,11 +29,7 @@
         </div>
       </footer>
     </div>
-    <div class="right">
-      <img :src="require('@/assets/img/ipad-shadow-cropped.png')" />
-      <div class="upper"></div>
-      <div class="lower"></div>
-    </div>
+    <iPadLogoBox class="ipad-panel" />
   </div>
 </template>
 
@@ -41,11 +37,13 @@
 <script>
   import QwertyLogo from '@/components/QwertyLogo.vue';
   import ActionButton from '@/components/ActionButton.vue';
+  import iPadLogoBox from '@/components/iPadLogoBox.vue';
 
   export default {
     components: {
       QwertyLogo,
       ActionButton,
+      iPadLogoBox,
     },
   }
 </script>
@@ -53,6 +51,11 @@
 
 <style scoped>
   .outer {
+    /* space sizes we're going to be using throughout the page */
+    --thick-gap: 60px;
+    --medium-gap: 30px;
+    --thin-gap: 10px;
+
     width: 100%;
     height: 100%;
 
@@ -60,28 +63,35 @@
     flex-direction: row;
   }
 
-  .left {
+  .content-panel {
     width: 100%;
     height: 100%;
 
-    margin-left: 40px;
-    margin-right: 40px;
+    /* add edge spacing (will be less thick on mobile) */
+    box-sizing: border-box;
+    padding-left: var(--thick-gap);
+    padding-right: var(--thick-gap);
+    padding-top: var(--thick-gap);
+    padding-bottom: var(--thick-gap);
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     text-align: center;
+
+    /* if there just isn't enough vertical space to fit the contents, make it scroll */
+    overflow: auto;
   }
 
   .logo {
     font-size: 16px;
 
-    margin-top: 60px;
+    margin-bottom: var(--medium-gap);
   }
 
   h1 {
-    font-size: 48px;
+    font-size: 40px;
   }
 
   .button-row {
@@ -91,7 +101,7 @@
     justify-content: center;
     align-items: center;
 
-    gap: 30px;
+    gap: var(--thin-gap);
   }
 
   .balancer {
@@ -110,52 +120,37 @@
   }
 
   footer {
-    margin-bottom: 60px;
+    margin-top: var(--medium-gap);
   }
 
   footer .logo-row {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
+    gap: var(--medium-gap);
   }
 
   footer img {
     height: 32px;
   }
 
-  .right {
-    width: 100%;
-    height: 100%;
+  @media screen and (max-width: 960px) {
+    .outer {
+      /* make the iPad go to the top */
+      flex-direction: column-reverse;
+      /* make the page a normal scroller instead of height-locked */
+      height: initial;
+    }
 
-    display: flex;
-    flex-direction: column;
+    .content-panel {
+      /* allow the content to take up more of the screen width */
+      padding-left: var(--thin-gap);
+      padding-right: var(--thin-gap);
+    }
 
-    /* this makes the img position work */
-    position: relative;
-  }
-
-  .right > img {
-    position: absolute;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    width: 100%;
-  }
-
-  .right > .upper {
-    width: 100%;
-    height: 100%;
-
-    background-color: var(--primary-colour);
-  }
-
-  .right > .lower {
-    width: 100%;
-    height: 100%;
-
-    background-color: var(--primary-colour-dark);
+    .ipad-panel {
+      /* make the iPad a fixed size header of sorts */
+      height: 320px;
+    }
   }
 </style>
