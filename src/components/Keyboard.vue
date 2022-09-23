@@ -1,64 +1,44 @@
 <template>
   <div class="keyboard">
-    <div class="row row-q">
       <!-- ontouchstart="" makes the :active class trigger on iOS -->
       <button
           ontouchstart=""
-          v-for="letter in letters[0]" v-bind:key="letter"
-          v-on:click="handleKeystroke(letter)"
-          :class="{ disabled: !enabledKeys.includes(letter) }">
-        {{ renderedLetter(letter) }}
-      </button>
-      <button class="backspace"
-          ontouchstart=""
-          v-on:click="handleKeystroke('backspace')"
-          :class="{ disabled: !enabledKeys.includes('backspace') }">
+          v-for="key in keys" v-bind:key="key"
+          v-on:click="handleKeystroke(key)"
+          :class="{ disabled: !enabledKeys.includes(key), }"
+          :style="'grid-area: ' + (key === ' ' ? 'space' : key)">
+
         <font-awesome-icon
+            v-if="key === 'backspace'"
             class="backspace-icon"
-            icon="delete-left" />
+            icon="delete-left"
+            viewBox="0 0 600 500" />
+        <!-- the viewBox makes the icon scale with the keyboard size -->
+        <!-- the magic numbers control the icon location and are manually tuned in tandem with the element style -->
+        <!-- doing the letters in an svg as well enables scaling with the keyboard using the same system -->
+        <!-- https://css-tricks.com/fitting-text-to-a-container/#aa-just-use-svg -->
+        <svg viewBox="0 0 66 50"
+            v-if="key !== 'backspace'">
+          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">{{ renderedCharacter(key) }}</text>
+        </svg>
       </button>
-    </div>
-    <div class="row row-a">
-      <button
-          ontouchstart=""
-          v-for="letter in letters[1]" v-bind:key="letter"
-          v-on:click="handleKeystroke(letter)"
-          :class="{ disabled: !enabledKeys.includes(letter) }">
-        {{ renderedLetter(letter) }}
-      </button>
-    </div>
-    <div class="row row-z">
-      <button
-          ontouchstart=""
-          v-for="letter in letters[2]" v-bind:key="letter"
-          v-on:click="handleKeystroke(letter)"
-          :class="{ disabled: !enabledKeys.includes(letter) }">
-        {{ renderedLetter(letter) }}
-      </button>
-    </div>
-    <div class="row row-space">
-      <button class="space"
-          ontouchstart=""
-          v-on:click="handleKeystroke(' ')"
-          :class="{ disabled: !enabledKeys.includes(' ') }">
-      </button>
-    </div>
   </div>
 </template>
 
 
 <script>
-  const letters = [
-    ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-    ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-    ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+  const keys = [
+    'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'backspace',
+    'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l',
+    'z', 'x', 'c', 'v', 'b', 'n', 'm',
+    ' ',
   ];
 
   export default {
     props: {
       enabledKeys: {
         type: Array,
-        default: letters.flat().concat(['backspace']),
+        default: keys,
       },
       uppercase: {
         type: Boolean,
@@ -67,18 +47,23 @@
     },
     data() {
       return {
-        letters: letters,
+        keys: keys,
       }
     },
     methods: {
       handleKeystroke(key) {
         this.$emit('keystroke', key);
       },
-      renderedLetter(letter) {
+      renderedCharacter(key) {
+        // if it's backspace, it'll have the icon instead of text
+        if (key === 'backspace') {
+          return '';
+        }
+
         if (this.uppercase) {
-          return letter.toUpperCase();
+          return key.toUpperCase();
         } else {
-          return letter.toLowerCase();
+          return key.toLowerCase();
         }
       },
     },
@@ -87,44 +72,29 @@
 
 
 <style scoped>
-  .keyboard > .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  .keyboard {
+    height: 100%;
 
-    margin-bottom: 0.5em;
-    gap: 0.5em;
-  }
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 3fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        "q w e r t y u i o p backspace"
+        ". a s d f g h j k l ."
+        ". . z x c v b n m . ."
+        ". . space space space space space space space . .";
 
-  /* these are the styles that give you a natural keyboard */
-  /* .keyboard > .row-a {
-    padding-right: 8em;
-  }
+    /* this is exactly the right proportions for the keyboard as designed and implemented */
+    --relative-width: 1020;
+    --relative-height: 280;
 
-  .keyboard > .row-z {
-    padding-right: 13em;
-  }
-
-  .keyboard > .row-space {
-    padding-right: 13em;
-  } */
-
-  .keyboard > .row-a {
-    padding-right: 2em;
-  }
-
-  .keyboard > .row-z {
-    padding-right: 2em;
-  }
-
-  .keyboard > .row-space {
-    padding-right: 2em;
+    --gap: 1%;
+    column-gap: var(--gap);
+    /* this makes the row gap relative to the width instead of height, ie equal to the column-gap */
+    row-gap: calc(var(--gap) * var(--relative-width) / var(--relative-height));
   }
 
   .keyboard button {
-    /* shape */
-    width: 4em;
-    height: 3em;
     border-radius: 0.5em;
 
     background-color: var(--background-colour);
@@ -133,6 +103,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    position: relative;
+  }
+
+  .keyboard button > svg {
+    /* this prevents the letter svgs from expanding the keys */
+    position: absolute;
+
+    height: 100%;
   }
 
   /* visually respond to keypresses */
@@ -145,16 +124,9 @@
     background-color: var(--faint-colour);
   }
 
-  /* special keys (space and backspace) */
-  .keyboard button.backspace {
-    width: 6em;
-  }
-
   .keyboard button .backspace-icon {
-    font-size: 36px;
-  }
-
-  .keyboard button.space {
-    width: 31em;
+    /* these affect the placement of the backspace icon and are manually tuned */
+    height: 60%;
+    width: 50%;
   }
 </style>

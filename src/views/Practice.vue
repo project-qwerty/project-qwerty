@@ -475,11 +475,19 @@
   /* keyboard */
 
   .keyboard-wrapper {
+    height: 280px;
+
     padding: 40px;
 
     background-color: var(--faint-colour);
+  }
 
-    font-size: 20px;
+  /* this selects the keyboard itself */
+  .keyboard-wrapper > * {
+    max-width: 1020px;
+
+    /* center horizontally */
+    margin: 0 auto;
   }
 
   /* modals */
@@ -528,5 +536,13 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+  }
+
+  @media screen and (max-width: 960px) {
+    .keyboard-wrapper {
+      height: 220px;
+
+      padding: 10px;
+    }
   }
 </style>
