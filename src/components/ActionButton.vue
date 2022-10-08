@@ -67,6 +67,7 @@
 <style scoped>
   .button-wrapper {
     display: inline-block;
+    margin-bottom: var(--margin-vertical);
   }
 
   button {
@@ -76,19 +77,12 @@
 
     border-radius: 2em;
 
-    padding: 1em;
-    padding-left: 2em;
-    padding-right: 2em;
-
+    padding: 1em 2em;
     min-width: 5em;
 
     color: var(--this-foreground-colour);
     background-color: var(--this-background-colour);
     border: solid 1px var(--this-border-colour);
-  }
-
-  .icon {
-    margin-right: 0.5em;
   }
 
   .text {

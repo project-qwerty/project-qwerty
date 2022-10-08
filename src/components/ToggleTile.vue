@@ -112,9 +112,9 @@
     left: 10px;
 
     /* shape */
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
 
     background-color: var(--primary-colour);
 
@@ -132,5 +132,12 @@
 
   .text {
     font-weight: bold;
+  }
+
+  @media (min-width: 1024px) {
+    .selected-check {
+      width: 40px;
+      height: 40px;
+    }
   }
 </style>

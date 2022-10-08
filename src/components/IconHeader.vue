@@ -39,23 +39,28 @@
 
 
 <style scoped>
+  div {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--margin-vertical);
+  }
+
   .major {
     font-weight: bold;
-    font-size: 36px;
-    margin-top: 36px;
-    margin-bottom: 36px;
+    font-size: 24px;
   }
 
   .minor {
-    font-size: 28px;
-    margin-top: 28px;
-    margin-bottom: 28px;
+    font-size: 24px;
+    margin-bottom: calc(var(--margin-vertical) / 2);
   }
 
   .icon {
-    display: inline-flex;
-    justify-content: center;
     align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-right: 1rem;
   }
 
   .coloured-icon {
@@ -69,7 +74,14 @@
     background-color: var(--icon-colour);
   }
 
-  .text {
-    margin-left: 10px;
+  @media (min-width: 1024px) {
+    .major {
+      font-weight: bold;
+      font-size: 36px;
+    }
+
+    .minor {
+      font-size: 28px;
+    }
   }
 </style>

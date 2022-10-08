@@ -22,7 +22,8 @@
   --material-colour-13: #ff9800;
   --material-colour-14: #ff5722;
 
-  --sidebar-width: 280px;
+  --margin-vertical: 3rem;
+  --side-nav-width: 280px;
 }
 
 #app {
@@ -69,7 +70,8 @@ button {
 /* global classes */
 
 .page-content {
-  margin-top: 6rem;
+  margin-top: calc(var(--margin-vertical) * 2);
+  padding: 0 2rem;
   z-index: 1;
 }
 
@@ -91,7 +93,9 @@ button {
 
 @media (min-width: 1024px) {
   .page-content {
+    margin-top: var(--margin-vertical);
     padding: 0 48px 96px 48px;
+    width: 100%;
   }
 
   .page-layout {

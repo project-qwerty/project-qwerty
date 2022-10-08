@@ -175,8 +175,8 @@
     .nav-container {
       border-right: solid 1px var(--faint-colour);
       position: relative;
-      min-width: var(--sidebar-width);
-      width: var(--sidebar-width);
+      min-width: var(--side-nav-width);
+      width: var(--side-nav-width);
     }
   }
 

@@ -19,27 +19,31 @@
 
       <IconHeader text="Built-in categories" />
 
-      <div class="tiles">
-        <ToggleTile
-            v-for="(categoryName, index) in builtInCategories" v-bind:key="index"
-            class="tile"
-            :text="categoryName"
-            :icon="BuiltInCategories[categoryName].icon"
-            :colour="Colours.indexToColour(index)"
-            :enabled="builtInSelected.includes(categoryName)"
-            v-on:update="builtInCategoryClicked($event)" />
+      <div class="tiles-wrapper">
+        <div class="tiles">
+          <ToggleTile
+              v-for="(categoryName, index) in builtInCategories" v-bind:key="index"
+              class="tile"
+              :text="categoryName"
+              :icon="BuiltInCategories[categoryName].icon"
+              :colour="Colours.indexToColour(index)"
+              :enabled="builtInSelected.includes(categoryName)"
+              v-on:update="builtInCategoryClicked($event)" />
+        </div>
       </div>
 
       <IconHeader text="Custom categories" />
 
-      <div class="tiles">
-        <ToggleTile
-            v-for="(categoryName, index) in customCategories" v-bind:key="index"
-            class="tile"
-            :text="categoryName"
-            :colour="Colours.stringToColour(categoryName)"
-            :enabled="customSelected.includes(categoryName)"
-            v-on:update="customCategoryClicked($event)" />
+      <div class="tiles-wrapper">
+        <div class="tiles">
+          <ToggleTile
+              v-for="(categoryName, index) in customCategories" v-bind:key="index"
+              class="tile"
+              :text="categoryName"
+              :colour="Colours.stringToColour(categoryName)"
+              :enabled="customSelected.includes(categoryName)"
+              v-on:update="customCategoryClicked($event)" />
+        </div>
       </div>
     </div>
   </div>
@@ -115,29 +119,58 @@
 
 <style scoped>
   header {
+    align-items: center;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
   }
 
   .start-button {
     font-size: 24px;
-
     display: flex;
     align-items: center;
   }
 
-  .tiles {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
+  .tile {
+    font-size: 1rem;
+    height: 8rem;
+    max-width: 10rem;
   }
 
-  .tile {
-    font-size: 20px;
+  .tiles {
+    column-gap: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: var(--margin-vertical);
+    row-gap: 2rem;
+  }
 
-    width: 10em;
-    height: 8em;
+  .tiles-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  @media (min-width: 600px) {
+    .tiles {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .tile {
+      font-size: 20px;
+      height: 10rem;
+      min-width: 12rem;
+    }
+
+    .tiles {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
   }
 </style>
