@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavSidebar />
+    <Nav />
 
     <div class="sidebar-page-content">
       <IconHeader :major="true" text="About" icon="circle-info" iconColour="var(--primary-colour)" />
@@ -88,13 +88,13 @@
 
 
 <script>
-import NavSidebar from '@/components/NavSidebar.vue';
+import Nav from '@/components/Nav.vue';
 import CollapsibleSection from '@/components/CollapsibleSection.vue';
 import IconHeader from '@/components/IconHeader.vue';
 
 export default {
   components: {
-    NavSidebar,
+    Nav,
     CollapsibleSection,
     IconHeader,
   },

@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <NavSidebar />
+  <div class="page-layout">
+    <Nav />
 
-    <div class="sidebar-page-content">
+    <div class="page-content">
       <header>
         <IconHeader
             icon="keyboard"
@@ -52,14 +52,14 @@
 
   import ActionButton from '@/components/ActionButton.vue';
   import ToggleTile from '@/components/ToggleTile.vue';
-  import NavSidebar from '@/components/NavSidebar.vue';
+  import Nav from '@/components/Nav.vue';
   import IconHeader from '@/components/IconHeader.vue';
 
   export default {
     components: {
       ActionButton,
       ToggleTile,
-      NavSidebar,
+      Nav,
       IconHeader,
     },
     data() {

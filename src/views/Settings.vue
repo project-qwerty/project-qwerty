@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavSidebar />
+    <Nav />
 
     <div class="sidebar-page-content">
       <IconHeader :major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
@@ -99,7 +99,7 @@
 <script>
   import LocalStorage from '@/functions/LocalStorage.js';
 
-  import NavSidebar from '@/components/NavSidebar.vue';
+  import Nav from '@/components/Nav.vue';
   import ShowAllSelector from '@/components/ShowAllSelector.vue';
   import IconHeader from '@/components/IconHeader.vue';
   import ShowCurrentSelector from '@/components/ShowCurrentSelector.vue';
@@ -128,7 +128,7 @@
       this.wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
     },
     components: {
-      NavSidebar,
+      Nav,
       ShowAllSelector,
       IconHeader,
       ShowCurrentSelector,

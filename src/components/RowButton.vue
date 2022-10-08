@@ -66,7 +66,6 @@
 
   .text {
     margin-left: 10px;
-
     padding-right: 1em;
   }
 

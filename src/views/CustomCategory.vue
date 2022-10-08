@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavSidebar />
+    <Nav />
 
     <div class="sidebar-page-content">
       <RowButton
@@ -97,7 +97,7 @@
   import Colours from '@/functions/Colours.js'
   import Validation from '@/functions/Validation.js';
 
-  import NavSidebar from '@/components/NavSidebar.vue';
+  import Nav from '@/components/Nav.vue';
   import RowButton from '@/components/RowButton.vue';
   import IconHeader from '@/components/IconHeader.vue';
   import ActionButton from '@/components/ActionButton.vue';
@@ -107,7 +107,7 @@
 
   export default {
     components: {
-      NavSidebar,
+      Nav,
       RowButton,
       IconHeader,
       ActionButton,

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavSidebar />
+    <Nav />
 
     <div class="sidebar-page-content">
       <div class="category-list-section"
@@ -66,7 +66,7 @@
   import Colours from '@/functions/Colours.js'
   import Validation from '@/functions/Validation.js';
 
-  import NavSidebar from '@/components/NavSidebar.vue';
+  import Nav from '@/components/Nav.vue';
   import Modal from '@/components/Modal.vue';
   import ActionButton from '@/components/ActionButton.vue';
   import IconHeader from '@/components/IconHeader.vue';
@@ -75,7 +75,7 @@
 
   export default {
     components: {
-      NavSidebar,
+      Nav,
       Modal,
       ActionButton,
       IconHeader,

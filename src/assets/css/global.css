@@ -40,9 +40,13 @@ html, body, #app {
 
 body {
   margin: 0;
-
   /* disable double-tap zoom */
   touch-action: manipulation;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 button {
@@ -64,6 +68,17 @@ button {
 
 /* global classes */
 
+.page-content {
+  margin-top: 6rem;
+  z-index: 1;
+}
+
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
+}
+
 .qwerty-text-input {
   /* this makes width: 100% work correctly with the padding */
   box-sizing: border-box;
@@ -72,4 +87,14 @@ button {
 
   border: solid 2px var(--faint-colour);
   border-radius: 0.5em;
+}
+
+@media (min-width: 1024px) {
+  .page-content {
+    padding: 0 48px 96px 48px;
+  }
+
+  .page-layout {
+    flex-direction: row;
+  }
 }
