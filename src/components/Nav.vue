@@ -1,16 +1,15 @@
 <template>
-  <div class="nav-container">
-    <div class="mobile-menu-toggle">
-      <button class="show-menu" v-if="showMenu" @click="showMenu = false">
+  <div class="nav-container" :class="{'nav-container-show': showMenu}">
+    <div v-if="deviceWidthIsConstrained" class="mobile-menu-toggle">
+      <button class="show-menu-button" v-if="showMenu" @click="handleHideMenu">
         <font-awesome-icon class="toggle-icon" icon="xmark" />
       </button>
-      <button class="hide-menu" v-if="!showMenu" @click="showMenu = true">
+      <button class="hide-menu-button" v-if="!showMenu" @click="handleShowMenu">
         <font-awesome-icon class="toggle-icon" icon="bars" />
       </button>
     </div>
     <nav v-if="showMenu">
       <router-link
-          @click="showMenu = false"
           v-for="button in navLinks" :key="button.path"
           :to="button.path">
         <RowButton
@@ -27,12 +26,19 @@
 <script>
   import RowButton from '@/components/RowButton.vue';
 
+  const unconstrainedWidth = 1024
+
   export default {
     components: {
       RowButton,
     },
+    created() {
+      this.handleWindowResize()
+      window.addEventListener('resize', this.handleWindowResize)
+    },
     data() {
       return {
+        deviceWidthIsConstrained: false,
         navLinks: [
           { path: '/',                  text: 'Project QWERTY', icon: 'house',         bold: true,  },
           { path: '/select-categories', text: 'Practice',       icon: 'play',          bold: false, },
@@ -40,9 +46,28 @@
           { path: '/settings',          text: 'Settings',       icon: 'gear',          bold: false, },
           { path: '/about',             text: 'About',          icon: 'circle-info',   bold: false, },
         ],
-        showMenu: false,
+        showMenu: true,
       }
     },
+    destroyed() {
+      window.removeEventListener('resize', this.handleWindowResize)
+    },
+    methods: {
+      handleHideMenu() {
+        this.showMenu = false
+      },
+      handleShowMenu() {
+        this.showMenu = true
+      },
+      handleWindowResize() {
+        this.deviceWidthIsConstrained = window.innerWidth < unconstrainedWidth
+        if (this.deviceWidthIsConstrained) {
+          this.handleHideMenu()
+        } else {
+          this.handleShowMenu()
+        }
+      },
+    }
   }
 </script>
 
@@ -65,7 +90,7 @@
     font-weight: bold;
   }
 
-  .hide-menu {
+  .hide-menu-button {
     font-size: 2rem;
   }
 
@@ -83,13 +108,16 @@
     background: var(--background-colour);
     display: flex;
     flex-direction: column;
-    height: 100vh;
     position: fixed;
     width: 100vw;
     z-index: 2;
   }
 
-  .show-menu {
+  .nav-container-show {
+    height: 100vh;
+  }
+
+  .show-menu-button {
     font-size: 3rem;
   }
 
@@ -107,7 +135,6 @@
     }
 
     .nav-container {
-      background: green;
       border-right: solid 1px var(--faint-colour);
       position: relative;
       min-width: var(--sidebar-width);
@@ -116,42 +143,3 @@
   }
 
 </style>
-
-<!--.sidebar {-->
-<!--/* external shape */-->
-<!--position: fixed;-->
-<!--width: var(&#45;&#45;sidebar-width);-->
-<!--height: 100%;-->
-
-<!--/* internal layout */-->
-<!--display: flex;-->
-<!--flex-direction: column;-->
-
-
-<!--}-->
-
-<!--.sidebar a {-->
-<!--border-bottom: solid 1px var(&#45;&#45;faint-colour);-->
-
-<!--font-size: 20px;-->
-
-<!--/* disable default styling for links */-->
-<!--text-decoration: none;-->
-<!--color: inherit;-->
-<!--}-->
-
-<!--.sidebar a:first-of-type {-->
-<!--font-weight: bold;-->
-<!--}-->
-
-<!--.sidebar-page-content {-->
-<!--/* take up the remaining space on the right */-->
-<!--position: absolute;-->
-<!--left: var(&#45;&#45;sidebar-width);-->
-<!--right: 0;-->
-
-<!--padding-left: 48px;-->
-<!--padding-right: 48px;-->
-
-<!--padding-bottom: 96px;-->
-<!--}-->
