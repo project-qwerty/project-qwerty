@@ -1,24 +1,28 @@
 <template>
   <div class="nav-container" :class="{'nav-container-show': showMenu}">
-    <div v-if="deviceWidthIsConstrained" class="mobile-menu-toggle">
-      <button class="show-menu-button" v-if="showMenu" @click="handleHideMenu">
-        <font-awesome-icon class="toggle-icon" icon="xmark" />
-      </button>
-      <button class="hide-menu-button" v-if="!showMenu" @click="handleShowMenu">
+    <div v-if="deviceWidthIsConstrained && !showMenu" class="hamburger-menu-bar">
+      <button class="show-menu-button" @click="handleShowMenu">
         <font-awesome-icon class="toggle-icon" icon="bars" />
       </button>
     </div>
-    <nav v-if="showMenu">
-      <router-link
-          v-for="button in navLinks" :key="button.path"
-          :to="button.path">
-        <RowButton
-            :text="button.text"
-            :icon="button.icon"
-            :bold="button.bold"
-            :active="$route.path.startsWith(button.path) && button.path !== '/'" />
-      </router-link>
-    </nav>
+    <transition :name="transitionName">
+      <nav v-if="showMenu">
+        <div class="hide-menu-bar" v-if="deviceWidthIsConstrained">
+          <button class="hide-menu-button" @click="handleHideMenu">
+            <font-awesome-icon class="toggle-icon" icon="xmark" />
+          </button>
+        </div>
+        <router-link
+            v-for="button in navLinks" :key="button.path"
+            :to="button.path">
+          <RowButton
+              :text="button.text"
+              :icon="button.icon"
+              :bold="button.bold"
+              :active="$route.path.startsWith(button.path) && button.path !== '/'" />
+        </router-link>
+      </nav>
+    </transition>
   </div>
 </template>
 
@@ -47,6 +51,7 @@
           { path: '/about',             text: 'About',          icon: 'circle-info',   bold: false, },
         ],
         showMenu: true,
+        transitionName: '',
       }
     },
     destroyed() {
@@ -62,8 +67,10 @@
       handleWindowResize() {
         this.deviceWidthIsConstrained = window.innerWidth < unconstrainedWidth
         if (this.deviceWidthIsConstrained) {
+          this.transitionName = 'constrained' // use transition animations
           this.handleHideMenu()
         } else {
+          this.transitionName = '' // prevent transition animations
           this.handleShowMenu()
         }
       },
@@ -77,7 +84,6 @@
   nav {
     display: flex;
     flex-direction: column;
-    margin-top: 4rem;
     overflow-y: hidden;
   }
 
@@ -90,18 +96,48 @@
     font-weight: bold;
   }
 
-  .hide-menu-button {
-    font-size: 2rem;
-  }
-
-  .mobile-menu-toggle {
+  .hamburger-menu-bar {
+    align-items: center;
     background: var(--background-colour);
     box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
     display: flex;
+    height: 4rem;
     justify-content: flex-end;
     position: fixed;
     left: 0;
     right: 0;
+  }
+
+  .hide-menu-bar {
+    align-items: center;
+    border-bottom: solid 1px var(--faint-colour);
+    display: flex;
+    height: 4rem;
+    justify-content: flex-end;
+  }
+
+  .hide-menu-button {
+    box-sizing: border-box;
+    display: flex;
+    font-size: 2.5rem;
+  }
+
+  /* translate3d is more performant than translateX as it uses the graphics card */
+  .constrained-enter {
+    transform: translate3d(calc(-100vw), 0, 0);
+  }
+
+  .constrained-enter-active {
+    transition: transform 200ms;
+  }
+
+  .constrained-leave {
+
+  }
+
+  .constrained-leave-active {
+    transition: transform 200ms;
+    transform: translate3d(calc(-100vw), 0, 0);
   }
 
   .nav-container {
@@ -118,7 +154,9 @@
   }
 
   .show-menu-button {
-    font-size: 3rem;
+    box-sizing: border-box;
+    display: flex;
+    font-size: 2rem;
   }
 
   .toggle-icon {
@@ -130,7 +168,7 @@
       margin-top: 0;
     }
 
-    .mobile-menu-toggle {
+    .hamburger-menu-bar {
       display: none;
     }
 
