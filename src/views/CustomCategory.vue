@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="page-layout">
     <Nav />
 
-    <div class="sidebar-page-content">
+    <div class="page-content">
       <RowButton
           class="back-button"
           icon="chevron-left"

@@ -1,4 +1,5 @@
 <template>
+<!--  ToDo animate nav container in/out the same as the <nav />-->
   <div class="nav-container" :class="{'nav-container-show': showMenu}">
     <div v-if="deviceWidthIsConstrained && !showMenu" class="hamburger-menu-bar">
       <button class="show-menu-button" @click="handleShowMenu">
@@ -16,6 +17,7 @@
             v-for="button in navLinks" :key="button.path"
             :to="button.path">
           <RowButton
+              class="nav-button"
               :text="button.text"
               :icon="button.icon"
               :bold="button.bold"
@@ -84,7 +86,7 @@
   nav {
     display: flex;
     flex-direction: column;
-    overflow-y: hidden;
+    height: 100%;
   }
 
   nav a {
@@ -138,6 +140,10 @@
   .constrained-leave-active {
     transition: transform 200ms;
     transform: translate3d(calc(-100vw), 0, 0);
+  }
+
+  .nav-button {
+    padding: 0.5rem 1rem;
   }
 
   .nav-container {
