@@ -23,6 +23,10 @@
   --material-colour-14: #ff5722;
 
   --sidebar-width: 280px;
+
+  --thick-gap: 60px;
+  --medium-gap: 30px;
+  --thin-gap: 10px;
 }
 
 #app {

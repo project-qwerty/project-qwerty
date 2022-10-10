@@ -51,11 +51,6 @@
 
 <style scoped>
   .outer {
-    /* space sizes we're going to be using throughout the page */
-    --thick-gap: 60px;
-    --medium-gap: 30px;
-    --thin-gap: 10px;
-
     width: 100%;
     height: 100%;
 
