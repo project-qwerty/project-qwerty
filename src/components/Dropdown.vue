@@ -62,13 +62,38 @@
 
 
 <style scoped>
+  .active {
+    background-color: var(--faint-colour);
+  }
+
+  .dropdown {
+    align-items: center;
+    background-color: var(--background-colour);
+    border: solid 1px var(--faint-colour);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 8px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    position: absolute;
+    right: 0;
+    white-space: nowrap;
+    /* the dropdown was rendering beneath the category row buttons on the custom-categories page; this was the quick fix */
+    z-index: 1;
+  }
+
+  .hidden {
+    display: none;
+  }
+
   .wrapper {
     position: relative;
-    display: inline-block;
   }
 
   .wrapper > button {
     font-size: 28px;
+    margin-left: 1rem;
 
     /* center the ellipsis icon */
     display: flex;
@@ -78,33 +103,6 @@
     /* make it a circle */
     width: 2em;
     height: 2em;
-    border-radius: 1em;
-  }
-
-  .active {
-    background-color: var(--faint-colour);
-  }
-
-  .dropdown {
-    display: block;
-    position: absolute;
-
-    /* make it right-aligned */
-    right: 0;
-
-    background-color: var(--background-colour);
-    border: solid 1px var(--faint-colour);
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 10px;
-
-    white-space: nowrap;
-
-    /* the dropdown was rendering beneath the category row buttons on the custom-categories page; this was the quick fix */
-    z-index: 1;
-  }
-
-  .hidden {
-    display: none;
+    border-radius: 50%;
   }
 </style>

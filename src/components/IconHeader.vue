@@ -43,7 +43,6 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    margin-bottom: var(--margin-vertical);
   }
 
   .major {
@@ -53,7 +52,6 @@
 
   .minor {
     font-size: 24px;
-    margin-bottom: calc(var(--margin-vertical) / 2);
   }
 
   .icon {

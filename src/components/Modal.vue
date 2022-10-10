@@ -72,10 +72,12 @@
   .overlay {
     /* take up the whole screen */
     position: fixed;
+    height: 100vh;
+    width: 100vw;
     left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    top: 0px;
+    /*right: 0;*/
+    /*bottom: 0;*/
 
     /* centre the modal */
     display: flex;
@@ -84,6 +86,9 @@
 
     /* fade out the background */
     background-color: rgb(0, 0, 0, 0.75);
+
+    /* place above the fixed hamburger menu area at top of page */
+    z-index: 3;
   }
 
   .modal {
@@ -106,6 +111,9 @@
 
     min-width: calc(var(--min-width) - var(--padding) * 2);
     min-height: calc(var(--min-height) - var(--padding) * 2);
+
+    display: flex;
+    flex-direction: column;
   }
 
   .modal-inner > * {

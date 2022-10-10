@@ -17,7 +17,7 @@
             v-on:click="$router.push('/practice')" />
       </header>
 
-      <IconHeader text="Built-in categories" />
+      <IconHeader class="heading" text="Built-in categories" />
 
       <div class="tiles-wrapper">
         <div class="tiles">
@@ -118,10 +118,8 @@
 
 
 <style scoped>
-  header {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+  .heading {
+    margin-bottom: calc(var(--margin-vertical) / 2);
   }
 
   .start-button {

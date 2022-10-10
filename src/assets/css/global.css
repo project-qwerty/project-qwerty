@@ -67,6 +67,14 @@ button {
   cursor: pointer;
 }
 
+header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin-vertical);
+  margin-bottom: var(--margin-vertical);
+}
+
 /* global classes */
 
 .page-content {
@@ -92,6 +100,12 @@ button {
 }
 
 @media (min-width: 1024px) {
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   .page-content {
     margin-top: var(--margin-vertical);
     padding: 0 48px 96px 48px;

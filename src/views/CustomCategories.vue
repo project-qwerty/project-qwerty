@@ -1,10 +1,9 @@
 <template>
-  <div>
+  <div class="page-layout">
     <Nav />
 
-    <div class="sidebar-page-content">
-      <div class="category-list-section"
-          :class="{ hidden: selectedCategory !== null }">
+    <div class="page-content">
+      <div class="category-list-section" :class="{ hidden: selectedCategory !== null }">
         <header>
           <IconHeader
               class="page-header"
@@ -12,53 +11,50 @@
               icon="pen"
               iconColour="var(--primary-colour)"
               :major="true" />
-
-          <ActionButton
-              class="new-category-button"
-              icon="plus"
-              text="New category"
-              v-on:click="showNewCategoryModal = true" />
-
-          <Dropdown
-              :options="[
+          <div class="action-dropdown-wrapper">
+            <ActionButton
+                class="new-category-button"
+                icon="plus"
+                text="New category"
+                v-on:click="showNewCategoryModal = true" />
+            <Dropdown
+                :options="[
                 { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
               ]"
-              v-on:click="handleDropdownClick" />
+                v-on:click="handleDropdownClick" />
+          </div>
         </header>
-
         <RowButton class="custom-category"
-            v-for="(categoryName, index) in getCategories()" v-bind:key="index"
-            v-on:click="$router.push('/custom-categories/' + categoryName)"
-            :text="categoryName"
-            icon="list"
-            :iconColour="Colours.stringToColour(categoryName)" />
+                   v-for="(categoryName, index) in getCategories()" v-bind:key="index"
+                   v-on:click="$router.push('/custom-categories/' + categoryName)"
+                   :text="categoryName"
+                   icon="list"
+                   :iconColour="Colours.stringToColour(categoryName)" />
+        <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
       </div>
-
-      <Modal
-          :shown="showNewCategoryModal"
-          v-on:click-out="cleanUpCreateCategory">
-        <h1>Add category</h1>
-        <input
-            class="qwerty-text-input"
-            placeholder="New category"
-            v-model="inputCategoryName">
-        <div class="buttons-row">
-          <ActionButton
-              text="Cancel"
-              :major="false"
-              v-on:click="cleanUpCreateCategory" />
-          <ActionButton
-              text="Create category"
-              :enabled="Validation.isValidCategoryName(inputCategoryName)"
-              v-on:click="clickCreateCategory" />
-        </div>
-      </Modal>
-
-      <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
     </div>
+<!--    Place modal as sibling of page content to enable it to appear over the fixed hamburger menu area at top of page-->
+    <Modal
+        :shown="showNewCategoryModal"
+        v-on:click-out="cleanUpCreateCategory">
+      <h1>Add category</h1>
+      <input
+          class="qwerty-text-input"
+          placeholder="New category"
+          v-model="inputCategoryName">
+      <div class="buttons-row">
+        <ActionButton
+            text="Cancel"
+            :major="false"
+            v-on:click="cleanUpCreateCategory" />
+        <ActionButton
+            text="Create"
+            :enabled="Validation.isValidCategoryName(inputCategoryName)"
+            v-on:click="clickCreateCategory" />
+      </div>
+    </Modal>
   </div>
 </template>
-
 
 
 <script>
@@ -139,52 +135,35 @@
 
 <style scoped>
   header {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .action-dropdown-wrapper {
+    align-items: center;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .page-header {
-    flex-grow: 1;
-  }
-
-  .new-category-button {
-    margin-right: 16px;
-  }
-
-  h1 {
-    margin-bottom: 1em;
-  }
-
-  .qwerty-text-input {
-    width: 100%;
-
-    margin-bottom: 1em;
-
-    font-size: 20px;
   }
 
   .buttons-row {
     display: flex;
-    justify-content: flex-end;
-
-    padding-left: 5em;
     gap: 1em;
+    justify-content: flex-end;
+    margin-left: 5em;
   }
 
   .custom-category {
-    position: relative;
-
-    font-size: 24px;
-
-    padding-top: 1em;
-    padding-bottom: 1em;
-
     border-bottom: solid 1px var(--faint-colour);
+    font-size: 24px;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    position: relative;
   }
 
-  .hidden {
-    display: none;
+  .qwerty-text-input {
+    font-size: 20px;
+    margin-bottom: 1em;
+    width: 100%;
   }
 </style>

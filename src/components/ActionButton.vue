@@ -66,13 +66,14 @@
 
 <style scoped>
   .button-wrapper {
-    display: inline-block;
-    margin-bottom: var(--margin-vertical);
+
   }
 
   button {
+    align-items: center;
     display: flex;
     flex-direction: row;
+    gap: 0.5rem;
     justify-content: center;
 
     border-radius: 2em;
