@@ -37,8 +37,8 @@
 
     <Modal
         :shown="showNextWordModal"
-        minWidth="600px"
-        minHeight="480px">
+        width="600px"
+        height="480px">
       <div class="modal-contents">
         <font-awesome-icon
             class="green-check"
@@ -53,8 +53,8 @@
 
     <Modal
         :shown="showFinishedModal"
-        minWidth="600px"
-        minHeight="480px">
+        width="600px"
+        height="480px">
       <div class="modal-contents">
         <font-awesome-icon
             class="trophy"
@@ -76,8 +76,8 @@
     </Modal>
 
     <Modal
-        minWidth="400px"
-        minHeight="300px"
+        width="400px"
+        height="300px"
         :shown="showNoKeyboardModal">
       <div class="modal-contents">
         <img
@@ -499,6 +499,8 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    text-align: center;
   }
 
   .modal-contents h1 {
