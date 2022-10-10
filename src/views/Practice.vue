@@ -37,24 +37,23 @@
 
     <Modal
         :shown="showNextWordModal"
-        width="600px"
-        height="480px">
+        width="600px">
       <div class="modal-contents">
         <font-awesome-icon
             class="green-check"
             icon="circle-check" />
         <h1>{{ renderedText(targetWord) }}</h1>
-        <ActionButton
-            class="next-word-button"
-            text="Next word"
-            v-on:click="clickNextWord" />
+        <div class="button-row">
+          <ActionButton
+              text="Next word"
+              v-on:click="clickNextWord" />
+        </div>
       </div>
     </Modal>
 
     <Modal
         :shown="showFinishedModal"
-        width="600px"
-        height="480px">
+        width="600px">
       <div class="modal-contents">
         <font-awesome-icon
             class="trophy"
@@ -62,15 +61,14 @@
         <h1>You did it!</h1>
         <div class="button-row">
           <ActionButton
+              icon="check"
+              text="Finish"
+              v-on:click="clickFinish" />
+          <ActionButton
               icon="arrow-rotate-right"
               text="Repeat"
               :major="false"
               v-on:click="clickRepeat" />
-
-          <ActionButton
-              icon="check"
-              text="Finish"
-              v-on:click="clickFinish" />
         </div>
       </div>
     </Modal>
@@ -85,7 +83,6 @@
             :src="require('@/assets/img/icon-nokeyboard.svg')" />
         <p>Use your mouse to select each letter</p>
         <div class="button-row">
-          <div></div>
           <ActionButton
               text="Ok"
               v-on:click="showNoKeyboardModal = false" />
@@ -529,15 +526,21 @@
     margin-top: 32px;
   }
 
-  .next-word-button {
-    margin-left: auto;
-    margin-right: 0;
-  }
-
   .button-row {
     width: 100%;
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
+    align-items: center;
+    gap: var(--thin-gap);
+  }
+
+  @media screen and (max-width: 450px) {
+    /* this is unfortunately just to get the finished modal buttons repositioning right */
+    /* I'm not happy with having another media query at a different size just for this */
+    .button-row {
+      flex-direction: column-reverse;
+    }
   }
 
   @media screen and (max-width: 960px) {
