@@ -72,7 +72,6 @@
 
 
 <style scoped>
-
   .keyboard {
     height: 100%;
 
@@ -90,6 +89,7 @@
     --relative-height: 280;
 
     --gap: 1%;
+
     column-gap: var(--gap);
     /* this makes the row gap relative to the width instead of height, ie equal to the column-gap */
     row-gap: calc(var(--gap) * var(--relative-width) / var(--relative-height));

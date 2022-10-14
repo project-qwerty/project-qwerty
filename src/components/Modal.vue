@@ -88,7 +88,7 @@
   .modal {
     width: var(--width);
     height: var(--height);
-    margin: var(--medium-gap);
+    margin: var(--thin-gap);
 
     box-sizing: border-box;
     padding: 2em;

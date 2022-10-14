@@ -320,7 +320,7 @@
         }
       },
       renderedInput(input) {
-        return this.renderedText(input).replaceAll(' ', '\xa0\xa0');
+        return this.renderedText(input).replaceAll(' ', '\xa0\u200B\xa0');
       },
       handleKeystroke(key) {
         if (!this.enabledKeys.includes(key)) {
@@ -543,11 +543,25 @@
     }
   }
 
+  /* mobile */
+
   @media screen and (max-width: 960px) {
     .keyboard-wrapper {
       height: 220px;
 
-      padding: 10px;
+      padding: var(--thin-gap);
+    }
+
+    .readout > .target {
+      font-size: 32px;
+    }
+
+    .readout > .input {
+      font-size: 40px;
+    }
+
+    .modal-contents h1 {
+      font-size: 40px;
     }
   }
 </style>
