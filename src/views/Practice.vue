@@ -28,72 +28,32 @@
       <div class="input">{{ renderedInput(input) }}</div>
     </div>
 
-    <div class="keyboard">
-      <div class="row row-q">
-        <!-- ontouchstart="" makes the :active class trigger on iOS -->
-        <button
-            ontouchstart=""
-            v-for="letter in letters[0]" v-bind:key="letter"
-            v-on:click="handleKeystroke(letter)"
-            :class="{ disabled: !isEnabled(letter) }">
-          {{ renderedText(letter) }}
-        </button>
-        <button class="backspace"
-            ontouchstart=""
-            v-on:click="handleKeystroke('backspace')"
-            :class="{ disabled: !isEnabled('backspace') }">
-          <font-awesome-icon
-              class="backspace-icon"
-              icon="delete-left" />
-        </button>
-      </div>
-      <div class="row row-a">
-        <button
-            ontouchstart=""
-            v-for="letter in letters[1]" v-bind:key="letter"
-            v-on:click="handleKeystroke(letter)"
-            :class="{ disabled: !isEnabled(letter) }">
-          {{ renderedText(letter) }}
-        </button>
-      </div>
-      <div class="row row-z">
-        <button
-            ontouchstart=""
-            v-for="letter in letters[2]" v-bind:key="letter"
-            v-on:click="handleKeystroke(letter)"
-            :class="{ disabled: !isEnabled(letter) }">
-          {{ renderedText(letter) }}
-        </button>
-      </div>
-      <div class="row row-space">
-        <button class="space"
-            ontouchstart=""
-            v-on:click="handleKeystroke(' ')"
-            :class="{ disabled: !isEnabled(' ') }">
-        </button>
-      </div>
+    <div class="keyboard-wrapper">
+      <Keyboard
+          :enabledKeys="enabledKeys"
+          :uppercase="settings.wordDisplayCapitalization === 'UPPERCASE'"
+          v-on:keystroke="handleKeystroke($event)" />
     </div>
 
     <Modal
         :shown="showNextWordModal"
-        minWidth="600px"
-        minHeight="480px">
+        width="600px">
       <div class="modal-contents">
         <font-awesome-icon
             class="green-check"
             icon="circle-check" />
         <h1>{{ renderedText(targetWord) }}</h1>
-        <ActionButton
-            class="next-word-button"
-            text="Next word"
-            v-on:click="clickNextWord" />
+        <div class="button-row">
+          <ActionButton
+              text="Next word"
+              v-on:click="clickNextWord" />
+        </div>
       </div>
     </Modal>
 
     <Modal
         :shown="showFinishedModal"
-        minWidth="600px"
-        minHeight="480px">
+        width="600px">
       <div class="modal-contents">
         <font-awesome-icon
             class="trophy"
@@ -101,22 +61,21 @@
         <h1>You did it!</h1>
         <div class="button-row">
           <ActionButton
+              icon="check"
+              text="Finish"
+              v-on:click="clickFinish" />
+          <ActionButton
               icon="arrow-rotate-right"
               text="Repeat"
               :major="false"
               v-on:click="clickRepeat" />
-
-          <ActionButton
-              icon="check"
-              text="Finish"
-              v-on:click="clickFinish" />
         </div>
       </div>
     </Modal>
 
     <Modal
-        minWidth="400px"
-        minHeight="300px"
+        width="400px"
+        height="300px"
         :shown="showNoKeyboardModal">
       <div class="modal-contents">
         <img
@@ -124,7 +83,6 @@
             :src="require('@/assets/img/icon-nokeyboard.svg')" />
         <p>Use your mouse to select each letter</p>
         <div class="button-row">
-          <div></div>
           <ActionButton
               text="Ok"
               v-on:click="showNoKeyboardModal = false" />
@@ -140,24 +98,20 @@
   import BuiltInCategories from '@/functions/BuiltInCategories.js';
   import LocalStorage from '@/functions/LocalStorage.js';
 
+  import Keyboard from '@/components/Keyboard.vue';
   import IconButton from '@/components/IconButton.vue';
   import Modal from '@/components/Modal.vue';
   import ActionButton from '@/components/ActionButton.vue';
 
   export default {
     components: {
+      Keyboard,
       IconButton,
       Modal,
       ActionButton,
     },
     data() {
       return {
-        letters: [
-          ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-          ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-          ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
-        ],
-
         settings: {
           wordRepetitions: LocalStorage.getSetting('wordRepetitions'),
           wordDisplayTime: LocalStorage.getSetting('wordDisplayTime'),
@@ -247,6 +201,25 @@
       window.removeEventListener('keydown', this.handleKeyDown);
     },
     computed: {
+      enabledKeys() {
+        const inputIsWrong = this.targetWord !== null
+            && this.input.length === this.targetWord.length
+            && this.input !== this.targetWord;
+
+        if (inputIsWrong) {
+          return ['backspace'];
+        }
+
+        const noNextLetter = this.nextLetter === null;
+        const noAssistance = this.settings.assistanceLevel === 'NONE';
+        const noMistakeYet = this.settings.assistanceLevel === 'MIN' && !this.mistakeMade;
+
+        if (noNextLetter || noAssistance || noMistakeYet) {
+          return 'qwertyuiopasdfghjklzxcvbnm '.split('').concat('backspace');
+        }
+
+        return [this.nextLetter];
+      },
       showNextWordModal() {
         return this.input === this.targetWord;
       },
@@ -347,29 +320,10 @@
         }
       },
       renderedInput(input) {
-        return this.renderedText(input).replaceAll(' ', '\xa0\xa0');
-      },
-      isEnabled(key) {
-        const inputIsWrong = this.targetWord !== null
-            && this.input.length === this.targetWord.length
-            && this.input !== this.targetWord;
-
-        if (inputIsWrong) {
-          return key === 'backspace';
-        }
-
-        const noNextLetter = this.nextLetter === null;
-        const noAssistance = this.settings.assistanceLevel === 'NONE';
-        const noMistakeYet = this.settings.assistanceLevel === 'MIN' && !this.mistakeMade;
-
-        if (noNextLetter || noAssistance || noMistakeYet) {
-          return true;
-        }
-
-        return key === this.nextLetter;
+        return this.renderedText(input).replaceAll(' ', '\xa0\u200B\xa0');
       },
       handleKeystroke(key) {
-        if (!this.isEnabled(key)) {
+        if (!this.enabledKeys.includes(key)) {
           return;
         }
 
@@ -517,83 +471,20 @@
 
   /* keyboard */
 
-  .keyboard {
+  .keyboard-wrapper {
+    height: 280px;
+
     padding: 40px;
 
     background-color: var(--faint-colour);
-
-    font-size: 20px;
   }
 
-  .keyboard > .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  /* this selects the keyboard itself */
+  .keyboard-wrapper > * {
+    max-width: 1020px;
 
-    margin-bottom: 0.5em;
-    gap: 0.5em;
-  }
-
-  /* these are the styles that give you a natural keyboard */
-  /* .keyboard > .row-a {
-    padding-right: 8em;
-  }
-
-  .keyboard > .row-z {
-    padding-right: 13em;
-  }
-
-  .keyboard > .row-space {
-    padding-right: 13em;
-  } */
-
-  .keyboard > .row-a {
-    padding-right: 2em;
-  }
-
-  .keyboard > .row-z {
-    padding-right: 2em;
-  }
-
-  .keyboard > .row-space {
-    padding-right: 2em;
-  }
-
-  .keyboard button {
-    /* shape */
-    width: 4em;
-    height: 3em;
-    border-radius: 0.5em;
-
-    background-color: var(--background-colour);
-
-    /* centre contents */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* visually respond to keypresses */
-  .keyboard button:not(.disabled):active {
-    filter: brightness(75%);
-  }
-
-  /* for when disabled by assistance features */
-  .keyboard button.disabled {
-    background-color: var(--faint-colour);
-  }
-
-  /* special keys (space and backspace) */
-  .keyboard button.backspace {
-    width: 6em;
-  }
-
-  .keyboard button .backspace-icon {
-    font-size: 36px;
-  }
-
-  .keyboard button.space {
-    width: 31em;
+    /* center horizontally */
+    margin: 0 auto;
   }
 
   /* modals */
@@ -605,6 +496,8 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    text-align: center;
   }
 
   .modal-contents h1 {
@@ -633,14 +526,42 @@
     margin-top: 32px;
   }
 
-  .next-word-button {
-    margin-left: auto;
-    margin-right: 0;
-  }
-
   .button-row {
     width: 100%;
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
+    align-items: center;
+    gap: var(--thin-gap);
+  }
+
+  @media screen and (max-width: 450px) {
+    /* this is unfortunately just to get the finished modal buttons repositioning right */
+    /* I'm not happy with having another media query at a different size just for this */
+    .button-row {
+      flex-direction: column-reverse;
+    }
+  }
+
+  /* mobile */
+
+  @media screen and (max-width: 960px) {
+    .keyboard-wrapper {
+      height: 220px;
+
+      padding: var(--thin-gap);
+    }
+
+    .readout > .target {
+      font-size: 32px;
+    }
+
+    .readout > .input {
+      font-size: 40px;
+    }
+
+    .modal-contents h1 {
+      font-size: 40px;
+    }
   }
 </style>
