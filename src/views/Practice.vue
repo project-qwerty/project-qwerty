@@ -19,7 +19,7 @@
         <span>{{ timerDisplay }}</span>
       </div>
 
-      <div>{{ currentWordIndex + 1 }} / {{ words.length }}</div>
+      <div>{{ progressDisplay }}</div>
     </header>
 
     <div class="readout">
@@ -255,6 +255,13 @@
       },
       timerDisplay() {
         return `${this.displaySecondsRemaining}s`
+      },
+      progressDisplay() {
+        const wordCount = this.words.length;
+        // this prevents the display from showing eg. 6/5 on the finished screen
+        const currentWord = Math.min(this.currentWordIndex + 1, wordCount);
+
+        return `${currentWord} / ${wordCount}`;
       },
     },
     watch: {
