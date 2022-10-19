@@ -39,9 +39,9 @@
         }
       },
       colourStyle() {
-        var foreground = 'var(--background-colour)';
-        var background = this.colour;
-        var border = 'transparent';
+        let foreground = 'var(--background-colour)';
+        let background = this.colour;
+        let border = 'transparent';
 
         if (!this.enabled) {
           background = 'var(--faint-colour)';
@@ -78,8 +78,8 @@
 
     border-radius: 2em;
 
-    padding: 1em 2em;
-    min-width: 5em;
+    padding: 1em 1.5em;
+    min-width: 3em;
 
     color: var(--this-foreground-colour);
     background-color: var(--this-background-colour);

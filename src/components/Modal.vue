@@ -72,12 +72,10 @@
   .overlay {
     /* take up the whole screen */
     position: fixed;
-    height: 100vh;
-    width: 100vw;
     left: 0;
     top: 0px;
-    /*right: 0;*/
-    /*bottom: 0;*/
+    right: 0;
+    bottom: 0;
 
     /* centre the modal */
     display: flex;
@@ -96,6 +94,7 @@
     max-height: 100%;
 
     border-radius: 1em;
+    margin: 1rem;
 
     /* allow modal contents to scroll */
     overflow: auto;

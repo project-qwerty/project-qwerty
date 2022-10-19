@@ -103,7 +103,7 @@
     background: var(--background-colour);
     box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
     display: flex;
-    height: 4rem;
+    height: var(--hamburger-menu-bar-height);
     justify-content: flex-end;
     position: fixed;
     left: 0;
@@ -114,7 +114,7 @@
     align-items: center;
     border-bottom: solid 1px var(--faint-colour);
     display: flex;
-    height: 4rem;
+    height: var(--hamburger-menu-bar-height);
     justify-content: flex-end;
   }
 

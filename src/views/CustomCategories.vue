@@ -13,7 +13,6 @@
               :major="true" />
           <div class="action-dropdown-wrapper">
             <ActionButton
-                class="new-category-button"
                 icon="plus"
                 text="New category"
                 v-on:click="showNewCategoryModal = true" />
@@ -138,12 +137,6 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-  }
-
-  .action-dropdown-wrapper {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
   }
 
   .buttons-row {

@@ -3,6 +3,7 @@
     <Nav />
 
     <div class="page-content">
+
       <RowButton
           class="back-button"
           icon="chevron-left"
@@ -10,26 +11,29 @@
           v-on:click="$router.back()" />
 
       <header>
+
         <IconHeader
             class="category-title"
             icon="list"
             :iconColour="Colours.stringToColour(categoryName)"
             :text="categoryName" />
 
-        <ActionButton
-            class="new-word-button"
-            icon="plus"
-            text="New word"
-            v-on:click="clickAddWord" />
-
-        <Dropdown
-            class="options-menu"
-            :options="[
+        <div class="controls-wrapper">
+          <ActionButton
+              class="new-word-button"
+              icon="plus"
+              text="New"
+              v-on:click="clickAddWord" />
+          <Dropdown
+              class="options-menu"
+              :options="[
               { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
               { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
               { label: 'Delete category', icon: 'trash-can', action: 'delete' },
             ]"
-            v-on:click="handleDropdownClick" />
+              v-on:click="handleDropdownClick" />
+        </div>
+
       </header>
 
       <div class="word-list-wrapper">
@@ -52,6 +56,7 @@
       </div>
     </div>
 
+    <!--    Place modals as siblings of page content to enable them to appear over the fixed hamburger menu area at top of page-->
     <Modal
         :shown="showRenameCategoryModal"
         v-on:click-out="clickCancelRenameCategory">
@@ -66,7 +71,7 @@
             :major="false"
             v-on:click="clickCancelRenameCategory" />
         <ActionButton
-            text="Rename category"
+            text="Rename"
             :enabled="Validation.isValidCategoryName(inputCategoryName)"
             v-on:click="clickRenameCategory" />
       </div>
@@ -227,28 +232,23 @@
 
 
 <style scoped>
-  .back-button {
-    display: inline-block;
-    width: auto;  /* this keeps the button from taking up the whole width */
-
-    font-size: 24px;
-
-    margin-top: 36px;
-    padding-left: 0;
+  header {
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    max-width: 100vw;
   }
 
-  header {
+  .back-button {
+    font-size: 24px;
+  }
+
+  .controls-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    background-color: var(--background-colour);
-
-    border-bottom: solid 1px var(--faint-colour);
-
-    position: sticky;
-    top: 0;
+    margin-left: 1.5rem;
   }
 
   /* this turns the final option (delete) red */
@@ -256,16 +256,8 @@
     color: var(--negative-colour);
   }
 
-  .category-title {
-    flex-grow: 1;
-  }
-
-  .new-word-button {
-    margin-right: 16px;
-  }
-
   .word-list-wrapper {
-    border-bottom: solid 1px var(--faint-colour);
+    margin: 2rem 0;
   }
 
   .word-row {
@@ -280,7 +272,7 @@
   .word-row * {
     font-size: 20px;
 
-    margin-left: 1em;
+    /*margin-left: 1em;*/
     margin-right: 1em;
   }
 

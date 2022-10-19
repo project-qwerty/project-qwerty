@@ -72,10 +72,9 @@
     border: solid 1px var(--faint-colour);
     border-radius: 10px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 8px;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding: 10px;
     position: absolute;
     right: 0;
     white-space: nowrap;
@@ -88,12 +87,12 @@
   }
 
   .wrapper {
+    margin-left: 0.25rem;
     position: relative;
   }
 
   .wrapper > button {
     font-size: 28px;
-    margin-left: 1rem;
 
     /* center the ellipsis icon */
     display: flex;
