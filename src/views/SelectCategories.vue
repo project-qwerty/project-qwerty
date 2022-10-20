@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <IconHeader text="Custom categories" />
+      <IconHeader class="heading" text="Custom categories" />
 
       <div class="tiles-wrapper">
         <div class="tiles">
@@ -140,6 +140,7 @@
     grid-template-columns: 1fr 1fr;
     margin-bottom: var(--margin-vertical);
     row-gap: 2rem;
+    width: 100%;
   }
 
   .tiles-wrapper {
