@@ -25,6 +25,10 @@
   --hamburger-menu-bar-height: 4rem;
   --margin-vertical: 3rem;
   --side-nav-width: 280px;
+  --sidebar-width: 280px;
+  --thick-gap: 60px;
+  --medium-gap: 30px;
+  --thin-gap: 10px;
 }
 
 #app {
