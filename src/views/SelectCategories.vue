@@ -154,7 +154,13 @@
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 860px) {
+    .tiles {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1260px) {
     header {
       display: flex;
       flex-direction: row;

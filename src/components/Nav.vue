@@ -32,7 +32,7 @@
 <script>
   import RowButton from '@/components/RowButton.vue';
 
-  const unconstrainedWidth = 1024
+  const unconstrainedWidth = 1260
 
   export default {
     components: {
@@ -169,7 +169,7 @@
     padding: 0.5rem 1.5rem;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1260px) {
     nav {
       margin-top: 0;
     }

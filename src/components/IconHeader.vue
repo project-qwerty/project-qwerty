@@ -72,7 +72,7 @@
     background-color: var(--icon-colour);
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1260px) {
     .major {
       font-weight: bold;
       font-size: 36px;
