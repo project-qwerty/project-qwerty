@@ -140,7 +140,6 @@
     grid-template-columns: 1fr 1fr;
     margin-bottom: var(--margin-vertical);
     row-gap: 2rem;
-    width: 100%;
   }
 
   .tiles-wrapper {
