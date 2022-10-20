@@ -180,7 +180,6 @@
 
     .nav-container {
       border-right: solid 1px var(--faint-colour);
-      position: relative;
       min-width: var(--side-nav-width);
       width: var(--side-nav-width);
     }

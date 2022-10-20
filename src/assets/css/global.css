@@ -118,6 +118,7 @@ header {
   }
 
   .page-content {
+    margin-left: var(--side-nav-width);
     margin-top: var(--margin-vertical);
     padding: 0 48px 96px 48px;
     width: 100%;
