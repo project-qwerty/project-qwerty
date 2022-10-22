@@ -3,19 +3,24 @@
     <Nav />
 
     <div class="page-content">
-      <div class="settings-header">
+      <header>
         <IconHeader :major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
-      </div>
+      </header>
 
-      <div class="setting-wrapper">
-        <div class="setting-name">
-          <IconHeader text="Words" icon="list" />
-        </div>
-        <div class="setting-detail">
-          <p>How many <strong>words</strong> would you like to practice?</p>
-        </div>
-        <div class="setting-control">
-          <ShowCurrentSelector :options="[
+      <div class="settings-wrapper">
+
+        <!-- Words-->
+        <div class="setting-wrapper">
+          <div class="setting">
+            <div class="setting-name">
+              <IconHeader text="Words" icon="list" />
+            </div>
+            <div class="setting-description-and-controls">
+              <div class="setting-detail">
+                <p>How many <strong>words</strong> would you like to practice?</p>
+              </div>
+              <div class="setting-control">
+                <ShowCurrentSelector :options="[
                 { label: '5 words',  val: 5, },
                 { label: '10 words', val: 10, },
                 { label: '15 words', val: 15, },
@@ -27,18 +32,25 @@
                 { label: '45 words', val: 45, },
                 { label: '50 words', val: 50, },
               ]"
-                               :initialValue="wordsPerSession"
-                               v-on:update="wordsPerSession = $event" />
+                                     :initialValue="wordsPerSession"
+                                     v-on:update="wordsPerSession = $event" />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
-
-      <IconHeader text="Timer" icon="stopwatch" />
-      <div class="control-row">
-        <p>For how many <strong>seconds</strong> would you like the word to be shown?</p>
-
-        <div class="control">
-          <ShowCurrentSelector :options="[
+        <!-- Timer-->
+        <div class="setting-wrapper">
+          <div class="setting">
+            <div class="setting-name">
+              <IconHeader text="Timer" icon="stopwatch" />
+            </div>
+            <div class="setting-description-and-controls">
+              <div class="setting-detail">
+                <p>For how many <strong>seconds</strong> would you like the word to be shown?</p>
+              </div>
+              <div class="setting-control">
+                <ShowCurrentSelector :options="[
                 { label: 'Always shown', val: 0, },
                 { label: '5 seconds',    val: 5, },
                 { label: '10 seconds',   val: 10, },
@@ -47,56 +59,83 @@
                 { label: '25 seconds',   val: 25, },
                 { label: '30 seconds',   val: 30, },
               ]"
-              :initialValue="wordDisplayTime"
-              v-on:update="wordDisplayTime = $event" />
+                                     :initialValue="wordDisplayTime"
+                                     v-on:update="wordDisplayTime = $event" />
+              </div>
+            </div>
           </div>
         </div>
 
-      <IconHeader text="Assistance level" icon="check" />
-      <div class="control-row">
-        <div>
-          <p>How much <strong>help</strong> would you like?</p>
-          <p>{{ assistanceLevelDescriptions[assistanceLevel] }}</p>
-        </div>
-
-        <div class="control">
-          <ShowAllSelector :options="[
+        <!-- Assistance level-->
+        <div class="setting-wrapper">
+          <div class="setting">
+            <div class="setting-name">
+              <IconHeader text="Assistance level" icon="check" />
+            </div>
+            <div class="setting-description-and-controls">
+              <div class="setting-detail">
+                <p>How much <strong>help</strong> would you like?</p>
+                <p>{{ assistanceLevelDescriptions[assistanceLevel] }}</p>
+              </div>
+              <div class="setting-control">
+                <ShowAllSelector :options="[
                 { label: 'Max.', val: 'MAX', },
                 { label: 'Min.', val: 'MIN', },
                 { label: 'None', val: 'NONE', },
               ]"
-              :activeValue="assistanceLevel"
-              v-on:update="assistanceLevel = $event" />
+                                 :activeValue="assistanceLevel"
+                                 v-on:update="assistanceLevel = $event" />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <IconHeader text="Repetitions" icon="repeat" />
-      <div class="control-row">
-        <p><strong>How many times</strong> would you like to practice each word?</p>
-
-        <div class="control">
-          <ShowAllSelector :options="[
+        <!-- Repetitions-->
+        <div class="setting-wrapper">
+          <div class="setting">
+            <div class="setting-name">
+              <IconHeader text="Repetitions" icon="repeat" />
+            </div>
+            <div class="setting-description-and-controls">
+              <div class="setting-detail">
+                <p><strong>How many times</strong> would you like to practice each word?</p>
+              </div>
+              <div class="setting-control">
+                <ShowAllSelector :options="[
                 { label: '1', val: 1, },
                 { label: '3', val: 3, },
               ]"
-              :activeValue="wordRepetitions"
-              v-on:update="wordRepetitions = $event" />
+                                 :activeValue="wordRepetitions"
+                                 v-on:update="wordRepetitions = $event" />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <IconHeader text="Capitalization" icon="font" />
-      <div class="control-row">
-        <p>How would you like the words and keyboard to appear?</p>
-
-        <div class="control">
-          <ShowAllSelector :options="[
+        <!-- Capitalisation-->
+        <div class="setting-wrapper">
+          <div class="setting">
+            <div class="setting-name">
+              <IconHeader text="Capitalisation" icon="font" />
+            </div>
+            <div class="setting-description-and-controls">
+              <div class="setting-detail">
+                <p>How would you like the words and keyboard to appear?</p>
+              </div>
+              <div class="setting-control">
+                <ShowAllSelector :options="[
                 { label: 'UPPERCASE', val: 'UPPERCASE', },
                 { label: 'lowercase', val: 'LOWERCASE', },
               ]"
-              :activeValue="wordDisplayCapitalization"
-              v-on:update="wordDisplayCapitalization = $event" />
+                                 :activeValue="wordDisplayCapitalization"
+                                 v-on:update="wordDisplayCapitalization = $event" />
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
+
     </div>
   </div>
 </template>
@@ -162,45 +201,34 @@
 
 
 <style scoped>
-  .control-row {
+  .setting {
     display: flex;
-    flex-direction: row;
-
-    padding-bottom: 24px;
-    border-bottom: solid 1px var(--faint-colour);
+    flex-direction: column;
+    padding: 1.5rem 0px;
+    width: calc(100% - 2rem);
   }
 
-  .control-row .control {
-    flex-shrink: 0;
-
-    width: 300px;
-    padding-left: 20px;
-  }
-
-  .settings-header {
-    align-items: flex-start;
-    border-bottom: solid 1px var(--faint-colour);
+  .setting-description-and-controls {
     display: flex;
-    flex-direction: row;
-    padding-bottom: var(--margin-vertical);
+    flex-direction: column;
   }
 
   .setting-control {
-    border: 4px solid yellow;
+    padding-bottom: 0.5rem;
   }
 
   .setting-detail {
-    border: 4px solid blue;
   }
 
   .setting-name {
-    border: 4px solid green;
+    display: flex;
   }
 
   .setting-wrapper {
     border-bottom: solid 1px var(--faint-colour);
-    border: 4px solid black;
-    padding: var(--margin-vertical) 0px;
-    width: 100%;
+    display: flex;
+    justify-content: center;
   }
+
+  .settings-wrapper {}
 </style>
