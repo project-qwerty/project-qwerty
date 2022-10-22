@@ -91,6 +91,8 @@
 
   .modal {
     max-width: 100%;
+    /* expand on mobile */
+    min-width: 90%;
     max-height: 100%;
 
     border-radius: 1em;
