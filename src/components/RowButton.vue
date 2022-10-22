@@ -45,7 +45,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    width: 100%;
+    padding-right: 1rem;
   }
 
   .icon {

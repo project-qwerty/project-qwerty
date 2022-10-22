@@ -10,14 +10,12 @@
           text="Back"
           v-on:click="$router.back()" />
 
-      <header>
-
+      <div class="category-header">
         <IconHeader
             class="category-title"
             icon="list"
             :iconColour="Colours.stringToColour(categoryName)"
             :text="categoryName" />
-
         <div class="controls-wrapper">
           <ActionButton
               class="new-word-button"
@@ -33,14 +31,12 @@
             ]"
               v-on:click="handleDropdownClick" />
         </div>
+      </div>
 
-      </header>
-
-      <div class="word-list-wrapper">
+      <div class="words-wrapper">
         <div
-            class="word-row"
+            class="word-wrapper"
             v-for="(word, index) in wordValues" v-bind:key="index">
-
           <input
               class="qwerty-text-input"
               :class="{ invalid: !Validation.isValidWord(word) }"
@@ -49,11 +45,12 @@
               @input="updateWord(index)">
 
           <IconButton
+              class="delete-word-button"
               icon="x"
               v-on:click="clickDeleteWord(index)" />
-
         </div>
       </div>
+
     </div>
 
     <!--    Place modals as siblings of page content to enable them to appear over the fixed hamburger menu area at top of page-->
@@ -232,75 +229,122 @@
 
 
 <style scoped>
-  header {
-    align-items: center;
-    flex-direction: row;
-    gap: 1rem;
-    justify-content: space-between;
-    margin-top: 1.5rem;
-    max-width: 100vw;
+  input {
+    font-size: 20px;
+    width: 100%;
   }
 
   .back-button {
     font-size: 24px;
   }
 
-  .controls-wrapper {
-    display: flex;
-    flex-direction: row;
-    margin-left: 1.5rem;
-  }
-
-  /* this turns the final option (delete) red */
-  /deep/ .options-menu .dropdown-item:last-of-type {
-    color: var(--negative-colour);
-  }
-
-  .word-list-wrapper {
-    margin: 2rem 0;
-  }
-
-  .word-row {
+  .category-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin-bottom: var(--margin-vertical);
+    margin-left: 1rem;
+    /* No margin-right for dropdown position to be closer to the edge of the page */
+    margin-top: var(--margin-vertical);
   }
 
-  .word-row * {
-    font-size: 20px;
-
-    /*margin-left: 1em;*/
-    margin-right: 1em;
-  }
-
-  .word-row .qwerty-text-input {
-    display: block;
-  }
-
-  .qwerty-text-input.invalid {
-    border-color: var(--negative-colour);
-  }
-
-  .modal-text-input {
-    width: 100%;
-
-    margin-bottom: 1em;
-
-    font-size: 20px;
-  }
-
-  .delete-warning {
-    font-size: 20px;
+  .controls-wrapper {
+    display: flex;
   }
 
   .buttons-row {
     display: flex;
+    gap: 1rem;
     justify-content: flex-end;
-
-    padding-left: 5em;
-    gap: 1em;
   }
+
+  .delete-word-button {
+    margin-left: 1rem;
+  }
+
+  .modal-text-input {
+    margin-bottom: 1.5rem;
+  }
+
+  .word-wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0px;
+  }
+
+  .words-wrapper {
+    margin: 0px 1rem;
+  }
+
+
+  /*header {*/
+  /*  border: 1px solid yellow;*/
+  /*  align-items: center;*/
+  /*  flex-direction: row;*/
+  /*  gap: 1rem;*/
+  /*  justify-content: space-between;*/
+  /*  margin-top: 2.5rem;*/
+  /*  max-width: 100vw;*/
+  /*}*/
+
+
+  /*.category-title {*/
+  /*  border: 1px solid grey;*/
+  /*}*/
+
+  /*.category-header {*/
+  /*  border: 1px solid blue;*/
+  /*  display: flex;*/
+  /*  flex-direction: row;*/
+  /*  !*margin-left: 1.5rem;*!*/
+  /*}*/
+
+  /*!* this turns the final option (delete) red *!*/
+  /*/deep/ .options-menu .dropdown-item:last-of-type {*/
+  /*  color: var(--negative-colour);*/
+  /*}*/
+
+  /*.word-list-wrapper {*/
+  /*  margin: 2rem 0;*/
+  /*}*/
+
+  /*.word-row {*/
+  /*  display: flex;*/
+  /*  justify-content: space-between;*/
+  /*  align-items: center;*/
+
+  /*  margin-top: 1em;*/
+  /*  margin-bottom: 1em;*/
+  /*}*/
+
+  /*.word-row * {*/
+  /*  font-size: 20px;*/
+
+  /*  !*margin-left: 1em;*!*/
+  /*  margin-right: 1em;*/
+  /*}*/
+
+  /*.word-row .qwerty-text-input {*/
+  /*  display: block;*/
+  /*}*/
+
+  /*.modal-text-input {*/
+  /*  width: 100%;*/
+
+  /*  margin-bottom: 1em;*/
+
+  /*  font-size: 20px;*/
+  /*}*/
+
+  /*.delete-warning {*/
+  /*  font-size: 20px;*/
+  /*}*/
+
+  /*.buttons-row {*/
+  /*  display: flex;*/
+  /*  justify-content: flex-end;*/
+
+  /*  padding-left: 5em;*/
+  /*  gap: 1em;*/
+  /*}*/
 </style>

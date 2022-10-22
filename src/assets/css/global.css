@@ -89,14 +89,22 @@ header {
 }
 
 .page-content {
+  margin-left: 0px;
+  margin-right: 0px;
   margin-top: calc(var(--margin-vertical) * 2);
-  padding: 0 2rem;
+  padding: 0px;
+  padding-bottom: calc(var(--margin-vertical) * 4);
+  width: 100%;
   z-index: 1;
 }
 
 .page-layout {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
   z-index: 0;
 }
 
@@ -108,6 +116,10 @@ header {
 
   border: solid 2px var(--faint-colour);
   border-radius: 0.5em;
+}
+
+.qwerty-text-input.invalid {
+  border-color: var(--negative-colour);
 }
 
 @media (min-width: 1260px) {

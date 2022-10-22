@@ -1,15 +1,20 @@
 <template>
-  <div>
+  <div class="page-layout">
     <Nav />
 
-    <div class="sidebar-page-content">
-      <IconHeader :major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
+    <div class="page-content">
+      <div class="settings-header">
+        <IconHeader :major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
+      </div>
 
-      <IconHeader text="Words" icon="list" />
-      <div class="control-row">
-        <p>How many <strong>words</strong> would you like to practice?</p>
-
-        <div class="control">
+      <div class="setting-wrapper">
+        <div class="setting-name">
+          <IconHeader text="Words" icon="list" />
+        </div>
+        <div class="setting-detail">
+          <p>How many <strong>words</strong> would you like to practice?</p>
+        </div>
+        <div class="setting-control">
           <ShowCurrentSelector :options="[
                 { label: '5 words',  val: 5, },
                 { label: '10 words', val: 10, },
@@ -22,10 +27,11 @@
                 { label: '45 words', val: 45, },
                 { label: '50 words', val: 50, },
               ]"
-              :initialValue="wordsPerSession"
-              v-on:update="wordsPerSession = $event" />
+                               :initialValue="wordsPerSession"
+                               v-on:update="wordsPerSession = $event" />
         </div>
       </div>
+
 
       <IconHeader text="Timer" icon="stopwatch" />
       <div class="control-row">
@@ -159,8 +165,6 @@
   .control-row {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
 
     padding-bottom: 24px;
     border-bottom: solid 1px var(--faint-colour);
@@ -171,5 +175,32 @@
 
     width: 300px;
     padding-left: 20px;
+  }
+
+  .settings-header {
+    align-items: flex-start;
+    border-bottom: solid 1px var(--faint-colour);
+    display: flex;
+    flex-direction: row;
+    padding-bottom: var(--margin-vertical);
+  }
+
+  .setting-control {
+    border: 4px solid yellow;
+  }
+
+  .setting-detail {
+    border: 4px solid blue;
+  }
+
+  .setting-name {
+    border: 4px solid green;
+  }
+
+  .setting-wrapper {
+    border-bottom: solid 1px var(--faint-colour);
+    border: 4px solid black;
+    padding: var(--margin-vertical) 0px;
+    width: 100%;
   }
 </style>
