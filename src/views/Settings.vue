@@ -3,14 +3,15 @@
     <Nav />
 
     <div class="page-content">
-      <header>
-        <IconHeader :major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
-      </header>
 
-      <div class="settings-wrapper">
+      <div class="simple-content-wrapper">
+
+        <header>
+          <IconHeader :major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
+        </header>
 
         <!-- Words-->
-        <div class="setting-wrapper">
+        <div class="setting-wrapper border-bottom border-top">
           <div class="setting">
             <div class="setting-name">
               <IconHeader text="Words" icon="list" />
@@ -201,9 +202,14 @@
 
 
 <style scoped>
+  header {
+    align-items: flex-start;
+  }
+
   .setting {
     display: flex;
     flex-direction: column;
+    max-width: 500px;
     padding: 1.5rem 0px;
     width: calc(100% - 2rem);
   }
@@ -225,10 +231,13 @@
   }
 
   .setting-wrapper {
-    border-bottom: solid 1px var(--faint-colour);
     display: flex;
     justify-content: center;
   }
 
-  .settings-wrapper {}
+  @media (min-width: 1260px) {
+    .setting-wrapper {
+      justify-content: flex-start;
+    }
+  }
 </style>

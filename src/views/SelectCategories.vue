@@ -151,6 +151,7 @@
 
   @media (min-width: 600px) {
     .tiles {
+      gap: 2rem;
       grid-template-columns: 1fr 1fr 1fr;
     }
   }

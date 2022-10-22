@@ -4,51 +4,56 @@
 
     <div class="page-content">
 
+      <!-- back button not in simple-content-wrapper as it already had horisontal padding to provide an offset from the left edge-->
       <RowButton
           class="back-button"
           icon="chevron-left"
           text="Back"
           v-on:click="$router.back()" />
 
-      <div class="category-header">
-        <IconHeader
-            class="category-title"
-            icon="list"
-            :iconColour="Colours.stringToColour(categoryName)"
-            :text="categoryName" />
-        <div class="controls-wrapper">
-          <ActionButton
-              class="new-word-button"
-              icon="plus"
-              text="New"
-              v-on:click="clickAddWord" />
-          <Dropdown
-              class="options-menu"
-              :options="[
+      <div class="simple-content-wrapper">
+
+        <div class="category-header">
+          <IconHeader
+              class="category-title"
+              icon="list"
+              :iconColour="Colours.stringToColour(categoryName)"
+              :text="categoryName" />
+          <div class="controls-wrapper">
+            <ActionButton
+                class="new-word-button"
+                icon="plus"
+                text="New"
+                v-on:click="clickAddWord" />
+            <Dropdown
+                class="options-menu"
+                :options="[
               { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
               { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
               { label: 'Delete category', icon: 'trash-can', action: 'delete' },
             ]"
-              v-on:click="handleDropdownClick" />
+                v-on:click="handleDropdownClick" />
+          </div>
         </div>
-      </div>
 
-      <div class="words-wrapper">
-        <div
-            class="word-wrapper"
-            v-for="(word, index) in wordValues" v-bind:key="index">
-          <input
-              class="qwerty-text-input"
-              :class="{ invalid: !Validation.isValidWord(word) }"
-              placeholder="new word"
-              v-model="wordValues[index]"
-              @input="updateWord(index)">
+        <div class="words-wrapper">
+          <div
+              class="word-wrapper"
+              v-for="(word, index) in wordValues" v-bind:key="index">
+            <input
+                class="qwerty-text-input"
+                :class="{ invalid: !Validation.isValidWord(word) }"
+                placeholder="new word"
+                v-model="wordValues[index]"
+                @input="updateWord(index)">
 
-          <IconButton
-              class="delete-word-button"
-              icon="x"
-              v-on:click="clickDeleteWord(index)" />
+            <IconButton
+                class="delete-word-button"
+                icon="x"
+                v-on:click="clickDeleteWord(index)" />
+          </div>
         </div>
+
       </div>
 
     </div>
@@ -238,23 +243,26 @@
     font-size: 24px;
   }
 
-  .category-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: var(--margin-vertical);
-    margin-left: 1rem;
-    /* No margin-right for dropdown position to be closer to the edge of the page */
-    margin-top: var(--margin-vertical);
-  }
-
-  .controls-wrapper {
-    display: flex;
-  }
-
   .buttons-row {
     display: flex;
     gap: 1rem;
     justify-content: flex-end;
+  }
+
+  .category-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--margin-vertical);
+    /* No margin-right for dropdown position to be closer to the edge of the page */
+    margin-top: var(--margin-vertical);
+  }
+
+  .content-wrapper {
+    margin: 0px 1rem;
+  }
+
+  .controls-wrapper {
+    display: flex;
   }
 
   .delete-word-button {
@@ -265,6 +273,10 @@
     margin-bottom: 1.5rem;
   }
 
+  .options-menu {
+    margin-right: -0.5rem;
+  }
+
   .word-wrapper {
     align-items: center;
     display: flex;
@@ -272,7 +284,15 @@
     margin: 2rem 0px;
   }
 
-  .words-wrapper {
-    margin: 0px 1rem;
+  .words-wrapper {}
+
+  @media (min-width: 600px) {
+    .back-button {
+      margin-left: 2rem;
+    }
+
+    .content-wrapper {
+      margin: 0px 2rem;
+    }
   }
 </style>

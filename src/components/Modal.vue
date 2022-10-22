@@ -106,10 +106,12 @@
   }
 
   .modal-inner {
+    border: 4px solid green;
     --padding: 2em;
 
     padding: var(--padding);
 
+    max-width: 500px;
     min-width: calc(var(--min-width) - var(--padding) * 2);
     min-height: calc(var(--min-height) - var(--padding) * 2);
 

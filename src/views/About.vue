@@ -6,21 +6,25 @@
 
       <div class="about-wrapper">
 
-        <div class="header">
-          <IconHeader :major="true" text="About" icon="circle-info" iconColour="var(--primary-colour)" />
+        <div class="header-wrapper">
+          <div class="header">
+            <IconHeader :major="true" text="About" icon="circle-info" iconColour="var(--primary-colour)" />
+          </div>
+
+          <div class="about">
+            <p>Welcome to Project QWERTY!</p>
+            <p>Project QWERTY is a <strong>free</strong> therapy website for people with <strong>aphasia</strong> that targets spelling and typing.  It can be used on a tablet or desktop.</p>
+            <p>Aphasia is a <strong>neurological disorder</strong> and <strong>communication disability</strong> which can affect talking, understanding, reading, writing and numeracy. Causes for aphasia include stroke, brain tumour or brain injury. It can have a significant impact on all areas of a person's quality of life.</p>
+          </div>
         </div>
 
-        <div class="about">
-          <p>Welcome to Project QWERTY!</p>
-          <p>Project QWERTY is a <strong>free</strong> therapy website for people with <strong>aphasia</strong> that targets spelling and typing.  It can be used on a tablet or desktop.</p>
-          <p>Aphasia is a <strong>neurological disorder</strong> and <strong>communication disability</strong> which can affect talking, understanding, reading, writing and numeracy. Causes for aphasia include stroke, brain tumour or brain injury. It can have a significant impact on all areas of a person's quality of life.</p>
+        <div class="header-wrapper">
+          <div class="header">
+            <IconHeader :major="true" text="FAQs" icon="circle-question" iconColour="var(--primary-colour)" />
+          </div>
         </div>
 
-        <div class="header">
-          <IconHeader :major="true" text="FAQs" icon="circle-question" iconColour="var(--primary-colour)" />
-        </div>
-
-        <div class="faq-item-wrapper">
+        <div class="faq-item-wrapper border-top">
           <div class="faq-item">
             <CollapsibleSection summary="What is Project QWERTY?" >
               <p>Project QWERTY is a free therapy website for people with aphasia. It targets <strong>spelling</strong> and <strong>typing</strong> with the option of accessing everyday words via the pre-programmed categories or by creating custom categories.</p>
@@ -158,18 +162,29 @@ export default {
     margin-right: 1rem;
   }
 
-  .about-wrapper {}
-
-  .faq-item {
-    margin: 0px 1rem
+  .about-wrapper {
+    max-width: 900px;
   }
 
   .faq-item-wrapper {
     border-bottom: solid 1px var(--faint-colour);
+    margin: 0px 1rem;
   }
 
   .header {
     display: flex;
-    margin: 0px 1rem;
+    margin: 0px 1rem 2rem 1rem;
+  }
+
+  @media (min-width: 600px) {
+    .about-wrapper {
+      margin: 0px 2rem;
+    }
+  }
+
+  @media (min-width: 800px) {
+    .about-wrapper {
+      margin: 0px 3rem;
+    }
   }
 </style>

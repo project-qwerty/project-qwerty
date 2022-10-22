@@ -47,11 +47,11 @@
 
   .major {
     font-weight: bold;
-    font-size: 24px;
+    font-size: 2rem;
   }
 
   .minor {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   .icon {
@@ -72,14 +72,24 @@
     background-color: var(--icon-colour);
   }
 
-  @media (min-width: 1260px) {
+  @media (min-width: 650px) {
     .major {
-      font-weight: bold;
-      font-size: 36px;
+      font-size: 2.5rem;
     }
 
     .minor {
-      font-size: 28px;
+      font-size: 1.8rem;
+    }
+  }
+
+  @media (min-width: 720px) {
+    .major {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .minor {
+      font-size: 2rem;
     }
   }
 </style>

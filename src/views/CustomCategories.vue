@@ -3,10 +3,11 @@
     <Nav />
 
     <div class="page-content">
-      <div class="category-list-section" :class="{ hidden: selectedCategory !== null }">
+
+      <div class="simple-content-wrapper">
+
         <header>
           <IconHeader
-              class="page-header"
               text="My categories"
               icon="pen"
               iconColour="var(--primary-colour)"
@@ -14,34 +15,35 @@
           <div class="action-dropdown-wrapper">
             <ActionButton
                 icon="plus"
-                text="New category"
+                text="New"
                 v-on:click="showNewCategoryModal = true" />
             <Dropdown
                 :options="[
-                { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
-              ]"
+              { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
+            ]"
                 v-on:click="handleDropdownClick" />
           </div>
         </header>
 
-        <div class="custom-categories">
+        <div class="custom-categories border-top">
           <div
-              class="custom-category-wrapper"
+              class="custom-category border-bottom"
               v-for="(categoryName, index) in getCategories()" v-bind:key="index"
           >
-            <div class="custom-category">
-              <RowButton class="custom-category"
-                         v-on:click="$router.push('/custom-categories/' + categoryName)"
-                         :text="categoryName"
-                         icon="list"
-                         :iconColour="Colours.stringToColour(categoryName)" />
-            </div>
+            <RowButton class="custom-category"
+                       v-on:click="$router.push('/custom-categories/' + categoryName)"
+                       :text="categoryName"
+                       icon="list"
+                       :iconColour="Colours.stringToColour(categoryName)" />
           </div>
         </div>
+
         <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
+
       </div>
     </div>
-<!--    Place modal as sibling of page content to enable it to appear over the fixed hamburger menu area at top of page-->
+
+    <!-- Place modal as sibling of page content to enable it to appear over the fixed hamburger menu area at top of page-->
     <Modal
         :shown="showNewCategoryModal"
         v-on:click-out="cleanUpCreateCategory">
@@ -152,7 +154,6 @@
     display: flex;
     gap: 1em;
     justify-content: flex-end;
-    margin-left: 5em;
   }
 
   .custom-categories {
@@ -161,21 +162,18 @@
 
   .custom-category {
     font-size: 24px;
-    margin-left: 1rem;
-  }
-
-  .custom-category-wrapper {
-    border-bottom: solid 1px var(--faint-colour);
-    padding: 1.5rem 0px;
-  }
-
-  .custom-category-wrapper:first-child {
-    border-top: solid 1px var(--faint-colour);
-  }
+    margin: 1rem 0px;  }
 
   .qwerty-text-input {
     font-size: 20px;
     margin-bottom: 1em;
     width: 100%;
+  }
+
+  @media (min-width: 600px) {
+    header {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 </style>

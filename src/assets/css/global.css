@@ -88,7 +88,20 @@ header {
   flex-direction: row;
 }
 
+.border-bottom {
+  border-bottom: solid 1px var(--faint-colour);
+}
+
+.border-top {
+  border-top: solid 1px var(--faint-colour);
+}
+
+.has-border {
+  border: 1px solid black;
+}
+
 .page-content {
+  height: 100vh;
   margin-left: 0px;
   margin-right: 0px;
   margin-top: calc(var(--margin-vertical) * 2);
@@ -101,7 +114,7 @@ header {
 .page-layout {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   margin: 0px;
   padding: 0px;
   width: 100%;
@@ -120,6 +133,25 @@ header {
 
 .qwerty-text-input.invalid {
   border-color: var(--negative-colour);
+}
+
+/*used to standardise left and right margin*/
+.simple-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0px 1rem;
+  max-width: 900px;
+}
+
+@media (min-width: 600px) {
+  .action-dropdown-wrapper {
+    margin-right: -0.5rem;
+  }
+
+  .simple-content-wrapper {
+    margin: 0px 2rem;
+  }
 }
 
 @media (min-width: 1260px) {

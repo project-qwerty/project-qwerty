@@ -1,5 +1,4 @@
 <template>
-<!--  ToDo animate nav container in/out the same as the <nav />-->
   <div class="nav-container" :class="{'nav-container-show': showMenu}">
     <div v-if="deviceWidthIsConstrained && !showMenu" class="hamburger-menu-bar">
       <button class="show-menu-button" @click="handleShowMenu">
