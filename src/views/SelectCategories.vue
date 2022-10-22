@@ -130,13 +130,13 @@
 
   .tile {
     font-size: 1rem;
-    height: 8rem;
-    max-width: 10rem;
+    height: 100%;
+    width: 8rem;
   }
 
   .tiles {
-    column-gap: 2rem;
     display: grid;
+    gap: 1rem;
     grid-template-columns: 1fr 1fr;
     margin-bottom: var(--margin-vertical);
     row-gap: 2rem;
@@ -146,6 +146,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    padding: 0px 1rem;
   }
 
   @media (min-width: 600px) {
