@@ -20,10 +20,6 @@
 
 
 <style scoped>
-  details {
-    border-bottom: solid 1px var(--faint-colour);
-  }
-
   summary {
     cursor: pointer;
 
