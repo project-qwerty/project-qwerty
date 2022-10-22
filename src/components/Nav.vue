@@ -144,6 +144,7 @@
 
   .nav-button {
     padding: 0.5rem 1rem;
+    width: 100%;
   }
 
   .nav-container {
