@@ -23,12 +23,21 @@
                 v-on:click="handleDropdownClick" />
           </div>
         </header>
-        <RowButton class="custom-category"
-                   v-for="(categoryName, index) in getCategories()" v-bind:key="index"
-                   v-on:click="$router.push('/custom-categories/' + categoryName)"
-                   :text="categoryName"
-                   icon="list"
-                   :iconColour="Colours.stringToColour(categoryName)" />
+
+        <div class="custom-categories">
+          <div
+              class="custom-category-wrapper"
+              v-for="(categoryName, index) in getCategories()" v-bind:key="index"
+          >
+            <div class="custom-category">
+              <RowButton class="custom-category"
+                         v-on:click="$router.push('/custom-categories/' + categoryName)"
+                         :text="categoryName"
+                         icon="list"
+                         :iconColour="Colours.stringToColour(categoryName)" />
+            </div>
+          </div>
+        </div>
         <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
       </div>
     </div>
@@ -146,12 +155,22 @@
     margin-left: 5em;
   }
 
+  .custom-categories {
+    width: 100%;
+  }
+
   .custom-category {
-    border-bottom: solid 1px var(--faint-colour);
     font-size: 24px;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
-    position: relative;
+    margin-left: 1rem;
+  }
+
+  .custom-category-wrapper {
+    border-bottom: solid 1px var(--faint-colour);
+    padding: 1.5rem 0px;
+  }
+
+  .custom-category-wrapper:first-child {
+    border-top: solid 1px var(--faint-colour);
   }
 
   .qwerty-text-input {
