@@ -73,7 +73,7 @@
     /* take up the whole screen */
     position: fixed;
     left: 0;
-    top: 0px;
+    top: 0;
     right: 0;
     bottom: 0;
 

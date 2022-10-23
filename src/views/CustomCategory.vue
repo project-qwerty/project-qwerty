@@ -28,10 +28,10 @@
             <Dropdown
                 class="options-menu"
                 :options="[
-              { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
-              { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
-              { label: 'Delete category', icon: 'trash-can', action: 'delete' },
-            ]"
+                  { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
+                  { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
+                  { label: 'Delete category', icon: 'trash-can', action: 'delete' },
+                ]"
                 v-on:click="handleDropdownClick" />
           </div>
         </div>
@@ -53,9 +53,7 @@
                 v-on:click="clickDeleteWord(index)" />
           </div>
         </div>
-
       </div>
-
     </div>
 
     <!--    Place modals as siblings of page content to enable them to appear over the fixed hamburger menu area at top of page-->

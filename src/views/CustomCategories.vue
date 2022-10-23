@@ -145,9 +145,9 @@
 
 <style scoped>
   header {
-    align-items: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
   .buttons-row {

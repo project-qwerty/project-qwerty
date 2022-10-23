@@ -48,9 +48,7 @@
                 v-on:update="customCategoryClicked($event)" />
           </div>
         </div>
-
       </div>
-
     </div>
   </div>
 </template>
@@ -130,6 +128,7 @@
 
   .start-button {
     font-size: 24px;
+
     display: flex;
     align-items: center;
   }

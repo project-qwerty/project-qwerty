@@ -62,33 +62,9 @@
 
 
 <style scoped>
-  .active {
-    background-color: var(--faint-colour);
-  }
-
-  .dropdown {
-    align-items: center;
-    background-color: var(--background-colour);
-    border: solid 1px var(--faint-colour);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    margin-top: 8px;
-    padding: 10px;
-    position: absolute;
-    right: 0;
-    white-space: nowrap;
-    /* the dropdown was rendering beneath the category row buttons on the custom-categories page; this was the quick fix */
-    z-index: 1;
-  }
-
-  .hidden {
-    display: none;
-  }
-
   .wrapper {
-    margin-left: 0.25rem;
     position: relative;
+    margin-left: 0.25rem;
   }
 
   .wrapper > button {
@@ -103,5 +79,35 @@
     width: 2em;
     height: 2em;
     border-radius: 50%;
+  }
+
+  .active {
+    background-color: var(--faint-colour);
+  }
+
+  .dropdown {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* make it right-aligned */
+    right: 0;
+
+    background-color: var(--background-colour);
+    border: solid 1px var(--faint-colour);
+    margin-top: 8px;
+    padding: 10px;
+    border-radius: 10px;
+
+    white-space: nowrap;
+
+    /* the dropdown was rendering beneath the category row buttons on the custom-categories page; this was the quick fix */
+    z-index: 1;
+  }
+
+  .hidden {
+    display: none;
   }
 </style>

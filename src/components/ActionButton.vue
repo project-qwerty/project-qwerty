@@ -79,6 +79,7 @@
     border-radius: 2em;
 
     padding: 1em 1.5em;
+
     min-width: 3em;
 
     color: var(--this-foreground-colour);

@@ -55,9 +55,9 @@
   }
 
   .icon {
-    align-items: center;
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-right: 1rem;
   }
 
