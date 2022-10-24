@@ -78,7 +78,7 @@
     /* make it a circle */
     width: 2em;
     height: 2em;
-    border-radius: 1em;
+    border-radius: 50%;
   }
 
   .active {
