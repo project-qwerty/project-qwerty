@@ -76,9 +76,7 @@
 
     border-radius: 2em;
 
-    padding: 1em;
-    padding-left: 2em;
-    padding-right: 2em;
+    padding: 1em 2em;
 
     min-width: 5em;
 
