@@ -232,11 +232,6 @@
 
 
 <style scoped>
-  input {
-    font-size: 20px;
-    width: 100%;
-  }
-
   .back-button {
     font-size: 24px;
   }
@@ -283,6 +278,11 @@
   }
 
   .words-wrapper {}
+
+  input {
+    font-size: 20px;
+    width: 100%;
+  }
 
   @media (min-width: 600px) {
     .back-button {
