@@ -288,10 +288,6 @@
     display: block;
   }
 
-  .qwerty-text-input.invalid {
-    border-color: var(--negative-colour);
-  }
-
   .modal-text-input {
     width: 100%;
 
