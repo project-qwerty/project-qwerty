@@ -8,7 +8,7 @@
       </header>
 
       <!-- Words-->
-      <div class="setting-wrapper border-bottom border-top">
+      <div class="setting-wrapper faint-border-bottom">
         <div class="setting">
           <div class="setting-name">
             <IconHeader text="Words" icon="list" />
@@ -38,7 +38,7 @@
       </div>
 
       <!-- Timer-->
-      <div class="setting-wrapper">
+      <div class="setting-wrapper faint-border-bottom">
         <div class="setting">
           <div class="setting-name">
             <IconHeader text="Timer" icon="stopwatch" />
@@ -65,7 +65,7 @@
       </div>
 
       <!-- Assistance level-->
-      <div class="setting-wrapper">
+      <div class="setting-wrapper faint-border-bottom">
         <div class="setting">
           <div class="setting-name">
             <IconHeader text="Assistance level" icon="check" />
@@ -89,7 +89,7 @@
       </div>
 
       <!-- Repetitions-->
-      <div class="setting-wrapper">
+      <div class="setting-wrapper faint-border-bottom">
         <div class="setting">
           <div class="setting-name">
             <IconHeader text="Repetitions" icon="repeat" />

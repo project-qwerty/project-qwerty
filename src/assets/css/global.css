@@ -91,18 +91,6 @@ header {
   align-items: center;
 }
 
-.border-bottom {
-  border-bottom: solid 1px var(--faint-colour);
-}
-
-.border-top {
-  border-top: solid 1px var(--faint-colour);
-}
-
-.has-border {
-  border: 1px solid black;
-}
-
 .page-content {
   height: 100vh;
   width: 100%;
@@ -142,6 +130,18 @@ header {
 
 .qwerty-text-input.invalid {
   border-color: var(--negative-colour);
+}
+
+.faint-border {
+  border: solid 1px var(--faint-colour);
+}
+
+.faint-border-bottom {
+  border-bottom: solid 1px var(--faint-colour);
+}
+
+.faint-border-right {
+  border-right: solid 1px var(--faint-colour);
 }
 
 @media (min-width: 600px) {

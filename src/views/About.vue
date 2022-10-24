@@ -24,7 +24,7 @@
           </div>
         </div>
 
-        <div class="faq-item-wrapper border-top">
+        <div class="faq-item-wrapper">
           <div class="faq-item">
             <CollapsibleSection summary="What is Project QWERTY?" >
               <p>Project QWERTY is a free therapy website for people with aphasia. It targets <strong>spelling</strong> and <strong>typing</strong> with the option of accessing everyday words via the pre-programmed categories or by creating custom categories.</p>

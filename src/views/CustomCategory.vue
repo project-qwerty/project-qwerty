@@ -9,7 +9,7 @@
           text="Back"
           v-on:click="$router.back()" />
 
-      <div class="category-header">
+      <div class="category-header faint-border-bottom">
         <IconHeader
             class="category-title"
             icon="list"

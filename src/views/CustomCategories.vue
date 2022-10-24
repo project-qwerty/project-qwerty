@@ -24,11 +24,11 @@
         </div>
       </header>
 
-      <div class="custom-categories border-top">
+      <div class="custom-categories">
         <div
-            class="custom-category border-bottom"
+            class="custom-category"
             v-for="(categoryName, index) in getCategories()" v-bind:key="index">
-          <RowButton class="custom-category"
+          <RowButton class="custom-category faint-border-bottom"
               v-on:click="$router.push('/custom-categories/' + categoryName)"
               :text="categoryName"
               icon="list"

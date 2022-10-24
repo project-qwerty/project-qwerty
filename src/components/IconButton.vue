@@ -18,7 +18,7 @@
   button {
     /* give it the circle shape */
     padding: 0.5em;
-    border-radius: 100%;
+    border-radius: 50%;
     height: fit-content;
     width: fit-content;
 
