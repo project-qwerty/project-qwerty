@@ -66,7 +66,7 @@
             :major="false"
             v-on:click="clickCancelRenameCategory" />
         <ActionButton
-            text="Rename category"
+            text="Rename"
             :enabled="Validation.isValidCategoryName(inputCategoryName)"
             v-on:click="clickRenameCategory" />
       </div>
