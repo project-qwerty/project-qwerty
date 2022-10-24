@@ -36,6 +36,7 @@
         <div
             class="word-wrapper"
             v-for="(word, index) in wordValues" v-bind:key="index">
+
           <input
               class="qwerty-text-input"
               :class="{ invalid: !Validation.isValidWord(word) }"
@@ -47,6 +48,7 @@
               class="delete-word-button"
               icon="x"
               v-on:click="clickDeleteWord(index)" />
+
         </div>
       </div>
     </div>

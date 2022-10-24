@@ -129,10 +129,11 @@
     align-items: center;
   }
 
-  .tile {
-    font-size: 1rem;
-    height: 100%;
-    width: 8rem;
+  .tiles-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0px 1rem;
   }
 
   .tiles {
@@ -143,11 +144,10 @@
     row-gap: 2rem;
   }
 
-  .tiles-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 0px 1rem;
+  .tile {
+    font-size: 1rem;
+    width: 8rem;
+    height: 100%;
   }
 
   @media (min-width: 600px) {

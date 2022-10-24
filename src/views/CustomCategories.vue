@@ -9,11 +9,13 @@
             icon="pen"
             iconColour="var(--primary-colour)"
             :major="true" />
+
         <div class="action-dropdown-wrapper">
           <ActionButton
               icon="plus"
               text="New"
               v-on:click="showNewCategoryModal = true" />
+
           <Dropdown
               :options="[
                 { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
