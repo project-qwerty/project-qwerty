@@ -7,8 +7,7 @@
           '--width': width,
           '--height': height,
         }">
-        <slot></slot>
-      </div>
+      <slot></slot>
     </div>
   </div>
 </template>
