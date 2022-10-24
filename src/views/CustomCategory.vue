@@ -243,8 +243,8 @@
 
   .buttons-row {
     display: flex;
-    gap: 1rem;
     justify-content: flex-end;
+    gap: 1rem;
   }
 
   .category-header {
@@ -276,9 +276,9 @@
   }
 
   .word-wrapper {
-    align-items: center;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 2rem 0px;
   }
 

@@ -70,11 +70,11 @@
   }
 
   button {
-    align-items: center;
     display: flex;
     flex-direction: row;
-    gap: 0.5rem;
     justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
 
     border-radius: 2em;
 

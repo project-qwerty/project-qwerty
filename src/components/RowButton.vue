@@ -41,17 +41,17 @@
 
 <style scoped>
   button {
-    align-items: center;
-    box-sizing: border-box;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
     padding-right: 1rem;
   }
 
   .icon {
-    align-items: center;
     display: flex;
     justify-content: center;
+    align-items: center;
     /* give the icon its shape */
     width: 1em;
     height: 1em;

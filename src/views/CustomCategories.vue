@@ -152,8 +152,8 @@
 
   .buttons-row {
     display: flex;
-    gap: 1em;
     justify-content: flex-end;
+    gap: 1em;
   }
 
   .custom-categories {
