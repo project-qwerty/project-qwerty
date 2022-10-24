@@ -39,9 +39,9 @@
         }
       },
       colourStyle() {
-        var foreground = 'var(--background-colour)';
-        var background = this.colour;
-        var border = 'transparent';
+        let foreground = 'var(--background-colour)';
+        let background = this.colour;
+        let border = 'transparent';
 
         if (!this.enabled) {
           background = 'var(--faint-colour)';
