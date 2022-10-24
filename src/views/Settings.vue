@@ -43,8 +43,8 @@
               ]"
               :initialValue="wordDisplayTime"
               v-on:update="wordDisplayTime = $event" />
-          </div>
         </div>
+      </div>
 
       <IconHeader text="Assistance level" icon="check" />
       <div class="control-row faint-border-bottom">
