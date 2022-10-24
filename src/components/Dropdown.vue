@@ -4,7 +4,7 @@
         :class="{ active: open }">
       <font-awesome-icon icon="ellipsis-vertical" />
     </button>
-    <div class="dropdown"
+    <div class="dropdown faint-border"
         :class="{ hidden: !open }">
       <RowButton
           class="dropdown-item"
@@ -93,7 +93,6 @@
     right: 0;
 
     background-color: var(--background-colour);
-    border: solid 1px var(--faint-colour);
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 10px;

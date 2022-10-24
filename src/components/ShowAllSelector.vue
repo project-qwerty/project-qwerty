@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container faint-border">
     <button
         v-for="option in options" :key="option.val"
         :class="{'active': option.val === activeValue}"
@@ -28,7 +28,6 @@
 
     overflow: hidden;
 
-    border: solid 1px var(--faint-colour);
     border-radius: 0.5em;
 
     font-size: 16px;

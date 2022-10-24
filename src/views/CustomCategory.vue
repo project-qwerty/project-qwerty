@@ -9,7 +9,7 @@
           text="Back"
           v-on:click="$router.back()" />
 
-      <header>
+      <header class="faint-border-bottom">
         <IconHeader
             class="category-title"
             icon="list"
@@ -32,7 +32,7 @@
             v-on:click="handleDropdownClick" />
       </header>
 
-      <div class="word-list-wrapper">
+      <div class="faint-border-bottom">
         <div
             class="word-row"
             v-for="(word, index) in wordValues" v-bind:key="index">
@@ -245,8 +245,6 @@
 
     background-color: var(--background-colour);
 
-    border-bottom: solid 1px var(--faint-colour);
-
     position: sticky;
     top: 0;
   }
@@ -262,10 +260,6 @@
 
   .new-word-button {
     margin-right: 16px;
-  }
-
-  .word-list-wrapper {
-    border-bottom: solid 1px var(--faint-colour);
   }
 
   .word-row {

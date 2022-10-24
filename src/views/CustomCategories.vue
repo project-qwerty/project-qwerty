@@ -26,7 +26,7 @@
               v-on:click="handleDropdownClick" />
         </header>
 
-        <RowButton class="custom-category"
+        <RowButton class="custom-category faint-border-bottom"
             v-for="(categoryName, index) in getCategories()" v-bind:key="index"
             v-on:click="$router.push('/custom-categories/' + categoryName)"
             :text="categoryName"
@@ -180,8 +180,6 @@
 
     padding-top: 1em;
     padding-bottom: 1em;
-
-    border-bottom: solid 1px var(--faint-colour);
   }
 
   .hidden {

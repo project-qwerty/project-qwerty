@@ -81,3 +81,15 @@ button {
 .qwerty-text-input.invalid {
   border-color: var(--negative-colour);
 }
+
+.faint-border {
+  border: solid 1px var(--faint-colour);
+}
+
+.faint-border-bottom {
+  border-bottom: solid 1px var(--faint-colour);
+}
+
+.faint-border-right {
+  border-right: solid 1px var(--faint-colour);
+}
