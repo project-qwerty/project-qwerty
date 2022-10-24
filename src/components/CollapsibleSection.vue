@@ -1,6 +1,6 @@
 <template>
   <section>
-    <details>
+    <details class="faint-border-bottom">
       <summary>{{ summary }}</summary>
       <div class="content-wrapper">
         <slot></slot>
@@ -20,10 +20,6 @@
 
 
 <style scoped>
-  details {
-    border-bottom: solid 1px var(--faint-colour);
-  }
-
   summary {
     cursor: pointer;
 

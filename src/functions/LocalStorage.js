@@ -7,7 +7,7 @@ import Validation from '@/functions/Validation.js';
 // Settings handling
 
 function parseStoredInt(val) {
-  var parsed = parseInt(val);
+  let parsed = parseInt(val);
   if (isNaN(parsed)) {
     return null;
   }
@@ -53,7 +53,7 @@ function getSetting(name) {
     localStorage.setItem(setting.key, setting.default);
   }
 
-  var storedVal = localStorage.getItem(setting.key);
+  let storedVal = localStorage.getItem(setting.key);
   return setting.parser(storedVal);
 }
 

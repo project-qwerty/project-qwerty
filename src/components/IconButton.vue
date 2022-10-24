@@ -18,7 +18,7 @@
   button {
     /* give it the circle shape */
     padding: 0.5em;
-    border-radius: 1em;
+    border-radius: 50%;
 
     background-color: var(--faint-colour);
 

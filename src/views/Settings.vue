@@ -6,7 +6,7 @@
       <IconHeader :major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
 
       <IconHeader text="Words" icon="list" />
-      <div class="control-row">
+      <div class="control-row faint-border-bottom">
         <p>How many <strong>words</strong> would you like to practice?</p>
 
         <div class="control">
@@ -28,7 +28,7 @@
       </div>
 
       <IconHeader text="Timer" icon="stopwatch" />
-      <div class="control-row">
+      <div class="control-row faint-border-bottom">
         <p>For how many <strong>seconds</strong> would you like the word to be shown?</p>
 
         <div class="control">
@@ -43,11 +43,11 @@
               ]"
               :initialValue="wordDisplayTime"
               v-on:update="wordDisplayTime = $event" />
-          </div>
         </div>
+      </div>
 
       <IconHeader text="Assistance level" icon="check" />
-      <div class="control-row">
+      <div class="control-row faint-border-bottom">
         <div>
           <p>How much <strong>help</strong> would you like?</p>
           <p>{{ assistanceLevelDescriptions[assistanceLevel] }}</p>
@@ -65,7 +65,7 @@
       </div>
 
       <IconHeader text="Repetitions" icon="repeat" />
-      <div class="control-row">
+      <div class="control-row faint-border-bottom">
         <p><strong>How many times</strong> would you like to practice each word?</p>
 
         <div class="control">
@@ -79,7 +79,7 @@
       </div>
 
       <IconHeader text="Capitalization" icon="font" />
-      <div class="control-row">
+      <div class="control-row faint-border-bottom">
         <p>How would you like the words and keyboard to appear?</p>
 
         <div class="control">
@@ -163,7 +163,6 @@
     align-items: flex-end;
 
     padding-bottom: 24px;
-    border-bottom: solid 1px var(--faint-colour);
   }
 
   .control-row .control {

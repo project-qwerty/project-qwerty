@@ -5,7 +5,7 @@
         :class="{ disabled: firstOptionIsSelected }">
       <font-awesome-icon class="icon" icon="minus" />
     </button>
-    <div class="display">{{ selectedOption.label }}</div>
+    <div class="display faint-border">{{ selectedOption.label }}</div>
     <button
         v-on:click="plusClicked"
         :class="{ disabled: lastOptionIsSelected }">
@@ -84,7 +84,6 @@
     text-align: center;
 
     padding: 1em;
-    border: solid 1px var(--faint-colour);
     border-radius: 0.5em;
 
     /* make the display take up all available space */

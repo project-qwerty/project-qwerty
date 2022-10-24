@@ -1,8 +1,9 @@
 <template>
-  <nav class="sidebar">
+  <nav class="sidebar faint-border-right">
     <router-link
         v-for="button in navLinks" :key="button.path"
-        :to="button.path">
+        :to="button.path"
+        class="faint-border-bottom">
       <RowButton
           :text="button.text"
           :icon="button.icon"
@@ -47,13 +48,9 @@
     /* internal layout */
     display: flex;
     flex-direction: column;
-
-    border-right: solid 1px var(--faint-colour);
   }
 
   .sidebar a {
-    border-bottom: solid 1px var(--faint-colour);
-
     font-size: 20px;
 
     /* disable default styling for links */
