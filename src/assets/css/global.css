@@ -105,13 +105,19 @@ header {
 
 .page-content {
   height: 100vh;
-  margin-left: 0px;
-  margin-right: 0px;
+  width: 100%;
+  max-width: 900px;
+
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 1rem;
+  margin-right: 1rem;
   margin-top: calc(var(--margin-vertical) * 2);
   padding: 0px;
   padding-bottom: calc(var(--margin-vertical) * 4);
-  width: 100%;
-  z-index: 1;
 }
 
 .page-layout {
@@ -138,21 +144,12 @@ header {
   border-color: var(--negative-colour);
 }
 
-/*used to standardise left and right margin*/
-.simple-content-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  margin: 0px 1rem;
-  max-width: 900px;
-}
-
 @media (min-width: 600px) {
   .action-dropdown-wrapper {
     margin-right: -0.5rem;
   }
 
-  .simple-content-wrapper {
+  .page-content {
     margin: 0px 2rem;
   }
 }

@@ -3,44 +3,38 @@
     <Nav />
 
     <div class="page-content">
-
-      <div class="simple-content-wrapper">
-
-        <header>
-          <IconHeader
-              text="My categories"
-              icon="pen"
-              iconColour="var(--primary-colour)"
-              :major="true" />
-          <div class="action-dropdown-wrapper">
-            <ActionButton
-                icon="plus"
-                text="New"
-                v-on:click="showNewCategoryModal = true" />
-            <Dropdown
-                :options="[
-              { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
-            ]"
-                v-on:click="handleDropdownClick" />
-          </div>
-        </header>
-
-        <div class="custom-categories border-top">
-          <div
-              class="custom-category border-bottom"
-              v-for="(categoryName, index) in getCategories()" v-bind:key="index"
-          >
-            <RowButton class="custom-category"
-                       v-on:click="$router.push('/custom-categories/' + categoryName)"
-                       :text="categoryName"
-                       icon="list"
-                       :iconColour="Colours.stringToColour(categoryName)" />
-          </div>
+      <header>
+        <IconHeader
+            text="My categories"
+            icon="pen"
+            iconColour="var(--primary-colour)"
+            :major="true" />
+        <div class="action-dropdown-wrapper">
+          <ActionButton
+              icon="plus"
+              text="New"
+              v-on:click="showNewCategoryModal = true" />
+          <Dropdown
+              :options="[
+                { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
+              ]"
+              v-on:click="handleDropdownClick" />
         </div>
+      </header>
 
-        <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
-
+      <div class="custom-categories border-top">
+        <div
+            class="custom-category border-bottom"
+            v-for="(categoryName, index) in getCategories()" v-bind:key="index">
+          <RowButton class="custom-category"
+              v-on:click="$router.push('/custom-categories/' + categoryName)"
+              :text="categoryName"
+              icon="list"
+              :iconColour="Colours.stringToColour(categoryName)" />
+        </div>
       </div>
+
+      <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
     </div>
 
     <!-- Place modal as sibling of page content to enable it to appear over the fixed hamburger menu area at top of page-->
