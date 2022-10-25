@@ -243,8 +243,6 @@
     justify-content: space-between;
     align-items: center;
 
-    background-color: var(--background-colour);
-
     position: sticky;
     top: 0;
   }
