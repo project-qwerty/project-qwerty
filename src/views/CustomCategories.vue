@@ -3,7 +3,7 @@
     <Nav />
 
     <div class="page-content">
-      <header>
+      <header class="even-row">
         <IconHeader
             text="My categories"
             icon="pen"
@@ -140,12 +140,6 @@
 </script>
 
 <style scoped>
-  header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
   .qwerty-text-input {
     font-size: 20px;
     margin-bottom: 1em;

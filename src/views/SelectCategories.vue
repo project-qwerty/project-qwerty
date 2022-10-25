@@ -3,7 +3,7 @@
     <Nav />
 
     <div class="page-content">
-      <header>
+      <header class="even-row">
         <IconHeader
             icon="keyboard"
             iconColour="var(--primary-colour)"

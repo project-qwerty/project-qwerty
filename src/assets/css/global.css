@@ -138,6 +138,13 @@ header {
   border-right: solid 1px var(--faint-colour);
 }
 
+.even-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media (min-width: 600px) {
   .action-dropdown-wrapper {
     margin-right: -0.5rem;
