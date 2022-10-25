@@ -73,12 +73,11 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
     gap: 0.5rem;
 
     border-radius: 2em;
 
-    padding: 1em 1.5em;
+    padding: 1em 2em;
 
     min-width: 3em;
 

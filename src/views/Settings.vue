@@ -3,9 +3,7 @@
     <Nav />
 
     <div class="page-content">
-      <header>
-        <IconHeader :major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
-      </header>
+      <IconHeader :major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
 
       <!-- Words-->
       <div class="setting-wrapper faint-border-bottom">
@@ -196,10 +194,6 @@
 
 
 <style scoped>
-  header {
-    align-items: flex-start;
-  }
-
   .setting {
     display: flex;
     flex-direction: column;

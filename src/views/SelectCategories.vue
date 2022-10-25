@@ -17,7 +17,7 @@
             v-on:click="$router.push('/practice')" />
       </header>
 
-      <IconHeader class="heading" text="Built-in categories" />
+      <IconHeader text="Built-in categories" />
 
       <div class="tiles-wrapper">
         <div class="tiles">
@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <IconHeader class="heading" text="Custom categories" />
+      <IconHeader text="Custom categories" />
 
       <div class="tiles-wrapper">
         <div class="tiles">
@@ -118,10 +118,6 @@
 
 
 <style scoped>
-  .heading {
-    margin-bottom: calc(var(--margin-vertical) / 2);
-  }
-
   .start-button {
     font-size: 24px;
 
@@ -164,12 +160,6 @@
   }
 
   @media (min-width: 1260px) {
-    header {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
     .tile {
       font-size: 20px;
       height: 10rem;
