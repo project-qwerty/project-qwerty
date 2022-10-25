@@ -231,12 +231,6 @@
     font-size: 24px;
   }
 
-  .buttons-row {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-  }
-
   .category-header {
     display: flex;
     justify-content: space-between;
@@ -253,10 +247,6 @@
     margin-left: 1rem;
   }
 
-  .modal-text-input {
-    margin-bottom: 1.5rem;
-  }
-
   .options-menu {
     margin-right: -0.5rem;
   }
@@ -271,5 +261,15 @@
   input {
     font-size: 20px;
     width: 100%;
+  }
+
+  .modal-text-input {
+    margin-bottom: 1.5rem;
+  }
+
+  .buttons-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
   }
 </style>

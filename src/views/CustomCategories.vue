@@ -146,6 +146,12 @@
     align-items: center;
   }
 
+  .qwerty-text-input {
+    font-size: 20px;
+    margin-bottom: 1em;
+    width: 100%;
+  }
+
   .buttons-row {
     display: flex;
     justify-content: flex-end;
@@ -159,12 +165,6 @@
   .custom-category {
     font-size: 24px;
     margin: 1rem 0px;  }
-
-  .qwerty-text-input {
-    font-size: 20px;
-    margin-bottom: 1em;
-    width: 100%;
-  }
 
   @media (min-width: 600px) {
     header {
