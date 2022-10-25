@@ -9,7 +9,7 @@
       <font-awesome-icon :icon="icon" />
     </span>
 
-    <span class="text">{{ text }}</span>
+    <span>{{ text }}</span>
   </div>
 </template>
 
@@ -56,6 +56,8 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
+
+    margin-right: 10px;
   }
 
   .coloured-icon {
@@ -67,9 +69,5 @@
 
     color: var(--background-colour);
     background-color: var(--icon-colour);
-  }
-
-  .text {
-    margin-left: 10px;
   }
 </style>
