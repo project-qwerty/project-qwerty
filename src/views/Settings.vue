@@ -203,7 +203,6 @@
   .setting {
     display: flex;
     flex-direction: column;
-    max-width: 500px;
     padding: 1.5rem 0px;
     width: calc(100% - 2rem);
   }
