@@ -9,7 +9,7 @@
       <font-awesome-icon :icon="icon" />
     </span>
 
-    <span class="text">{{ text }}</span>
+    <span>{{ text }}</span>
   </div>
 </template>
 
