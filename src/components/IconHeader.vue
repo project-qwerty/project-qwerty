@@ -1,5 +1,7 @@
 <template>
-  <div :class="{
+  <div
+      class="wrapper"
+      :class="{
         major: major,
         minor: !major,
       }">
@@ -39,10 +41,10 @@
 
 
 <style scoped>
-  div {
+  .wrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
   }
 
   .major {
