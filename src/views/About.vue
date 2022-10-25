@@ -24,7 +24,7 @@
           </div>
         </div>
 
-        <div class="faq-item-wrapper">
+        <div class="faq-item-wrapper faint-border-bottom">
           <div class="faq-item">
             <CollapsibleSection summary="What is Project QWERTY?" >
               <p>Project QWERTY is a free therapy website for people with aphasia. It targets <strong>spelling</strong> and <strong>typing</strong> with the option of accessing everyday words via the pre-programmed categories or by creating custom categories.</p>
@@ -32,7 +32,7 @@
           </div>
         </div>
 
-        <div class="faq-item-wrapper">
+        <div class="faq-item-wrapper faint-border-bottom">
           <div class="faq-item">
             <CollapsibleSection summary="What are custom categories?" >
               <p>You can create <strong>personalised</strong> categories to practise words and phrases that are important and meaningful to <strong>you</strong>.</p>
@@ -40,7 +40,7 @@
           </div>
         </div>
 
-        <div class="faq-item-wrapper">
+        <div class="faq-item-wrapper faint-border-bottom">
           <div class="faq-item">
             <CollapsibleSection summary="How do I access the website?" >
               <p>You can access Project QWERTY on a <strong>tablet</strong> or a <strong>desktop computer</strong>, however, the website is optimised for use on tablets.</p>
@@ -50,7 +50,7 @@
         </div>
 
 
-        <div class="faq-item-wrapper">
+        <div class="faq-item-wrapper faint-border-bottom">
           <div class="faq-item">
             <CollapsibleSection summary="My keyboard is not working on my desktop computer. What should I do?" >
               <p>For <strong>desktop computer</strong> users: <strong>use your mouse</strong> to click on each letter. The physical keyboard will not work.</p>
@@ -58,7 +58,7 @@
           </div>
         </div>
 
-        <div class="faq-item-wrapper">
+        <div class="faq-item-wrapper faint-border-bottom">
           <div class="faq-item">
             <CollapsibleSection summary="I can't see the full page on my tablet. What should I do?" >
               <p>View the website in <strong>landscape</strong>. You may need to adjust your settings so that the page can rotate.</p>
@@ -66,7 +66,7 @@
           </div>
         </div>
 
-        <div class="faq-item-wrapper">
+        <div class="faq-item-wrapper faint-border-bottom">
           <div class="faq-item">
             <CollapsibleSection summary="How do I save my word list so that I can practice my custom categories on different devices?" >
               <ol>
@@ -85,7 +85,7 @@
           </div>
         </div>
 
-        <div class="faq-item-wrapper">
+        <div class="faq-item-wrapper faint-border-bottom">
           <div class="faq-item">
             <CollapsibleSection summary="If I add my personal details to a custom category, how do I know that they are safe?" >
               <p>Your custom categories are always kept <strong>on your device</strong>. They are <strong>never</strong> shared with the Project QWERTY team or anyone else.</p>
@@ -93,7 +93,7 @@
           </div>
         </div>
 
-        <div class="faq-item-wrapper">
+        <div class="faq-item-wrapper faint-border-bottom">
           <div class="faq-item">
             <CollapsibleSection summary="How can I contact the Project QWERTY team?" >
               <p>You can email us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a>. We'd love to hear from you!</p>
@@ -102,7 +102,7 @@
           </div>
         </div>
 
-        <div class="faq-item-wrapper">
+        <div class="faq-item-wrapper faint-border-bottom">
           <div class="faq-item">
             <CollapsibleSection summary="Open Source" >
               <p>Project QWERTY is <strong>open source</strong> software. The source code is available on <a href="https://github.com/project-qwerty/project-qwerty">GitHub</a>.</p>
@@ -110,7 +110,7 @@
           </div>
         </div>
 
-        <div class="faq-item-wrapper">
+        <div class="faq-item-wrapper faint-border-bottom">
           <div class="faq-item">
             <CollapsibleSection summary="Credits" >
               <p>Project QWERTY has been made with the support of people with aphasia, a team of Speech Pathologists from Monash Health, a team of students from Monash University and some volunteers.</p>
@@ -167,7 +167,6 @@ export default {
   }
 
   .faq-item-wrapper {
-    border-bottom: solid 1px var(--faint-colour);
     margin: 0px 1rem;
   }
 

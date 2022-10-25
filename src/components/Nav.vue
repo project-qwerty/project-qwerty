@@ -7,14 +7,15 @@
     </div>
     <transition :name="transitionName">
       <nav v-if="showMenu">
-        <div class="hide-menu-bar" v-if="deviceWidthIsConstrained">
+        <div class="hide-menu-bar faint-border-bottom" v-if="deviceWidthIsConstrained">
           <button class="hide-menu-button" @click="handleHideMenu">
             <font-awesome-icon class="toggle-icon" icon="xmark" />
           </button>
         </div>
         <router-link
             v-for="button in navLinks" :key="button.path"
-            :to="button.path">
+            :to="button.path"
+            class="faint-border-bottom">
           <RowButton
               class="nav-button"
               :text="button.text"
@@ -89,7 +90,6 @@
   }
 
   nav a {
-    border-bottom: solid 1px var(--faint-colour);
     font-size: 20px;
 
     /* disable default styling for links */
@@ -117,7 +117,6 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    border-bottom: solid 1px var(--faint-colour);
     height: var(--hamburger-menu-bar-height);
   }
 

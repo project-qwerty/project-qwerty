@@ -1,6 +1,6 @@
 <template>
   <section>
-    <details class="faint-border-bottom">
+    <details>
       <summary>{{ summary }}</summary>
       <div class="content-wrapper">
         <slot></slot>
