@@ -91,6 +91,10 @@
   nav a {
     border-bottom: solid 1px var(--faint-colour);
     font-size: 20px;
+
+    /* disable default styling for links */
+    text-decoration: none;
+    color: inherit;
   }
 
   nav a:first-of-type {

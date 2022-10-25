@@ -53,11 +53,6 @@ body {
   touch-action: manipulation;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
 button {
   /* reset default button style */
   background: none;
