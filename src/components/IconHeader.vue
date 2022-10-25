@@ -45,22 +45,27 @@
     display: flex;
     justify-content: center;
     align-items: baseline;
+
+    gap: 10px;
   }
 
   .major {
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 36px;
+    margin-top: 36px;
+    margin-bottom: 36px;
   }
 
   .minor {
-    font-size: 1.5rem;
+    font-size: 28px;
+    margin-top: 28px;
+    margin-bottom: 28px;
   }
 
   .icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 1rem;
   }
 
   .coloured-icon {
@@ -72,26 +77,5 @@
 
     color: var(--background-colour);
     background-color: var(--icon-colour);
-  }
-
-  @media (min-width: 650px) {
-    .major {
-      font-size: 2.5rem;
-    }
-
-    .minor {
-      font-size: 1.8rem;
-    }
-  }
-
-  @media (min-width: 720px) {
-    .major {
-      font-size: 3rem;
-      font-weight: bold;
-    }
-
-    .minor {
-      font-size: 2rem;
-    }
   }
 </style>
