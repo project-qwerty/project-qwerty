@@ -43,7 +43,6 @@
 <style scoped>
   .wrapper {
     display: flex;
-    justify-content: center;
     align-items: baseline;
 
     gap: 10px;
