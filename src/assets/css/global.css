@@ -70,14 +70,6 @@ button {
   cursor: pointer;
 }
 
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--margin-vertical);
-  margin-bottom: var(--margin-vertical);
-}
-
 /* global classes */
 
 .action-dropdown-wrapper {
@@ -95,11 +87,9 @@ header {
   display: flex;
   flex-direction: column;
 
-  margin-left: 1rem;
-  margin-right: 1rem;
-  margin-top: calc(var(--margin-vertical) * 2);
-  padding: 0px;
-  padding-bottom: calc(var(--margin-vertical) * 4);
+  padding-left: 48px;
+  padding-right: 48px;
+  padding-bottom: 96px;
 }
 
 .page-layout {
@@ -149,24 +139,11 @@ header {
   .action-dropdown-wrapper {
     margin-right: -0.5rem;
   }
-
-  .page-content {
-    margin: 0px 2rem;
-  }
 }
 
 @media (min-width: 1260px) {
-  header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
   .page-content {
     margin-left: var(--side-nav-width);
-    margin-top: var(--margin-vertical);
-    padding: 0 48px 96px 48px;
-    width: 100%;
   }
 
   .page-layout {
