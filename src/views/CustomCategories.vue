@@ -7,7 +7,7 @@
           :class="{ hidden: selectedCategory !== null }">
         <header>
           <IconHeader
-              class="page-header"
+              class="page-title"
               text="My categories"
               icon="pen"
               iconColour="var(--primary-colour)"
@@ -145,7 +145,7 @@
     align-items: center;
   }
 
-  .page-header {
+  .page-title {
     flex-grow: 1;
   }
 
