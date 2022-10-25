@@ -9,7 +9,7 @@
           text="Back"
           v-on:click="$router.back()" />
 
-      <header class="faint-border-bottom">
+      <header class="even-row faint-border-bottom">
         <IconHeader
             class="category-title"
             icon="list"
@@ -238,11 +238,6 @@
   }
 
   header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
     position: sticky;
     top: 0;
   }

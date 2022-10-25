@@ -3,7 +3,7 @@
     <NavSidebar />
 
     <div class="sidebar-page-content">
-      <header>
+      <header class="even-row">
         <IconHeader
             icon="keyboard"
             iconColour="var(--primary-colour)"
@@ -114,12 +114,6 @@
 
 
 <style scoped>
-  header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
   .start-button {
     font-size: 24px;
 

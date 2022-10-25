@@ -5,7 +5,7 @@
     <div class="sidebar-page-content">
       <div class="category-list-section"
           :class="{ hidden: selectedCategory !== null }">
-        <header>
+        <header class="even-row">
           <IconHeader
               class="page-title"
               text="My categories"
@@ -138,13 +138,6 @@
 </script>
 
 <style scoped>
-  header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
   .page-title {
     flex-grow: 1;
   }
