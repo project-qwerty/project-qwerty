@@ -32,24 +32,22 @@
         </div>
       </div>
 
-      <div class="words-wrapper">
-        <div
-            class="word-wrapper"
-            v-for="(word, index) in wordValues" v-bind:key="index">
+      <div
+          class="word-wrapper"
+          v-for="(word, index) in wordValues" v-bind:key="index">
 
-          <input
-              class="qwerty-text-input"
-              :class="{ invalid: !Validation.isValidWord(word) }"
-              placeholder="new word"
-              v-model="wordValues[index]"
-              @input="updateWord(index)">
+        <input
+            class="qwerty-text-input"
+            :class="{ invalid: !Validation.isValidWord(word) }"
+            placeholder="new word"
+            v-model="wordValues[index]"
+            @input="updateWord(index)">
 
-          <IconButton
-              class="delete-word-button"
-              icon="x"
-              v-on:click="clickDeleteWord(index)" />
+        <IconButton
+            class="delete-word-button"
+            icon="x"
+            v-on:click="clickDeleteWord(index)" />
 
-        </div>
       </div>
     </div>
 
@@ -247,10 +245,6 @@
     margin-top: var(--margin-vertical);
   }
 
-  .content-wrapper {
-    margin: 0px 1rem;
-  }
-
   .controls-wrapper {
     display: flex;
   }
@@ -274,16 +268,8 @@
     margin: 2rem 0px;
   }
 
-  .words-wrapper {}
-
   input {
     font-size: 20px;
     width: 100%;
-  }
-
-  @media (min-width: 600px) {
-    .content-wrapper {
-      margin: 0px 2rem;
-    }
   }
 </style>

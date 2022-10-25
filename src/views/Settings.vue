@@ -14,7 +14,7 @@
             <IconHeader text="Words" icon="list" />
           </div>
           <div class="setting-description-and-controls">
-            <div class="setting-detail">
+            <div>
               <p>How many <strong>words</strong> would you like to practice?</p>
             </div>
             <div class="setting-control">
@@ -44,7 +44,7 @@
             <IconHeader text="Timer" icon="stopwatch" />
           </div>
           <div class="setting-description-and-controls">
-            <div class="setting-detail">
+            <div>
               <p>For how many <strong>seconds</strong> would you like the word to be shown?</p>
             </div>
             <div class="setting-control">
@@ -71,7 +71,7 @@
             <IconHeader text="Assistance level" icon="check" />
           </div>
           <div class="setting-description-and-controls">
-            <div class="setting-detail">
+            <div>
               <p>How much <strong>help</strong> would you like?</p>
               <p>{{ assistanceLevelDescriptions[assistanceLevel] }}</p>
             </div>
@@ -95,7 +95,7 @@
             <IconHeader text="Repetitions" icon="repeat" />
           </div>
           <div class="setting-description-and-controls">
-            <div class="setting-detail">
+            <div>
               <p><strong>How many times</strong> would you like to practice each word?</p>
             </div>
             <div class="setting-control">
@@ -117,7 +117,7 @@
             <IconHeader text="Capitalisation" icon="font" />
           </div>
           <div class="setting-description-and-controls">
-            <div class="setting-detail">
+            <div>
               <p>How would you like the words and keyboard to appear?</p>
             </div>
             <div class="setting-control">
@@ -215,9 +215,6 @@
 
   .setting-control {
     padding-bottom: 0.5rem;
-  }
-
-  .setting-detail {
   }
 
   .setting-name {

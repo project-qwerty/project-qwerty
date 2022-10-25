@@ -132,10 +132,6 @@
     transition: transform 200ms;
   }
 
-  .constrained-leave {
-
-  }
-
   .constrained-leave-active {
     transition: transform 200ms;
     transform: translate3d(calc(-100vw), 0, 0);
