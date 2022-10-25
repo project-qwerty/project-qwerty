@@ -13,29 +13,29 @@
 
       <IconHeader :major="true" text="FAQs" icon="circle-question" iconColour="var(--primary-colour)" />
 
-      <CollapsibleSection summary="What is Project QWERTY?" >
+      <CollapsibleSection summary="What is Project QWERTY?" class="faint-border-bottom">
         <p>Project QWERTY is a free therapy website for people with aphasia. It targets <strong>spelling</strong> and <strong>typing</strong> with the option of accessing everyday words via the pre-programmed categories or by creating custom categories.</p>
       </CollapsibleSection>
 
-      <CollapsibleSection summary="What are custom categories?" >
+      <CollapsibleSection summary="What are custom categories?" class="faint-border-bottom">
         <p>You can create <strong>personalised</strong> categories to practise words and phrases that are important and meaningful to <strong>you</strong>.</p>
       </CollapsibleSection>
 
-      <CollapsibleSection summary="How do I access the website?" >
+      <CollapsibleSection summary="How do I access the website?" class="faint-border-bottom">
         <p>You can access Project QWERTY on a <strong>tablet</strong> or a <strong>desktop computer</strong>, however, the website is optimised for use on tablets.</p>
 
         <p>If you are accessing Project QWERTY on a desktop computer, use your <strong>mouse</strong> to click on each letter. Your physical keyboard will not work.</p>
       </CollapsibleSection>
 
-      <CollapsibleSection summary="My keyboard is not working on my desktop computer. What should I do?" >
+      <CollapsibleSection summary="My keyboard is not working on my desktop computer. What should I do?" class="faint-border-bottom">
         <p>For <strong>desktop computer</strong> users: <strong>use your mouse</strong> to click on each letter. The physical keyboard will not work.</p>
       </CollapsibleSection>
 
-      <CollapsibleSection summary="I can't see the full page on my tablet. What should I do?" >
+      <CollapsibleSection summary="I can't see the full page on my tablet. What should I do?" class="faint-border-bottom">
         <p>View the website in <strong>landscape</strong>. You may need to adjust your settings so that the page can rotate.</p>
       </CollapsibleSection>
 
-      <CollapsibleSection summary="How do I save my word list so that I can practice my custom categories on different devices?" >
+      <CollapsibleSection summary="How do I save my word list so that I can practice my custom categories on different devices?" class="faint-border-bottom">
         <ol>
           <li>Tap ‘Customise’ in the left-hand menu</li>
           <li>Tap on the category you wish to save</li>
@@ -50,21 +50,21 @@
         </ol>
       </CollapsibleSection>
 
-      <CollapsibleSection summary="If I add my personal details to a custom category, how do I know that they are safe?" >
+      <CollapsibleSection summary="If I add my personal details to a custom category, how do I know that they are safe?" class="faint-border-bottom">
         <p>Your custom categories are always kept <strong>on your device</strong>. They are <strong>never</strong> shared with the Project QWERTY team or anyone else.</p>
       </CollapsibleSection>
 
-      <CollapsibleSection summary="How can I contact the Project QWERTY team?" >
+      <CollapsibleSection summary="How can I contact the Project QWERTY team?" class="faint-border-bottom">
         <p>You can email us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a>. We'd love to hear from you!</p>
 
         <p>Let us know about your experience with the app, any comments or suggestions you might have, or if you think you've found a problem with the website.</p>
       </CollapsibleSection>
 
-      <CollapsibleSection summary="Open Source" >
+      <CollapsibleSection summary="Open Source" class="faint-border-bottom">
         <p>Project QWERTY is <strong>open source</strong> software. The source code is available on <a href="https://github.com/project-qwerty/project-qwerty">GitHub</a>.</p>
       </CollapsibleSection>
 
-      <CollapsibleSection summary="Credits" >
+      <CollapsibleSection summary="Credits" class="faint-border-bottom">
         <p>Project QWERTY has been made with the support of people with aphasia, a team of Speech Pathologists from Monash Health, a team of students from Monash University and some volunteers.</p>
 
         <p>Credits are as follows:</p>
