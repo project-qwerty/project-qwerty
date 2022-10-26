@@ -1,5 +1,7 @@
 <template>
-  <div :class="{
+  <div
+      class="wrapper"
+      :class="{
         major: major,
         minor: !major,
       }">
@@ -39,6 +41,13 @@
 
 
 <style scoped>
+  .wrapper {
+    display: flex;
+    align-items: baseline;
+
+    gap: 10px;
+  }
+
   .major {
     font-weight: bold;
     font-size: 36px;
@@ -53,11 +62,9 @@
   }
 
   .icon {
-    display: inline-flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-
-    margin-right: 10px;
   }
 
   .coloured-icon {
