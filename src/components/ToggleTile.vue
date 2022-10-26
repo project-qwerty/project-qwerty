@@ -133,11 +133,4 @@
   .text {
     font-weight: bold;
   }
-
-  @media (min-width: 1260px) {
-    .selected-check {
-      width: 40px;
-      height: 40px;
-    }
-  }
 </style>
