@@ -1,7 +1,7 @@
 <template>
   <main>
 
-    <header class="title-controls-header">
+    <header>
       <IconButton
           icon="x"
           v-on:click="$router.back()" />
@@ -411,6 +411,11 @@
   /* header (top bar) */
 
   header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
     border-bottom: solid 2px var(--faint-colour);
 
     padding: 16px 24px;
