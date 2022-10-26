@@ -67,13 +67,14 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 0.5rem;
 
-    border-radius: 2em;
+    gap: 0.5em;
 
+    min-width: 5em;
+
+    /* give the button its pill shape */
     padding: 1em 2em;
-
-    min-width: 3em;
+    border-radius: 2em;
 
     color: var(--this-foreground-colour);
     background-color: var(--this-background-colour);
@@ -102,5 +103,11 @@
   .disabled.minor {
     color: var(--faint-colour);
     background-color: transparent;
+  }
+
+  @media screen and (max-width: 960px) {
+    button {
+      min-width: 3em;
+    }
   }
 </style>
