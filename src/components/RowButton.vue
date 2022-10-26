@@ -10,7 +10,7 @@
       <font-awesome-icon :icon="icon" />
     </span>
 
-    <span>{{ text }}</span>
+    <span class="text">{{ text }}</span>
   </button>
 </template>
 
@@ -43,9 +43,13 @@
   button {
     display: flex;
     align-items: baseline;
+
     gap: 10px;
 
     box-sizing: border-box;
+
+    width: 100%;
+
     padding: 0.5em;
   }
 
@@ -62,6 +66,10 @@
   .coloured-icon {
     color: var(--background-colour);
     background-color: var(--icon-colour);
+  }
+
+  .text {
+    padding-right: 1em;
   }
 
   .active {
