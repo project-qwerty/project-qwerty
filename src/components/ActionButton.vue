@@ -1,12 +1,10 @@
 <template>
-  <div class="button-wrapper">
-    <button
-        :style="colourStyle()"
-        v-on:click="onClick">
-      <font-awesome-icon v-if="icon" :icon="icon" />
-      <span class="text">{{ text }}</span>
-    </button>
-  </div>
+  <button
+      :style="colourStyle()"
+      v-on:click="onClick">
+    <font-awesome-icon v-if="icon" :icon="icon" />
+    <span class="text">{{ text }}</span>
+  </button>
 </template>
 
 
@@ -65,10 +63,6 @@
 
 
 <style scoped>
-  .button-wrapper {
-
-  }
-
   button {
     display: flex;
     flex-direction: row;
