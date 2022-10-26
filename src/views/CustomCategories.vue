@@ -3,14 +3,14 @@
     <Nav />
 
     <div class="page-content">
-      <header class="even-row">
+      <header class="title-controls-header">
         <IconHeader
             text="My categories"
             icon="pen"
             iconColour="var(--primary-colour)"
             :major="true" />
 
-        <div class="action-dropdown-wrapper">
+        <div class="controls">
           <ActionButton
               icon="plus"
               text="New"
@@ -158,12 +158,6 @@
 
   .custom-category {
     font-size: 24px;
-    margin: 1rem 0px;  }
-
-  @media (min-width: 600px) {
-    header {
-      flex-direction: row;
-      justify-content: space-between;
-    }
+    margin: 1rem 0px;
   }
 </style>

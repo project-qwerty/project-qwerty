@@ -3,18 +3,20 @@
     <Nav />
 
     <div class="page-content">
-      <header class="even-row">
+      <header class="title-controls-header">
         <IconHeader
             icon="keyboard"
             iconColour="var(--primary-colour)"
             text="Let's practice"
             :major="true" />
 
-        <ActionButton
-            class="start-button"
-            text="Start"
-            :enabled="anyCategoriesSelected()"
-            v-on:click="$router.push('/practice')" />
+        <div class="controls">
+          <ActionButton
+              class="start-button"
+              text="Start"
+              :enabled="anyCategoriesSelected()"
+              v-on:click="$router.push('/practice')" />
+        </div>
       </header>
 
       <IconHeader text="Built-in categories" />

@@ -9,13 +9,13 @@
           text="Back"
           v-on:click="$router.back()" />
 
-      <div class="category-header even-row faint-border-bottom">
+      <header class="title-controls-header faint-border-bottom">
         <IconHeader
             class="category-title"
             icon="list"
             :iconColour="Colours.stringToColour(categoryName)"
             :text="categoryName" />
-        <div class="controls-wrapper">
+        <div class="controls">
           <ActionButton
               class="new-word-button"
               icon="plus"
@@ -30,7 +30,7 @@
               ]"
               v-on:click="handleDropdownClick" />
         </div>
-      </div>
+      </header>
 
       <div
           class="word-wrapper"
@@ -229,18 +229,6 @@
 <style scoped>
   .back-button {
     font-size: 24px;
-  }
-
-  .category-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: var(--margin-vertical);
-    /* No margin-right for dropdown position to be closer to the edge of the page */
-    margin-top: var(--margin-vertical);
-  }
-
-  .controls-wrapper {
-    display: flex;
   }
 
   .delete-word-button {

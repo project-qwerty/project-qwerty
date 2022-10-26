@@ -1,7 +1,7 @@
 <template>
   <main>
 
-    <header class="even-row">
+    <header class="title-controls-header">
       <IconButton
           icon="x"
           v-on:click="$router.back()" />

@@ -72,20 +72,12 @@ button {
 
 /* global classes */
 
-.action-dropdown-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
 .page-content {
   height: 100vh;
   width: 100%;
+  box-sizing: border-box;
 
   z-index: 1;
-
-  display: flex;
-  flex-direction: column;
 
   padding-left: 48px;
   padding-right: 48px;
@@ -128,16 +120,25 @@ button {
   border-right: solid 1px var(--faint-colour);
 }
 
-.even-row {
+.title-controls-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.title-controls-header > .controls {
+  /* make the controls centered when below title */
+  align-self: center;
+
+  display: flex;
+  flex-direction: row;
   align-items: center;
 }
 
-@media (min-width: 600px) {
-  .action-dropdown-wrapper {
-    margin-right: -0.5rem;
+
+@media screen and (max-width: 960px) {
+  .title-controls-header {
+    flex-direction: column;
   }
 }
 
