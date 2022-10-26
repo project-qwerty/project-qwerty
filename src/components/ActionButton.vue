@@ -3,7 +3,7 @@
     <button
         :style="colourStyle()"
         v-on:click="onClick">
-      <font-awesome-icon class="icon" v-if="icon" :icon="icon" />
+      <font-awesome-icon v-if="icon" :icon="icon" />
       <span class="text">{{ text }}</span>
     </button>
   </div>
