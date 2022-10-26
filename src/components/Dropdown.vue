@@ -64,7 +64,7 @@
 <style scoped>
   .wrapper {
     position: relative;
-    margin-left: 0.25rem;
+    display: inline-block;
   }
 
   .wrapper > button {
@@ -88,16 +88,14 @@
   .dropdown {
     position: absolute;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
     /* make it right-aligned */
     right: 0;
 
-    background-color: var(--background-colour);
     margin-top: 8px;
-    padding: 10px;
+
+    background-color: var(--background-colour);
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-radius: 10px;
 
     white-space: nowrap;
