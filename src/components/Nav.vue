@@ -82,6 +82,7 @@
 
 
 <style>
+  /* TODO: this style is unscoped */
 
   nav {
     display: flex;
