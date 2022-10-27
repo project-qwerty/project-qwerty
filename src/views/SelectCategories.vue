@@ -148,20 +148,20 @@
     height: 100%;
   }
 
-  @media (min-width: 600px) {
+  @media screen and (min-width: 600px) {
     .tiles {
       gap: 2rem;
       grid-template-columns: 1fr 1fr 1fr;
     }
   }
 
-  @media (min-width: 860px) {
+  @media screen and (min-width: 860px) {
     .tiles {
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
 
-  @media (min-width: 1260px) {
+  @media screen and (min-width: 960px) {
     .tile {
       font-size: 20px;
       height: 10rem;

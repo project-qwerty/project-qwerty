@@ -142,7 +142,7 @@ button {
   }
 }
 
-@media (min-width: 1260px) {
+@media screen and (min-width: 960px) {
   .page-content {
     margin-left: var(--side-nav-width);
   }
