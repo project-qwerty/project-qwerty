@@ -3,8 +3,7 @@
     <NavSidebar />
 
     <div class="sidebar-page-content">
-      <div class="category-list-section"
-          :class="{ hidden: selectedCategory !== null }">
+      <div class="category-list-section">
         <header class="even-row">
           <IconHeader
               class="page-title"
@@ -84,8 +83,6 @@
     },
     data () {
       return {
-        selectedCategory: null,
-
         showNewCategoryModal: false,
 
         inputCategoryName: '',
@@ -173,9 +170,5 @@
 
     padding-top: 1em;
     padding-bottom: 1em;
-  }
-
-  .hidden {
-    display: none;
   }
 </style>
