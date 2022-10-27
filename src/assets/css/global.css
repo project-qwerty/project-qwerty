@@ -137,6 +137,11 @@ button {
 
 
 @media screen and (max-width: 960px) {
+  .page-content {
+    padding-left: var(--thin-gap);
+    padding-right: var(--thin-gap);
+  }
+
   .title-controls-header {
     flex-direction: column;
   }
