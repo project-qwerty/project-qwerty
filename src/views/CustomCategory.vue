@@ -238,6 +238,8 @@
   }
 
   header {
+    background-color: var(--background-colour);
+
     position: sticky;
     top: 0;
   }
