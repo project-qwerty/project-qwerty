@@ -86,8 +86,6 @@
     },
     data () {
       return {
-        selectedCategory: null,
-
         showNewCategoryModal: false,
 
         inputCategoryName: '',
