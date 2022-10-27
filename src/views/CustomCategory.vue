@@ -233,6 +233,13 @@
     font-size: 24px;
   }
 
+  header {
+    background-color: var(--background-colour);
+
+    position: sticky;
+    top: 0;
+  }
+
   /* this turns the final option (delete) red */
   /deep/ .options-menu .dropdown-item:last-of-type {
     color: var(--negative-colour);
