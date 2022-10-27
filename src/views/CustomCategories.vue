@@ -139,9 +139,11 @@
 
 <style scoped>
   .qwerty-text-input {
-    font-size: 20px;
-    margin-bottom: 1em;
     width: 100%;
+
+    margin-bottom: 1em;
+
+    font-size: 20px;
   }
 
   .buttons-row {
