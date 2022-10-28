@@ -19,7 +19,7 @@
           <ActionButton
               class="new-word-button"
               icon="plus"
-              text="New"
+              text="New word"
               v-on:click="clickAddWord" />
 
           <Dropdown
