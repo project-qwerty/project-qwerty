@@ -35,7 +35,7 @@
 
       <div class="faint-border-bottom">
         <div
-            class="word-wrapper"
+            class="word-row"
             v-for="(word, index) in wordValues" v-bind:key="index">
 
           <input
@@ -230,7 +230,13 @@
 
 <style scoped>
   .back-button {
+    display: inline-block;
+    width: auto;  /* this keeps the button from taking up the whole width */
+
     font-size: 24px;
+
+    margin-top: 36px;
+    padding-left: 0;
   }
 
   header {
@@ -245,15 +251,13 @@
     color: var(--negative-colour);
   }
 
-  .options-menu {
-    margin-right: -0.5rem;
-  }
-
-  .word-wrapper {
+  .word-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 2rem 0px;
+
+    margin-top: 1em;
+    margin-bottom: 1em;
   }
 
   input {
@@ -262,7 +266,11 @@
   }
 
   .modal-text-input {
-    margin-bottom: 1.5rem;
+    font-size: 20px;
+  }
+
+  .delete-warning {
+    font-size: 20px;
   }
 
   .buttons-row {
