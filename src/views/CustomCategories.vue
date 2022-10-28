@@ -3,35 +3,33 @@
     <NavSidebar />
 
     <div class="sidebar-page-content">
-      <div class="category-list-section">
-        <header class="even-row">
-          <IconHeader
-              class="page-title"
-              text="My categories"
-              icon="pen"
-              iconColour="var(--primary-colour)"
-              :major="true" />
+      <header class="even-row">
+        <IconHeader
+            class="page-title"
+            text="My categories"
+            icon="pen"
+            iconColour="var(--primary-colour)"
+            :major="true" />
 
-          <ActionButton
-              class="new-category-button"
-              icon="plus"
-              text="New category"
-              v-on:click="showNewCategoryModal = true" />
+        <ActionButton
+            class="new-category-button"
+            icon="plus"
+            text="New category"
+            v-on:click="showNewCategoryModal = true" />
 
-          <Dropdown
-              :options="[
-                { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
-              ]"
-              v-on:click="handleDropdownClick" />
-        </header>
+        <Dropdown
+            :options="[
+              { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
+            ]"
+            v-on:click="handleDropdownClick" />
+      </header>
 
-        <RowButton class="custom-category faint-border-bottom"
-            v-for="(categoryName, index) in getCategories()" v-bind:key="index"
-            v-on:click="$router.push('/custom-categories/' + categoryName)"
-            :text="categoryName"
-            icon="list"
-            :iconColour="Colours.stringToColour(categoryName)" />
-      </div>
+      <RowButton class="custom-category faint-border-bottom"
+          v-for="(categoryName, index) in getCategories()" v-bind:key="index"
+          v-on:click="$router.push('/custom-categories/' + categoryName)"
+          :text="categoryName"
+          icon="list"
+          :iconColour="Colours.stringToColour(categoryName)" />
 
       <Modal
           :shown="showNewCategoryModal"
