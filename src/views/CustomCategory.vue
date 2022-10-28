@@ -53,7 +53,6 @@
       </div>
     </div>
 
-    <!--    Place modals as siblings of page content to enable them to appear over the fixed hamburger menu area at top of page-->
     <Modal
         :shown="showRenameCategoryModal"
         v-on:click-out="clickCancelRenameCategory">
@@ -256,12 +255,17 @@
     justify-content: space-between;
     align-items: center;
 
-    margin-top: 1em;
-    margin-bottom: 1em;
+    gap: var(--thin-gap);
+
+    margin: 1em;
+
+  }
+
+  .word-row * {
+    font-size: 20px;
   }
 
   input {
-    font-size: 20px;
     width: 100%;
   }
 
