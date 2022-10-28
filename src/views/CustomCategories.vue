@@ -149,6 +149,8 @@
 
   .custom-category {
     font-size: 24px;
-    margin: 1rem 0px;
+
+    padding-top: 1em;
+    padding-bottom: 1em;
   }
 </style>
