@@ -24,15 +24,12 @@
         </div>
       </header>
 
-      <div
-          class="custom-category"
-          v-for="(categoryName, index) in getCategories()" v-bind:key="index">
-        <RowButton class="custom-category faint-border-bottom"
-            v-on:click="$router.push('/custom-categories/' + categoryName)"
-            :text="categoryName"
-            icon="list"
-            :iconColour="Colours.stringToColour(categoryName)" />
-      </div>
+      <RowButton class="custom-category faint-border-bottom"
+          v-for="(categoryName, index) in getCategories()" v-bind:key="index"
+          v-on:click="$router.push('/custom-categories/' + categoryName)"
+          :text="categoryName"
+          icon="list"
+          :iconColour="Colours.stringToColour(categoryName)" />
 
       <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
     </div>
