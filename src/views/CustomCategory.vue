@@ -1,55 +1,51 @@
 <template>
-  <div class="page-layout">
-    <Nav />
+  <Nav>
+    <RowButton
+        class="back-button"
+        icon="chevron-left"
+        text="Back"
+        v-on:click="$router.back()" />
 
-    <div class="page-content">
-      <RowButton
-          class="back-button"
-          icon="chevron-left"
-          text="Back"
-          v-on:click="$router.back()" />
+    <header class="title-controls-header faint-border-bottom">
+      <IconHeader
+          icon="list"
+          :iconColour="Colours.stringToColour(categoryName)"
+          :text="categoryName" />
 
-      <header class="title-controls-header faint-border-bottom">
-        <IconHeader
-            icon="list"
-            :iconColour="Colours.stringToColour(categoryName)"
-            :text="categoryName" />
+      <div class="controls">
+        <ActionButton
+            class="new-word-button"
+            icon="plus"
+            text="New word"
+            v-on:click="clickAddWord" />
 
-        <div class="controls">
-          <ActionButton
-              class="new-word-button"
-              icon="plus"
-              text="New word"
-              v-on:click="clickAddWord" />
+        <Dropdown
+            class="options-menu"
+            :options="[
+              { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
+              { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
+              { label: 'Delete category', icon: 'trash-can', action: 'delete' },
+            ]"
+            v-on:click="handleDropdownClick" />
+      </div>
+    </header>
 
-          <Dropdown
-              class="options-menu"
-              :options="[
-                { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
-                { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
-                { label: 'Delete category', icon: 'trash-can', action: 'delete' },
-              ]"
-              v-on:click="handleDropdownClick" />
-        </div>
-      </header>
+    <div class="faint-border-bottom">
+      <div
+          class="word-row"
+          v-for="(word, index) in wordValues" v-bind:key="index">
 
-      <div class="faint-border-bottom">
-        <div
-            class="word-row"
-            v-for="(word, index) in wordValues" v-bind:key="index">
+        <input
+            class="qwerty-text-input"
+            :class="{ invalid: !Validation.isValidWord(word) }"
+            placeholder="new word"
+            v-model="wordValues[index]"
+            @input="updateWord(index)">
 
-          <input
-              class="qwerty-text-input"
-              :class="{ invalid: !Validation.isValidWord(word) }"
-              placeholder="new word"
-              v-model="wordValues[index]"
-              @input="updateWord(index)">
+        <IconButton
+            icon="x"
+            v-on:click="clickDeleteWord(index)" />
 
-          <IconButton
-              icon="x"
-              v-on:click="clickDeleteWord(index)" />
-
-        </div>
       </div>
     </div>
 
@@ -89,7 +85,7 @@
             v-on:click="clickDeleteCategory" />
       </div>
     </Modal>
-  </div>
+  </Nav>
 </template>
 
 

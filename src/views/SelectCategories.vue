@@ -1,50 +1,46 @@
 <template>
-  <div class="page-layout">
-    <Nav />
+  <Nav>
+    <header class="title-controls-header">
+      <IconHeader
+          icon="keyboard"
+          iconColour="var(--primary-colour)"
+          text="Let's practice"
+          :major="true" />
 
-    <div class="page-content">
-      <header class="title-controls-header">
-        <IconHeader
-            icon="keyboard"
-            iconColour="var(--primary-colour)"
-            text="Let's practice"
-            :major="true" />
-
-        <div class="controls">
-          <ActionButton
-              class="start-button"
-              text="Start"
-              :enabled="anyCategoriesSelected()"
-              v-on:click="$router.push('/practice')" />
-        </div>
-      </header>
-
-      <IconHeader text="Built-in categories" />
-
-      <div class="tiles">
-        <ToggleTile
-            v-for="(categoryName, index) in builtInCategories" v-bind:key="index"
-            class="tile"
-            :text="categoryName"
-            :icon="BuiltInCategories[categoryName].icon"
-            :colour="Colours.indexToColour(index)"
-            :enabled="builtInSelected.includes(categoryName)"
-            v-on:update="builtInCategoryClicked($event)" />
+      <div class="controls">
+        <ActionButton
+            class="start-button"
+            text="Start"
+            :enabled="anyCategoriesSelected()"
+            v-on:click="$router.push('/practice')" />
       </div>
+    </header>
 
-      <IconHeader text="Custom categories" />
+    <IconHeader text="Built-in categories" />
 
-      <div class="tiles">
-        <ToggleTile
-            v-for="(categoryName, index) in customCategories" v-bind:key="index"
-            class="tile"
-            :text="categoryName"
-            :colour="Colours.stringToColour(categoryName)"
-            :enabled="customSelected.includes(categoryName)"
-            v-on:update="customCategoryClicked($event)" />
-      </div>
+    <div class="tiles">
+      <ToggleTile
+          v-for="(categoryName, index) in builtInCategories" v-bind:key="index"
+          class="tile"
+          :text="categoryName"
+          :icon="BuiltInCategories[categoryName].icon"
+          :colour="Colours.indexToColour(index)"
+          :enabled="builtInSelected.includes(categoryName)"
+          v-on:update="builtInCategoryClicked($event)" />
     </div>
-  </div>
+
+    <IconHeader text="Custom categories" />
+
+    <div class="tiles">
+      <ToggleTile
+          v-for="(categoryName, index) in customCategories" v-bind:key="index"
+          class="tile"
+          :text="categoryName"
+          :colour="Colours.stringToColour(categoryName)"
+          :enabled="customSelected.includes(categoryName)"
+          v-on:update="customCategoryClicked($event)" />
+    </div>
+  </Nav>
 </template>
 
 <script>

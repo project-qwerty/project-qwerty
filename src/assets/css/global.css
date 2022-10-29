@@ -22,11 +22,8 @@
   --material-colour-13: #ff9800;
   --material-colour-14: #ff5722;
 
-  --sidebar-width: 280px;
-
-  --hamburger-menu-bar-height: 4rem;
-  --margin-vertical: 3rem;
-  --side-nav-width: 280px;
+  --nav-top-bar-height: 4rem;
+  --nav-side-bar-width: 280px;
 
   --thick-gap: 60px;
   --medium-gap: 30px;
@@ -71,28 +68,6 @@ button {
 }
 
 /* global classes */
-
-.page-content {
-  height: 100vh;
-  width: 100%;
-  box-sizing: border-box;
-
-  z-index: 1;
-
-  padding-left: 48px;
-  padding-right: 48px;
-  padding-bottom: 96px;
-}
-
-.page-layout {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  margin: 0px;
-  padding: 0px;
-  width: 100%;
-  z-index: 0;
-}
 
 .qwerty-text-input {
   /* this makes width: 100% work correctly with the padding */
@@ -139,24 +114,7 @@ button {
 
 
 @media screen and (max-width: 960px) {
-  .page-content {
-    padding-top: var(--hamburger-menu-bar-height);
-
-    padding-left: var(--thin-gap);
-    padding-right: var(--thin-gap);
-  }
-
   .title-controls-header {
     flex-direction: column;
-  }
-}
-
-@media screen and (min-width: 960px) {
-  .page-content {
-    margin-left: var(--side-nav-width);
-  }
-
-  .page-layout {
-    flex-direction: row;
   }
 }

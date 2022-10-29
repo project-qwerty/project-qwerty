@@ -1,40 +1,33 @@
 <template>
-  <div class="page-layout">
-    <Nav />
+  <Nav>
+    <header class="title-controls-header">
+      <IconHeader
+          text="My categories"
+          icon="pen"
+          iconColour="var(--primary-colour)"
+          :major="true" />
 
-    <div class="page-content">
-      <header class="title-controls-header">
-        <IconHeader
-            text="My categories"
-            icon="pen"
-            iconColour="var(--primary-colour)"
-            :major="true" />
+      <div class="controls">
+        <ActionButton
+            icon="plus"
+            text="New"
+            v-on:click="showNewCategoryModal = true" />
 
-        <div class="controls">
-          <ActionButton
-              icon="plus"
-              text="New"
-              v-on:click="showNewCategoryModal = true" />
+        <Dropdown
+            :options="[
+              { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
+            ]"
+            v-on:click="handleDropdownClick" />
+      </div>
+    </header>
 
-          <Dropdown
-              :options="[
-                { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
-              ]"
-              v-on:click="handleDropdownClick" />
-        </div>
-      </header>
+    <RowButton class="custom-category faint-border-bottom"
+        v-for="(categoryName, index) in getCategories()" v-bind:key="index"
+        v-on:click="$router.push('/custom-categories/' + categoryName)"
+        :text="categoryName"
+        icon="list"
+        :iconColour="Colours.stringToColour(categoryName)" />
 
-      <RowButton class="custom-category faint-border-bottom"
-          v-for="(categoryName, index) in getCategories()" v-bind:key="index"
-          v-on:click="$router.push('/custom-categories/' + categoryName)"
-          :text="categoryName"
-          icon="list"
-          :iconColour="Colours.stringToColour(categoryName)" />
-
-      <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
-    </div>
-
-    <!-- Place modal as sibling of page content to enable it to appear over the fixed hamburger menu area at top of page-->
     <Modal
         :shown="showNewCategoryModal"
         v-on:click-out="cleanUpCreateCategory">
@@ -54,7 +47,9 @@
             v-on:click="clickCreateCategory" />
       </div>
     </Modal>
-  </div>
+
+    <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
+  </Nav>
 </template>
 
 

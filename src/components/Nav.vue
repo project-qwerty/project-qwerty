@@ -1,30 +1,34 @@
 <template>
-  <div class="nav-container" :class="{'nav-container-show': showMenu}">
-    <div v-if="deviceWidthIsConstrained && !showMenu" class="hamburger-menu-bar">
-      <button class="show-menu-button" @click="handleShowMenu">
+  <div>
+    <nav class="top-bar">
+      <button @click="handleShowMenu">
         <font-awesome-icon class="toggle-icon" icon="bars" />
       </button>
-    </div>
-    <transition :name="transitionName">
-      <nav v-if="showMenu">
-        <div class="hide-menu-bar faint-border-bottom" v-if="deviceWidthIsConstrained">
-          <button class="hide-menu-button" @click="handleHideMenu">
-            <font-awesome-icon class="toggle-icon" icon="xmark" />
-          </button>
-        </div>
-        <router-link
-            v-for="button in navLinks" :key="button.path"
-            :to="button.path"
-            class="faint-border-bottom">
-          <RowButton
-              class="nav-button"
-              :text="button.text"
-              :icon="button.icon"
-              :bold="button.bold"
-              :active="$route.path.startsWith(button.path) && button.path !== '/'" />
-        </router-link>
-      </nav>
-    </transition>
+    </nav>
+    <nav class="side-bar faint-border-right"
+        :class="{
+          collapsed: !menuExpanded,
+        }">
+      <div class="hide-menu-bar faint-border-bottom">
+        <button @click="handleHideMenu">
+          <font-awesome-icon class="toggle-icon" icon="xmark" />
+        </button>
+      </div>
+      <router-link
+          v-for="button in navLinks" :key="button.path"
+          :to="button.path"
+          class="faint-border-bottom">
+        <RowButton
+            :text="button.text"
+            :icon="button.icon"
+            :bold="button.bold"
+            :active="$route.path.startsWith(button.path) && button.path !== '/'"
+            @click="handleHideMenu" />
+      </router-link>
+    </nav>
+    <main class="page">
+      <slot></slot>
+    </main>
   </div>
 </template>
 
@@ -32,19 +36,12 @@
 <script>
   import RowButton from '@/components/RowButton.vue';
 
-  const unconstrainedWidth = 960
-
   export default {
     components: {
       RowButton,
     },
-    created() {
-      this.handleWindowResize()
-      window.addEventListener('resize', this.handleWindowResize)
-    },
     data() {
       return {
-        deviceWidthIsConstrained: false,
         navLinks: [
           { path: '/',                  text: 'Project QWERTY', icon: 'house',         bold: true,  },
           { path: '/select-categories', text: 'Practice',       icon: 'play',          bold: false, },
@@ -52,45 +49,77 @@
           { path: '/settings',          text: 'Settings',       icon: 'gear',          bold: false, },
           { path: '/about',             text: 'About',          icon: 'circle-info',   bold: false, },
         ],
-        showMenu: true,
-        transitionName: '',
+        menuExpanded: false,
       }
-    },
-    destroyed() {
-      window.removeEventListener('resize', this.handleWindowResize)
     },
     methods: {
       handleHideMenu() {
-        this.showMenu = false
+        this.menuExpanded = false;
       },
       handleShowMenu() {
-        this.showMenu = true
-      },
-      handleWindowResize() {
-        this.deviceWidthIsConstrained = window.innerWidth < unconstrainedWidth
-        if (this.deviceWidthIsConstrained) {
-          this.transitionName = 'constrained' // use transition animations
-          this.handleHideMenu()
-        } else {
-          this.transitionName = '' // prevent transition animations
-          this.handleShowMenu()
-        }
+        this.menuExpanded = true;
       },
     }
   }
 </script>
 
 
-<style>
-  /* TODO: this style is unscoped */
+<style scoped>
+  .top-bar {
+    /* position along top of screen */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 
-  nav {
+    height: var(--nav-top-bar-height);
+
+    z-index: 3;
+
+    /* align contents */
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    justify-content: flex-end;
+    align-items: center;
+
+    /* appearance */
+    background-color: var(--background-colour);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
   }
 
-  nav a {
+  .top-bar > button {
+    font-size: 2rem;
+  }
+
+  .side-bar {
+    /* position along left side of screen */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    width: var(--nav-side-bar-width);
+    height: 100%;
+
+    z-index: 2;
+
+    /* align contents */
+    display: flex;
+    flex-direction: column;
+
+    /* appearance */
+    background-color: var(--background-colour);
+  }
+
+  .page {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-bottom: 6rem;
+
+    /* this prevents margin collapse between the page and the first element (eg. IconHeader) */
+    padding-top: 1px;
+  }
+
+  .side-bar a {
     font-size: 20px;
 
     /* disable default styling for links */
@@ -98,91 +127,78 @@
     color: inherit;
   }
 
-  nav a:first-of-type {
+  .side-bar a:first-of-type {
     font-weight: bold;
   }
 
-  .hamburger-menu-bar {
+  .side-bar > .hide-menu-bar {
+    height: var(--nav-top-bar-height);
+
     display: flex;
     justify-content: flex-end;
-    align-items: center;
-    background: var(--background-colour);
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
-    height: var(--hamburger-menu-bar-height);
-    position: fixed;
-    left: 0;
-    right: 0;
+    align-content: center;
   }
 
-  .hide-menu-bar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: var(--hamburger-menu-bar-height);
-  }
-
-  .hide-menu-button {
-    box-sizing: border-box;
-    display: flex;
+  .side-bar > .hide-menu-bar > button {
     font-size: 2.5rem;
-  }
 
-  /* translate3d is more performant than translateX as it uses the graphics card */
-  .constrained-enter {
-    transform: translate3d(calc(-100vw), 0, 0);
-  }
-
-  .constrained-enter-active {
-    transition: transform 200ms;
-  }
-
-  .constrained-leave-active {
-    transition: transform 200ms;
-    transform: translate3d(calc(-100vw), 0, 0);
-  }
-
-  .nav-button {
-    padding: 0.5rem 1rem;
-    width: 100%;
-  }
-
-  .nav-container {
-    background: var(--background-colour);
+    /* centre the X */
     display: flex;
-    flex-direction: column;
-    position: fixed;
-    width: 100vw;
-    z-index: 2;
-  }
-
-  .nav-container-show {
-    height: 100vh;
-  }
-
-  .show-menu-button {
-    box-sizing: border-box;
-    display: flex;
-    font-size: 2rem;
+    justify-content: center;
+    align-items: center;
   }
 
   .toggle-icon {
     padding: 0.5rem 1.5rem;
   }
 
-  @media screen and (min-width: 960px) {
-    nav {
-      margin-top: 0;
+  /* small screens */
+  @media screen and (max-width: 960px) {
+    .side-bar {
+      /* make side bar take up the full width on smaller screens */
+      /* visibility will be controlled by the component applying .collapsed */
+      width: 100%;
+      border-right: none;
     }
 
-    .hamburger-menu-bar {
-      display: none;
-    }
+    .page {
+      /* set page offsets to match top/side bar configuration */
+      margin-top: var(--nav-top-bar-height);
+      margin-left: 0;
 
-    .nav-container {
-      border-right: solid 1px var(--faint-colour);
-      min-width: var(--side-nav-width);
-      width: var(--side-nav-width);
+      /* reduce page margins to fit more on small screens */
+      padding-left: var(--thin-gap);
+      padding-right: var(--thin-gap);
+      padding-bottom: var(--thick-gap);
     }
   }
 
+  /* Note: .collapsed needs to be here between the media queries in this order so that everything cascades properly */
+  .collapsed {
+    display: none;
+  }
+
+  /* large screens */
+  @media screen and (min-width: 960px) {
+    .top-bar {
+      /* hide top bar */
+      display: none;
+    }
+
+    .side-bar {
+      /* override .collapsed to make the side bar visible even if this.menuExpanded = false */
+      display: flex;
+    }
+
+    .side-bar > .hide-menu-bar {
+      /* hide the sidebar close button */
+      display: none;
+    }
+
+    .page {
+      /* set page offsets to match top/side bar configuration */
+      margin-top: 0;
+      margin-left: var(--nav-side-bar-width);
+    }
+  }
 </style>

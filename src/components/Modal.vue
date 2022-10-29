@@ -75,6 +75,8 @@
     right: 0;
     bottom: 0;
 
+    z-index: 4;
+
     /* centre the modal */
     display: flex;
     justify-content: center;
@@ -82,9 +84,6 @@
 
     /* fade out the background */
     background-color: rgb(0, 0, 0, 0.75);
-
-    /* place above the fixed hamburger menu area at top of page */
-    z-index: 3;
   }
 
   .modal {
