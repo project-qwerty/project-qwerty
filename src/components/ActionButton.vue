@@ -83,6 +83,7 @@
 
   .text {
     font-weight: bold;
+    white-space: nowrap;
   }
 
   .major {
