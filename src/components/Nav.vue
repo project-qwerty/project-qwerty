@@ -74,7 +74,7 @@
 
     height: var(--nav-top-bar-height);
 
-    z-index: 3;
+    z-index: 2;
 
     /* align contents */
     display: flex;
@@ -100,7 +100,7 @@
     width: var(--nav-side-bar-width);
     height: 100%;
 
-    z-index: 2;
+    z-index: 3;
 
     /* align contents */
     display: flex;
