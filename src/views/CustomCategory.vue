@@ -266,6 +266,10 @@
   }
 
   .modal-text-input {
+    width: 100%;
+
+    margin-bottom: 1em;
+
     font-size: 20px;
   }
 
