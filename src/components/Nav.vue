@@ -152,7 +152,7 @@
     padding: 0.5rem 1.5rem;
   }
 
-  /* small screens */
+  /* small screen layout */
   @media screen and (max-width: 960px) {
     .side-bar {
       /* make side bar take up the full width on smaller screens */
@@ -166,10 +166,20 @@
       margin-top: var(--nav-top-bar-height);
       margin-left: 0;
 
-      /* reduce page margins to fit more on small screens */
+      /* reduce page margins */
+      padding-left: var(--medium-gap);
+      padding-right: var(--medium-gap);
+      padding-bottom: var(--thick-gap);
+    }
+  }
+
+  /* truly small screens */
+  @media screen and (max-width: 640px) {
+    .page {
+      /* reduce page margins more */
       padding-left: var(--thin-gap);
       padding-right: var(--thin-gap);
-      padding-bottom: var(--thick-gap);
+      padding-bottom: var(--medium-gap);
     }
   }
 
@@ -178,7 +188,7 @@
     display: none;
   }
 
-  /* large screens */
+  /* large screen layout */
   @media screen and (min-width: 960px) {
     .top-bar {
       /* hide top bar */
