@@ -556,7 +556,9 @@
 
       padding: var(--thin-gap);
     }
+  }
 
+  @media screen and (max-width: 640px) {
     .readout > .target {
       font-size: 32px;
     }
