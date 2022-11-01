@@ -282,4 +282,10 @@
     justify-content: flex-end;
     gap: 1rem;
   }
+
+  @media screen and (max-width: 960px) {
+    header {
+      top: var(--nav-top-bar-height);
+    }
+  }
 </style>
