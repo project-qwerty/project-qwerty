@@ -75,6 +75,8 @@
     right: 0;
     bottom: 0;
 
+    z-index: 4;
+
     /* centre the modal */
     display: flex;
     justify-content: center;

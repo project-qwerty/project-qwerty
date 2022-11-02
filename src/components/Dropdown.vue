@@ -86,11 +86,12 @@
   }
 
   .dropdown {
-    display: block;
     position: absolute;
 
     /* make it right-aligned */
     right: 0;
+
+    margin-top: 8px;
 
     background-color: var(--background-colour);
     padding-top: 10px;

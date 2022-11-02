@@ -1,7 +1,7 @@
 <template>
   <main>
 
-    <header class="even-row">
+    <header>
       <IconButton
           icon="x"
           v-on:click="$router.back()" />
@@ -411,6 +411,11 @@
   /* header (top bar) */
 
   header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
     border-bottom: solid 2px var(--faint-colour);
 
     padding: 16px 24px;
@@ -551,7 +556,9 @@
 
       padding: var(--thin-gap);
     }
+  }
 
+  @media screen and (max-width: 640px) {
     .readout > .target {
       font-size: 32px;
     }

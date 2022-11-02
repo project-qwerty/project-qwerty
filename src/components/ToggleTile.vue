@@ -112,8 +112,8 @@
     left: 10px;
 
     /* shape */
-    width: 40px;
-    height: 40px;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
 
     background-color: var(--primary-colour);
