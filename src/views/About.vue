@@ -19,17 +19,13 @@
     </CollapsibleSection>
 
     <CollapsibleSection summary="How do I access the website?" class="faint-border-bottom">
-      <p>You can access Project QWERTY on a <strong>tablet</strong> or a <strong>desktop computer</strong>, however, the website is optimised for use on tablets.</p>
+      <p>You can access Project QWERTY on a <strong>tablet</strong>, <strong>mobile phone</strong>, or <strong>desktop computer</strong>, however, the website is optimised for use on <strong>tablets</strong>.</p>
 
       <p>If you are accessing Project QWERTY on a desktop computer, use your <strong>mouse</strong> to click on each letter. Your physical keyboard will not work.</p>
     </CollapsibleSection>
 
     <CollapsibleSection summary="My keyboard is not working on my desktop computer. What should I do?" class="faint-border-bottom">
       <p>For <strong>desktop computer</strong> users: <strong>use your mouse</strong> to click on each letter. The physical keyboard will not work.</p>
-    </CollapsibleSection>
-
-    <CollapsibleSection summary="I can't see the full page on my tablet. What should I do?" class="faint-border-bottom">
-      <p>View the website in <strong>landscape</strong>. You may need to adjust your settings so that the page can rotate.</p>
     </CollapsibleSection>
 
     <CollapsibleSection summary="How do I save my word list so that I can practice my custom categories on different devices?" class="faint-border-bottom">
