@@ -7,6 +7,7 @@ import SelectCategories from '../views/SelectCategories.vue'
 import CustomCategories from '../views/CustomCategories.vue'
 import CustomCategory from '../views/CustomCategory.vue'
 import About from '../views/About.vue'
+import PageNotFound from '../views/PageNotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,11 @@ const routes = [
     path: '/custom-categories/:name',
     name: 'custom-category',
     component: CustomCategory,
+  },
+  {
+    path: '*',
+    name: '404',
+    component: PageNotFound,
   },
 ]
 
