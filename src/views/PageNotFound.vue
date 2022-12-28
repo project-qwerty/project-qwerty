@@ -5,7 +5,7 @@
         <h1>Oops</h1>
       </div>
       <div>
-        This page does no exist. <a class="link" v-on:click="$router.push('/')">Click here</a> to return to project qwerty
+        This page does not exist. <a class="link" v-on:click="$router.push('/')">Click here</a> to return to project qwerty
       </div>
     </div>
   </div>
