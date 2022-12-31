@@ -1,34 +1,28 @@
 <template>
   <div class="center">
-    <div class="column">
+    <main>
       <div class="header">
-        <h1>Oops</h1>
+        <h1>Oops!</h1>
       </div>
-      <div>
-        This page does not exist. <a class="link" v-on:click="$router.push('/')">Click here</a> to return to project qwerty
-      </div>
-    </div>
+      <p>This page does not exist. <router-link to="/" >Click here</router-link> to return to Project
+        QWERTY.</p>
+    </main>
   </div>
 </template>
 
 
 <style scoped>
+main {
+  flex-direction: column;
+}
+
 .center {
   display: flex;
   justify-content: center;
 }
 
-.column {
-  flex-direction: column;
-}
-
 .header {
   display: flex;
   justify-content: center;
-}
-
-.link {
-  color: blue;
-  cursor: pointer;
 }
 </style>
