@@ -9,5 +9,6 @@
 <style scoped>
 main {
   text-align: center;
+  padding: 2em;
 }
 </style>
