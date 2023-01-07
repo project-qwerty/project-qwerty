@@ -1,12 +1,10 @@
 <template>
-  <div class="button-wrapper">
-    <button
-        :style="colourStyle()"
-        v-on:click="onClick">
-      <font-awesome-icon class="icon" v-if="icon" :icon="icon" />
-      <span class="text">{{ text }}</span>
-    </button>
-  </div>
+  <button
+      :style="colourStyle()"
+      v-on:click="onClick">
+    <font-awesome-icon v-if="icon" :icon="icon" />
+    <span class="text">{{ text }}</span>
+  </button>
 </template>
 
 
@@ -39,9 +37,9 @@
         }
       },
       colourStyle() {
-        var foreground = 'var(--background-colour)';
-        var background = this.colour;
-        var border = 'transparent';
+        let foreground = 'var(--background-colour)';
+        let background = this.colour;
+        let border = 'transparent';
 
         if (!this.enabled) {
           background = 'var(--faint-colour)';
@@ -65,34 +63,27 @@
 
 
 <style scoped>
-  .button-wrapper {
-    display: inline-block;
-  }
-
   button {
     display: flex;
     flex-direction: row;
     justify-content: center;
 
-    border-radius: 2em;
-
-    padding: 1em;
-    padding-left: 2em;
-    padding-right: 2em;
+    gap: 0.5em;
 
     min-width: 5em;
+
+    /* give the button its pill shape */
+    padding: 1em 2em;
+    border-radius: 2em;
 
     color: var(--this-foreground-colour);
     background-color: var(--this-background-colour);
     border: solid 1px var(--this-border-colour);
   }
 
-  .icon {
-    margin-right: 0.5em;
-  }
-
   .text {
     font-weight: bold;
+    white-space: nowrap;
   }
 
   .major {
@@ -113,5 +104,11 @@
   .disabled.minor {
     color: var(--faint-colour);
     background-color: transparent;
+  }
+
+  @media screen and (max-width: 960px) {
+    button {
+      min-width: 3em;
+    }
   }
 </style>

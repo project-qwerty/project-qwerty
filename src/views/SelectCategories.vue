@@ -1,48 +1,46 @@
 <template>
-  <div>
-    <NavSidebar />
+  <Nav>
+    <header class="title-controls-header">
+      <IconHeader
+          icon="keyboard"
+          iconColour="var(--primary-colour)"
+          text="Let's practice"
+          :major="true" />
 
-    <div class="sidebar-page-content">
-      <header>
-        <IconHeader
-            icon="keyboard"
-            iconColour="var(--primary-colour)"
-            text="Let's practice"
-            :major="true" />
-
+      <div class="controls">
         <ActionButton
             class="start-button"
             text="Start"
             :enabled="anyCategoriesSelected()"
             v-on:click="$router.push('/practice')" />
-      </header>
-
-      <IconHeader text="Built-in categories" />
-
-      <div class="tiles">
-        <ToggleTile
-            v-for="(categoryName, index) in builtInCategories" v-bind:key="index"
-            class="tile"
-            :text="categoryName"
-            :icon="BuiltInCategories[categoryName].icon"
-            :colour="Colours.indexToColour(index)"
-            :enabled="builtInSelected.includes(categoryName)"
-            v-on:update="builtInCategoryClicked($event)" />
       </div>
+    </header>
 
-      <IconHeader text="Custom categories" />
+    <IconHeader text="Built-in categories" />
 
-      <div class="tiles">
-        <ToggleTile
-            v-for="(categoryName, index) in customCategories" v-bind:key="index"
-            class="tile"
-            :text="categoryName"
-            :colour="Colours.stringToColour(categoryName)"
-            :enabled="customSelected.includes(categoryName)"
-            v-on:update="customCategoryClicked($event)" />
-      </div>
+    <div class="tiles">
+      <ToggleTile
+          v-for="(categoryName, index) in builtInCategories" v-bind:key="index"
+          class="tile"
+          :text="categoryName"
+          :icon="BuiltInCategories[categoryName].icon"
+          :colour="Colours.indexToColour(index)"
+          :enabled="builtInSelected.includes(categoryName)"
+          v-on:update="builtInCategoryClicked($event)" />
     </div>
-  </div>
+
+    <IconHeader text="Custom categories" />
+
+    <div class="tiles">
+      <ToggleTile
+          v-for="(categoryName, index) in customCategories" v-bind:key="index"
+          class="tile"
+          :text="categoryName"
+          :colour="Colours.stringToColour(categoryName)"
+          :enabled="customSelected.includes(categoryName)"
+          v-on:update="customCategoryClicked($event)" />
+    </div>
+  </Nav>
 </template>
 
 <script>
@@ -52,14 +50,14 @@
 
   import ActionButton from '@/components/ActionButton.vue';
   import ToggleTile from '@/components/ToggleTile.vue';
-  import NavSidebar from '@/components/NavSidebar.vue';
+  import Nav from '@/components/Nav.vue';
   import IconHeader from '@/components/IconHeader.vue';
 
   export default {
     components: {
       ActionButton,
       ToggleTile,
-      NavSidebar,
+      Nav,
       IconHeader,
     },
     data() {
@@ -114,12 +112,6 @@
 
 
 <style scoped>
-  header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
   .start-button {
     font-size: 24px;
 
@@ -128,16 +120,23 @@
   }
 
   .tiles {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
+    --tile-size-multiplier: 1.25;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(calc(8rem * var(--tile-size-multiplier)), 1fr));
+
+    gap: 1rem;
   }
 
   .tile {
-    font-size: 20px;
+    font-size: calc(1rem * var(--tile-size-multiplier));
 
-    width: 10em;
-    height: 8em;
+    height: calc(8rem * var(--tile-size-multiplier));
+  }
+
+  @media screen and (max-width: 960px) {
+    .tiles {
+      --tile-size-multiplier: 1;
+    }
   }
 </style>

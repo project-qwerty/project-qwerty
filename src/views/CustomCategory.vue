@@ -1,21 +1,18 @@
 <template>
-  <div>
-    <NavSidebar />
+  <Nav>
+    <RowButton
+        class="back-button"
+        icon="chevron-left"
+        text="Back"
+        v-on:click="$router.back()" />
 
-    <div class="sidebar-page-content">
-      <RowButton
-          class="back-button"
-          icon="chevron-left"
-          text="Back"
-          v-on:click="$router.back()" />
+    <header class="title-controls-header faint-border-bottom">
+      <IconHeader
+          icon="list"
+          :iconColour="Colours.stringToColour(categoryName)"
+          :text="categoryName" />
 
-      <header>
-        <IconHeader
-            class="category-title"
-            icon="list"
-            :iconColour="Colours.stringToColour(categoryName)"
-            :text="categoryName" />
-
+      <div class="controls">
         <ActionButton
             class="new-word-button"
             icon="plus"
@@ -30,25 +27,25 @@
               { label: 'Delete category', icon: 'trash-can', action: 'delete' },
             ]"
             v-on:click="handleDropdownClick" />
-      </header>
+      </div>
+    </header>
 
-      <div class="word-list-wrapper">
-        <div
-            class="word-row"
-            v-for="(word, index) in wordValues" v-bind:key="index">
+    <div class="faint-border-bottom">
+      <div
+          class="word-row"
+          v-for="(word, index) in wordValues" v-bind:key="index">
 
-          <input
-              class="qwerty-text-input"
-              :class="{ invalid: !Validation.isValidWord(word) }"
-              placeholder="new word"
-              v-model="wordValues[index]"
-              @input="updateWord(index)">
+        <input
+            class="qwerty-text-input"
+            :class="{ invalid: !Validation.isValidWord(word) }"
+            placeholder="new word"
+            v-model="wordValues[index]"
+            @input="updateWord(index)">
 
-          <IconButton
-              icon="x"
-              v-on:click="clickDeleteWord(index)" />
+        <IconButton
+            icon="x"
+            v-on:click="clickDeleteWord(index)" />
 
-        </div>
       </div>
     </div>
 
@@ -66,7 +63,7 @@
             :major="false"
             v-on:click="clickCancelRenameCategory" />
         <ActionButton
-            text="Rename category"
+            text="Rename"
             :enabled="Validation.isValidCategoryName(inputCategoryName)"
             v-on:click="clickRenameCategory" />
       </div>
@@ -88,7 +85,7 @@
             v-on:click="clickDeleteCategory" />
       </div>
     </Modal>
-  </div>
+  </Nav>
 </template>
 
 
@@ -97,7 +94,7 @@
   import Colours from '@/functions/Colours.js'
   import Validation from '@/functions/Validation.js';
 
-  import NavSidebar from '@/components/NavSidebar.vue';
+  import Nav from '@/components/Nav.vue';
   import RowButton from '@/components/RowButton.vue';
   import IconHeader from '@/components/IconHeader.vue';
   import ActionButton from '@/components/ActionButton.vue';
@@ -107,7 +104,7 @@
 
   export default {
     components: {
-      NavSidebar,
+      Nav,
       RowButton,
       IconHeader,
       ActionButton,
@@ -238,14 +235,7 @@
   }
 
   header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
     background-color: var(--background-colour);
-
-    border-bottom: solid 1px var(--faint-colour);
 
     position: sticky;
     top: 0;
@@ -256,40 +246,23 @@
     color: var(--negative-colour);
   }
 
-  .category-title {
-    flex-grow: 1;
-  }
-
-  .new-word-button {
-    margin-right: 16px;
-  }
-
-  .word-list-wrapper {
-    border-bottom: solid 1px var(--faint-colour);
-  }
-
   .word-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    margin-top: 1em;
-    margin-bottom: 1em;
+    gap: var(--thin-gap);
+
+    margin: 1em;
+
   }
 
   .word-row * {
     font-size: 20px;
-
-    margin-left: 1em;
-    margin-right: 1em;
   }
 
-  .word-row .qwerty-text-input {
-    display: block;
-  }
-
-  .qwerty-text-input.invalid {
-    border-color: var(--negative-colour);
+  input {
+    width: 100%;
   }
 
   .modal-text-input {
@@ -307,8 +280,12 @@
   .buttons-row {
     display: flex;
     justify-content: flex-end;
+    gap: 1rem;
+  }
 
-    padding-left: 5em;
-    gap: 1em;
+  @media screen and (max-width: 960px) {
+    header {
+      top: var(--nav-top-bar-height);
+    }
   }
 </style>

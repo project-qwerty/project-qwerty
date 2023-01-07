@@ -41,6 +41,11 @@
 
 <style scoped>
   button {
+    display: flex;
+    align-items: baseline;
+
+    gap: 10px;
+
     box-sizing: border-box;
 
     width: 100%;
@@ -49,7 +54,6 @@
   }
 
   .icon {
-    display: inline-block;
     text-align: center;
 
     /* give the icon its shape */
@@ -65,8 +69,6 @@
   }
 
   .text {
-    margin-left: 10px;
-
     padding-right: 1em;
   }
 

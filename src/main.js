@@ -3,9 +3,9 @@ import App from './App.vue'
 import router from './router'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faGear, faChevronLeft, faEye, faBackspace, faPlay, faHandSparkles, faCircleInfo, faCircleQuestion, faCheck, faRepeat, faFont, faList, faStopwatch, faStar, faBasketShopping, faStethoscope, faCalculator, faFaceGrinWide, faMessage, faClock, faBriefcase, faKeyboard, faPlus, faEllipsisVertical, faTrashCan, faRightFromBracket, faRightToBracket, faX, faICursor, faCircleCheck, faTrophy, faArrowRotateRight, faMinus, faPen } from '@fortawesome/free-solid-svg-icons'
+import { faGear, faChevronLeft, faEye, faBackspace, faPlay, faHandSparkles, faCircleInfo, faCircleQuestion, faCheck, faRepeat, faFont, faList, faStopwatch, faStar, faBasketShopping, faStethoscope, faCalculator, faFaceGrinWide, faMessage, faClock, faBriefcase, faKeyboard, faPlus, faEllipsisVertical, faTrashCan, faRightFromBracket, faRightToBracket, faX, faICursor, faCircleCheck, faTrophy, faArrowRotateRight, faMinus, faPen, faBars, faHouse, faXmark } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faGear, faChevronLeft, faEye, faBackspace, faPlay, faHandSparkles, faCircleInfo, faCircleQuestion, faCheck, faRepeat, faFont, faList, faStopwatch, faStar, faBasketShopping, faStethoscope, faCalculator, faFaceGrinWide, faMessage, faClock, faBriefcase, faKeyboard, faPlus, faEllipsisVertical, faTrashCan, faRightFromBracket, faRightToBracket, faX, faICursor, faCircleCheck, faTrophy, faArrowRotateRight, faMinus, faPen)
+library.add(faGear, faChevronLeft, faEye, faBackspace, faPlay, faHandSparkles, faCircleInfo, faCircleQuestion, faCheck, faRepeat, faFont, faList, faStopwatch, faStar, faBasketShopping, faStethoscope, faCalculator, faFaceGrinWide, faMessage, faClock, faBriefcase, faKeyboard, faPlus, faEllipsisVertical, faTrashCan, faRightFromBracket, faRightToBracket, faX, faICursor, faCircleCheck, faTrophy, faArrowRotateRight, faMinus, faPen, faBars, faHouse, faXmark)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

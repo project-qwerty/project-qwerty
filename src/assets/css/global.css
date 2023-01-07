@@ -22,7 +22,8 @@
   --material-colour-13: #ff9800;
   --material-colour-14: #ff5722;
 
-  --sidebar-width: 280px;
+  --nav-top-bar-height: 4rem;
+  --nav-side-bar-width: 280px;
 
   --thick-gap: 60px;
   --medium-gap: 30px;
@@ -76,4 +77,49 @@ button {
 
   border: solid 2px var(--faint-colour);
   border-radius: 0.5em;
+}
+
+.qwerty-text-input.invalid {
+  border-color: var(--negative-colour);
+}
+
+.faint-border {
+  border: solid 1px var(--faint-colour);
+}
+
+.faint-border-bottom {
+  border-bottom: solid 1px var(--faint-colour);
+}
+
+.faint-border-right {
+  border-right: solid 1px var(--faint-colour);
+}
+
+.title-controls-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  gap: var(--thin-gap);
+}
+
+.title-controls-header > .controls {
+  /* make the controls centered when below title */
+  align-self: center;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: var(--thin-gap);
+
+  margin-top: 28px;
+  margin-bottom: 28px;
+}
+
+
+@media screen and (max-width: 640px) {
+  .title-controls-header {
+    flex-direction: column;
+  }
 }

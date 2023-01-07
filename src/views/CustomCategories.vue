@@ -1,64 +1,56 @@
 <template>
-  <div>
-    <NavSidebar />
+  <Nav>
+    <header class="title-controls-header">
+      <IconHeader
+          text="My categories"
+          icon="pen"
+          iconColour="var(--primary-colour)"
+          :major="true" />
 
-    <div class="sidebar-page-content">
-      <div class="category-list-section"
-          :class="{ hidden: selectedCategory !== null }">
-        <header>
-          <IconHeader
-              class="page-header"
-              text="My categories"
-              icon="pen"
-              iconColour="var(--primary-colour)"
-              :major="true" />
+      <div class="controls">
+        <ActionButton
+            icon="plus"
+            text="New"
+            v-on:click="showNewCategoryModal = true" />
 
-          <ActionButton
-              class="new-category-button"
-              icon="plus"
-              text="New category"
-              v-on:click="showNewCategoryModal = true" />
-
-          <Dropdown
-              :options="[
-                { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
-              ]"
-              v-on:click="handleDropdownClick" />
-        </header>
-
-        <RowButton class="custom-category"
-            v-for="(categoryName, index) in getCategories()" v-bind:key="index"
-            v-on:click="$router.push('/custom-categories/' + categoryName)"
-            :text="categoryName"
-            icon="list"
-            :iconColour="Colours.stringToColour(categoryName)" />
+        <Dropdown
+            :options="[
+              { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
+            ]"
+            v-on:click="handleDropdownClick" />
       </div>
+    </header>
 
-      <Modal
-          :shown="showNewCategoryModal"
-          v-on:click-out="cleanUpCreateCategory">
-        <h1>Add category</h1>
-        <input
-            class="qwerty-text-input"
-            placeholder="New category"
-            v-model="inputCategoryName">
-        <div class="buttons-row">
-          <ActionButton
-              text="Cancel"
-              :major="false"
-              v-on:click="cleanUpCreateCategory" />
-          <ActionButton
-              text="Create category"
-              :enabled="Validation.isValidCategoryName(inputCategoryName)"
-              v-on:click="clickCreateCategory" />
-        </div>
-      </Modal>
+    <RowButton class="custom-category faint-border-bottom"
+        v-for="(categoryName, index) in getCategories()" v-bind:key="index"
+        v-on:click="$router.push('/custom-categories/' + categoryName)"
+        :text="categoryName"
+        icon="list"
+        :iconColour="Colours.stringToColour(categoryName)" />
 
-      <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
-    </div>
-  </div>
+    <Modal
+        :shown="showNewCategoryModal"
+        v-on:click-out="cleanUpCreateCategory">
+      <h1>Add category</h1>
+      <input
+          class="qwerty-text-input"
+          placeholder="New category"
+          v-model="inputCategoryName">
+      <div class="buttons-row">
+        <ActionButton
+            text="Cancel"
+            :major="false"
+            v-on:click="cleanUpCreateCategory" />
+        <ActionButton
+            text="Create"
+            :enabled="Validation.isValidCategoryName(inputCategoryName)"
+            v-on:click="clickCreateCategory" />
+      </div>
+    </Modal>
+
+    <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
+  </Nav>
 </template>
-
 
 
 <script>
@@ -66,7 +58,7 @@
   import Colours from '@/functions/Colours.js'
   import Validation from '@/functions/Validation.js';
 
-  import NavSidebar from '@/components/NavSidebar.vue';
+  import Nav from '@/components/Nav.vue';
   import Modal from '@/components/Modal.vue';
   import ActionButton from '@/components/ActionButton.vue';
   import IconHeader from '@/components/IconHeader.vue';
@@ -75,7 +67,7 @@
 
   export default {
     components: {
-      NavSidebar,
+      Nav,
       Modal,
       ActionButton,
       IconHeader,
@@ -84,8 +76,6 @@
     },
     data () {
       return {
-        selectedCategory: null,
-
         showNewCategoryModal: false,
 
         inputCategoryName: '',
@@ -138,25 +128,6 @@
 </script>
 
 <style scoped>
-  header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .page-header {
-    flex-grow: 1;
-  }
-
-  .new-category-button {
-    margin-right: 16px;
-  }
-
-  h1 {
-    margin-bottom: 1em;
-  }
-
   .qwerty-text-input {
     width: 100%;
 
@@ -168,23 +139,13 @@
   .buttons-row {
     display: flex;
     justify-content: flex-end;
-
-    padding-left: 5em;
     gap: 1em;
   }
 
   .custom-category {
-    position: relative;
-
     font-size: 24px;
 
     padding-top: 1em;
     padding-bottom: 1em;
-
-    border-bottom: solid 1px var(--faint-colour);
-  }
-
-  .hidden {
-    display: none;
   }
 </style>

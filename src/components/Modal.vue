@@ -7,8 +7,7 @@
           '--width': width,
           '--height': height,
         }">
-        <slot></slot>
-      </div>
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -75,6 +74,8 @@
     top: 0;
     right: 0;
     bottom: 0;
+
+    z-index: 4;
 
     /* centre the modal */
     display: flex;
