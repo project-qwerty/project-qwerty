@@ -13,29 +13,25 @@
 
       <IconHeader :major="true" text="FAQs" icon="circle-question" iconColour="var(--primary-colour)" />
 
-      <CollapsibleSection summary="What is Project QWERTY?" >
+      <CollapsibleSection summary="What is Project QWERTY?">
         <p>Project QWERTY is a free therapy website for people with aphasia. It targets <strong>spelling</strong> and <strong>typing</strong> with the option of accessing everyday words via the pre-programmed categories or by creating custom categories.</p>
       </CollapsibleSection>
 
-      <CollapsibleSection summary="What are custom categories?" >
+      <CollapsibleSection summary="What are custom categories?">
         <p>You can create <strong>personalised</strong> categories to practise words and phrases that are important and meaningful to <strong>you</strong>.</p>
       </CollapsibleSection>
 
-      <CollapsibleSection summary="How do I access the website?" >
+      <CollapsibleSection summary="How do I access the website?">
         <p>You can access Project QWERTY on a <strong>tablet</strong> or a <strong>desktop computer</strong>, however, the website is optimised for use on tablets.</p>
 
         <p>If you are accessing Project QWERTY on a desktop computer, use your <strong>mouse</strong> to click on each letter. Your physical keyboard will not work.</p>
       </CollapsibleSection>
 
-      <CollapsibleSection summary="My keyboard is not working on my desktop computer. What should I do?" >
+      <CollapsibleSection summary="My keyboard is not working on my desktop computer. What should I do?">
         <p>For <strong>desktop computer</strong> users: <strong>use your mouse</strong> to click on each letter. The physical keyboard will not work.</p>
       </CollapsibleSection>
 
-      <CollapsibleSection summary="I can't see the full page on my tablet. What should I do?" >
-        <p>View the website in <strong>landscape</strong>. You may need to adjust your settings so that the page can rotate.</p>
-      </CollapsibleSection>
-
-      <CollapsibleSection summary="How do I save my word list so that I can practice my custom categories on different devices?" >
+      <CollapsibleSection summary="How do I save my word list so that I can practice my custom categories on different devices?">
         <ol>
           <li>Tap ‘Customise’ in the left-hand menu</li>
           <li>Tap on the category you wish to save</li>
@@ -50,22 +46,18 @@
         </ol>
       </CollapsibleSection>
 
-      <CollapsibleSection summary="If I add my personal details to a custom category, how do I know that they are safe?" >
-        <p>Your custom categories are always kept <strong>on your device</strong>. They are <strong>never</strong> shared with the Project QWERTY team or anyone else.</p>
+      <CollapsibleSection summary="If I add my personal details to a custom category, how do I know that they are safe?">
+        <p>All of the data that you enter into Project QWERTY remains strictly <strong>on your device</strong>.</p>
+
+        <p>It <strong>never</strong> goes to any external systems, and is <strong>never</strong> shared with the Project QWERTY team or anyone else.</p>
+
+        <p><strong>Only you</strong> have access to it.</p>
+
+        <p>This can be <strong>verified</strong> by checking Project QWERTY's source code. See the FAQ on "<strong>open source</strong>" for more details.</p>
       </CollapsibleSection>
 
-      <CollapsibleSection summary="How can I contact the Project QWERTY team?" >
-        <p>You can email us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a>. We'd love to hear from you!</p>
-
-        <p>Let us know about your experience with the app, any comments or suggestions you might have, or if you think you've found a problem with the website.</p>
-      </CollapsibleSection>
-
-      <CollapsibleSection summary="Open Source" >
-        <p>Project QWERTY is <strong>open source</strong> software. The source code is available on <a href="https://github.com/project-qwerty/project-qwerty">GitHub</a>.</p>
-      </CollapsibleSection>
-
-      <CollapsibleSection summary="Credits" >
-        <p>Project QWERTY has been made with the support of people with aphasia, a team of Speech Pathologists from Monash Health, a team of students from Monash University and some volunteers.</p>
+      <CollapsibleSection summary="Who created Project QWERTY?">
+        <p>Project QWERTY has been made with the support of people with aphasia, a team of Speech Pathologists from Monash Health, a team of students from Monash University, and some volunteers.</p>
 
         <p>Credits are as follows:</p>
 
@@ -81,6 +73,20 @@
           <li>Eliza Cripps - Project Co-coordinator, Monash University HISS participant</li>
           <li>Rob Angelone - User Experience Design (volunteer)</li>
         </ul>
+      </CollapsibleSection>
+
+      <CollapsibleSection summary="How can I contact the Project QWERTY team?">
+        <p>You can email us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a>. We'd love to hear from you!</p>
+
+        <p>Let us know about your experience with the app, any comments or suggestions you might have, or if you think you've found a problem with the website.</p>
+      </CollapsibleSection>
+
+      <CollapsibleSection summary="Project QWERTY is &quot;open source&quot;? What does that mean?">
+        <p>Yes, Project QWERTY is <strong>open source</strong>. This means that the code that runs the website is publicly viewable. We keep it here: <a href="https://github.com/project-qwerty/project-qwerty">https://github.com/project-qwerty/project-qwerty</a>, and anyone (including you) can take a look at it to see how Project QWERTY works.</p>
+
+        <p>This transparency means that you can be confident that Project QWERTY is <strong>safe to use</strong>, and that your personal data is kept secure.</p>
+
+        <p>It also ensures that Project QWERTY is, and always will be, <strong>free for anyone</strong> to use.</p>
       </CollapsibleSection>
     </div>
   </div>
