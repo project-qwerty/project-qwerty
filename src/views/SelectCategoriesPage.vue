@@ -3,7 +3,7 @@
     <header class="title-controls-header">
       <IconHeader
           icon="keyboard"
-          iconColour="var(--primary-colour)"
+          icon-colour="var(--primary-colour)"
           text="Let's practice"
           :major="true" />
 

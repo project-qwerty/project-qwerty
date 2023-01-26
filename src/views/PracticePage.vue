@@ -33,7 +33,7 @@
 
     <div class="keyboard-wrapper">
       <PracticeKeyboard
-          :enabledKeys="enabledKeys"
+          :enabled-keys="enabledKeys"
           :uppercase="settings.wordDisplayCapitalization === 'UPPERCASE'"
           @keystroke="handleKeystroke($event)" />
     </div>

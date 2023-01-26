@@ -9,7 +9,7 @@
     <header class="title-controls-header faint-border-bottom">
       <IconHeader
           icon="list"
-          :iconColour="Colours.stringToColour(categoryName)"
+          :icon-colour="Colours.stringToColour(categoryName)"
           :text="categoryName" />
 
       <div class="controls">

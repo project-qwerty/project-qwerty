@@ -1,6 +1,6 @@
 <template>
   <NavPage>
-    <IconHeader :major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
+    <IconHeader :major="true" text="Settings" icon="gear" icon-colour="var(--primary-colour)" />
 
     <IconHeader text="Words" icon="list" />
     <div class="control-row faint-border-bottom">
@@ -20,7 +20,7 @@
               { label: '45 words', val: 45, },
               { label: '50 words', val: 50, },
             ]"
-            :initialValue="wordsPerSession"
+            :initial-value="wordsPerSession"
             @update="wordsPerSession = $event" />
       </div>
     </div>
@@ -40,7 +40,7 @@
               { label:   '25 seconds', val: 25, },
               { label:   '30 seconds', val: 30, },
             ]"
-            :initialValue="wordDisplayTime"
+            :initial-value="wordDisplayTime"
             @update="wordDisplayTime = $event" />
       </div>
     </div>
@@ -59,7 +59,7 @@
               { label: 'Min.', val: 'MIN', },
               { label: 'None', val: 'NONE', },
             ]"
-            :activeValue="assistanceLevel"
+            :active-value="assistanceLevel"
             @update="assistanceLevel = $event" />
       </div>
     </div>
@@ -74,7 +74,7 @@
               { label: '1', val: 1, },
               { label: '3', val: 3, },
             ]"
-            :activeValue="wordRepetitions"
+            :active-value="wordRepetitions"
             @update="wordRepetitions = $event" />
       </div>
     </div>
@@ -89,7 +89,7 @@
               { label: 'UPPERCASE', val: 'UPPERCASE', },
               { label: 'lowercase', val: 'LOWERCASE', },
             ]"
-            :activeValue="wordDisplayCapitalization"
+            :active-value="wordDisplayCapitalization"
             @update="wordDisplayCapitalization = $event" />
       </div>
     </div>

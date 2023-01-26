@@ -1,6 +1,6 @@
 <template>
   <NavPage>
-    <IconHeader :major="true" text="About" icon="circle-info" iconColour="var(--primary-colour)" />
+    <IconHeader :major="true" text="About" icon="circle-info" icon-colour="var(--primary-colour)" />
 
     <p>Welcome to Project QWERTY!</p>
 
@@ -8,7 +8,7 @@
 
     <p>Aphasia is a <strong>neurological disorder</strong> and <strong>communication disability</strong> which can affect talking, understanding, reading, writing and numeracy. Causes for aphasia include stroke, brain tumour or brain injury. It can have a significant impact on all areas of a person's quality of life.</p>
 
-    <IconHeader :major="true" text="FAQs" icon="circle-question" iconColour="var(--primary-colour)" />
+    <IconHeader :major="true" text="FAQs" icon="circle-question" icon-colour="var(--primary-colour)" />
 
     <CollapsibleSection summary="What is Project QWERTY?" class="faint-border-bottom">
       <p>Project QWERTY is a free therapy website for people with aphasia. It targets <strong>spelling</strong> and <strong>typing</strong> with the option of accessing everyday words via the pre-programmed categories or by creating custom categories.</p>

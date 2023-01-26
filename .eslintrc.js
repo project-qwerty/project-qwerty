@@ -30,7 +30,6 @@ module.exports = {
     // temporarily disabled
     'vue/html-indent': 'off',
     'vue/max-attributes-per-line': 'off',
-    'vue/attribute-hyphenation': 'off',
     'vue/html-self-closing': 'off',
     'vue/order-in-components': 'off',
 

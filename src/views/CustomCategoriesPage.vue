@@ -4,7 +4,7 @@
       <IconHeader
           text="My categories"
           icon="pen"
-          iconColour="var(--primary-colour)"
+          icon-colour="var(--primary-colour)"
           :major="true" />
 
       <div class="controls">
@@ -27,7 +27,7 @@
         @click="$router.push('/custom-categories/' + categoryName)"
         :text="categoryName"
         icon="list"
-        :iconColour="Colours.stringToColour(categoryName)" />
+        :icon-colour="Colours.stringToColour(categoryName)" />
 
     <FullscreenModal
         :shown="showNewCategoryModal"
