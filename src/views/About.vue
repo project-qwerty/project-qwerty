@@ -1,5 +1,5 @@
 <template>
-  <Nav>
+  <NavPage>
     <IconHeader :major="true" text="About" icon="circle-info" iconColour="var(--primary-colour)" />
 
     <p>Welcome to Project QWERTY!</p>
@@ -81,18 +81,18 @@
 
       <p>It also ensures that Project QWERTY is, and always will be, <strong>free for everyone</strong> to use.</p>
     </CollapsibleSection>
-  </Nav>
+  </NavPage>
 </template>
 
 
 <script>
-import Nav from '@/components/Nav.vue';
+import NavPage from '@/components/NavPage.vue';
 import CollapsibleSection from '@/components/CollapsibleSection.vue';
 import IconHeader from '@/components/IconHeader.vue';
 
 export default {
   components: {
-    Nav,
+    NavPage,
     CollapsibleSection,
     IconHeader,
   },

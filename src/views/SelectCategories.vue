@@ -1,5 +1,5 @@
 <template>
-  <Nav>
+  <NavPage>
     <header class="title-controls-header">
       <IconHeader
           icon="keyboard"
@@ -40,7 +40,7 @@
           :enabled="customSelected.includes(categoryName)"
           v-on:update="customCategoryClicked($event)" />
     </div>
-  </Nav>
+  </NavPage>
 </template>
 
 <script>
@@ -50,14 +50,14 @@
 
   import ActionButton from '@/components/ActionButton.vue';
   import ToggleTile from '@/components/ToggleTile.vue';
-  import Nav from '@/components/Nav.vue';
+  import NavPage from '@/components/NavPage.vue';
   import IconHeader from '@/components/IconHeader.vue';
 
   export default {
     components: {
       ActionButton,
       ToggleTile,
-      Nav,
+      NavPage,
       IconHeader,
     },
     data() {

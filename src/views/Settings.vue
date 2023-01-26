@@ -1,5 +1,5 @@
 <template>
-  <Nav>
+  <NavPage>
     <IconHeader :major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
 
     <IconHeader text="Words" icon="list" />
@@ -88,14 +88,14 @@
             v-on:update="wordDisplayCapitalization = $event" />
       </div>
     </div>
-  </Nav>
+  </NavPage>
 </template>
 
 
 <script>
   import LocalStorage from '@/functions/LocalStorage.js';
 
-  import Nav from '@/components/Nav.vue';
+  import NavPage from '@/components/NavPage.vue';
   import ShowAllSelector from '@/components/ShowAllSelector.vue';
   import IconHeader from '@/components/IconHeader.vue';
   import ShowCurrentSelector from '@/components/ShowCurrentSelector.vue';
@@ -124,7 +124,7 @@
       this.wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
     },
     components: {
-      Nav,
+      NavPage,
       ShowAllSelector,
       IconHeader,
       ShowCurrentSelector,

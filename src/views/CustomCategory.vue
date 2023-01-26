@@ -1,5 +1,5 @@
 <template>
-  <Nav>
+  <NavPage>
     <RowButton
         class="back-button"
         icon="chevron-left"
@@ -85,7 +85,7 @@
             v-on:click="clickDeleteCategory" />
       </div>
     </Modal>
-  </Nav>
+  </NavPage>
 </template>
 
 
@@ -94,7 +94,7 @@
   import Colours from '@/functions/Colours.js'
   import Validation from '@/functions/Validation.js';
 
-  import Nav from '@/components/Nav.vue';
+  import NavPage from '@/components/NavPage.vue';
   import RowButton from '@/components/RowButton.vue';
   import IconHeader from '@/components/IconHeader.vue';
   import ActionButton from '@/components/ActionButton.vue';
@@ -104,7 +104,7 @@
 
   export default {
     components: {
-      Nav,
+      NavPage,
       RowButton,
       IconHeader,
       ActionButton,

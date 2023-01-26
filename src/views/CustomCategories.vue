@@ -1,5 +1,5 @@
 <template>
-  <Nav>
+  <NavPage>
     <header class="title-controls-header">
       <IconHeader
           text="My categories"
@@ -49,7 +49,7 @@
     </Modal>
 
     <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
-  </Nav>
+  </NavPage>
 </template>
 
 
@@ -58,7 +58,7 @@
   import Colours from '@/functions/Colours.js'
   import Validation from '@/functions/Validation.js';
 
-  import Nav from '@/components/Nav.vue';
+  import NavPage from '@/components/NavPage.vue';
   import Modal from '@/components/Modal.vue';
   import ActionButton from '@/components/ActionButton.vue';
   import IconHeader from '@/components/IconHeader.vue';
@@ -67,7 +67,7 @@
 
   export default {
     components: {
-      Nav,
+      NavPage,
       Modal,
       ActionButton,
       IconHeader,
