@@ -32,9 +32,10 @@ module.exports = {
     'vue/attribute-hyphenation': 'off',
     'vue/html-self-closing': 'off',
     'vue/order-in-components': 'off',
+    'vue/require-default-prop': 'off',
+
+    // pains in the ass
     'no-undef': 'off',
     'vue/attributes-order': 'off',
-    'vue/require-prop-types': 'off',
-    'vue/require-default-prop': 'off',
   }
 }

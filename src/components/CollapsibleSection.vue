@@ -12,9 +12,11 @@
 
 <script>
   export default {
-    props: [
-      'summary',
-    ],
+    props: {
+      summary: {
+        type: String,
+      }
+    },
   }
 </script>
 

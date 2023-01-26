@@ -17,10 +17,15 @@
 
 <script>
   export default {
-    props: [
-      'options',  // options must be an array of objects like {label: 'abc', val: 123}
-      'initialValue',
-    ],
+    props: {
+      options: {
+        // options must be an array of objects like {label: 'abc', val: 123}
+        type: Array,
+      },
+      initialValue: {
+        type: String,
+      },
+    },
     data() {
       return {
         activeIndex: 0,

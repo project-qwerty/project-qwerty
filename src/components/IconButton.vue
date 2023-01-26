@@ -7,9 +7,11 @@
 
 <script>
   export default {
-    props: [
-      'icon',
-    ],
+    props: {
+      icon: {
+        type: String,
+      }
+    },
   }
 </script>
 
