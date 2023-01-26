@@ -22,21 +22,22 @@
     </header>
 
     <RowButton
+        v-for="(categoryName, index) in getCategories()"
+        :key="index"
         class="custom-category faint-border-bottom"
-        v-for="(categoryName, index) in getCategories()" :key="index"
-        @click="$router.push('/custom-categories/' + categoryName)"
         :text="categoryName"
         icon="list"
-        :icon-colour="Colours.stringToColour(categoryName)" />
+        :icon-colour="Colours.stringToColour(categoryName)"
+        @click="$router.push('/custom-categories/' + categoryName)" />
 
     <FullscreenModal
         :shown="showNewCategoryModal"
         @click-out="cleanUpCreateCategory">
       <h1>Add category</h1>
       <input
+          v-model="inputCategoryName"
           class="qwerty-text-input"
-          placeholder="New category"
-          v-model="inputCategoryName" />
+          placeholder="New category" />
       <div class="buttons-row">
         <ActionButton
             text="Cancel"
@@ -49,7 +50,7 @@
       </div>
     </FullscreenModal>
 
-    <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;" />
+    <input ref="file-picker" type="file" multiple style="display: none;" @change="handleImportFiles" />
   </NavPage>
 </template>
 

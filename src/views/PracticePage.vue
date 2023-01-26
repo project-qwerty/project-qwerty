@@ -7,14 +7,14 @@
           @click="$router.back()" />
 
       <ActionButton
+          v-if="showShowWordButton"
           class="show-word-button"
           icon="eye"
           text="Show word"
           :major="false"
-          v-if="showShowWordButton"
           @click="clickShowWordButton" />
 
-      <div class="timer-display" v-if="showTimer">
+      <div v-if="showTimer" class="timer-display">
         <font-awesome-icon icon="stopwatch" />
         <span>{{ timerDisplay }}</span>
       </div>

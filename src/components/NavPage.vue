@@ -16,7 +16,8 @@
         </button>
       </div>
       <router-link
-          v-for="button in navLinks" :key="button.path"
+          v-for="button in navLinks"
+          :key="button.path"
           :to="button.path"
           class="faint-border-bottom">
         <RowButton

@@ -7,8 +7,8 @@
     <div class="tile-middle">
       <div class="tile-inner">
         <div
-            class="selected-check"
-            v-if="enabled">
+            v-if="enabled"
+            class="selected-check">
           <font-awesome-icon icon="check" />
         </div>
         <div class="icon">

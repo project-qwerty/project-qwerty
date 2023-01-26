@@ -9,11 +9,12 @@
         class="dropdown faint-border"
         :class="{ hidden: !open }">
       <RowButton
+          v-for="option in options"
+          :key="option.action"
           class="dropdown-item"
-          v-for="option in options" :key="option.action"
-          @click="$emit('click', option.action)"
           :text="option.label"
-          :icon="option.icon" />
+          :icon="option.icon"
+          @click="$emit('click', option.action)" />
     </div>
   </div>
 </template>

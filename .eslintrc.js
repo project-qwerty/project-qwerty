@@ -30,7 +30,7 @@ module.exports = {
     }],
     'vue/max-attributes-per-line': ['warn', {
       singleline: 999,
-      multiline: 2,
+      multiline: 1,
     }],
     'vue/html-indent': ['warn', 2, {
       attribute: 2,
@@ -42,6 +42,5 @@ module.exports = {
 
     // pains in the ass
     'no-undef': 'off',
-    'vue/attributes-order': 'off',
   }
 }

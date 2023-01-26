@@ -32,14 +32,15 @@
 
     <div class="faint-border-bottom">
       <div
-          class="word-row"
-          v-for="(word, index) in wordValues" :key="index">
+          v-for="(word, index) in wordValues"
+          :key="index"
+          class="word-row">
 
         <input
+            v-model="wordValues[index]"
             class="qwerty-text-input"
             :class="{ invalid: !Validation.isValidWord(word) }"
             placeholder="new word"
-            v-model="wordValues[index]"
             @input="updateWord(index)" />
 
         <IconButton
@@ -54,9 +55,9 @@
         @click-out="clickCancelRenameCategory">
       <h1>Rename category</h1>
       <input
+          v-model="inputCategoryName"
           class="qwerty-text-input modal-text-input"
-          placeholder="New category name"
-          v-model="inputCategoryName" />
+          placeholder="New category name" />
       <div class="buttons-row">
         <ActionButton
             text="Cancel"

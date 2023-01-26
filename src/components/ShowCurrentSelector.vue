@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <button
-        @click="minusClicked"
-        :class="{ disabled: firstOptionIsSelected }">
+        :class="{ disabled: firstOptionIsSelected }"
+        @click="minusClicked">
       <font-awesome-icon class="icon" icon="minus" />
     </button>
     <div class="display faint-border">{{ selectedOption.label }}</div>
     <button
-        @click="plusClicked"
-        :class="{ disabled: lastOptionIsSelected }">
+        :class="{ disabled: lastOptionIsSelected }"
+        @click="plusClicked">
       <font-awesome-icon class="icon" icon="plus" />
     </button>
   </div>

@@ -1,7 +1,8 @@
 <template>
   <div class="container faint-border">
     <button
-        v-for="option in options" :key="option.val"
+        v-for="option in options"
+        :key="option.val"
         :class="{'active': option.val === activeValue}"
         @click="$emit('update', option.val)">
       {{ option.label }}

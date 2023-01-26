@@ -1,11 +1,13 @@
 <template>
   <div class="wrapper">
     <div
-        class="row"
-        v-for="row in text" :key="row">
+        v-for="row in text"
+        :key="row"
+        class="row">
       <div
-          class="letter"
-          v-for="letter in row" :key="letter">
+          v-for="letter in row"
+          :key="letter"
+          class="letter">
         {{ letter }}
       </div>
     </div>

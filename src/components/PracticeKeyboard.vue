@@ -2,11 +2,12 @@
   <div class="keyboard">
     <!-- ontouchstart="" makes the :active class trigger on iOS -->
     <button
+        v-for="key in keys"
+        :key="key"
         ontouchstart=""
-        v-for="key in keys" :key="key"
-        @click="handleKeystroke(key)"
         :class="{ disabled: !enabledKeys.includes(key), }"
-        :style="'grid-area: ' + (key === ' ' ? 'space' : key)">
+        :style="'grid-area: ' + (key === ' ' ? 'space' : key)"
+        @click="handleKeystroke(key)">
 
       <font-awesome-icon
           v-if="key === 'backspace'"
@@ -18,8 +19,8 @@
       <!-- doing the letters in an svg as well enables scaling with the keyboard using the same system -->
       <!-- https://css-tricks.com/fitting-text-to-a-container/#aa-just-use-svg -->
       <svg
-          viewBox="0 0 15 40"
-          v-if="key !== 'backspace'">
+          v-if="key !== 'backspace'"
+          viewBox="0 0 15 40">
         <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">{{ renderedCharacter(key) }}</text>
       </svg>
     </button>
