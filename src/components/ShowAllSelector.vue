@@ -3,8 +3,7 @@
     <button
         v-for="option in options" :key="option.val"
         :class="{'active': option.val === activeValue}"
-        @click="$emit('update', option.val)"
-        >
+        @click="$emit('update', option.val)">
       {{ option.label }}
     </button>
   </div>
