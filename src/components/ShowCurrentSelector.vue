@@ -31,16 +31,6 @@
         activeIndex: 0,
       };
     },
-    created() {
-      const indexOfInitialValue = this.options.findIndex(opt => opt.val === this.initialValue);
-
-      // leave it at the default if the supplied value isn't an option
-      if (indexOfInitialValue === -1) {
-        return;
-      }
-
-      this.activeIndex = indexOfInitialValue;
-    },
     computed: {
       selectedOption() {
         return this.options[this.activeIndex];
@@ -51,6 +41,16 @@
       lastOptionIsSelected() {
         return this.activeIndex === this.options.length - 1;
       },
+    },
+    created() {
+      const indexOfInitialValue = this.options.findIndex(opt => opt.val === this.initialValue);
+
+      // leave it at the default if the supplied value isn't an option
+      if (indexOfInitialValue === -1) {
+        return;
+      }
+
+      this.activeIndex = indexOfInitialValue;
     },
     methods: {
       minusClicked() {

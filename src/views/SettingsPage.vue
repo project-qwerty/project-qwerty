@@ -106,6 +106,12 @@
   import ShowCurrentSelector from '@/components/ShowCurrentSelector.vue';
 
   export default {
+    components: {
+      NavPage,
+      ShowAllSelector,
+      IconHeader,
+      ShowCurrentSelector,
+    },
     data() {
       return {
         wordDisplayTime: null,
@@ -120,19 +126,6 @@
           'NONE': 'None: Letter highlighting is turned off.',
         },
       }
-    },
-    created() {
-      this.wordDisplayTime = LocalStorage.getSetting('wordDisplayTime');
-      this.wordsPerSession = LocalStorage.getSetting('wordsPerSession');
-      this.assistanceLevel = LocalStorage.getSetting('assistanceLevel');
-      this.wordRepetitions = LocalStorage.getSetting('wordRepetitions');
-      this.wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
-    },
-    components: {
-      NavPage,
-      ShowAllSelector,
-      IconHeader,
-      ShowCurrentSelector,
     },
     // This stores the values into localStorage so that they can be accessed by the keyboard page.
     watch: {
@@ -151,6 +144,13 @@
       wordDisplayCapitalization: function(val) {
         LocalStorage.setSetting('wordDisplayCapitalization', val);
       },
+    },
+    created() {
+      this.wordDisplayTime = LocalStorage.getSetting('wordDisplayTime');
+      this.wordsPerSession = LocalStorage.getSetting('wordsPerSession');
+      this.assistanceLevel = LocalStorage.getSetting('assistanceLevel');
+      this.wordRepetitions = LocalStorage.getSetting('wordRepetitions');
+      this.wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
     },
   }
 </script>

@@ -31,6 +31,12 @@
         default: 'initial',
       },
     },
+    watch: {
+      shown: function() {
+        // prevent scrolling the underlying page when modal is shown
+        document.body.style.overflow = this.shown ? 'hidden' : 'auto';
+      },
+    },
     created() {
       // the 'true' param means other click handlers will be processed too
       window.addEventListener('click', this.handleGlobalClick, { passive: true, capture: true });
@@ -56,12 +62,6 @@
         if (this.shown && !clickIsInsideModal) {
           this.$emit('click-out');
         }
-      },
-    },
-    watch: {
-      shown: function() {
-        // prevent scrolling the underlying page when modal is shown
-        document.body.style.overflow = this.shown ? 'hidden' : 'auto';
       },
     },
   }

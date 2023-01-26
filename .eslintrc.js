@@ -39,7 +39,6 @@ module.exports = {
 
     // temporarily disabled
     'vue/html-indent': 'off',
-    'vue/order-in-components': 'off',
 
     // pains in the ass
     'no-undef': 'off',
