@@ -33,7 +33,7 @@
     <div class="faint-border-bottom">
       <div
           class="word-row"
-          v-for="(word, index) in wordValues" v-bind:key="index">
+          v-for="(word, index) in wordValues" :key="index">
 
         <input
             class="qwerty-text-input"

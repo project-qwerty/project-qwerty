@@ -8,7 +8,7 @@
         :class="{ hidden: !open }">
       <RowButton
           class="dropdown-item"
-          v-for="option in options" v-bind:key="option.action"
+          v-for="option in options" :key="option.action"
           @click="$emit('click', option.action)"
           :text="option.label"
           :icon="option.icon"/>

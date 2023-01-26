@@ -20,7 +20,7 @@
 
     <div class="tiles">
       <ToggleTile
-          v-for="(categoryName, index) in builtInCategories" v-bind:key="index"
+          v-for="(categoryName, index) in builtInCategories" :key="index"
           class="tile"
           :text="categoryName"
           :icon="BuiltInCategories[categoryName].icon"
@@ -33,7 +33,7 @@
 
     <div class="tiles">
       <ToggleTile
-          v-for="(categoryName, index) in customCategories" v-bind:key="index"
+          v-for="(categoryName, index) in customCategories" :key="index"
           class="tile"
           :text="categoryName"
           :colour="Colours.stringToColour(categoryName)"
