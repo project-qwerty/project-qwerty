@@ -36,7 +36,7 @@
       <input
           class="qwerty-text-input"
           placeholder="New category"
-          v-model="inputCategoryName">
+          v-model="inputCategoryName" />
       <div class="buttons-row">
         <ActionButton
             text="Cancel"
@@ -49,7 +49,7 @@
       </div>
     </FullscreenModal>
 
-    <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
+    <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;" />
   </NavPage>
 </template>
 

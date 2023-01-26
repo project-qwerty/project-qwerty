@@ -4,24 +4,30 @@ module.exports = {
     'plugin:vue/recommended',
   ],
   rules: {
-    // override/add rules settings here, such as:
-    // 'vue/no-unused-vars': 'error'
-
     // customized
-    'vue/html-closing-bracket-newline': ['warn', {
-      'singleline': 'never',
-      'multiline': 'never',
-    }],
-    'vue/no-multi-spaces': ['warn', {
-      'ignoreProperties': true,
-    }],
-    'vue/multiline-html-element-content-newline': ['warn', {
-      'allowEmptyLines': true,
-    }],
     'no-multiple-empty-lines': ['warn', {
-      'max': 2,
+      max: 2,
     }],
     'comma-dangle': ['warn', 'always-multiline'],
+
+    'vue/html-closing-bracket-newline': ['warn', {
+      singleline: 'never',
+      multiline: 'never',
+    }],
+    'vue/no-multi-spaces': ['warn', {
+      ignoreProperties: true,
+    }],
+    'vue/multiline-html-element-content-newline': ['warn', {
+      allowEmptyLines: true,
+    }],
+    'vue/html-self-closing': ['warn', {
+      html: {
+        void: 'always',
+        normal: 'always',
+        component: 'always',
+      },
+      svg: 'always',
+    }],
 
     // disabled
     'vue/singleline-html-element-content-newline': 'off',
@@ -30,7 +36,6 @@ module.exports = {
     // temporarily disabled
     'vue/html-indent': 'off',
     'vue/max-attributes-per-line': 'off',
-    'vue/html-self-closing': 'off',
     'vue/order-in-components': 'off',
 
     // pains in the ass

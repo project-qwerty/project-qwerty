@@ -40,7 +40,7 @@
             :class="{ invalid: !Validation.isValidWord(word) }"
             placeholder="new word"
             v-model="wordValues[index]"
-            @input="updateWord(index)">
+            @input="updateWord(index)" />
 
         <IconButton
             icon="x"
@@ -56,7 +56,7 @@
       <input
           class="qwerty-text-input modal-text-input"
           placeholder="New category name"
-          v-model="inputCategoryName">
+          v-model="inputCategoryName" />
       <div class="buttons-row">
         <ActionButton
             text="Cancel"
