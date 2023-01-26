@@ -8,7 +8,7 @@
 
       <div class="control">
         <ShowCurrentSelector :options="[
-              { label: '5 words',  val: 5, },
+              { label:  '5 words', val:  5, },
               { label: '10 words', val: 10, },
               { label: '15 words', val: 15, },
               { label: '20 words', val: 20, },
@@ -30,13 +30,13 @@
 
       <div class="control">
         <ShowCurrentSelector :options="[
-              { label: 'Always shown', val: 0, },
-              { label: '5 seconds',    val: 5, },
-              { label: '10 seconds',   val: 10, },
-              { label: '15 seconds',   val: 15, },
-              { label: '20 seconds',   val: 20, },
-              { label: '25 seconds',   val: 25, },
-              { label: '30 seconds',   val: 30, },
+              { label: 'Always shown', val:  0, },
+              { label:    '5 seconds', val:  5, },
+              { label:   '10 seconds', val: 10, },
+              { label:   '15 seconds', val: 15, },
+              { label:   '20 seconds', val: 20, },
+              { label:   '25 seconds', val: 25, },
+              { label:   '30 seconds', val: 30, },
             ]"
             :initialValue="wordDisplayTime"
             @update="wordDisplayTime = $event" />
