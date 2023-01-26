@@ -1,7 +1,7 @@
 <template>
   <button
       :style="colourStyle()"
-      v-on:click="onClick">
+      @click="onClick">
     <font-awesome-icon v-if="icon" :icon="icon" />
     <span class="text">{{ text }}</span>
   </button>

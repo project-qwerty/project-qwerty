@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <button
-        v-on:click="minusClicked"
+        @click="minusClicked"
         :class="{ disabled: firstOptionIsSelected }">
       <font-awesome-icon class="icon" icon="minus" />
     </button>
     <div class="display faint-border">{{ selectedOption.label }}</div>
     <button
-        v-on:click="plusClicked"
+        @click="plusClicked"
         :class="{ disabled: lastOptionIsSelected }">
       <font-awesome-icon class="icon" icon="plus" />
     </button>

@@ -11,26 +11,26 @@
         <ActionButton
             icon="plus"
             text="New"
-            v-on:click="showNewCategoryModal = true" />
+            @click="showNewCategoryModal = true" />
 
         <Dropdown
             :options="[
               { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
             ]"
-            v-on:click="handleDropdownClick" />
+            @click="handleDropdownClick" />
       </div>
     </header>
 
     <RowButton class="custom-category faint-border-bottom"
         v-for="(categoryName, index) in getCategories()" v-bind:key="index"
-        v-on:click="$router.push('/custom-categories/' + categoryName)"
+        @click="$router.push('/custom-categories/' + categoryName)"
         :text="categoryName"
         icon="list"
         :iconColour="Colours.stringToColour(categoryName)" />
 
     <Modal
         :shown="showNewCategoryModal"
-        v-on:click-out="cleanUpCreateCategory">
+        @click-out="cleanUpCreateCategory">
       <h1>Add category</h1>
       <input
           class="qwerty-text-input"
@@ -40,11 +40,11 @@
         <ActionButton
             text="Cancel"
             :major="false"
-            v-on:click="cleanUpCreateCategory" />
+            @click="cleanUpCreateCategory" />
         <ActionButton
             text="Create"
             :enabled="Validation.isValidCategoryName(inputCategoryName)"
-            v-on:click="clickCreateCategory" />
+            @click="clickCreateCategory" />
       </div>
     </Modal>
 

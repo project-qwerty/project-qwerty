@@ -4,7 +4,7 @@
       <button
           ontouchstart=""
           v-for="key in keys" v-bind:key="key"
-          v-on:click="handleKeystroke(key)"
+          @click="handleKeystroke(key)"
           :class="{ disabled: !enabledKeys.includes(key), }"
           :style="'grid-area: ' + (key === ' ' ? 'space' : key)">
 

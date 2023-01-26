@@ -4,7 +4,7 @@
     <header>
       <IconButton
           icon="x"
-          v-on:click="$router.back()" />
+          @click="$router.back()" />
 
       <ActionButton
           class="show-word-button"
@@ -12,7 +12,7 @@
           text="Show word"
           :major="false"
           v-if="showShowWordButton"
-          v-on:click="clickShowWordButton"/>
+          @click="clickShowWordButton"/>
 
       <div class="timer-display" v-if="showTimer">
         <font-awesome-icon icon="stopwatch" />
@@ -32,7 +32,7 @@
       <Keyboard
           :enabledKeys="enabledKeys"
           :uppercase="settings.wordDisplayCapitalization === 'UPPERCASE'"
-          v-on:keystroke="handleKeystroke($event)" />
+          @keystroke="handleKeystroke($event)" />
     </div>
 
     <Modal
@@ -46,7 +46,7 @@
         <div class="button-row">
           <ActionButton
               text="Next word"
-              v-on:click="clickNextWord" />
+              @click="clickNextWord" />
         </div>
       </div>
     </Modal>
@@ -63,12 +63,12 @@
           <ActionButton
               icon="check"
               text="Finish"
-              v-on:click="clickFinish" />
+              @click="clickFinish" />
           <ActionButton
               icon="arrow-rotate-right"
               text="Repeat"
               :major="false"
-              v-on:click="clickRepeat" />
+              @click="clickRepeat" />
         </div>
       </div>
     </Modal>
@@ -85,7 +85,7 @@
         <div class="button-row">
           <ActionButton
               text="Ok"
-              v-on:click="showNoKeyboardModal = false" />
+              @click="showNoKeyboardModal = false" />
         </div>
       </div>
     </Modal>

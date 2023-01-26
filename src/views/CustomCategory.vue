@@ -4,7 +4,7 @@
         class="back-button"
         icon="chevron-left"
         text="Back"
-        v-on:click="$router.back()" />
+        @click="$router.back()" />
 
     <header class="title-controls-header faint-border-bottom">
       <IconHeader
@@ -17,7 +17,7 @@
             class="new-word-button"
             icon="plus"
             text="New word"
-            v-on:click="clickAddWord" />
+            @click="clickAddWord" />
 
         <Dropdown
             class="options-menu"
@@ -26,7 +26,7 @@
               { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
               { label: 'Delete category', icon: 'trash-can', action: 'delete' },
             ]"
-            v-on:click="handleDropdownClick" />
+            @click="handleDropdownClick" />
       </div>
     </header>
 
@@ -44,14 +44,14 @@
 
         <IconButton
             icon="x"
-            v-on:click="clickDeleteWord(index)" />
+            @click="clickDeleteWord(index)" />
 
       </div>
     </div>
 
     <Modal
         :shown="showRenameCategoryModal"
-        v-on:click-out="clickCancelRenameCategory">
+        @click-out="clickCancelRenameCategory">
       <h1>Rename category</h1>
       <input
           class="qwerty-text-input modal-text-input"
@@ -61,28 +61,28 @@
         <ActionButton
             text="Cancel"
             :major="false"
-            v-on:click="clickCancelRenameCategory" />
+            @click="clickCancelRenameCategory" />
         <ActionButton
             text="Rename"
             :enabled="Validation.isValidCategoryName(inputCategoryName)"
-            v-on:click="clickRenameCategory" />
+            @click="clickRenameCategory" />
       </div>
     </Modal>
 
     <Modal
         :shown="showDeleteCategoryModal"
-        v-on:click-out="clickCancelDeleteCategory">
+        @click-out="clickCancelDeleteCategory">
       <h1>Delete category</h1>
       <p class="delete-warning">Are you sure you want to delete <strong>{{ categoryName }}</strong>? This can't be undone.</p>
       <div class="buttons-row">
         <ActionButton
             text="Cancel"
             :major="false"
-            v-on:click="clickCancelDeleteCategory" />
+            @click="clickCancelDeleteCategory" />
         <ActionButton
             text="Delete"
             colour="var(--negative-colour)"
-            v-on:click="clickDeleteCategory" />
+            @click="clickDeleteCategory" />
       </div>
     </Modal>
   </NavPage>

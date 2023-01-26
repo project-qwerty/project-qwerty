@@ -1,7 +1,7 @@
 <template>
   <button
       :class="{'active': active}"
-      v-on:click="$emit('click')">
+      @click="$emit('click')">
     <span
         v-if="icon"
         class="icon"

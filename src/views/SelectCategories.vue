@@ -12,7 +12,7 @@
             class="start-button"
             text="Start"
             :enabled="anyCategoriesSelected()"
-            v-on:click="$router.push('/practice')" />
+            @click="$router.push('/practice')" />
       </div>
     </header>
 
@@ -26,7 +26,7 @@
           :icon="BuiltInCategories[categoryName].icon"
           :colour="Colours.indexToColour(index)"
           :enabled="builtInSelected.includes(categoryName)"
-          v-on:update="builtInCategoryClicked($event)" />
+          @update="builtInCategoryClicked($event)" />
     </div>
 
     <IconHeader text="Custom categories" />
@@ -38,7 +38,7 @@
           :text="categoryName"
           :colour="Colours.stringToColour(categoryName)"
           :enabled="customSelected.includes(categoryName)"
-          v-on:update="customCategoryClicked($event)" />
+          @update="customCategoryClicked($event)" />
     </div>
   </NavPage>
 </template>

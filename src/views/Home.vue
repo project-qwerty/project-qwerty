@@ -10,10 +10,10 @@
           <ActionButton
               class="start-button"
               text="Start"
-              v-on:click="$router.push('/select-categories')"/>
+              @click="$router.push('/select-categories')"/>
           <button
               class="info-button"
-              v-on:click="$router.push('/about')">
+              @click="$router.push('/about')">
             <font-awesome-icon icon="circle-info" />
           </button>
         </div>
