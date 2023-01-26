@@ -24,7 +24,9 @@
 
     <div class="readout">
       <div class="target"
-          :class="{ invisible: !showTargetWord }">{{ renderedText(targetWord) }}</div>
+          :class="{ invisible: !showTargetWord }">
+        {{ renderedText(targetWord) }}
+      </div>
       <div class="input">{{ renderedInput(input) }}</div>
     </div>
 

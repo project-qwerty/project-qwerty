@@ -8,12 +8,18 @@ module.exports = {
     // 'vue/no-unused-vars': 'error'
 
     // legit changes
-    'vue/html-closing-bracket-newline': ['error', {
+    'vue/html-closing-bracket-newline': ['warn', {
       'singleline': 'never',
       'multiline': 'never',
     }],
-    'vue/no-multi-spaces': ['error', {
+    'vue/no-multi-spaces': ['warn', {
       'ignoreProperties': true,
+    }],
+    'vue/multiline-html-element-content-newline': ['warn', {
+      'allowEmptyLines': true,
+    }],
+    'no-multiple-empty-lines': ['warn', {
+      'max': 2,
     }],
 
 
@@ -31,6 +37,5 @@ module.exports = {
     'vue/attributes-order': 'off',
     'vue/require-prop-types': 'off',
     'vue/require-default-prop': 'off',
-    'vue/multiline-html-element-content-newline': 'off',
   }
 }
