@@ -124,8 +124,10 @@
         },
 
         sound: {
+          /* eslint-disable no-undef */
           correct: new Audio(require('@/assets/audio/correct.mp3')),
           wrong: new Audio(require('@/assets/audio/wrong.mp3')),
+          /* eslint-enable no-undef */
         },
 
         words: null,

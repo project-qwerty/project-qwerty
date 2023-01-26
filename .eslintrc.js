@@ -39,8 +39,5 @@ module.exports = {
     // disabled
     'vue/singleline-html-element-content-newline': 'off',
     'vue/require-default-prop': 'off',
-
-    // pains in the ass
-    'no-undef': 'off',
   }
 }
