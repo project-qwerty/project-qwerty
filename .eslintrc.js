@@ -32,13 +32,13 @@ module.exports = {
       singleline: 999,
       multiline: 2,
     }],
+    'vue/html-indent': ['warn', 2, {
+      attribute: 2,
+    }],
 
     // disabled
     'vue/singleline-html-element-content-newline': 'off',
     'vue/require-default-prop': 'off',
-
-    // temporarily disabled
-    'vue/html-indent': 'off',
 
     // pains in the ass
     'no-undef': 'off',
