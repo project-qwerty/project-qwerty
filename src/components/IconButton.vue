@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="$emit('click')">
+  <button @click="$emit('click')">
     <font-awesome-icon class="icon" :icon="icon" />
   </button>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <Nav>
+  <NavPage>
     <IconHeader :major="true" text="About" icon="circle-info" iconColour="var(--primary-colour)" />
 
     <p>Welcome to Project QWERTY!</p>
@@ -24,10 +24,6 @@
       <p>If you are accessing Project QWERTY on a desktop computer, use your <strong>mouse</strong> to click on each letter. Your physical keyboard will not work.</p>
     </CollapsibleSection>
 
-    <CollapsibleSection summary="My keyboard is not working on my desktop computer. What should I do?" class="faint-border-bottom">
-      <p>For <strong>desktop computer</strong> users: <strong>use your mouse</strong> to click on each letter. The physical keyboard will not work.</p>
-    </CollapsibleSection>
-
     <CollapsibleSection summary="How do I save my word list so that I can practice my custom categories on different devices?" class="faint-border-bottom">
       <ol>
         <li>Tap ‘Customise’ in the left-hand menu</li>
@@ -44,21 +40,17 @@
     </CollapsibleSection>
 
     <CollapsibleSection summary="If I add my personal details to a custom category, how do I know that they are safe?" class="faint-border-bottom">
-      <p>Your custom categories are always kept <strong>on your device</strong>. They are <strong>never</strong> shared with the Project QWERTY team or anyone else.</p>
+      <p>All of the data that you enter into Project QWERTY remains strictly <strong>on your device</strong>.</p>
+
+      <p>It <strong>never</strong> goes to any external systems, and is <strong>never</strong> shared with the Project QWERTY team or anyone else.</p>
+
+      <p><strong>Only you</strong> have access to it.</p>
+
+      <p>This can be <strong>verified</strong> by checking Project QWERTY's source code. See the FAQ on "<strong>open source</strong>" for more details.</p>
     </CollapsibleSection>
 
-    <CollapsibleSection summary="How can I contact the Project QWERTY team?" class="faint-border-bottom">
-      <p>You can email us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a>. We'd love to hear from you!</p>
-
-      <p>Let us know about your experience with the app, any comments or suggestions you might have, or if you think you've found a problem with the website.</p>
-    </CollapsibleSection>
-
-    <CollapsibleSection summary="Open Source" class="faint-border-bottom">
-      <p>Project QWERTY is <strong>open source</strong> software. The source code is available on <a href="https://github.com/project-qwerty/project-qwerty">GitHub</a>.</p>
-    </CollapsibleSection>
-
-    <CollapsibleSection summary="Credits" class="faint-border-bottom">
-      <p>Project QWERTY has been made with the support of people with aphasia, a team of Speech Pathologists from Monash Health, a team of students from Monash University and some volunteers.</p>
+    <CollapsibleSection summary="Who created Project QWERTY?" class="faint-border-bottom">
+      <p>Project QWERTY has been made with the support of people with aphasia, a team of Speech Pathologists from Monash Health, a team of students from Monash University, and some volunteers.</p>
 
       <p>Credits are as follows:</p>
 
@@ -75,18 +67,32 @@
         <li>Rob Angelone - User Experience Design (volunteer)</li>
       </ul>
     </CollapsibleSection>
-  </Nav>
+
+    <CollapsibleSection summary="How can I contact the Project QWERTY team?" class="faint-border-bottom">
+      <p>You can email us at <a href="mailto:projectqwerty2020@gmail.com">projectqwerty2020@gmail.com</a>. We'd love to hear from you!</p>
+
+      <p>Let us know about your experience with the app, any comments or suggestions you might have, or if you think you've found a problem with the website.</p>
+    </CollapsibleSection>
+
+    <CollapsibleSection summary="Project QWERTY is &quot;open source&quot;? What does that mean?" class="faint-border-bottom">
+      <p>Yes, Project QWERTY is <strong>open source</strong>. This means that the code that runs the website is publicly viewable. We keep it here: <a href="https://github.com/project-qwerty/project-qwerty">https://github.com/project-qwerty/project-qwerty</a>, and anyone (including you) can take a look at it to see how Project QWERTY works.</p>
+
+      <p>This transparency means that you can be confident that Project QWERTY is <strong>safe to use</strong>, and that your personal data is kept secure.</p>
+
+      <p>It also ensures that Project QWERTY is, and always will be, <strong>free for everyone</strong> to use.</p>
+    </CollapsibleSection>
+  </NavPage>
 </template>
 
 
 <script>
-import Nav from '@/components/Nav.vue';
+import NavPage from '@/components/NavPage.vue';
 import CollapsibleSection from '@/components/CollapsibleSection.vue';
 import IconHeader from '@/components/IconHeader.vue';
 
 export default {
   components: {
-    Nav,
+    NavPage,
     CollapsibleSection,
     IconHeader,
   },

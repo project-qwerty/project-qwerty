@@ -2,7 +2,7 @@
   <!-- unfortunately these can't be <button>s because they contain divs -->
   <div class="tile-outer"
       :style="componentStyle()"
-      v-on:click="onClick">
+      @click="onClick">
     <div class="tile-middle">
       <div class="tile-inner">
         <div class="selected-check"

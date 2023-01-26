@@ -3,7 +3,7 @@
     <details>
       <summary>{{ summary }}</summary>
       <div class="content-wrapper">
-        <slot></slot>
+        <slot />
       </div>
     </details>
   </section>

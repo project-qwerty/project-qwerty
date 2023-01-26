@@ -1,5 +1,5 @@
 <template>
-  <Nav>
+  <NavPage>
     <header class="title-controls-header">
       <IconHeader
           text="My categories"
@@ -11,26 +11,26 @@
         <ActionButton
             icon="plus"
             text="New"
-            v-on:click="showNewCategoryModal = true" />
+            @click="showNewCategoryModal = true" />
 
         <Dropdown
             :options="[
               { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
             ]"
-            v-on:click="handleDropdownClick" />
+            @click="handleDropdownClick" />
       </div>
     </header>
 
     <RowButton class="custom-category faint-border-bottom"
-        v-for="(categoryName, index) in getCategories()" v-bind:key="index"
-        v-on:click="$router.push('/custom-categories/' + categoryName)"
+        v-for="(categoryName, index) in getCategories()" :key="index"
+        @click="$router.push('/custom-categories/' + categoryName)"
         :text="categoryName"
         icon="list"
         :iconColour="Colours.stringToColour(categoryName)" />
 
     <Modal
         :shown="showNewCategoryModal"
-        v-on:click-out="cleanUpCreateCategory">
+        @click-out="cleanUpCreateCategory">
       <h1>Add category</h1>
       <input
           class="qwerty-text-input"
@@ -40,16 +40,16 @@
         <ActionButton
             text="Cancel"
             :major="false"
-            v-on:click="cleanUpCreateCategory" />
+            @click="cleanUpCreateCategory" />
         <ActionButton
             text="Create"
             :enabled="Validation.isValidCategoryName(inputCategoryName)"
-            v-on:click="clickCreateCategory" />
+            @click="clickCreateCategory" />
       </div>
     </Modal>
 
     <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
-  </Nav>
+  </NavPage>
 </template>
 
 
@@ -58,7 +58,7 @@
   import Colours from '@/functions/Colours.js'
   import Validation from '@/functions/Validation.js';
 
-  import Nav from '@/components/Nav.vue';
+  import NavPage from '@/components/NavPage.vue';
   import Modal from '@/components/Modal.vue';
   import ActionButton from '@/components/ActionButton.vue';
   import IconHeader from '@/components/IconHeader.vue';
@@ -67,7 +67,7 @@
 
   export default {
     components: {
-      Nav,
+      NavPage,
       Modal,
       ActionButton,
       IconHeader,

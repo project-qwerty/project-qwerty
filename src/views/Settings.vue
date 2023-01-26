@@ -1,5 +1,5 @@
 <template>
-  <Nav>
+  <NavPage>
     <IconHeader :major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
 
     <IconHeader text="Words" icon="list" />
@@ -20,7 +20,7 @@
               { label: '50 words', val: 50, },
             ]"
             :initialValue="wordsPerSession"
-            v-on:update="wordsPerSession = $event" />
+            @update="wordsPerSession = $event" />
       </div>
     </div>
 
@@ -39,7 +39,7 @@
               { label: '30 seconds',   val: 30, },
             ]"
             :initialValue="wordDisplayTime"
-            v-on:update="wordDisplayTime = $event" />
+            @update="wordDisplayTime = $event" />
       </div>
     </div>
 
@@ -57,7 +57,7 @@
               { label: 'None', val: 'NONE', },
             ]"
             :activeValue="assistanceLevel"
-            v-on:update="assistanceLevel = $event" />
+            @update="assistanceLevel = $event" />
       </div>
     </div>
 
@@ -71,7 +71,7 @@
               { label: '3', val: 3, },
             ]"
             :activeValue="wordRepetitions"
-            v-on:update="wordRepetitions = $event" />
+            @update="wordRepetitions = $event" />
       </div>
     </div>
 
@@ -85,17 +85,17 @@
               { label: 'lowercase', val: 'LOWERCASE', },
             ]"
             :activeValue="wordDisplayCapitalization"
-            v-on:update="wordDisplayCapitalization = $event" />
+            @update="wordDisplayCapitalization = $event" />
       </div>
     </div>
-  </Nav>
+  </NavPage>
 </template>
 
 
 <script>
   import LocalStorage from '@/functions/LocalStorage.js';
 
-  import Nav from '@/components/Nav.vue';
+  import NavPage from '@/components/NavPage.vue';
   import ShowAllSelector from '@/components/ShowAllSelector.vue';
   import IconHeader from '@/components/IconHeader.vue';
   import ShowCurrentSelector from '@/components/ShowCurrentSelector.vue';
@@ -124,7 +124,7 @@
       this.wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
     },
     components: {
-      Nav,
+      NavPage,
       ShowAllSelector,
       IconHeader,
       ShowCurrentSelector,

@@ -1,5 +1,5 @@
 <template>
-  <Nav>
+  <NavPage>
     <header class="title-controls-header">
       <IconHeader
           icon="keyboard"
@@ -12,7 +12,7 @@
             class="start-button"
             text="Start"
             :enabled="anyCategoriesSelected()"
-            v-on:click="$router.push('/practice')" />
+            @click="$router.push('/practice')" />
       </div>
     </header>
 
@@ -20,27 +20,27 @@
 
     <div class="tiles">
       <ToggleTile
-          v-for="(categoryName, index) in builtInCategories" v-bind:key="index"
+          v-for="(categoryName, index) in builtInCategories" :key="index"
           class="tile"
           :text="categoryName"
           :icon="BuiltInCategories[categoryName].icon"
           :colour="Colours.indexToColour(index)"
           :enabled="builtInSelected.includes(categoryName)"
-          v-on:update="builtInCategoryClicked($event)" />
+          @update="builtInCategoryClicked($event)" />
     </div>
 
     <IconHeader text="Custom categories" />
 
     <div class="tiles">
       <ToggleTile
-          v-for="(categoryName, index) in customCategories" v-bind:key="index"
+          v-for="(categoryName, index) in customCategories" :key="index"
           class="tile"
           :text="categoryName"
           :colour="Colours.stringToColour(categoryName)"
           :enabled="customSelected.includes(categoryName)"
-          v-on:update="customCategoryClicked($event)" />
+          @update="customCategoryClicked($event)" />
     </div>
-  </Nav>
+  </NavPage>
 </template>
 
 <script>
@@ -50,14 +50,14 @@
 
   import ActionButton from '@/components/ActionButton.vue';
   import ToggleTile from '@/components/ToggleTile.vue';
-  import Nav from '@/components/Nav.vue';
+  import NavPage from '@/components/NavPage.vue';
   import IconHeader from '@/components/IconHeader.vue';
 
   export default {
     components: {
       ActionButton,
       ToggleTile,
-      Nav,
+      NavPage,
       IconHeader,
     },
     data() {
