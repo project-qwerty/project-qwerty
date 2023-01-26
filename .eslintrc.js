@@ -28,6 +28,10 @@ module.exports = {
       },
       svg: 'always',
     }],
+    'vue/max-attributes-per-line': ['warn', {
+      singleline: 999,
+      multiline: 2,
+    }],
 
     // disabled
     'vue/singleline-html-element-content-newline': 'off',
@@ -35,7 +39,6 @@ module.exports = {
 
     // temporarily disabled
     'vue/html-indent': 'off',
-    'vue/max-attributes-per-line': 'off',
     'vue/order-in-components': 'off',
 
     // pains in the ass
