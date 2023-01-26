@@ -23,6 +23,7 @@ module.exports = {
     }],
 
 
+    'vue/singleline-html-element-content-newline': 'off',
 
     // temporarily disabled
     'vue/html-indent': 'off',
@@ -33,7 +34,6 @@ module.exports = {
     'vue/html-self-closing': 'off',
     'vue/order-in-components': 'off',
     'no-undef': 'off',
-    'vue/singleline-html-element-content-newline': 'off',
     'vue/attributes-order': 'off',
     'vue/require-prop-types': 'off',
     'vue/require-default-prop': 'off',
