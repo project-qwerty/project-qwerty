@@ -12,7 +12,7 @@
           text="Show word"
           :major="false"
           v-if="showShowWordButton"
-          @click="clickShowWordButton"/>
+          @click="clickShowWordButton" />
 
       <div class="timer-display" v-if="showTimer">
         <font-awesome-icon icon="stopwatch" />

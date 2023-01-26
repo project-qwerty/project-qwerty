@@ -11,7 +11,7 @@
           v-for="option in options" :key="option.action"
           @click="$emit('click', option.action)"
           :text="option.label"
-          :icon="option.icon"/>
+          :icon="option.icon" />
     </div>
   </div>
 </template>

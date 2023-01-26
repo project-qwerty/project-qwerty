@@ -10,7 +10,7 @@
           <ActionButton
               class="start-button"
               text="Start"
-              @click="$router.push('/select-categories')"/>
+              @click="$router.push('/select-categories')" />
           <button
               class="info-button"
               @click="$router.push('/about')">
