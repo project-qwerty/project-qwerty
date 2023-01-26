@@ -23,7 +23,8 @@
     </header>
 
     <div class="readout">
-      <div class="target"
+      <div
+          class="target"
           :class="{ invisible: !showTargetWord }">
         {{ renderedText(targetWord) }}
       </div>

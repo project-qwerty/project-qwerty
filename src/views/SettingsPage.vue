@@ -7,7 +7,8 @@
       <p>How many <strong>words</strong> would you like to practice?</p>
 
       <div class="control">
-        <ShowCurrentSelector :options="[
+        <ShowCurrentSelector
+            :options="[
               { label:  '5 words', val:  5, },
               { label: '10 words', val: 10, },
               { label: '15 words', val: 15, },
@@ -29,7 +30,8 @@
       <p>For how many <strong>seconds</strong> would you like the word to be shown?</p>
 
       <div class="control">
-        <ShowCurrentSelector :options="[
+        <ShowCurrentSelector
+            :options="[
               { label: 'Always shown', val:  0, },
               { label:    '5 seconds', val:  5, },
               { label:   '10 seconds', val: 10, },
@@ -51,7 +53,8 @@
       </div>
 
       <div class="control">
-        <ShowAllSelector :options="[
+        <ShowAllSelector
+            :options="[
               { label: 'Max.', val: 'MAX', },
               { label: 'Min.', val: 'MIN', },
               { label: 'None', val: 'NONE', },
@@ -66,7 +69,8 @@
       <p><strong>How many times</strong> would you like to practice each word?</p>
 
       <div class="control">
-        <ShowAllSelector :options="[
+        <ShowAllSelector
+            :options="[
               { label: '1', val: 1, },
               { label: '3', val: 3, },
             ]"
@@ -80,7 +84,8 @@
       <p>How would you like the words and keyboard to appear?</p>
 
       <div class="control">
-        <ShowAllSelector :options="[
+        <ShowAllSelector
+            :options="[
               { label: 'UPPERCASE', val: 'UPPERCASE', },
               { label: 'lowercase', val: 'LOWERCASE', },
             ]"

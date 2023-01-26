@@ -5,7 +5,9 @@
         major: major,
         minor: !major,
       }">
-    <span v-if="icon" class="icon"
+    <span
+        v-if="icon"
+        class="icon"
         :class="{ 'coloured-icon': iconColour !== null }"
         :style="`--icon-colour: ${iconColour};`">
       <font-awesome-icon :icon="icon" />

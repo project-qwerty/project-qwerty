@@ -5,7 +5,8 @@
         <font-awesome-icon class="toggle-icon" icon="bars" />
       </button>
     </nav>
-    <nav class="side-bar faint-border-right"
+    <nav
+        class="side-bar faint-border-right"
         :class="{
           collapsed: !menuExpanded,
         }">

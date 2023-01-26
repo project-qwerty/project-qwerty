@@ -1,7 +1,9 @@
 <template>
-  <div class="overlay"
+  <div
+      class="overlay"
       :class="{ hidden: !shown, }">
-    <div ref="modal"
+    <div
+        ref="modal"
         class="modal"
         :style="{
           '--width': width,

@@ -21,7 +21,8 @@
       </div>
     </header>
 
-    <RowButton class="custom-category faint-border-bottom"
+    <RowButton
+        class="custom-category faint-border-bottom"
         v-for="(categoryName, index) in getCategories()" :key="index"
         @click="$router.push('/custom-categories/' + categoryName)"
         :text="categoryName"

@@ -1,8 +1,10 @@
 <template>
   <div class="wrapper">
-    <div class="row"
+    <div
+        class="row"
         v-for="row in text" :key="row">
-      <div class="letter"
+      <div
+          class="letter"
           v-for="letter in row" :key="letter">
         {{ letter }}
       </div>

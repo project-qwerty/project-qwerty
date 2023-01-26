@@ -17,7 +17,8 @@
         <!-- the magic numbers control the icon location and are manually tuned in tandem with the element style -->
         <!-- doing the letters in an svg as well enables scaling with the keyboard using the same system -->
         <!-- https://css-tricks.com/fitting-text-to-a-container/#aa-just-use-svg -->
-        <svg viewBox="0 0 15 40"
+        <svg
+            viewBox="0 0 15 40"
             v-if="key !== 'backspace'">
           <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">{{ renderedCharacter(key) }}</text>
         </svg>

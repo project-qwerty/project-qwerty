@@ -1,10 +1,12 @@
 <template>
   <div class="wrapper">
-    <button ref="ellipsis"
+    <button
+        ref="ellipsis"
         :class="{ active: open }">
       <font-awesome-icon icon="ellipsis-vertical" />
     </button>
-    <div class="dropdown faint-border"
+    <div
+        class="dropdown faint-border"
         :class="{ hidden: !open }">
       <RowButton
           class="dropdown-item"
