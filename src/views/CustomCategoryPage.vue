@@ -19,7 +19,7 @@
             text="New word"
             @click="clickAddWord" />
 
-        <Dropdown
+        <DropdownList
             class="options-menu"
             :options="[
               { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
@@ -49,7 +49,7 @@
       </div>
     </div>
 
-    <Modal
+    <FullscreenModal
         :shown="showRenameCategoryModal"
         @click-out="clickCancelRenameCategory">
       <h1>Rename category</h1>
@@ -67,9 +67,9 @@
             :enabled="Validation.isValidCategoryName(inputCategoryName)"
             @click="clickRenameCategory" />
       </div>
-    </Modal>
+    </FullscreenModal>
 
-    <Modal
+    <FullscreenModal
         :shown="showDeleteCategoryModal"
         @click-out="clickCancelDeleteCategory">
       <h1>Delete category</h1>
@@ -84,7 +84,7 @@
             colour="var(--negative-colour)"
             @click="clickDeleteCategory" />
       </div>
-    </Modal>
+    </FullscreenModal>
   </NavPage>
 </template>
 
@@ -98,8 +98,8 @@
   import RowButton from '@/components/RowButton.vue';
   import IconHeader from '@/components/IconHeader.vue';
   import ActionButton from '@/components/ActionButton.vue';
-  import Dropdown from '@/components/Dropdown.vue';
-  import Modal from '@/components/Modal.vue';
+  import DropdownList from '@/components/DropdownList.vue';
+  import FullscreenModal from '@/components/FullscreenModal.vue';
   import IconButton from '@/components/IconButton.vue';
 
   export default {
@@ -108,8 +108,8 @@
       RowButton,
       IconHeader,
       ActionButton,
-      Dropdown,
-      Modal,
+      DropdownList,
+      FullscreenModal,
       IconButton,
     },
     data() {

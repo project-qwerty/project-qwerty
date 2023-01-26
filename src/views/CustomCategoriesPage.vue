@@ -13,7 +13,7 @@
             text="New"
             @click="showNewCategoryModal = true" />
 
-        <Dropdown
+        <DropdownList
             :options="[
               { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
             ]"
@@ -28,7 +28,7 @@
         icon="list"
         :iconColour="Colours.stringToColour(categoryName)" />
 
-    <Modal
+    <FullscreenModal
         :shown="showNewCategoryModal"
         @click-out="cleanUpCreateCategory">
       <h1>Add category</h1>
@@ -46,7 +46,7 @@
             :enabled="Validation.isValidCategoryName(inputCategoryName)"
             @click="clickCreateCategory" />
       </div>
-    </Modal>
+    </FullscreenModal>
 
     <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
   </NavPage>
@@ -59,20 +59,20 @@
   import Validation from '@/functions/Validation.js';
 
   import NavPage from '@/components/NavPage.vue';
-  import Modal from '@/components/Modal.vue';
+  import FullscreenModal from '@/components/FullscreenModal.vue';
   import ActionButton from '@/components/ActionButton.vue';
   import IconHeader from '@/components/IconHeader.vue';
   import RowButton from '@/components/RowButton.vue';
-  import Dropdown from '@/components/Dropdown.vue';
+  import DropdownList from '@/components/DropdownList.vue';
 
   export default {
     components: {
       NavPage,
-      Modal,
+      FullscreenModal,
       ActionButton,
       IconHeader,
       RowButton,
-      Dropdown,
+      DropdownList,
     },
     data () {
       return {

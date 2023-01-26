@@ -7,7 +7,7 @@ module.exports = {
     // override/add rules settings here, such as:
     // 'vue/no-unused-vars': 'error'
 
-    // legit changes
+    // customized
     'vue/html-closing-bracket-newline': ['warn', {
       'singleline': 'never',
       'multiline': 'never',
@@ -22,12 +22,11 @@ module.exports = {
       'max': 2,
     }],
 
-
+    // disabled
     'vue/singleline-html-element-content-newline': 'off',
 
     // temporarily disabled
     'vue/html-indent': 'off',
-    'vue/multi-word-component-names': 'off',
     'vue/max-attributes-per-line': 'off',
     'vue/first-attribute-linebreak': 'off',
     'vue/attribute-hyphenation': 'off',

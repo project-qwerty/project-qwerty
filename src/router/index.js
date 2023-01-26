@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Practice from '../views/Practice.vue'
-import Settings from '../views/Settings.vue'
-import SelectCategories from '../views/SelectCategories.vue'
-import CustomCategories from '../views/CustomCategories.vue'
-import CustomCategory from '../views/CustomCategory.vue'
-import About from '../views/About.vue'
-import PageNotFound from '../views/PageNotFound.vue'
+import HomePage from '../views/HomePage.vue'
+import PracticePage from '../views/PracticePage.vue'
+import SettingsPage from '../views/SettingsPage.vue'
+import SelectCategoriesPage from '../views/SelectCategoriesPage.vue'
+import CustomCategoriesPage from '../views/CustomCategoriesPage.vue'
+import CustomCategoryPage from '../views/CustomCategoryPage.vue'
+import AboutPage from '../views/AboutPage.vue'
+import PageNotFoundPage from '../views/PageNotFoundPage.vue'
 
 Vue.use(VueRouter)
 
@@ -15,42 +15,42 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home,
+    component: HomePage,
   },
   {
     path: '/about',
     name: 'about',
-    component: About,
+    component: AboutPage,
   },
   {
     path: '/select-categories',
     name: 'select-categories',
-    component: SelectCategories,
+    component: SelectCategoriesPage,
   },
   {
     path: '/practice',
     name: 'practice',
-    component: Practice,
+    component: PracticePage,
   },
   {
     path: '/settings',
     name: 'settings',
-    component: Settings,
+    component: SettingsPage,
   },
   {
     path: '/custom-categories',
     name: 'custom-categories',
-    component: CustomCategories,
+    component: CustomCategoriesPage,
   },
   {
     path: '/custom-categories/:name',
     name: 'custom-category',
-    component: CustomCategory,
+    component: CustomCategoryPage,
   },
   {
     path: '*',
     name: '404',
-    component: PageNotFound,
+    component: PageNotFoundPage,
   },
 ]
 

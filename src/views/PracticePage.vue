@@ -31,13 +31,13 @@
     </div>
 
     <div class="keyboard-wrapper">
-      <Keyboard
+      <PracticeKeyboard
           :enabledKeys="enabledKeys"
           :uppercase="settings.wordDisplayCapitalization === 'UPPERCASE'"
           @keystroke="handleKeystroke($event)" />
     </div>
 
-    <Modal
+    <FullscreenModal
         :shown="showNextWordModal"
         width="600px">
       <div class="modal-contents">
@@ -51,9 +51,9 @@
               @click="clickNextWord" />
         </div>
       </div>
-    </Modal>
+    </FullscreenModal>
 
-    <Modal
+    <FullscreenModal
         :shown="showFinishedModal"
         width="600px">
       <div class="modal-contents">
@@ -73,9 +73,9 @@
               @click="clickRepeat" />
         </div>
       </div>
-    </Modal>
+    </FullscreenModal>
 
-    <Modal
+    <FullscreenModal
         width="400px"
         height="300px"
         :shown="showNoKeyboardModal">
@@ -90,7 +90,7 @@
               @click="showNoKeyboardModal = false" />
         </div>
       </div>
-    </Modal>
+    </FullscreenModal>
 
   </main>
 </template>
@@ -100,16 +100,16 @@
   import BuiltInCategories from '@/functions/BuiltInCategories.js';
   import LocalStorage from '@/functions/LocalStorage.js';
 
-  import Keyboard from '@/components/Keyboard.vue';
+  import PracticeKeyboard from '@/components/PracticeKeyboard.vue';
   import IconButton from '@/components/IconButton.vue';
-  import Modal from '@/components/Modal.vue';
+  import FullscreenModal from '@/components/FullscreenModal.vue';
   import ActionButton from '@/components/ActionButton.vue';
 
   export default {
     components: {
-      Keyboard,
+      PracticeKeyboard,
       IconButton,
-      Modal,
+      FullscreenModal,
       ActionButton,
     },
     data() {
