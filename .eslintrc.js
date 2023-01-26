@@ -21,6 +21,7 @@ module.exports = {
     'no-multiple-empty-lines': ['warn', {
       'max': 2,
     }],
+    'comma-dangle': ['warn', 'always-multiline'],
 
     // disabled
     'vue/singleline-html-element-content-newline': 'off',

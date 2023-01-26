@@ -43,11 +43,11 @@
     data() {
       return {
         navLinks: [
-          { path: '/',                  text: 'Project QWERTY', icon: 'house',         bold: true,  },
-          { path: '/select-categories', text: 'Practice',       icon: 'play',          bold: false, },
-          { path: '/custom-categories', text: 'Customise',      icon: 'hand-sparkles', bold: false, },
-          { path: '/settings',          text: 'Settings',       icon: 'gear',          bold: false, },
-          { path: '/about',             text: 'About',          icon: 'circle-info',   bold: false, },
+          { path: '/',                  text: 'Project QWERTY', icon: 'house',         bold: true  },
+          { path: '/select-categories', text: 'Practice',       icon: 'play',          bold: false },
+          { path: '/custom-categories', text: 'Customise',      icon: 'hand-sparkles', bold: false },
+          { path: '/settings',          text: 'Settings',       icon: 'gear',          bold: false },
+          { path: '/about',             text: 'About',          icon: 'circle-info',   bold: false },
         ],
         menuExpanded: false,
       }
@@ -59,7 +59,7 @@
       handleShowMenu() {
         this.menuExpanded = true;
       },
-    }
+    },
   }
 </script>
 

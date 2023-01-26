@@ -312,7 +312,7 @@
             this.displaySecondsRemaining -= 1;
             this.alreadyCountingDown = false;
           },
-          1000
+          1000,
         );
       },
     },

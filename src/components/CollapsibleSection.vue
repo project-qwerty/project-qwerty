@@ -15,7 +15,7 @@
     props: {
       summary: {
         type: String,
-      }
+      },
     },
   }
 </script>
