@@ -2,8 +2,8 @@
   <div class="wrapper">
     <img :src="require('@/assets/img/ipad-shadow-cropped.png')" />
     <div class="background">
-      <div class="upper"></div>
-      <div class="lower"></div>
+      <div class="upper" />
+      <div class="lower" />
     </div>
   </div>
 </template>

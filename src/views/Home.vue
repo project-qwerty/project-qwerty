@@ -6,7 +6,7 @@
       <div>
         <h1>Spelling practice for people with aphasia</h1>
         <div class="button-row">
-          <div class="balancer"></div>
+          <div class="balancer" />
           <ActionButton
               class="start-button"
               text="Start"

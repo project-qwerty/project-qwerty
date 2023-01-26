@@ -27,7 +27,7 @@
       </router-link>
     </nav>
     <main class="page">
-      <slot></slot>
+      <slot />
     </main>
   </div>
 </template>
