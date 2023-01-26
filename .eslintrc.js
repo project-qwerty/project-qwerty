@@ -24,6 +24,7 @@ module.exports = {
 
     // disabled
     'vue/singleline-html-element-content-newline': 'off',
+    'vue/require-default-prop': 'off',
 
     // temporarily disabled
     'vue/html-indent': 'off',
@@ -32,7 +33,6 @@ module.exports = {
     'vue/attribute-hyphenation': 'off',
     'vue/html-self-closing': 'off',
     'vue/order-in-components': 'off',
-    'vue/require-default-prop': 'off',
 
     // pains in the ass
     'no-undef': 'off',
