@@ -1,55 +1,57 @@
 <template>
-  <Nav>
+  <NavPage>
     <header class="title-controls-header">
       <IconHeader
           text="My categories"
           icon="pen"
-          iconColour="var(--primary-colour)"
+          icon-colour="var(--primary-colour)"
           :major="true" />
 
       <div class="controls">
         <ActionButton
             icon="plus"
             text="New"
-            v-on:click="showNewCategoryModal = true" />
+            @click="showNewCategoryModal = true" />
 
-        <Dropdown
+        <DropdownList
             :options="[
               { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
             ]"
-            v-on:click="handleDropdownClick" />
+            @click="handleDropdownClick" />
       </div>
     </header>
 
-    <RowButton class="custom-category faint-border-bottom"
-        v-for="(categoryName, index) in getCategories()" v-bind:key="index"
-        v-on:click="$router.push('/custom-categories/' + categoryName)"
+    <RowButton
+        v-for="(categoryName, index) in getCategories()"
+        :key="index"
+        class="custom-category faint-border-bottom"
         :text="categoryName"
         icon="list"
-        :iconColour="Colours.stringToColour(categoryName)" />
+        :icon-colour="Colours.stringToColour(categoryName)"
+        @click="$router.push('/custom-categories/' + categoryName)" />
 
-    <Modal
+    <FullscreenModal
         :shown="showNewCategoryModal"
-        v-on:click-out="cleanUpCreateCategory">
+        @click-out="cleanUpCreateCategory">
       <h1>Add category</h1>
       <input
+          v-model="inputCategoryName"
           class="qwerty-text-input"
-          placeholder="New category"
-          v-model="inputCategoryName">
+          placeholder="New category" />
       <div class="buttons-row">
         <ActionButton
             text="Cancel"
             :major="false"
-            v-on:click="cleanUpCreateCategory" />
+            @click="cleanUpCreateCategory" />
         <ActionButton
             text="Create"
             :enabled="Validation.isValidCategoryName(inputCategoryName)"
-            v-on:click="clickCreateCategory" />
+            @click="clickCreateCategory" />
       </div>
-    </Modal>
+    </FullscreenModal>
 
-    <input ref="file-picker" type="file" multiple @change="handleImportFiles" style="display: none;">
-  </Nav>
+    <input ref="file-picker" type="file" multiple style="display: none;" @change="handleImportFiles" />
+  </NavPage>
 </template>
 
 
@@ -58,21 +60,21 @@
   import Colours from '@/functions/Colours.js'
   import Validation from '@/functions/Validation.js';
 
-  import Nav from '@/components/Nav.vue';
-  import Modal from '@/components/Modal.vue';
+  import NavPage from '@/components/NavPage.vue';
+  import FullscreenModal from '@/components/FullscreenModal.vue';
   import ActionButton from '@/components/ActionButton.vue';
   import IconHeader from '@/components/IconHeader.vue';
   import RowButton from '@/components/RowButton.vue';
-  import Dropdown from '@/components/Dropdown.vue';
+  import DropdownList from '@/components/DropdownList.vue';
 
   export default {
     components: {
-      Nav,
-      Modal,
+      NavPage,
+      FullscreenModal,
       ActionButton,
       IconHeader,
       RowButton,
-      Dropdown,
+      DropdownList,
     },
     data () {
       return {

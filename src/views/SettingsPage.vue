@@ -1,14 +1,15 @@
 <template>
-  <Nav>
-    <IconHeader :major="true" text="Settings" icon="gear" iconColour="var(--primary-colour)" />
+  <NavPage>
+    <IconHeader :major="true" text="Settings" icon="gear" icon-colour="var(--primary-colour)" />
 
     <IconHeader text="Words" icon="list" />
     <div class="control-row faint-border-bottom">
       <p>How many <strong>words</strong> would you like to practice?</p>
 
       <div class="control">
-        <ShowCurrentSelector :options="[
-              { label: '5 words',  val: 5, },
+        <ShowCurrentSelector
+            :options="[
+              { label:  '5 words', val:  5, },
               { label: '10 words', val: 10, },
               { label: '15 words', val: 15, },
               { label: '20 words', val: 20, },
@@ -19,8 +20,8 @@
               { label: '45 words', val: 45, },
               { label: '50 words', val: 50, },
             ]"
-            :initialValue="wordsPerSession"
-            v-on:update="wordsPerSession = $event" />
+            :initial-value="wordsPerSession"
+            @update="wordsPerSession = $event" />
       </div>
     </div>
 
@@ -29,17 +30,18 @@
       <p>For how many <strong>seconds</strong> would you like the word to be shown?</p>
 
       <div class="control">
-        <ShowCurrentSelector :options="[
-              { label: 'Always shown', val: 0, },
-              { label: '5 seconds',    val: 5, },
-              { label: '10 seconds',   val: 10, },
-              { label: '15 seconds',   val: 15, },
-              { label: '20 seconds',   val: 20, },
-              { label: '25 seconds',   val: 25, },
-              { label: '30 seconds',   val: 30, },
+        <ShowCurrentSelector
+            :options="[
+              { label: 'Always shown', val:  0, },
+              { label:    '5 seconds', val:  5, },
+              { label:   '10 seconds', val: 10, },
+              { label:   '15 seconds', val: 15, },
+              { label:   '20 seconds', val: 20, },
+              { label:   '25 seconds', val: 25, },
+              { label:   '30 seconds', val: 30, },
             ]"
-            :initialValue="wordDisplayTime"
-            v-on:update="wordDisplayTime = $event" />
+            :initial-value="wordDisplayTime"
+            @update="wordDisplayTime = $event" />
       </div>
     </div>
 
@@ -51,13 +53,14 @@
       </div>
 
       <div class="control">
-        <ShowAllSelector :options="[
+        <ShowAllSelector
+            :options="[
               { label: 'Max.', val: 'MAX', },
               { label: 'Min.', val: 'MIN', },
               { label: 'None', val: 'NONE', },
             ]"
-            :activeValue="assistanceLevel"
-            v-on:update="assistanceLevel = $event" />
+            :active-value="assistanceLevel"
+            @update="assistanceLevel = $event" />
       </div>
     </div>
 
@@ -66,12 +69,13 @@
       <p><strong>How many times</strong> would you like to practice each word?</p>
 
       <div class="control">
-        <ShowAllSelector :options="[
+        <ShowAllSelector
+            :options="[
               { label: '1', val: 1, },
               { label: '3', val: 3, },
             ]"
-            :activeValue="wordRepetitions"
-            v-on:update="wordRepetitions = $event" />
+            :active-value="wordRepetitions"
+            @update="wordRepetitions = $event" />
       </div>
     </div>
 
@@ -80,27 +84,34 @@
       <p>How would you like the words and keyboard to appear?</p>
 
       <div class="control">
-        <ShowAllSelector :options="[
+        <ShowAllSelector
+            :options="[
               { label: 'UPPERCASE', val: 'UPPERCASE', },
               { label: 'lowercase', val: 'LOWERCASE', },
             ]"
-            :activeValue="wordDisplayCapitalization"
-            v-on:update="wordDisplayCapitalization = $event" />
+            :active-value="wordDisplayCapitalization"
+            @update="wordDisplayCapitalization = $event" />
       </div>
     </div>
-  </Nav>
+  </NavPage>
 </template>
 
 
 <script>
   import LocalStorage from '@/functions/LocalStorage.js';
 
-  import Nav from '@/components/Nav.vue';
+  import NavPage from '@/components/NavPage.vue';
   import ShowAllSelector from '@/components/ShowAllSelector.vue';
   import IconHeader from '@/components/IconHeader.vue';
   import ShowCurrentSelector from '@/components/ShowCurrentSelector.vue';
 
   export default {
+    components: {
+      NavPage,
+      ShowAllSelector,
+      IconHeader,
+      ShowCurrentSelector,
+    },
     data() {
       return {
         wordDisplayTime: null,
@@ -115,19 +126,6 @@
           'NONE': 'None: Letter highlighting is turned off.',
         },
       }
-    },
-    created() {
-      this.wordDisplayTime = LocalStorage.getSetting('wordDisplayTime');
-      this.wordsPerSession = LocalStorage.getSetting('wordsPerSession');
-      this.assistanceLevel = LocalStorage.getSetting('assistanceLevel');
-      this.wordRepetitions = LocalStorage.getSetting('wordRepetitions');
-      this.wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
-    },
-    components: {
-      Nav,
-      ShowAllSelector,
-      IconHeader,
-      ShowCurrentSelector,
     },
     // This stores the values into localStorage so that they can be accessed by the keyboard page.
     watch: {
@@ -146,6 +144,13 @@
       wordDisplayCapitalization: function(val) {
         LocalStorage.setSetting('wordDisplayCapitalization', val);
       },
+    },
+    created() {
+      this.wordDisplayTime = LocalStorage.getSetting('wordDisplayTime');
+      this.wordsPerSession = LocalStorage.getSetting('wordsPerSession');
+      this.assistanceLevel = LocalStorage.getSetting('assistanceLevel');
+      this.wordRepetitions = LocalStorage.getSetting('wordRepetitions');
+      this.wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
     },
   }
 </script>

@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "npm run lint && vue-cli-service build",
+    "lint": "npx eslint src/**/*.js src/**/*.vue --max-warnings=0",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -17,10 +18,13 @@
   "devDependencies": {
     "@vue/cli-plugin-router": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
+    "eslint": "^8.31.0",
+    "eslint-plugin-vue": "^9.8.0",
+    "husky": "^8.0.3",
     "vue": "^2.6.14",
     "vue-template-compiler": "^2.6.14"
   },
-    "overrides": {
+  "overrides": {
     "node-ipc@>9.2.1 <10": "9.2.1",
     "node-ipc@>10.1.0": "10.1.0"
   },

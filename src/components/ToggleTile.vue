@@ -1,12 +1,14 @@
 <template>
   <!-- unfortunately these can't be <button>s because they contain divs -->
-  <div class="tile-outer"
+  <div
+      class="tile-outer"
       :style="componentStyle()"
-      v-on:click="onClick">
+      @click="onClick">
     <div class="tile-middle">
       <div class="tile-inner">
-        <div class="selected-check"
-            v-if="enabled">
+        <div
+            v-if="enabled"
+            class="selected-check">
           <font-awesome-icon icon="check" />
         </div>
         <div class="icon">

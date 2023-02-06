@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="$emit('click')">
+  <button @click="$emit('click')">
     <font-awesome-icon class="icon" :icon="icon" />
   </button>
 </template>
@@ -7,9 +7,11 @@
 
 <script>
   export default {
-    props: [
-      'icon',
-    ],
+    props: {
+      icon: {
+        type: String,
+      },
+    },
   }
 </script>
 

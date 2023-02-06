@@ -5,7 +5,8 @@
         <font-awesome-icon class="toggle-icon" icon="bars" />
       </button>
     </nav>
-    <nav class="side-bar faint-border-right"
+    <nav
+        class="side-bar faint-border-right"
         :class="{
           collapsed: !menuExpanded,
         }">
@@ -15,7 +16,8 @@
         </button>
       </div>
       <router-link
-          v-for="button in navLinks" :key="button.path"
+          v-for="button in navLinks"
+          :key="button.path"
           :to="button.path"
           class="faint-border-bottom">
         <RowButton
@@ -27,7 +29,7 @@
       </router-link>
     </nav>
     <main class="page">
-      <slot></slot>
+      <slot />
     </main>
   </div>
 </template>
@@ -43,11 +45,11 @@
     data() {
       return {
         navLinks: [
-          { path: '/',                  text: 'Project QWERTY', icon: 'house',         bold: true,  },
-          { path: '/select-categories', text: 'Practice',       icon: 'play',          bold: false, },
-          { path: '/custom-categories', text: 'Customise',      icon: 'hand-sparkles', bold: false, },
-          { path: '/settings',          text: 'Settings',       icon: 'gear',          bold: false, },
-          { path: '/about',             text: 'About',          icon: 'circle-info',   bold: false, },
+          { path: '/',                  text: 'Project QWERTY', icon: 'house',         bold: true  },
+          { path: '/select-categories', text: 'Practice',       icon: 'play',          bold: false },
+          { path: '/custom-categories', text: 'Customise',      icon: 'hand-sparkles', bold: false },
+          { path: '/settings',          text: 'Settings',       icon: 'gear',          bold: false },
+          { path: '/about',             text: 'About',          icon: 'circle-info',   bold: false },
         ],
         menuExpanded: false,
       }
@@ -59,7 +61,7 @@
       handleShowMenu() {
         this.menuExpanded = true;
       },
-    }
+    },
   }
 </script>
 

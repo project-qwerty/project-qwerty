@@ -1,13 +1,15 @@
 <template>
-  <div class="overlay"
+  <div
+      class="overlay"
       :class="{ hidden: !shown, }">
-    <div ref="modal"
+    <div
+        ref="modal"
         class="modal"
         :style="{
           '--width': width,
           '--height': height,
         }">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>
@@ -27,6 +29,12 @@
       height: {
         type: String,
         default: 'initial',
+      },
+    },
+    watch: {
+      shown: function() {
+        // prevent scrolling the underlying page when modal is shown
+        document.body.style.overflow = this.shown ? 'hidden' : 'auto';
       },
     },
     created() {
@@ -54,12 +62,6 @@
         if (this.shown && !clickIsInsideModal) {
           this.$emit('click-out');
         }
-      },
-    },
-    watch: {
-      shown: function() {
-        // prevent scrolling the underlying page when modal is shown
-        document.body.style.overflow = this.shown ? 'hidden' : 'auto';
       },
     },
   }

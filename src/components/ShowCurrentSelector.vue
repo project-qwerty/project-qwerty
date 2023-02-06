@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <button
-        v-on:click="minusClicked"
-        :class="{ disabled: firstOptionIsSelected }">
+        :class="{ disabled: firstOptionIsSelected }"
+        @click="minusClicked">
       <font-awesome-icon class="icon" icon="minus" />
     </button>
     <div class="display faint-border">{{ selectedOption.label }}</div>
     <button
-        v-on:click="plusClicked"
-        :class="{ disabled: lastOptionIsSelected }">
+        :class="{ disabled: lastOptionIsSelected }"
+        @click="plusClicked">
       <font-awesome-icon class="icon" icon="plus" />
     </button>
   </div>
@@ -17,24 +17,19 @@
 
 <script>
   export default {
-    props: [
-      'options',  // options must be an array of objects like {label: 'abc', val: 123}
-      'initialValue',
-    ],
+    props: {
+      options: {
+        // options must be an array of objects like {label: 'abc', val: 123}
+        type: Array,
+      },
+      initialValue: {
+        type: String,
+      },
+    },
     data() {
       return {
         activeIndex: 0,
       };
-    },
-    created() {
-      const indexOfInitialValue = this.options.findIndex(opt => opt.val === this.initialValue);
-
-      // leave it at the default if the supplied value isn't an option
-      if (indexOfInitialValue === -1) {
-        return;
-      }
-
-      this.activeIndex = indexOfInitialValue;
     },
     computed: {
       selectedOption() {
@@ -46,6 +41,16 @@
       lastOptionIsSelected() {
         return this.activeIndex === this.options.length - 1;
       },
+    },
+    created() {
+      const indexOfInitialValue = this.options.findIndex(opt => opt.val === this.initialValue);
+
+      // leave it at the default if the supplied value isn't an option
+      if (indexOfInitialValue === -1) {
+        return;
+      }
+
+      this.activeIndex = indexOfInitialValue;
     },
     methods: {
       minusClicked() {

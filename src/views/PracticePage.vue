@@ -4,17 +4,17 @@
     <header>
       <IconButton
           icon="x"
-          v-on:click="$router.back()" />
+          @click="$router.back()" />
 
       <ActionButton
+          v-if="showShowWordButton"
           class="show-word-button"
           icon="eye"
           text="Show word"
           :major="false"
-          v-if="showShowWordButton"
-          v-on:click="clickShowWordButton"/>
+          @click="clickShowWordButton" />
 
-      <div class="timer-display" v-if="showTimer">
+      <div v-if="showTimer" class="timer-display">
         <font-awesome-icon icon="stopwatch" />
         <span>{{ timerDisplay }}</span>
       </div>
@@ -23,19 +23,22 @@
     </header>
 
     <div class="readout">
-      <div class="target"
-          :class="{ invisible: !showTargetWord }">{{ renderedText(targetWord) }}</div>
+      <div
+          class="target"
+          :class="{ invisible: !showTargetWord }">
+        {{ renderedText(targetWord) }}
+      </div>
       <div class="input">{{ renderedInput(input) }}</div>
     </div>
 
     <div class="keyboard-wrapper">
-      <Keyboard
-          :enabledKeys="enabledKeys"
+      <PracticeKeyboard
+          :enabled-keys="enabledKeys"
           :uppercase="settings.wordDisplayCapitalization === 'UPPERCASE'"
-          v-on:keystroke="handleKeystroke($event)" />
+          @keystroke="handleKeystroke($event)" />
     </div>
 
-    <Modal
+    <FullscreenModal
         :shown="showNextWordModal"
         width="600px">
       <div class="modal-contents">
@@ -46,12 +49,12 @@
         <div class="button-row">
           <ActionButton
               text="Next word"
-              v-on:click="clickNextWord" />
+              @click="clickNextWord" />
         </div>
       </div>
-    </Modal>
+    </FullscreenModal>
 
-    <Modal
+    <FullscreenModal
         :shown="showFinishedModal"
         width="600px">
       <div class="modal-contents">
@@ -63,17 +66,17 @@
           <ActionButton
               icon="check"
               text="Finish"
-              v-on:click="clickFinish" />
+              @click="clickFinish" />
           <ActionButton
               icon="arrow-rotate-right"
               text="Repeat"
               :major="false"
-              v-on:click="clickRepeat" />
+              @click="clickRepeat" />
         </div>
       </div>
-    </Modal>
+    </FullscreenModal>
 
-    <Modal
+    <FullscreenModal
         width="400px"
         height="300px"
         :shown="showNoKeyboardModal">
@@ -85,10 +88,10 @@
         <div class="button-row">
           <ActionButton
               text="Ok"
-              v-on:click="showNoKeyboardModal = false" />
+              @click="showNoKeyboardModal = false" />
         </div>
       </div>
-    </Modal>
+    </FullscreenModal>
 
   </main>
 </template>
@@ -98,16 +101,16 @@
   import BuiltInCategories from '@/functions/BuiltInCategories.js';
   import LocalStorage from '@/functions/LocalStorage.js';
 
-  import Keyboard from '@/components/Keyboard.vue';
+  import PracticeKeyboard from '@/components/PracticeKeyboard.vue';
   import IconButton from '@/components/IconButton.vue';
-  import Modal from '@/components/Modal.vue';
+  import FullscreenModal from '@/components/FullscreenModal.vue';
   import ActionButton from '@/components/ActionButton.vue';
 
   export default {
     components: {
-      Keyboard,
+      PracticeKeyboard,
       IconButton,
-      Modal,
+      FullscreenModal,
       ActionButton,
     },
     data() {
@@ -121,8 +124,10 @@
         },
 
         sound: {
+          /* eslint-disable no-undef */
           correct: new Audio(require('@/assets/audio/correct.mp3')),
           wrong: new Audio(require('@/assets/audio/wrong.mp3')),
+          /* eslint-enable no-undef */
         },
 
         words: null,
@@ -137,68 +142,6 @@
 
         showNoKeyboardModal: false,
       }
-    },
-    created() {
-      // load words
-      this.words = [];
-
-      const builtInSelected = LocalStorage.getSelectedBuiltInCategoryNames();
-
-      for (const categoryName of builtInSelected) {
-        const words = BuiltInCategories[categoryName].words;
-        this.words = this.words.concat(words);
-      }
-
-      const customSelected = LocalStorage.getSelectedCustomCategoryNames();
-
-      for (const categoryName of customSelected) {
-        const words = LocalStorage.getCustomCategoryUsableWords(categoryName);
-        this.words = this.words.concat(words);
-      }
-
-      // if there's nothing selected and the user navigates directly to /practice (ergo there are no words to practice),
-      // just use all of the built in lists
-      if (this.words.length === 0) {
-        for (const categoryName in BuiltInCategories) {
-          const words = BuiltInCategories[categoryName].words;
-          this.words = this.words.concat(words);
-        }
-      }
-
-      // normalise words to lowercase (to match the case of this.letters)
-      this.words = this.words.map(word => word.toLowerCase());
-      // remove any leading or trailing spaces
-      this.words = this.words.map(word => word.trim());
-
-      // shuffle words
-      function shuffle(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [array[i], array[j]] = [array[j], array[i]];
-        }
-      }
-
-      shuffle(this.words);
-
-      // pad words
-      while (this.words.length < this.settings.wordsPerSession) {
-        let wordsCopy = [...this.words];
-        shuffle(wordsCopy);
-        this.words = this.words.concat(wordsCopy);
-      }
-
-      // truncate words
-      this.words = this.words.slice(0, this.settings.wordsPerSession);
-
-
-      // initialise timer
-      this.displaySecondsRemaining = LocalStorage.getSetting('wordDisplayTime');
-
-      // initialise keyboard handler
-      window.addEventListener('keydown', this.handleKeyDown);
-    },
-    beforeDestroy() {
-      window.removeEventListener('keydown', this.handleKeyDown);
     },
     computed: {
       enabledKeys() {
@@ -310,9 +253,71 @@
             this.displaySecondsRemaining -= 1;
             this.alreadyCountingDown = false;
           },
-          1000
+          1000,
         );
       },
+    },
+    created() {
+      // load words
+      this.words = [];
+
+      const builtInSelected = LocalStorage.getSelectedBuiltInCategoryNames();
+
+      for (const categoryName of builtInSelected) {
+        const words = BuiltInCategories[categoryName].words;
+        this.words = this.words.concat(words);
+      }
+
+      const customSelected = LocalStorage.getSelectedCustomCategoryNames();
+
+      for (const categoryName of customSelected) {
+        const words = LocalStorage.getCustomCategoryUsableWords(categoryName);
+        this.words = this.words.concat(words);
+      }
+
+      // if there's nothing selected and the user navigates directly to /practice (ergo there are no words to practice),
+      // just use all of the built in lists
+      if (this.words.length === 0) {
+        for (const categoryName in BuiltInCategories) {
+          const words = BuiltInCategories[categoryName].words;
+          this.words = this.words.concat(words);
+        }
+      }
+
+      // normalise words to lowercase (to match the case of this.letters)
+      this.words = this.words.map(word => word.toLowerCase());
+      // remove any leading or trailing spaces
+      this.words = this.words.map(word => word.trim());
+
+      // shuffle words
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
+
+      shuffle(this.words);
+
+      // pad words
+      while (this.words.length < this.settings.wordsPerSession) {
+        let wordsCopy = [...this.words];
+        shuffle(wordsCopy);
+        this.words = this.words.concat(wordsCopy);
+      }
+
+      // truncate words
+      this.words = this.words.slice(0, this.settings.wordsPerSession);
+
+
+      // initialise timer
+      this.displaySecondsRemaining = LocalStorage.getSetting('wordDisplayTime');
+
+      // initialise keyboard handler
+      window.addEventListener('keydown', this.handleKeyDown);
+    },
+    beforeDestroy() {
+      window.removeEventListener('keydown', this.handleKeyDown);
     },
     methods: {
       renderedText(text) {

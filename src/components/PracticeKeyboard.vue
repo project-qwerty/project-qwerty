@@ -1,27 +1,29 @@
 <template>
   <div class="keyboard">
-      <!-- ontouchstart="" makes the :active class trigger on iOS -->
-      <button
-          ontouchstart=""
-          v-for="key in keys" v-bind:key="key"
-          v-on:click="handleKeystroke(key)"
-          :class="{ disabled: !enabledKeys.includes(key), }"
-          :style="'grid-area: ' + (key === ' ' ? 'space' : key)">
+    <!-- ontouchstart="" makes the :active class trigger on iOS -->
+    <button
+        v-for="key in keys"
+        :key="key"
+        ontouchstart=""
+        :class="{ disabled: !enabledKeys.includes(key), }"
+        :style="'grid-area: ' + (key === ' ' ? 'space' : key)"
+        @click="handleKeystroke(key)">
 
-        <font-awesome-icon
-            v-if="key === 'backspace'"
-            class="backspace-icon"
-            icon="delete-left"
-            viewBox="0 0 600 500" />
-        <!-- the viewBox makes the icon scale with the keyboard size -->
-        <!-- the magic numbers control the icon location and are manually tuned in tandem with the element style -->
-        <!-- doing the letters in an svg as well enables scaling with the keyboard using the same system -->
-        <!-- https://css-tricks.com/fitting-text-to-a-container/#aa-just-use-svg -->
-        <svg viewBox="0 0 15 40"
-            v-if="key !== 'backspace'">
-          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">{{ renderedCharacter(key) }}</text>
-        </svg>
-      </button>
+      <font-awesome-icon
+          v-if="key === 'backspace'"
+          class="backspace-icon"
+          icon="delete-left"
+          viewBox="0 0 600 500" />
+      <!-- the viewBox makes the icon scale with the keyboard size -->
+      <!-- the magic numbers control the icon location and are manually tuned in tandem with the element style -->
+      <!-- doing the letters in an svg as well enables scaling with the keyboard using the same system -->
+      <!-- https://css-tricks.com/fitting-text-to-a-container/#aa-just-use-svg -->
+      <svg
+          v-if="key !== 'backspace'"
+          viewBox="0 0 15 40">
+        <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">{{ renderedCharacter(key) }}</text>
+      </svg>
+    </button>
   </div>
 </template>
 

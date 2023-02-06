@@ -3,7 +3,7 @@
     <details>
       <summary>{{ summary }}</summary>
       <div class="content-wrapper">
-        <slot></slot>
+        <slot />
       </div>
     </details>
   </section>
@@ -12,9 +12,11 @@
 
 <script>
   export default {
-    props: [
-      'summary',
-    ],
+    props: {
+      summary: {
+        type: String,
+      },
+    },
   }
 </script>
 

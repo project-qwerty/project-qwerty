@@ -1,15 +1,15 @@
 <template>
-  <Nav>
+  <NavPage>
     <RowButton
         class="back-button"
         icon="chevron-left"
         text="Back"
-        v-on:click="$router.back()" />
+        @click="$router.back()" />
 
     <header class="title-controls-header faint-border-bottom">
       <IconHeader
           icon="list"
-          :iconColour="Colours.stringToColour(categoryName)"
+          :icon-colour="Colours.stringToColour(categoryName)"
           :text="categoryName" />
 
       <div class="controls">
@@ -17,75 +17,76 @@
             class="new-word-button"
             icon="plus"
             text="New word"
-            v-on:click="clickAddWord" />
+            @click="clickAddWord" />
 
-        <Dropdown
+        <DropdownList
             class="options-menu"
             :options="[
               { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
               { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
               { label: 'Delete category', icon: 'trash-can', action: 'delete' },
             ]"
-            v-on:click="handleDropdownClick" />
+            @click="handleDropdownClick" />
       </div>
     </header>
 
     <div class="faint-border-bottom">
       <div
-          class="word-row"
-          v-for="(word, index) in wordValues" v-bind:key="index">
+          v-for="(word, index) in wordValues"
+          :key="index"
+          class="word-row">
 
         <input
+            v-model="wordValues[index]"
             class="qwerty-text-input"
             :class="{ invalid: !Validation.isValidWord(word) }"
             placeholder="new word"
-            v-model="wordValues[index]"
-            @input="updateWord(index)">
+            @input="updateWord(index)" />
 
         <IconButton
             icon="x"
-            v-on:click="clickDeleteWord(index)" />
+            @click="clickDeleteWord(index)" />
 
       </div>
     </div>
 
-    <Modal
+    <FullscreenModal
         :shown="showRenameCategoryModal"
-        v-on:click-out="clickCancelRenameCategory">
+        @click-out="clickCancelRenameCategory">
       <h1>Rename category</h1>
       <input
+          v-model="inputCategoryName"
           class="qwerty-text-input modal-text-input"
-          placeholder="New category name"
-          v-model="inputCategoryName">
+          placeholder="New category name" />
       <div class="buttons-row">
         <ActionButton
             text="Cancel"
             :major="false"
-            v-on:click="clickCancelRenameCategory" />
+            @click="clickCancelRenameCategory" />
         <ActionButton
             text="Rename"
             :enabled="Validation.isValidCategoryName(inputCategoryName)"
-            v-on:click="clickRenameCategory" />
+            @click="clickRenameCategory" />
       </div>
-    </Modal>
+    </FullscreenModal>
 
-    <Modal
+    <FullscreenModal
         :shown="showDeleteCategoryModal"
-        v-on:click-out="clickCancelDeleteCategory">
+        @click-out="clickCancelDeleteCategory">
       <h1>Delete category</h1>
       <p class="delete-warning">Are you sure you want to delete <strong>{{ categoryName }}</strong>? This can't be undone.</p>
       <div class="buttons-row">
         <ActionButton
             text="Cancel"
             :major="false"
-            v-on:click="clickCancelDeleteCategory" />
+            @click="clickCancelDeleteCategory" />
         <ActionButton
             text="Delete"
             colour="var(--negative-colour)"
-            v-on:click="clickDeleteCategory" />
+            @click="clickDeleteCategory" />
       </div>
-    </Modal>
-  </Nav>
+    </FullscreenModal>
+  </NavPage>
 </template>
 
 
@@ -94,22 +95,22 @@
   import Colours from '@/functions/Colours.js'
   import Validation from '@/functions/Validation.js';
 
-  import Nav from '@/components/Nav.vue';
+  import NavPage from '@/components/NavPage.vue';
   import RowButton from '@/components/RowButton.vue';
   import IconHeader from '@/components/IconHeader.vue';
   import ActionButton from '@/components/ActionButton.vue';
-  import Dropdown from '@/components/Dropdown.vue';
-  import Modal from '@/components/Modal.vue';
+  import DropdownList from '@/components/DropdownList.vue';
+  import FullscreenModal from '@/components/FullscreenModal.vue';
   import IconButton from '@/components/IconButton.vue';
 
   export default {
     components: {
-      Nav,
+      NavPage,
       RowButton,
       IconHeader,
       ActionButton,
-      Dropdown,
-      Modal,
+      DropdownList,
+      FullscreenModal,
       IconButton,
     },
     data() {

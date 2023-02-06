@@ -1,10 +1,10 @@
 <template>
   <div class="container faint-border">
     <button
-        v-for="option in options" :key="option.val"
+        v-for="option in options"
+        :key="option.val"
         :class="{'active': option.val === activeValue}"
-        v-on:click="$emit('update', option.val)"
-        >
+        @click="$emit('update', option.val)">
       {{ option.label }}
     </button>
   </div>
@@ -13,10 +13,15 @@
 
 <script>
   export default {
-    props: [
-      'options',  // options must be an array of objects like {label: 'abc', val: 123}
-      'activeValue',
-    ],
+    props: {
+      options: {
+        // options must be an array of objects like {label: 'abc', val: 123}
+        type: Array,
+      },
+      activeValue: {
+        type: String,
+      },
+    },
   }
 </script>
 
