@@ -1,13 +1,11 @@
-import Vue from 'vue'
-
 import BuiltInCategories from '@/functions/BuiltInCategories.js';
 import Validation from '@/functions/Validation.js';
 
 // error messages go to Sentry, so we have to make sure that personal data (eg. category names/words) aren't in them
 function scrubbedMessage(message, parameter) {
-  const inDev = Vue.config.devtools; // returns true only if running locally
+  const inProd = window.location.host === 'projectqwerty.com';
 
-  if (inDev) {
+  if (!inProd) {
     message = `${message}: "${parameter}"`;
   }
 
