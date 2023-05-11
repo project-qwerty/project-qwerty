@@ -21,10 +21,11 @@
       options: {
         // options must be an array of objects like {label: 'abc', val: 123}
         type: Array,
+        required: true,
       },
-      initialValue: {
-        type: String,
-      },
+      // the type of `initialValue` should be the same as the type of the `val`s in `options`
+      /* eslint-disable-next-line vue/require-prop-types */
+      initialValue: {},
     },
     data() {
       return {

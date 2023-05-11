@@ -17,10 +17,11 @@
       options: {
         // options must be an array of objects like {label: 'abc', val: 123}
         type: Array,
+        required: true,
       },
-      activeValue: {
-        type: String,
-      },
+      // the type of `activeValue` should be the same as the type of the `val`s in `options`
+      /* eslint-disable-next-line vue/require-prop-types */
+      activeValue: {},
     },
   }
 </script>
