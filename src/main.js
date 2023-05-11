@@ -12,20 +12,22 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 
-Sentry.init({
-  Vue,
-  dsn: 'https://beaa4ea7e54e4c7a9fc7d944551fd850@o4505056613564416.ingest.sentry.io/4505056616054784',
-  integrations: [
-    new Sentry.BrowserTracing({
-      routingInstrumentation: Sentry.vueRouterInstrumentation(router),
-      tracePropagationTargets: ['projectqwerty.com', /^\//],
-    }),
-  ],
-  // Set tracesSampleRate to 1.0 to capture 100%
-  // of transactions for performance monitoring.
-  // We recommend adjusting this value in production
-  tracesSampleRate: 0.2,
-});
+if (window.location.host === 'projectqwerty.com') {
+  Sentry.init({
+    Vue,
+    dsn: 'https://beaa4ea7e54e4c7a9fc7d944551fd850@o4505056613564416.ingest.sentry.io/4505056616054784',
+    integrations: [
+      new Sentry.BrowserTracing({
+        routingInstrumentation: Sentry.vueRouterInstrumentation(router),
+        tracePropagationTargets: ['projectqwerty.com', /^\//],
+      }),
+    ],
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    // We recommend adjusting this value in production
+    tracesSampleRate: 0.2,
+  });
+}
 
 new Vue({
   router,
