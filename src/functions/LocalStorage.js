@@ -1,6 +1,17 @@
 import BuiltInCategories from '@/functions/BuiltInCategories.js';
 import Validation from '@/functions/Validation.js';
 
+// error messages go to Sentry, so we have to make sure that personal data (eg. category names/words) aren't in them
+function scrubbedMessage(message, parameter) {
+  const inProd = window.location.host === 'projectqwerty.com';
+
+  if (!inProd) {
+    message = `${message}: "${parameter}"`;
+  }
+
+  return message;
+}
+
 // Note: all the functions are top-level in this file so that they can reference each other when necessary.
 // export default mostly just binds them to exported names for external access.
 
@@ -84,7 +95,7 @@ function getCustomCategory(name) {
   const categoryKey = 'custom_categories.' + name;
 
   if (localStorage.getItem(categoryKey) === null) {
-    throw new Error(`not a custom category: "${name}"`);
+    throw new Error(scrubbedMessage('not a custom category', name));
   }
 
   const stringData = localStorage.getItem(categoryKey);
@@ -100,7 +111,7 @@ function createCustomCategory(name) {
   const categoryKey = 'custom_categories.' + name;
 
   if (localStorage.getItem(categoryKey) !== null) {
-    throw new Error(`already a custom category: "${name}"`);
+    throw new Error(scrubbedMessage('already a custom category', name));
   }
 
   localStorage.setItem(categoryKey, '[]');
@@ -110,13 +121,13 @@ function renameCustomCategory(oldName, newName) {
   const oldCategoryKey = 'custom_categories.' + oldName;
 
   if (localStorage.getItem(oldCategoryKey) === null) {
-    throw new Error(`not a custom category: "${oldName}"`);
+    throw new Error(scrubbedMessage('not a custom category', oldName));
   }
 
   const newCategoryKey = 'custom_categories.' + newName;
 
   if (localStorage.getItem(newCategoryKey) !== null) {
-    throw new Error(`already a custom category: "${newName}"`);
+    throw new Error(scrubbedMessage('already a custom category', newName));
   }
 
   const categoryContents = localStorage.getItem(oldCategoryKey);
@@ -128,7 +139,7 @@ function deleteCustomCategory(name) {
   const categoryKey = 'custom_categories.' + name;
 
   if (localStorage.getItem(categoryKey) === null) {
-    throw new Error(`not a custom category: "${name}"`);
+    throw new Error(scrubbedMessage('not a custom category', name));
   }
 
   localStorage.removeItem(categoryKey);
@@ -138,7 +149,7 @@ function addCustomWord(categoryName, word) {
   const categoryKey = 'custom_categories.' + categoryName;
 
   if (localStorage.getItem(categoryKey) === null) {
-    throw new Error(`not a custom category: "${categoryName}"`);
+    throw new Error(scrubbedMessage('not a custom category', categoryName));
   }
 
   const categoryStringData = localStorage.getItem(categoryKey);
@@ -158,14 +169,14 @@ function editCustomWord(categoryName, index, newValue) {
   const categoryKey = 'custom_categories.' + categoryName;
 
   if (localStorage.getItem(categoryKey) === null) {
-    throw new Error(`not a custom category: "${categoryName}"`);
+    throw new Error(scrubbedMessage('not a custom category', categoryName));
   }
 
   const categoryStringData = localStorage.getItem(categoryKey);
   let category = JSON.parse(categoryStringData);
 
   if (index >= category.length) {
-    throw new Error(`index out of bounds: index = "${index}", ${categoryName}.length = ${category.length}`);
+    throw new Error(scrubbedMessage(`custom word index out of bounds (index=${index}, category.length=${category.length})`, categoryName));
   }
 
   category[index] = newValue;
@@ -176,7 +187,7 @@ function deleteCustomWord(categoryName, index) {
   const categoryKey = 'custom_categories.' + categoryName;
 
   if (localStorage.getItem(categoryKey) === null) {
-    throw new Error(`not a custom category: "${categoryName}"`);
+    throw new Error(scrubbedMessage('not a custom category', categoryName));
   }
 
   const categoryStringData = localStorage.getItem(categoryKey);
