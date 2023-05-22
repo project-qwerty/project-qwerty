@@ -26,6 +26,15 @@ if (window.location.host === 'projectqwerty.com') {
     // of transactions for performance monitoring.
     // We recommend adjusting this value in production
     tracesSampleRate: 0.2,
+    beforeSend(event) {
+      if (event.request.url) {
+        event.request.url = event.request.url.replace(
+          /\/custom-categories\/[^/]+/,
+          '/custom-categories/******'
+        );
+      }
+      return event;
+    }
   });
 }
 
