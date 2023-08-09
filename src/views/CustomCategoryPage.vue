@@ -136,6 +136,18 @@
     },
     created() {
       this.categoryName = this.$route.params['name'];
+
+      // make sure the url-supplied category name is a real category
+      const customCategoryNames = LocalStorage.getCustomCategoryNames();
+      if (!customCategoryNames.includes(this.categoryName)) {
+        // replace the current page with the 404 page defined in the router, and don't change the url
+        // this makes it clear to the user what the invalid route is, and keeps the browser back button working right
+        // https://stackoverflow.com/a/68877623
+        this.$router.replace({
+          name: '404',
+          params: { 0: this.$route.path },
+        });
+      }
     },
     methods: {
       loadWords() {
