@@ -86,17 +86,17 @@
 
 
 <script>
-import NavPage from '@/components/NavPage.vue';
-import CollapsibleSection from '@/components/CollapsibleSection.vue';
-import IconHeader from '@/components/IconHeader.vue';
+  import NavPage from '@/components/NavPage.vue';
+  import CollapsibleSection from '@/components/CollapsibleSection.vue';
+  import IconHeader from '@/components/IconHeader.vue';
 
-export default {
-  components: {
-    NavPage,
-    CollapsibleSection,
-    IconHeader,
-  },
-}
+  export default {
+    components: {
+      NavPage,
+      CollapsibleSection,
+      IconHeader,
+    },
+  }
 </script>
 
 
