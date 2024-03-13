@@ -26,6 +26,7 @@
           <img :src="require('@/assets/img/logo-mymi.png')" />
           <img :src="require('@/assets/img/logo-monash-partners.jpg')" />
           <img :src="require('@/assets/img/logo-monash-health.png')" />
+          <img :src="require('@/assets/img/logo-qarc.png')" />
         </div>
         <p>Project QWERTY acknowledges the Traditional Custodians of the land and we pay our respects to them, their culture and their Elders past, present and future.</p>
       </footer>
