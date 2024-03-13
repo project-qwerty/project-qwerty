@@ -27,6 +27,7 @@
           <img :src="require('@/assets/img/logo-monash-partners.jpg')" />
           <img :src="require('@/assets/img/logo-monash-health.png')" />
         </div>
+        <p>Project QWERTY acknowledges the Traditional Custodians of the land and we pay our respects to them, their culture and their Elders past, present and future.</p>
       </footer>
     </div>
     <iPadLogoBox class="ipad-panel" />
@@ -119,6 +120,9 @@
   }
 
   footer .logo-row {
+    margin-top: 24px;
+    margin-bottom: 24px;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
