@@ -4,7 +4,7 @@
     <header>
       <IconButton
           icon="x"
-          @click="$router.back()" />
+          @click="clickExit" />
 
       <ActionButton
           v-if="showShowWordButton"
@@ -50,6 +50,11 @@
           <ActionButton
               text="Next word"
               @click="clickNextWord" />
+          <ActionButton
+              :major="false"
+              icon="xmark"
+              text="Exit"
+              @click="clickExit" />
         </div>
       </div>
     </FullscreenModal>
@@ -369,6 +374,9 @@
         if (this.targetWord !== null) {
           this.displaySecondsRemaining = this.settings.wordDisplayTime;
         }
+      },
+      clickExit() {
+        this.$router.back();
       },
       clickNextWord() {
         this.advanceWord();
