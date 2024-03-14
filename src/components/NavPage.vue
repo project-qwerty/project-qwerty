@@ -1,9 +1,11 @@
 <template>
   <div>
     <nav class="top-bar">
-      <button @click="handleShowMenu">
-        <font-awesome-icon class="toggle-icon" icon="bars" />
-      </button>
+      <ActionButton
+          class="menu-button"
+          :major="false"
+          text="Menu"
+          @click="handleShowMenu" />
     </nav>
     <nav
         class="side-bar faint-border-right"
@@ -11,9 +13,10 @@
           collapsed: !menuExpanded,
         }">
       <div class="hide-menu-bar faint-border-bottom">
-        <button @click="handleHideMenu">
-          <font-awesome-icon class="toggle-icon" icon="xmark" />
-        </button>
+        <div class="menu-text">Menu</div>
+        <IconButton
+            icon="x"
+            @click="handleHideMenu" />
       </div>
       <router-link
           v-for="button in navLinks"
@@ -37,10 +40,14 @@
 
 <script>
   import RowButton from '@/components/RowButton.vue';
+  import ActionButton from '@/components/ActionButton.vue';
+  import IconButton from '@/components/IconButton.vue';
 
   export default {
     components: {
       RowButton,
+      ActionButton,
+      IconButton,
     },
     data() {
       return {
@@ -88,8 +95,12 @@
     box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
   }
 
-  .top-bar > button {
-    font-size: 2rem;
+  .top-bar > .menu-button {
+    margin-right: var(--thin-gap);
+    padding: 0.5rem;
+
+    color: black;
+    font-size: 1.5rem;
   }
 
   .side-bar {
@@ -137,17 +148,17 @@
     height: var(--nav-top-bar-height);
 
     display: flex;
-    justify-content: flex-end;
-    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: var(--thin-gap);
+    padding-right: var(--thin-gap);
+
+    font-size: 1.5rem;
   }
 
-  .side-bar > .hide-menu-bar > button {
-    font-size: 2.5rem;
-
-    /* centre the X */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .side-bar > .hide-menu-bar > .menu-text {
+    font-weight: bold;
+    margin-left: var(--thin-gap);
   }
 
   .toggle-icon {
