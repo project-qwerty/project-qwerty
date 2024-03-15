@@ -557,7 +557,8 @@
     /* this is unfortunately just to get the finished modal buttons repositioning right */
     /* I'm not happy with having another media query at a different size just for this */
     .button-row {
-      flex-direction: column-reverse;
+      flex-direction: column;
+      align-items: stretch;
     }
   }
 
