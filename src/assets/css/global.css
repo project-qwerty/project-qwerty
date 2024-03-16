@@ -101,6 +101,11 @@ button {
   justify-content: space-between;
 
   gap: var(--thin-gap);
+
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 99;
 }
 
 .title-controls-header > .controls {

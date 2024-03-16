@@ -4,7 +4,7 @@
       <IconHeader
           icon="keyboard"
           icon-colour="var(--primary-colour)"
-          text="Let's practice"
+          text="Select category"
           :major="true" />
 
       <div class="controls">
