@@ -19,7 +19,7 @@
         <span>{{ timerDisplay }}</span>
       </div>
 
-      <div>{{ progressDisplay }}</div>
+      <div class="progress-display">{{ progressDisplay }}</div>
     </header>
 
     <div class="readout">
@@ -446,6 +446,13 @@
 
     display: flex;
     gap: 0.5em;
+  }
+
+  header .progress-display {
+    background-color: var(--faint-colour);
+
+    border-radius: 0.5rem;
+    padding: 1rem;
   }
 
   /* readout (word displays) */
