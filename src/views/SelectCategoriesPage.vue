@@ -2,9 +2,9 @@
   <NavPage>
     <header class="title-controls-header">
       <IconHeader
-          icon="keyboard"
           icon-colour="var(--primary-colour)"
-          text="Let's practice"
+          text="Select category"
+          class="title"
           :major="true" />
 
       <div class="controls">
@@ -114,6 +114,11 @@
 
 
 <style scoped>
+  .title {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
   .start-button {
     font-size: 24px;
 
