@@ -34,6 +34,7 @@
     <div class="keyboard-wrapper">
       <PracticeKeyboard
           :enabled-keys="enabledKeys"
+          :highlighted-keys="highlightedKeys"
           :uppercase="settings.wordDisplayCapitalization === 'UPPERCASE'"
           @keystroke="handleKeystroke($event)" />
     </div>
@@ -149,12 +150,13 @@
       }
     },
     computed: {
-      enabledKeys() {
-        const inputIsWrong = this.targetWord !== null
+      inputIsWrong() {
+        return this.targetWord !== null
             && this.input.length === this.targetWord.length
             && this.input !== this.targetWord;
-
-        if (inputIsWrong) {
+      },
+      enabledKeys() {
+        if (this.inputIsWrong) {
           return ['backspace'];
         }
 
@@ -167,6 +169,12 @@
         }
 
         return [this.nextLetter];
+      },
+      highlightedKeys() {
+        if (this.inputIsWrong) {
+          return ['backspace']
+        }
+        return []
       },
       showNextWordModal() {
         return this.input === this.targetWord;
