@@ -99,6 +99,8 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  /* this keeps the usual IconHeader vertically centred when it lacks an icon */
+  align-items: center;
 
   gap: var(--thin-gap);
 }
@@ -121,5 +123,7 @@ button {
 @media screen and (max-width: 640px) {
   .title-controls-header {
     flex-direction: column;
+    /* this unsets align-items because it will otherwise horizontally centre stuff which we don't want */
+    align-items: unset;
   }
 }

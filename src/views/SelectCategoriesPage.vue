@@ -4,7 +4,6 @@
       <IconHeader
           icon-colour="var(--primary-colour)"
           text="Select category"
-          class="title"
           :major="true" />
 
       <div class="controls">
@@ -114,11 +113,6 @@
 
 
 <style scoped>
-  .title {
-    margin-top: auto;
-    margin-bottom: auto;
-  }
-
   .start-button {
     font-size: 24px;
 
