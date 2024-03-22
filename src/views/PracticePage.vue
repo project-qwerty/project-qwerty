@@ -116,10 +116,6 @@
 
 
 <script>
-  // this eslint disable is needed for the zero-width space in the CSS
-  // it has to go here because eslint disable rules don't work in the <style> block
-  /* eslint-disable no-irregular-whitespace */
-
   import BuiltInCategories from '@/functions/BuiltInCategories.js';
   import LocalStorage from '@/functions/LocalStorage.js';
 
@@ -361,7 +357,9 @@
         }
       },
       renderedInput(input) {
-        return this.renderedText(input).replaceAll(' ', '\xa0\u200B\xa0');
+        // the replaceAll makes spaces render even when they're at the start or end and makes them a bit wider for visual clarity
+        // the "OR zero-width-space" makes the input div take up the vertical space even when empty
+        return this.renderedText(input).replaceAll(' ', '\xa0\u200B\xa0') || '​';
       },
       handleKeystroke(key) {
         if (!this.enabledKeys.includes(key)) {
@@ -524,11 +522,6 @@
 
   .readout .input-row .input.error {
     border-bottom-color: var(--negative-colour);
-  }
-
-  /* make the input div take up the vertical space even when empty */
-  .readout .input-row .input:before {
-    content: '​'; /* this is a zero-width space */
   }
 
   /* for when invisible because of the timer */
