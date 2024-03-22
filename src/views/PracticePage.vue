@@ -511,15 +511,6 @@
     margin-right: 1rem;
   }
 
-  @media screen and (max-width: 450px) {
-    .readout .input-row .x-icon {
-      font-size: 32px;
-
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
-    }
-  }
-
   /* this contains the user-typed text */
   .readout .input-row .input {
     font-size: 96px;
@@ -637,6 +628,13 @@
   @media screen and (max-width: 640px) {
     .readout .target {
       font-size: 32px;
+    }
+
+    .readout .input-row .x-icon {
+      font-size: 32px;
+
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
     }
 
     .readout .input-row .input {
