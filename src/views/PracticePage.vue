@@ -531,10 +531,6 @@
     content: '​'; /* this is a zero-width space */
   }
 
-  .readout .input.error:after {
-    border-bottom-color: var(--negative-colour);
-  }
-
   /* for when invisible because of the timer */
   .invisible {
     visibility: hidden;
