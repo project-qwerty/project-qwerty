@@ -3,13 +3,13 @@
     <button
         :class="{ disabled: firstOptionIsSelected }"
         @click="minusClicked">
-      <font-awesome-icon class="icon" icon="minus" />
+      <FontAwesomeIcon class="icon" icon="minus" />
     </button>
     <div class="display faint-border">{{ selectedOption.label }}</div>
     <button
         :class="{ disabled: lastOptionIsSelected }"
         @click="plusClicked">
-      <font-awesome-icon class="icon" icon="plus" />
+      <FontAwesomeIcon class="icon" icon="plus" />
     </button>
   </div>
 </template>

@@ -15,7 +15,7 @@
           @click="clickShowWordButton" />
 
       <div v-if="showTimer" class="timer-display">
-        <font-awesome-icon icon="stopwatch" />
+        <FontAwesomeIcon icon="stopwatch" />
         <span>{{ timerDisplay }}</span>
       </div>
 
@@ -42,7 +42,7 @@
         :shown="showNextWordModal"
         width="600px">
       <div class="modal-contents">
-        <font-awesome-icon
+        <FontAwesomeIcon
             class="green-check"
             icon="circle-check" />
         <h1>{{ renderedText(targetWord) }}</h1>
@@ -63,7 +63,7 @@
         :shown="showFinishedModal"
         width="600px">
       <div class="modal-contents">
-        <font-awesome-icon
+        <FontAwesomeIcon
             class="trophy"
             icon="trophy" />
         <h1>You did it!</h1>

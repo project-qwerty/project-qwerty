@@ -8,7 +8,7 @@ import { faGear, faChevronLeft, faEye, faBackspace, faPlay, faHandSparkles, faCi
 
 library.add(faGear, faChevronLeft, faEye, faBackspace, faPlay, faHandSparkles, faCircleInfo, faCircleQuestion, faCheck, faRepeat, faFont, faList, faStopwatch, faStar, faBasketShopping, faStethoscope, faCalculator, faFaceGrinWide, faMessage, faClock, faBriefcase, faKeyboard, faPlus, faEllipsisVertical, faTrashCan, faRightFromBracket, faRightToBracket, faX, faICursor, faCircleCheck, faTrophy, faArrowRotateRight, faMinus, faPen, faHouse, faXmark)
 
-Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 
@@ -30,11 +30,11 @@ if (window.location.host === 'projectqwerty.com') {
       if (event.request.url) {
         event.request.url = event.request.url.replace(
           /\/custom-categories\/[^/]+/,
-          '/custom-categories/******'
+          '/custom-categories/******',
         );
       }
       return event;
-    }
+    },
   });
 }
 

@@ -3,7 +3,7 @@
     <button
         ref="ellipsis"
         :class="{ active: open }">
-      <font-awesome-icon icon="ellipsis-vertical" />
+      <FontAwesomeIcon icon="ellipsis-vertical" />
     </button>
     <div
         class="dropdown faint-border"
