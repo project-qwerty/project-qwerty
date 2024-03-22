@@ -28,7 +28,11 @@
           :class="{ invisible: !showTargetWord }">
         {{ renderedText(targetWord) }}
       </div>
-      <div class="input">{{ renderedInput(input) }}</div>
+      <div
+          class="input"
+          :class="{ 'error': inputIsWrong }">
+        {{ renderedInput(input) }}
+      </div>
     </div>
 
     <div class="keyboard-wrapper">
@@ -495,6 +499,10 @@
     margin: 0 auto;
     width: 50%;
     border-bottom: 1px solid var(--faint-colour);
+  }
+
+  .readout .input.error:after {
+    border-bottom-color: var(--negative-colour);
   }
 
   /* for when invisible because of the timer */
