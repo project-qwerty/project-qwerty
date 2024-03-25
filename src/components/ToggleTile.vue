@@ -9,10 +9,10 @@
         <div
             v-if="enabled"
             class="selected-check">
-          <font-awesome-icon icon="check" />
+          <FontAwesomeIcon icon="check" />
         </div>
         <div class="icon">
-          <font-awesome-icon :icon="icon" />
+          <FontAwesomeIcon :icon="icon" />
         </div>
         <div class="text">
           {{ text }}
