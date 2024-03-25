@@ -1,4 +1,4 @@
-export default {
+const builtInCategories = {
   'Frequent Words': {
     icon: 'star',
     words: ['a','and','be','i','in','is','it','of','that','the','to','was','all','as','are','at','but','for','have','had','he','her','his','not','on','one','said','so','they','with','you','and','by','do','go','if','me','my','no','or','up','big','can','did','get','has','him','new','now','off','old','our','out','see','she','two','who','back','been','come','down','from','into','just','like','made','much','over','then','this','well','went','when','call','come','here','make','must','only','some','then','where','what','will','your','about','before','other','right','then','their','want','which'],
@@ -31,4 +31,15 @@ export default {
     icon: 'stethoscope',
     words: ['pain','headache','tired','sleep','stroke','diabetes','medication','heart','lungs','doctor','nurse','neurology','head','mri','ct','toilet','appointment','checkup','gp','blood test','cholesterol','chemist','blood pressure','prescription','wheelchair','afo','glasses','aphasia','fatigue','fog','cognition','memory','physiotherapy','occupational therapy','social work','dietetics','speech pathology','exercise physiology','neuropsychology','podiatry','massage therapist','counsellor','x ray','test','pharmacist','emergency','ambulance','hospital','rehab','taxi','bus','uber','help','psychologist','ndis','accessibility','aneurysm','haemorrhage','artery','vein','variable','continence','speech','language','reading','writing','talking','cooking','cleaning','walking','standing','sitting','lying','balance','dizzy','questions','strategies','support','assistance','happy','sad','worried','concerned','relieved','excited','fearful','anxious','depressed','tablet','pill','stressed','yes','no','more','less','longer','shorter','pillow','bed','comfortable','uncomfortable','shower','eating','drinking','cough','legs','arms','hands','neck','hygiene'],
   },
+};
+
+const allWords = Object.values(builtInCategories).map(category => category.words).flat(Infinity);
+const uniqueWords = [...new Set(allWords)];
+
+export default {
+  'Lucky Dip': {
+    icon: 'gift',
+    words: uniqueWords,
+  },
+  ...builtInCategories,
 };

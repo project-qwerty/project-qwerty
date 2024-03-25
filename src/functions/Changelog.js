@@ -1,5 +1,6 @@
 export default {
   '25th March 2024': [
+    'Added the Lucky Dip category with every built-in word',
     'Added this changelog',
   ],
   '14th March 2024': [
