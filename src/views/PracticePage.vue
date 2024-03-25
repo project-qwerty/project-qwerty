@@ -23,17 +23,31 @@
     </header>
 
     <div class="readout">
+      <!-- the target word display -->
       <div
           class="target"
           :class="{ invisible: !showTargetWord }">
         {{ renderedText(targetWord) }}
       </div>
-      <div class="input">{{ renderedInput(input) }}</div>
+
+      <div class="input-row">
+        <!-- spaceholder to keep the row horizontally symmetrical -->
+        <font-awesome-icon class="x-icon invisible" icon="circle-xmark" />
+
+        <!-- the user-typed characters -->
+        <div class="input" :class="{ 'error': inputIsWrong }">
+          {{ renderedInput(input) }}
+        </div>
+
+        <!-- x icon that shows when the word is mistyped -->
+        <font-awesome-icon class="x-icon" :class="{ 'invisible': !inputIsWrong }" icon="circle-xmark" />
+      </div>
     </div>
 
     <div class="keyboard-wrapper">
       <PracticeKeyboard
           :enabled-keys="enabledKeys"
+          :highlighted-keys="highlightedKeys"
           :uppercase="settings.wordDisplayCapitalization === 'UPPERCASE'"
           @keystroke="handleKeystroke($event)" />
     </div>
@@ -97,7 +111,6 @@
         </div>
       </div>
     </FullscreenModal>
-
   </main>
 </template>
 
@@ -149,12 +162,13 @@
       };
     },
     computed: {
-      enabledKeys() {
-        const inputIsWrong = this.targetWord !== null
+      inputIsWrong() {
+        return this.targetWord !== null
             && this.input.length === this.targetWord.length
             && this.input !== this.targetWord;
-
-        if (inputIsWrong) {
+      },
+      enabledKeys() {
+        if (this.inputIsWrong) {
           return ['backspace'];
         }
 
@@ -167,6 +181,12 @@
         }
 
         return [this.nextLetter];
+      },
+      highlightedKeys() {
+        if (this.inputIsWrong) {
+          return ['backspace'];
+        }
+        return [];
       },
       showNextWordModal() {
         return this.input === this.targetWord;
@@ -337,7 +357,9 @@
         }
       },
       renderedInput(input) {
-        return this.renderedText(input).replaceAll(' ', '\xa0\u200B\xa0');
+        // the replaceAll makes spaces render even when they're at the start or end and makes them a bit wider for visual clarity
+        // the "OR zero-width-space" makes the input div take up the vertical space even when empty
+        return this.renderedText(input).replaceAll(' ', '\xa0\u200B\xa0') || '​';
       },
       handleKeystroke(key) {
         if (!this.enabledKeys.includes(key)) {
@@ -462,7 +484,7 @@
     font-weight: bold;
   }
 
-  .readout > .target {
+  .readout .target {
     color: var(--primary-colour);
 
     font-size: 48px;
@@ -470,23 +492,36 @@
     margin-bottom: 10px;
   }
 
-  .readout > .input {
+  /* this contains the user-typed text AND the right x-mark/left invisible x-mark balancer */
+  .readout .input-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .readout .input-row .x-icon {
+    color: var(--negative-colour);
+
+    font-size: 42px;
+
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  /* this contains the user-typed text */
+  .readout .input-row .input {
     font-size: 96px;
-  }
 
-  /* make the input div take up the vertical space even when empty */
-  .readout > .input:before {
-    content: '.';
-    visibility: hidden;
-  }
-
-  /* add the underline */
-  .readout > .input:after {
-    content: '';
-    display: block;
-    margin: 0 auto;
-    width: 50%;
+    /* add the underline */
     border-bottom: 1px solid var(--faint-colour);
+
+    /* min width makes the underline show even when not much has been typed */
+    min-width: 50%;
+  }
+
+  .readout .input-row .input.error {
+    border-bottom-color: var(--negative-colour);
   }
 
   /* for when invisible because of the timer */
@@ -580,11 +615,18 @@
   }
 
   @media screen and (max-width: 640px) {
-    .readout > .target {
+    .readout .target {
       font-size: 32px;
     }
 
-    .readout > .input {
+    .readout .input-row .x-icon {
+      font-size: 32px;
+
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+
+    .readout .input-row .input {
       font-size: 40px;
     }
 

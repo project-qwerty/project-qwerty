@@ -5,7 +5,10 @@
         v-for="key in keys"
         :key="key"
         ontouchstart=""
-        :class="{ disabled: !enabledKeys.includes(key), }"
+        :class="{
+          disabled: !enabledKeys.includes(key),
+          highlighted: highlightedKeys.includes(key),
+        }"
         :style="'grid-area: ' + (key === ' ' ? 'space' : key)"
         @click="handleKeystroke(key)">
 
@@ -20,7 +23,8 @@
       <!-- https://css-tricks.com/fitting-text-to-a-container/#aa-just-use-svg -->
       <svg
           v-if="key !== 'backspace'"
-          viewBox="0 0 15 40">
+          viewBox="0 0 15 40"
+          style="fill: currentColor;">
         <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">{{ renderedCharacter(key) }}</text>
       </svg>
     </button>
@@ -36,11 +40,18 @@
     ' ',
   ];
 
+  // this is needed due to an apparent bug with eslint that prevents an anonymous empty array being passed to highlightedKeys.default
+  const emptyArray = [];
+
   export default {
     props: {
       enabledKeys: {
         type: Array,
         default: keys,
+      },
+      highlightedKeys: {
+        type: Array,
+        default: emptyArray,
       },
       uppercase: {
         type: Boolean,
@@ -125,6 +136,17 @@
   /* for when disabled by assistance features */
   .keyboard button.disabled {
     background-color: var(--faint-colour);
+  }
+
+  /* for when highlighted by assistance features */
+  .keyboard button.highlighted {
+    color: var(--background-colour);
+    background-color: var(--highlight-colour);
+  }
+
+  /* there are currently no cases in the app where a key is disabled AND highlighted but you never know */
+  .keyboard button.disabled.highlighted {
+    filter: brightness(4);
   }
 
   .keyboard button .backspace-icon {
