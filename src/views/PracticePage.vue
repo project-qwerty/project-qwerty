@@ -46,6 +46,7 @@
 
     <div class="keyboard-wrapper">
       <PracticeKeyboard
+          :keyset="keyboardKeyset"
           :enabled-keys="enabledKeys"
           :highlighted-keys="highlightedKeys"
           :uppercase="settings.wordDisplayCapitalization === 'UPPERCASE'"
@@ -162,6 +163,44 @@
       };
     },
     computed: {
+      keyboardKeyset() {
+        if (!this.targetWord) {
+          return null;
+        }
+
+        const wordContainsLetter = /[a-z]/.test(this.targetWord.toLowerCase());
+        const wordContainsDigit = /\d/.test(this.targetWord);
+
+        if (wordContainsLetter && wordContainsDigit) {
+          return 'alphanumeric';
+        } else if (wordContainsLetter) {
+          return 'alpha';
+        } else {
+          return 'numeric';
+        }
+      },
+      keyboardKeys() {
+        if (!this.keyboardKeyset) {
+          return null;
+        }
+
+        return (
+          (this.keyboardKeyset.includes('numeric') ? '1234567890' : '')
+          + (this.keyboardKeyset.includes('alpha') ? 'qwertyuiopasdfghjklzxcvbnm ' : '')
+        ).split('').concat('backspace');
+      },
+      keyboardHeight() {
+        switch (this.keyboardKeyset) {
+          case 'alphanumeric':
+            return '352px';
+          case 'alpha':
+            return '280px';
+          case 'numeric':
+            return '50px';
+          default:
+            return '0px';
+        }
+      },
       inputIsWrong() {
         return this.targetWord !== null
             && this.input.length === this.targetWord.length
@@ -177,7 +216,7 @@
         const noMistakeYet = this.settings.assistanceLevel === 'MIN' && !this.mistakeMade;
 
         if (noNextLetter || noAssistance || noMistakeYet) {
-          return 'qwertyuiopasdfghjklzxcvbnm '.split('').concat('backspace');
+          return this.keyboardKeys;
         }
 
         return [this.nextLetter];
@@ -532,7 +571,7 @@
   /* keyboard */
 
   .keyboard-wrapper {
-    height: 280px;
+    height: v-bind(keyboardHeight);
 
     padding: 40px;
 
