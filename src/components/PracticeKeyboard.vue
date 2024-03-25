@@ -12,7 +12,7 @@
         :style="'grid-area: ' + (key === ' ' ? 'space' : key)"
         @click="handleKeystroke(key)">
 
-      <font-awesome-icon
+      <FontAwesomeIcon
           v-if="key === 'backspace'"
           class="backspace-icon"
           icon="delete-left"
@@ -61,7 +61,7 @@
     data() {
       return {
         keys: keys,
-      }
+      };
     },
     methods: {
       handleKeystroke(key) {
@@ -80,7 +80,7 @@
         }
       },
     },
-  }
+  };
 </script>
 
 

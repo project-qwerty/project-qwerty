@@ -1,6 +1,6 @@
 <template>
   <button @click="$emit('click')">
-    <font-awesome-icon class="icon" :icon="icon" />
+    <FontAwesomeIcon class="icon" :icon="icon" />
   </button>
 </template>
 
@@ -12,7 +12,7 @@
         type: String,
       },
     },
-  }
+  };
 </script>
 
 

@@ -81,11 +81,25 @@
 
       <p>It also ensures that Project QWERTY is, and always will be, <strong>free for everyone</strong> to use.</p>
     </CollapsibleSection>
+
+    <CollapsibleSection summary="What's changed recently on Project QWERTY?" class="faint-border-bottom">
+      <div v-for="(changes, date) of changelog" :key="date">
+        <h3>{{ date }}</h3>
+
+        <ul>
+          <li v-for="change of changes" :key="change">{{ change }}</li>
+        </ul>
+      </div>
+
+      <p>For a full <strong>technical</strong> list of changes, you can look at our <a href="https://github.com/project-qwerty/project-qwerty/commits/master">commits on GitHub</a>.</p>
+    </CollapsibleSection>
   </NavPage>
 </template>
 
 
 <script>
+  import Changelog from '@/functions/Changelog.js';
+
   import NavPage from '@/components/NavPage.vue';
   import CollapsibleSection from '@/components/CollapsibleSection.vue';
   import IconHeader from '@/components/IconHeader.vue';
@@ -96,7 +110,12 @@
       CollapsibleSection,
       IconHeader,
     },
-  }
+    computed: {
+      changelog() {
+        return Changelog;
+      },
+    },
+  };
 </script>
 
 

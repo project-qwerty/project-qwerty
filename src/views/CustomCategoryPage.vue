@@ -92,7 +92,7 @@
 
 <script>
   import LocalStorage from '@/functions/LocalStorage.js';
-  import Colours from '@/functions/Colours.js'
+  import Colours from '@/functions/Colours.js';
   import Validation from '@/functions/Validation.js';
 
   import NavPage from '@/components/NavPage.vue';
@@ -123,7 +123,7 @@
         wordValues: null,
 
         inputCategoryName: null,
-      }
+      };
     },
     watch: {
       categoryName() {
@@ -232,7 +232,7 @@
         this.loadWords();
       },
     },
-  }
+  };
 </script>
 
 

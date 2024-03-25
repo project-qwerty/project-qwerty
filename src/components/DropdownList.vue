@@ -3,7 +3,7 @@
     <button
         ref="ellipsis"
         :class="{ active: open }">
-      <font-awesome-icon icon="ellipsis-vertical" />
+      <FontAwesomeIcon icon="ellipsis-vertical" />
     </button>
     <div
         class="dropdown faint-border"
@@ -36,7 +36,7 @@
     data() {
       return {
         open: false,
-      }
+      };
     },
     created() {
       window.addEventListener('click', this.handleGlobalClick, { passive: true, capture: true });
@@ -60,7 +60,7 @@
         this.open = currentlyClosed && clickIsInsideEllipsis;
       },
     },
-  }
+  };
 </script>
 
 

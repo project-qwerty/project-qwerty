@@ -2,7 +2,7 @@
   <button
       :style="colourStyle()"
       @click="onClick">
-    <font-awesome-icon v-if="icon" :icon="icon" />
+    <FontAwesomeIcon v-if="icon" :icon="icon" />
     <span class="text">{{ text }}</span>
   </button>
 </template>
@@ -55,10 +55,10 @@
           '--this-foreground-colour': foreground,
           '--this-background-colour': background,
           '--this-border-colour': border,
-        }
+        };
       },
     },
-  }
+  };
 </script>
 
 

@@ -59,7 +59,7 @@
           { path: '/about',             text: 'About',          icon: 'circle-info',   bold: false },
         ],
         menuExpanded: false,
-      }
+      };
     },
     methods: {
       handleHideMenu() {
@@ -69,7 +69,7 @@
         this.menuExpanded = true;
       },
     },
-  }
+  };
 </script>
 
 

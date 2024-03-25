@@ -17,7 +17,7 @@
         type: String,
       },
     },
-  }
+  };
 </script>
 
 

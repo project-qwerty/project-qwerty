@@ -14,7 +14,7 @@
           <button
               class="info-button"
               @click="$router.push('/about')">
-            <font-awesome-icon icon="circle-info" />
+            <FontAwesomeIcon icon="circle-info" />
           </button>
         </div>
       </div>
@@ -47,7 +47,7 @@
       ActionButton,
       iPadLogoBox,
     },
-  }
+  };
 </script>
 
 

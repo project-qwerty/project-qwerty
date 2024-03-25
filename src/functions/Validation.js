@@ -1,4 +1,4 @@
-import LocalStorage from '@/functions/LocalStorage.js'
+import LocalStorage from '@/functions/LocalStorage.js';
 
 export default {
   isValidWord(input) {
@@ -24,4 +24,4 @@ export default {
 
     return !isWhitespace && !isAlreadyACategory && !containsBannedCharacters;
   },
-}
+};

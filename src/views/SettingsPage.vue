@@ -125,7 +125,7 @@
           'MIN': 'Minimum: The next letter will be highlighted if you make a mistake.',
           'NONE': 'None: Letter highlighting is turned off.',
         },
-      }
+      };
     },
     // This stores the values into localStorage so that they can be accessed by the keyboard page.
     watch: {
@@ -152,7 +152,7 @@
       this.wordRepetitions = LocalStorage.getSetting('wordRepetitions');
       this.wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
     },
-  }
+  };
 </script>
 
 

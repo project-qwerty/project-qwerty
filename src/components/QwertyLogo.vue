@@ -23,9 +23,9 @@
           'PROJECT',
           'QWERTY ',
         ],
-      }
+      };
     },
-  }
+  };
 </script>
 
 

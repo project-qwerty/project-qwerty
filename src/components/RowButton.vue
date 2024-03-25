@@ -7,7 +7,7 @@
         class="icon"
         :class="{ 'coloured-icon': iconColour !== null }"
         :style="`--icon-colour: ${iconColour};`">
-      <font-awesome-icon :icon="icon" />
+      <FontAwesomeIcon :icon="icon" />
     </span>
 
     <span class="text">{{ text }}</span>
@@ -35,7 +35,7 @@
         default: false,
       },
     },
-  }
+  };
 </script>
 
 
