@@ -49,7 +49,7 @@
           '--tile-colour': this.colour,
           '--outer-colour': this.enabled ? 'var(--primary-colour)' : 'var(--tile-colour)',
           '--middle-colour': this.enabled ? 'var(--background-colour)' : 'var(--tile-colour)',
-        }
+        };
       },
       onClick() {
         this.$emit('update', {
@@ -58,7 +58,7 @@
         });
       },
     },
-  }
+  };
 </script>
 
 

@@ -27,4 +27,4 @@ export default {
   indexToColour: function(index) {
     return `var(--material-colour-${(index % altColourCount) + 1})`;
   },
-}
+};

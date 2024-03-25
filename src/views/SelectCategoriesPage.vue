@@ -47,7 +47,7 @@
 <script>
   import BuiltInCategories from '@/functions/BuiltInCategories.js';
   import LocalStorage from '@/functions/LocalStorage.js';
-  import Colours from '@/functions/Colours.js'
+  import Colours from '@/functions/Colours.js';
 
   import ActionButton from '@/components/ActionButton.vue';
   import ToggleTile from '@/components/ToggleTile.vue';
@@ -68,7 +68,7 @@
 
         customCategories: [],
         customSelected: [],
-      }
+      };
     },
     beforeCreate() {
       this.BuiltInCategories = BuiltInCategories;
@@ -108,7 +108,7 @@
         this.loadEverything();
       },
     },
-  }
+  };
 </script>
 
 

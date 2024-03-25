@@ -146,7 +146,7 @@
         alreadyCountingDown: false,
 
         showNoKeyboardModal: false,
-      }
+      };
     },
     computed: {
       enabledKeys() {
@@ -202,7 +202,7 @@
         return this.targetWord[nextLetterIndex];
       },
       timerDisplay() {
-        return `${this.displaySecondsRemaining}s`
+        return `${this.displaySecondsRemaining}s`;
       },
       progressDisplay() {
         const wordCount = this.words.length;
@@ -408,7 +408,7 @@
         }
       },
     },
-  }
+  };
 </script>
 
 

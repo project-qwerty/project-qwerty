@@ -38,7 +38,7 @@
         default: false,
       },
     },
-  }
+  };
 </script>
 
 

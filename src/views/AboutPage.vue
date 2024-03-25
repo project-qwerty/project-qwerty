@@ -96,7 +96,7 @@
       CollapsibleSection,
       IconHeader,
     },
-  }
+  };
 </script>
 
 

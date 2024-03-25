@@ -1,15 +1,15 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import HomePage from '../views/HomePage.vue'
-import PracticePage from '../views/PracticePage.vue'
-import SettingsPage from '../views/SettingsPage.vue'
-import SelectCategoriesPage from '../views/SelectCategoriesPage.vue'
-import CustomCategoriesPage from '../views/CustomCategoriesPage.vue'
-import CustomCategoryPage from '../views/CustomCategoryPage.vue'
-import AboutPage from '../views/AboutPage.vue'
-import PageNotFoundPage from '../views/PageNotFoundPage.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import HomePage from '../views/HomePage.vue';
+import PracticePage from '../views/PracticePage.vue';
+import SettingsPage from '../views/SettingsPage.vue';
+import SelectCategoriesPage from '../views/SelectCategoriesPage.vue';
+import CustomCategoriesPage from '../views/CustomCategoriesPage.vue';
+import CustomCategoryPage from '../views/CustomCategoryPage.vue';
+import AboutPage from '../views/AboutPage.vue';
+import PageNotFoundPage from '../views/PageNotFoundPage.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -52,14 +52,14 @@ const routes = [
     name: '404',
     component: PageNotFoundPage,
   },
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   routes,
   scrollBehavior() {
-    return { x: 0, y: 0 }
+    return { x: 0, y: 0 };
   },
-})
+});
 
-export default router
+export default router;

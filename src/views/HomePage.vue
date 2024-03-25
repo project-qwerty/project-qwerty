@@ -47,7 +47,7 @@
       ActionButton,
       iPadLogoBox,
     },
-  }
+  };
 </script>
 
 

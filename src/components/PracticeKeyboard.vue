@@ -50,7 +50,7 @@
     data() {
       return {
         keys: keys,
-      }
+      };
     },
     methods: {
       handleKeystroke(key) {
@@ -69,7 +69,7 @@
         }
       },
     },
-  }
+  };
 </script>
 
 

@@ -56,8 +56,8 @@
 
 
 <script>
-  import LocalStorage from '@/functions/LocalStorage.js'
-  import Colours from '@/functions/Colours.js'
+  import LocalStorage from '@/functions/LocalStorage.js';
+  import Colours from '@/functions/Colours.js';
   import Validation from '@/functions/Validation.js';
 
   import NavPage from '@/components/NavPage.vue';
@@ -81,7 +81,7 @@
         showNewCategoryModal: false,
 
         inputCategoryName: '',
-      }
+      };
     },
     beforeCreate() {
       this.Colours = Colours;
@@ -126,7 +126,7 @@
         this.$forceUpdate();
       },
     },
-  }
+  };
 </script>
 
 <style scoped>

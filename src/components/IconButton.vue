@@ -12,7 +12,7 @@
         type: String,
       },
     },
-  }
+  };
 </script>
 
 

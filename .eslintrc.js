@@ -12,6 +12,7 @@ module.exports = {
       max: 2,
     }],
     'comma-dangle': ['warn', 'always-multiline'],
+    'semi': ['warn', 'always'],
 
     'vue/html-closing-bracket-newline': ['warn', {
       singleline: 'never',

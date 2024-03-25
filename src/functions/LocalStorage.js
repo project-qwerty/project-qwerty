@@ -55,7 +55,7 @@ const settings = {
     parser: parseStoredStringCaps,
     default: 'UPPERCASE',  // potential values: UPPPERCASE, LOWERCASE
   },
-}
+};
 
 function getSetting(name) {
   const setting = settings[name];
@@ -340,4 +340,4 @@ export default {
     setCategorySelected('custom', categoryName, isSelected);
   },
 
-}
+};

@@ -23,7 +23,7 @@
       /* eslint-disable-next-line vue/require-prop-types */
       activeValue: {},
     },
-  }
+  };
 </script>
 
 

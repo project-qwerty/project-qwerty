@@ -55,10 +55,10 @@
           '--this-foreground-colour': foreground,
           '--this-background-colour': background,
           '--this-border-colour': border,
-        }
+        };
       },
     },
-  }
+  };
 </script>
 
 

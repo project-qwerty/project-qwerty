@@ -73,7 +73,7 @@
         this.$emit('update', this.selectedOption.val);
       },
     },
-  }
+  };
 </script>
 
 
