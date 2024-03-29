@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="keyboard-wrapper">
+    <div class="keyboard-wrapper" :class="[keyboardKeyset]">
       <PracticeKeyboard
           :keyset="keyboardKeyset"
           :enabled-keys="enabledKeys"
@@ -188,18 +188,6 @@
           (this.keyboardKeyset.includes('numeric') ? '1234567890' : '')
           + (this.keyboardKeyset.includes('alpha') ? 'qwertyuiopasdfghjklzxcvbnm ' : '')
         ).split('').concat('backspace');
-      },
-      keyboardHeight() {
-        switch (this.keyboardKeyset) {
-          case 'alphanumeric':
-            return '352px';
-          case 'alpha':
-            return '280px';
-          case 'numeric':
-            return '50px';
-          default:
-            return '0px';
-        }
       },
       inputIsWrong() {
         return this.targetWord !== null
@@ -571,12 +559,14 @@
   /* keyboard */
 
   .keyboard-wrapper {
-    height: v-bind(keyboardHeight);
-
     padding: 40px;
 
     background-color: var(--faint-colour);
   }
+
+  .keyboard-wrapper.alpha { height: 352px; }
+  .keyboard-wrapper.alphanumeric { height: 280px; }
+  .keyboard-wrapper.numeric { height: 352px; }
 
   /* this selects the keyboard itself */
   .keyboard-wrapper > * {
@@ -647,10 +637,12 @@
 
   @media screen and (max-width: 960px) {
     .keyboard-wrapper {
-      height: 220px;
-
       padding: var(--thin-gap);
     }
+
+    .keyboard-wrapper.alpha { height: 220px; }
+    .keyboard-wrapper.alphanumeric { height: 276px; }
+    .keyboard-wrapper.numeric { height: 276px; }
   }
 
   @media screen and (max-width: 640px) {
