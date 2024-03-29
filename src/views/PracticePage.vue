@@ -564,8 +564,8 @@
     background-color: var(--faint-colour);
   }
 
-  .keyboard-wrapper.alpha { height: 352px; }
-  .keyboard-wrapper.alphanumeric { height: 280px; }
+  .keyboard-wrapper.alpha { height: 280px; }
+  .keyboard-wrapper.alphanumeric { height: 352px; }
   .keyboard-wrapper.numeric { height: 352px; }
 
   /* this selects the keyboard itself */
