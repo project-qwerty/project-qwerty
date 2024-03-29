@@ -8,6 +8,7 @@
         :class="{
           disabled: !enabledKeys.includes(key),
           highlighted: highlightedKeys.includes(key),
+          ghost: key === 'backspace' && keyset === 'numeric'
         }"
         :style="'grid-area: _' + (key === ' ' ? 'space' : key)"
         @click="handleKeystroke(key)">
@@ -174,6 +175,12 @@
     position: absolute;
 
     height: 100%;
+  }
+
+  /* make the backspace on the keypad view not have a key shape */
+  .keyboard button.ghost {
+    color: var(--foreground-colour);
+    background: none;
   }
 
   /* visually respond to keypresses */
