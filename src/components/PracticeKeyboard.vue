@@ -39,7 +39,9 @@
     'z', 'x', 'c', 'v', 'b', 'n', 'm',
     ' ',
   ];
-  const alphaNumericKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].concat(alphaKeys);
+  const numberKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+  const alphaNumericKeys = numberKeys.concat(alphaKeys);
+  const numericKeys = numberKeys.concat(['backspace']);
 
   // this is needed due to an apparent bug with eslint that prevents an anonymous empty array being passed to highlightedKeys.default
   const emptyArray = [];
@@ -68,9 +70,14 @@
             return alphaNumericKeys;
           case 'alpha':
             return alphaKeys;
+          case 'numeric':
+            return numericKeys;
+          default:
+            // this shouldn't be possible
+            return null;
         }
 
-        return 'TODO';
+
       },
     },
     methods: {
@@ -134,6 +141,19 @@
 
     --relative-width: 1020;
     --relative-height: 352;
+  }
+
+  .keyboard.numeric {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        "_1 _2 _3"
+        "_4 _5 _6"
+        "_7 _8 _9"
+        " . _0 _backspace";
+
+    --relative-width: 365;
+    --relative-height: 207;
   }
 
   .keyboard button {
