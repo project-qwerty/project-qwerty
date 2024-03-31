@@ -77,10 +77,11 @@
         :shown="showFinishedModal"
         width="600px">
       <div class="modal-contents">
-        <FontAwesomeIcon
-            class="trophy"
-            icon="trophy" />
-        <h1>You did it!</h1>
+        <lottie-vue-player
+            class="medal-animation"
+            :src="JSON.stringify(require('@/assets/lottie/medal.json'))"
+            autoplay />
+        <h1>Well done</h1>
         <div class="button-row">
           <ActionButton
               icon="check"
@@ -579,11 +580,15 @@
     margin-top: 32px;
   }
 
-  .trophy {
-    font-size: 96px;
-    color: gold;
+  .medal-animation {
+    margin-top: 16px;
 
-    margin-top: 32px;
+    height: 150px;
+  }
+
+  /* hide the loading spinner because it causes layout flash */
+  /deep/ .lf-spinner {
+    display: none;
   }
 
   .button-row {
@@ -632,6 +637,10 @@
 
     .modal-contents h1 {
       font-size: 40px;
+    }
+
+    .medal-animation {
+      height: 120px;
     }
   }
 </style>

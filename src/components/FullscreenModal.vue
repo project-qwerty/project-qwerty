@@ -1,7 +1,7 @@
 <template>
   <div
-      class="overlay"
-      :class="{ hidden: !shown, }">
+      v-if="shown"
+      class="overlay">
     <div
         ref="modal"
         class="modal"
@@ -100,9 +100,5 @@
 
     background-color: var(--background-colour);
     color: var(--foreground-colour);
-  }
-
-  .hidden {
-    display: none;
   }
 </style>
