@@ -27,7 +27,7 @@
       <div
           class="target"
           :class="{ invisible: !showTargetWord }">
-        {{ renderedTarget(targetWord) }}
+        {{ renderedText(targetWord) }}
       </div>
 
       <div class="input-row">
@@ -36,7 +36,7 @@
 
         <!-- the user-typed characters -->
         <div class="input" :class="{ 'error': inputIsWrong }">
-          {{ renderedInput(input) }}
+          {{ renderedText(input) }}
         </div>
 
         <!-- x icon that shows when the word is mistyped -->
@@ -60,7 +60,7 @@
         <FontAwesomeIcon
             class="green-check"
             icon="circle-check" />
-        <h1>{{ renderedTarget(targetWord) }}</h1>
+        <h1>{{ renderedText(targetWord) }}</h1>
         <div class="button-row">
           <ActionButton
               text="Next word"
@@ -372,25 +372,22 @@
       window.removeEventListener('keydown', this.handleKeyDown);
     },
     methods: {
-      baseRender(text) {
+      renderedText(text) {
         if (text === null || text === undefined) {
           return '';
         }
+
+        // make spaces render even when they're at the start or end and make them a bit wider for visual clarity
+        text = text.replaceAll(' ', '\xa0\u200B\xa0');
+
+        // make the text take up vertical space even when empty
+        text = text || '\u200B';
 
         if (this.settings.wordDisplayCapitalization === 'UPPERCASE') {
           return text.toUpperCase();
         } else {
           return text.toLowerCase();
         }
-      },
-      renderedTarget(target) {
-        // make sure all spaces render in case there's consecutives
-        return this.baseRender(target).replaceAll(' ', '\xa0');
-      },
-      renderedInput(input) {
-        // the replaceAll makes spaces render even when they're at the start or end and makes them a bit wider for visual clarity
-        // the "OR zero-width-space" makes the input div take up the vertical space even when empty
-        return this.baseRender(input).replaceAll(' ', '\xa0\u200B\xa0') || '​';
       },
       handleKeystroke(key) {
         if (!this.enabledKeys.includes(key)) {
