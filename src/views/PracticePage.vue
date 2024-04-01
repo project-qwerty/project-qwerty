@@ -394,7 +394,13 @@
         }
 
         if (key === 'backspace') {
+          // auto-remove spaces with the numeric keyboard
+          while (this.keyboardKeyset === 'numeric' && this.input[this.input.length - 1] === ' ') {
+            this.input = this.input.slice(0, -1);
+          }
+
           this.input = this.input.slice(0, -1);
+
           return;
         }
 
@@ -406,6 +412,11 @@
         }
 
         this.input += key;
+
+        // auto-insert spaces with the numeric keyboard
+        while (this.keyboardKeyset === 'numeric' && this.nextLetter === ' ') {
+          this.input += ' ';
+        }
       },
       advanceWord() {
         this.input = '';
