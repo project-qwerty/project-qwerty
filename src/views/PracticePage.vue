@@ -173,10 +173,10 @@
 
         if (wordContainsLetter && wordContainsDigit) {
           return 'alphanumeric';
-        } else if (wordContainsLetter) {
-          return 'alpha';
-        } else {
+        } else if (wordContainsDigit) {
           return 'numeric';
+        } else {
+          return 'alpha';
         }
       },
       keyboardKeys() {
