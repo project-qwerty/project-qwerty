@@ -83,6 +83,8 @@
     </CollapsibleSection>
 
     <CollapsibleSection summary="What's changed recently on Project QWERTY?" class="faint-border-bottom">
+      <p>We want to keep making Project QWERTY better! When we're able to, we add <strong>new features</strong> and make <strong>improvements</strong>. This is a list of each major change we've made since launching the app.</p>
+
       <div v-for="(changes, date) of changelog" :key="date">
         <h3>{{ date }}</h3>
 

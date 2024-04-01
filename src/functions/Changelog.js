@@ -1,5 +1,8 @@
 export default {
   // TODO: numerical keyboard
+  '31st March 2024': [
+    'Replaced the end-of-practice trophy icon with a medal animation',
+  ],
   '25th March 2024': [
     'Added the Lucky Dip category with every built-in word',
     'Added this changelog',

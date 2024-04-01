@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import * as Sentry from "@sentry/vue";
+import LottieVuePlayer from "@lottiefiles/vue-lottie-player";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faGear, faChevronLeft, faEye, faBackspace, faPlay, faHandSparkles, faCircleInfo, faCircleQuestion, faCheck, faRepeat, faFont, faList, faStopwatch, faStar, faBasketShopping, faStethoscope, faCalculator, faFaceGrinWide, faMessage, faClock, faBriefcase, faKeyboard, faPlus, faEllipsisVertical, faTrashCan, faRightFromBracket, faRightToBracket, faX, faICursor, faCircleCheck, faTrophy, faArrowRotateRight, faMinus, faPen, faHouse, faXmark, faCircleXmark, faGift } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +10,8 @@ import { faGear, faChevronLeft, faEye, faBackspace, faPlay, faHandSparkles, faCi
 library.add(faGear, faChevronLeft, faEye, faBackspace, faPlay, faHandSparkles, faCircleInfo, faCircleQuestion, faCheck, faRepeat, faFont, faList, faStopwatch, faStar, faBasketShopping, faStethoscope, faCalculator, faFaceGrinWide, faMessage, faClock, faBriefcase, faKeyboard, faPlus, faEllipsisVertical, faTrashCan, faRightFromBracket, faRightToBracket, faX, faICursor, faCircleCheck, faTrophy, faArrowRotateRight, faMinus, faPen, faHouse, faXmark, faCircleXmark, faGift);
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon);
+
+Vue.use(LottieVuePlayer);
 
 Vue.config.productionTip = false;
 
