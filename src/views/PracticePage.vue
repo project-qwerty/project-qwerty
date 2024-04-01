@@ -27,7 +27,7 @@
       <div
           class="target"
           :class="{ invisible: !showTargetWord }">
-        {{ renderedText(targetWord) }}
+        {{ renderedTarget(targetWord) }}
       </div>
 
       <div class="input-row">
@@ -60,7 +60,7 @@
         <FontAwesomeIcon
             class="green-check"
             icon="circle-check" />
-        <h1>{{ renderedText(targetWord) }}</h1>
+        <h1>{{ renderedTarget(targetWord) }}</h1>
         <div class="button-row">
           <ActionButton
               text="Next word"
@@ -372,7 +372,7 @@
       window.removeEventListener('keydown', this.handleKeyDown);
     },
     methods: {
-      renderedText(text) {
+      baseRender(text) {
         if (text === null || text === undefined) {
           return '';
         }
@@ -383,10 +383,14 @@
           return text.toLowerCase();
         }
       },
+      renderedTarget(target) {
+        // make sure all spaces render in case there's consecutives
+        return this.baseRender(target).replaceAll(' ', '\xa0');
+      },
       renderedInput(input) {
         // the replaceAll makes spaces render even when they're at the start or end and makes them a bit wider for visual clarity
         // the "OR zero-width-space" makes the input div take up the vertical space even when empty
-        return this.renderedText(input).replaceAll(' ', '\xa0\u200B\xa0') || '​';
+        return this.baseRender(input).replaceAll(' ', '\xa0\u200B\xa0') || '​';
       },
       handleKeystroke(key) {
         if (!this.enabledKeys.includes(key)) {
