@@ -165,12 +165,15 @@
     },
     computed: {
       keyboardKeyset() {
-        if (!this.targetWord) {
-          return null;
+        let targetWord = this.targetWord;
+
+        if (!targetWord) {
+          // the practice is over but we want the keyboard to remain displayed with the last word's keyset
+          targetWord = this.words[this.words.length - 1];
         }
 
-        const wordContainsLetter = /[a-z]/.test(this.targetWord.toLowerCase());
-        const wordContainsDigit = /\d/.test(this.targetWord);
+        const wordContainsLetter = /[a-z]/.test(targetWord.toLowerCase());
+        const wordContainsDigit = /\d/.test(targetWord);
 
         if (wordContainsLetter && wordContainsDigit) {
           return 'alphanumeric';
@@ -181,10 +184,6 @@
         }
       },
       keyboardKeys() {
-        if (!this.keyboardKeyset) {
-          return null;
-        }
-
         return (
           (this.keyboardKeyset.includes('numeric') ? '1234567890' : '')
           + (this.keyboardKeyset.includes('alpha') ? 'qwertyuiopasdfghjklzxcvbnm ' : '')
