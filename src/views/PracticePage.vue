@@ -445,12 +445,13 @@
         // this may seem overly complex but it's actually quite necessary
         // e.g. the modal shouldn't trigger on F11 (making the page fullscreen)
         // or Ctrl+T to open a new tab
+        const isNumberKey = 47 < event.keyCode && event.keyCode < 58;
         const isLetterKey = 64 < event.keyCode && event.keyCode < 91;
         const isBackspace = event.keyCode === 8;
         const isSpace = event.keyCode === 32;
-        const isTypingKey = isLetterKey || isBackspace || isSpace;
+        const isTypingKey = isNumberKey || isLetterKey || isBackspace || isSpace;
 
-        const isModified = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
+        const isModified = event.altKey || event.ctrlKey || event.metaKey; // we don't check for shift
 
         if (isTypingKey && !isModified) {
           this.showNoKeyboardModal = true;
