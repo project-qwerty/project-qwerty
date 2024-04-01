@@ -77,8 +77,6 @@
             // this shouldn't be possible
             return null;
         }
-
-
       },
     },
     methods: {
