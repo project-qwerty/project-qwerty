@@ -1,5 +1,7 @@
 export default {
-  // TODO: numerical keyboard
+  '1st April 2024': [
+    'Added support for numbers, making the keyboard adapt to each word as a regular keyboard (with or without a number row) or a dial-pad',
+  ],
   '31st March 2024': [
     'Replaced the end-of-practice trophy icon with a medal animation',
   ],
