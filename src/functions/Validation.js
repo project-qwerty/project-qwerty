@@ -6,10 +6,10 @@ export default {
       return false;
     }
 
-    const isAlphaSpace = /^[A-Za-z ]+$/.test(input);
+    const isAlphaNumericSpace = /^[0-9A-Za-z ]+$/.test(input);
     const isWhitespace = input.replace(/\s/g, '') === '';
 
-    return isAlphaSpace && !isWhitespace;
+    return isAlphaNumericSpace && !isWhitespace;
   },
   isValidCategoryName(input) {
     if (typeof input !== 'string') {

@@ -36,7 +36,7 @@
 
         <!-- the user-typed characters -->
         <div class="input" :class="{ 'error': inputIsWrong }">
-          {{ renderedInput(input) }}
+          {{ renderedText(input) }}
         </div>
 
         <!-- x icon that shows when the word is mistyped -->
@@ -44,8 +44,9 @@
       </div>
     </div>
 
-    <div class="keyboard-wrapper">
+    <div class="keyboard-wrapper" :class="[keyboardKeyset]">
       <PracticeKeyboard
+          :keyset="keyboardKeyset"
           :enabled-keys="enabledKeys"
           :highlighted-keys="highlightedKeys"
           :uppercase="settings.wordDisplayCapitalization === 'UPPERCASE'"
@@ -163,6 +164,31 @@
       };
     },
     computed: {
+      keyboardKeyset() {
+        let targetWord = this.targetWord;
+
+        if (!targetWord) {
+          // the practice is over but we want the keyboard to remain displayed with the last word's keyset
+          targetWord = this.words[this.words.length - 1];
+        }
+
+        const wordContainsLetter = /[a-z]/.test(targetWord.toLowerCase());
+        const wordContainsDigit = /\d/.test(targetWord);
+
+        if (wordContainsLetter && wordContainsDigit) {
+          return 'alphanumeric';
+        } else if (wordContainsDigit) {
+          return 'numeric';
+        } else {
+          return 'alpha';
+        }
+      },
+      keyboardKeys() {
+        return (
+          (this.keyboardKeyset.includes('numeric') ? '1234567890' : '')
+          + (this.keyboardKeyset.includes('alpha') ? 'qwertyuiopasdfghjklzxcvbnm ' : '')
+        ).split('').concat('backspace');
+      },
       inputIsWrong() {
         return this.targetWord !== null
             && this.input.length === this.targetWord.length
@@ -178,7 +204,7 @@
         const noMistakeYet = this.settings.assistanceLevel === 'MIN' && !this.mistakeMade;
 
         if (noNextLetter || noAssistance || noMistakeYet) {
-          return 'qwertyuiopasdfghjklzxcvbnm '.split('').concat('backspace');
+          return this.keyboardKeys;
         }
 
         return [this.nextLetter];
@@ -351,16 +377,17 @@
           return '';
         }
 
+        // make spaces render even when they're at the start or end and make them a bit wider for visual clarity
+        text = text.replaceAll(' ', '\xa0\u200B\xa0');
+
+        // make the text take up vertical space even when empty
+        text = text || '\u200B';
+
         if (this.settings.wordDisplayCapitalization === 'UPPERCASE') {
           return text.toUpperCase();
         } else {
           return text.toLowerCase();
         }
-      },
-      renderedInput(input) {
-        // the replaceAll makes spaces render even when they're at the start or end and makes them a bit wider for visual clarity
-        // the "OR zero-width-space" makes the input div take up the vertical space even when empty
-        return this.renderedText(input).replaceAll(' ', '\xa0\u200B\xa0') || '​';
       },
       handleKeystroke(key) {
         if (!this.enabledKeys.includes(key)) {
@@ -368,7 +395,13 @@
         }
 
         if (key === 'backspace') {
+          // auto-remove spaces with the numeric keyboard
+          while (this.keyboardKeyset === 'numeric' && this.input[this.input.length - 1] === ' ') {
+            this.input = this.input.slice(0, -1);
+          }
+
           this.input = this.input.slice(0, -1);
+
           return;
         }
 
@@ -380,6 +413,11 @@
         }
 
         this.input += key;
+
+        // auto-insert spaces with the numeric keyboard
+        while (this.keyboardKeyset === 'numeric' && this.nextLetter === ' ') {
+          this.input += ' ';
+        }
       },
       advanceWord() {
         this.input = '';
@@ -419,12 +457,13 @@
         // this may seem overly complex but it's actually quite necessary
         // e.g. the modal shouldn't trigger on F11 (making the page fullscreen)
         // or Ctrl+T to open a new tab
+        const isNumberKey = 47 < event.keyCode && event.keyCode < 58;
         const isLetterKey = 64 < event.keyCode && event.keyCode < 91;
         const isBackspace = event.keyCode === 8;
         const isSpace = event.keyCode === 32;
-        const isTypingKey = isLetterKey || isBackspace || isSpace;
+        const isTypingKey = isNumberKey || isLetterKey || isBackspace || isSpace;
 
-        const isModified = event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
+        const isModified = event.altKey || event.ctrlKey || event.metaKey; // we don't check for shift
 
         if (isTypingKey && !isModified) {
           this.showNoKeyboardModal = true;
@@ -533,12 +572,14 @@
   /* keyboard */
 
   .keyboard-wrapper {
-    height: 280px;
-
     padding: 40px;
 
     background-color: var(--faint-colour);
   }
+
+  .keyboard-wrapper.alpha { height: 280px; }
+  .keyboard-wrapper.alphanumeric { height: 352px; }
+  .keyboard-wrapper.numeric { height: 352px; }
 
   /* this selects the keyboard itself */
   .keyboard-wrapper > * {
@@ -613,10 +654,12 @@
 
   @media screen and (max-width: 960px) {
     .keyboard-wrapper {
-      height: 220px;
-
       padding: var(--thin-gap);
     }
+
+    .keyboard-wrapper.alpha { height: 220px; }
+    .keyboard-wrapper.alphanumeric { height: 276px; }
+    .keyboard-wrapper.numeric { height: 276px; }
   }
 
   @media screen and (max-width: 640px) {
