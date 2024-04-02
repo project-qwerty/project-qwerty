@@ -378,7 +378,7 @@
         }
 
         // make spaces render even when they're at the start or end and make them a bit wider for visual clarity
-        text = text.replaceAll(' ', '\xa0\u200B\xa0');
+        text = text.replace(/ /g, '\xa0\u200B\xa0');
 
         // make the text take up vertical space even when empty
         text = text || '\u200B';
