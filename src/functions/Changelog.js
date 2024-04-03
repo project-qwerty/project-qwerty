@@ -1,4 +1,7 @@
 export default {
+  '3rd April 2024': [
+    'Changed the set of colours used for the category icons',
+  ],
   '1st April 2024': [
     'Added support for numbers, making the keyboard adapt to each word as a regular keyboard (with or without a number row) or a dial-pad',
   ],

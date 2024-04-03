@@ -1,5 +1,5 @@
 // this is according to global.css
-const altColourCount = 14;
+const altColourCount = 11;
 
 // taken from https://stackoverflow.com/a/52171480/4809728
 function hash(str, seed = 0) {
@@ -22,9 +22,9 @@ export default {
 
     const colourIndex = hash(str) % altColourCount;
 
-    return `var(--material-colour-${colourIndex + 1})`;
+    return `var(--colour-${colourIndex + 1})`;
   },
   indexToColour: function(index) {
-    return `var(--material-colour-${(index % altColourCount) + 1})`;
+    return `var(--colour-${(index % altColourCount) + 1})`;
   },
 };
