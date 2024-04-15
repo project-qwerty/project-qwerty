@@ -83,7 +83,7 @@
 
     height: var(--nav-top-bar-height);
 
-    z-index: 2;
+    z-index: 70;
 
     /* align contents */
     display: flex;
@@ -113,7 +113,7 @@
     width: var(--nav-side-bar-width);
     height: 100%;
 
-    z-index: 3;
+    z-index: 80;
 
     /* align contents */
     display: flex;

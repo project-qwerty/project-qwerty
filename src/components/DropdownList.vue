@@ -104,7 +104,7 @@
     white-space: nowrap;
 
     /* the dropdown was rendering beneath the category row buttons on the custom-categories page; this was the quick fix */
-    z-index: 1;
+    z-index: 40;
   }
 
   .hidden {
