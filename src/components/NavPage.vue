@@ -123,15 +123,6 @@
     background-color: var(--background-colour);
   }
 
-  .page {
-    padding-left: 3rem;
-    padding-right: 3rem;
-    padding-bottom: 6rem;
-
-    /* this prevents margin collapse between the page and the first element (eg. IconHeader) */
-    padding-top: 1px;
-  }
-
   .side-bar a {
     font-size: 20px;
 
@@ -161,8 +152,13 @@
     margin-left: var(--thin-gap);
   }
 
-  .toggle-icon {
-    padding: 0.5rem 1.5rem;
+  .page {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-bottom: 6rem;
+
+    /* this prevents margin collapse between the page and the first element (eg. IconHeader) */
+    padding-top: 1px;
   }
 
   /* small screen layout */
