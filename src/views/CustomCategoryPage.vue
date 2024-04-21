@@ -138,6 +138,9 @@
     },
     computed: {
       alreadyHaveABlank() {
+        if (this.wordValues === null) {
+          return false; // this shouldn't be a case but seems to be during page load
+        }
         return this.wordValues.some(word => word === '');
       },
     },
