@@ -220,21 +220,6 @@
     background-color: var(--background-colour);
   }
 
-  .desktop-title-and-controls > .controls {
-    /* make the controls centered when below title */
-    /* TODO: can this be .controls global? */
-    align-self: center;
-  }
-
-  @media screen and (max-width: 640px) {
-    /* TODO: can this be non-media now? */
-    .desktop-title-and-controls {
-      flex-direction: column;
-      /* this unsets align-items because it will otherwise horizontally centre stuff which we don't want */
-      align-items: unset;
-    }
-  }
-
   .mobile-controls {
     /* position at bottom of screen */
     position: fixed;
