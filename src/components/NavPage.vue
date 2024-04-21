@@ -225,6 +225,11 @@
     }
   }
 
+  .mobile-title,
+  .mobile-controls {
+    display: none;
+  }
+
   .mobile-controls {
     /* position at bottom of screen */
     position: fixed;
@@ -235,6 +240,17 @@
     /* appearance */
     background-color: var(--background-colour);
     box-shadow: rgba(0, 0, 0, 0.15) 0px -1px 3px;
+  }
+
+  @media screen and (max-width: 960px) {
+    .desktop-title-and-controls {
+      display: none;
+    }
+
+    .mobile-title,
+    .mobile-controls {
+      display: unset;
+    }
   }
 
   /* small screen layout */
