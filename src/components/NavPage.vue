@@ -178,6 +178,14 @@
     padding-top: 0.01px;
   }
 
+  .controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: var(--thin-gap);
+  }
+
   .desktop-title-and-controls {
     display: flex;
     flex-direction: row;
@@ -193,24 +201,17 @@
     background-color: var(--background-colour);
   }
 
-  .desktop-title-and-controls > .controls {
-    /* make the controls centered when below title */
-    align-self: center;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    gap: var(--thin-gap);
-  }
-
   .desktop-title-and-controls > .controls:has(*) {
     /* add margin to controls only if there's something in there */
     margin-top: 28px;
     margin-bottom: 28px;
+
+    /* make the controls centered when below title */
+    align-self: center;
   }
 
   @media screen and (max-width: 640px) {
+    /* TODO: can this be non-media now? */
     .desktop-title-and-controls {
       flex-direction: column;
       /* this unsets align-items because it will otherwise horizontally centre stuff which we don't want */
