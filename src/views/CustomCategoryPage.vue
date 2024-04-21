@@ -22,6 +22,7 @@
           class="new-word-button"
           icon="plus"
           text="New word"
+          :enabled="!alreadyHaveABlank"
           @click="clickAddWord" />
 
       <DropdownList
@@ -131,6 +132,12 @@
         inputCategoryName: null,
       };
     },
+    computed: {
+      alreadyHaveABlank() {
+        return this.wordValues.some(word => word === '');
+      },
+    },
+
     watch: {
       categoryName() {
         this.loadWords();
@@ -221,8 +228,7 @@
       },
       clickAddWord() {
         // we don't want the user to add more than one word at a time
-        const alreadyHaveABlank = this.wordValues.some(word => word === '');
-        if (alreadyHaveABlank) {
+        if (this.alreadyHaveABlank) {
           return;
         }
 
