@@ -1,6 +1,7 @@
 <template>
   <button
       :style="colourStyle()"
+      :disabled="!enabled"
       @click="onClick">
     <FontAwesomeIcon v-if="icon" :icon="icon" />
     <span class="text">{{ text }}</span>
