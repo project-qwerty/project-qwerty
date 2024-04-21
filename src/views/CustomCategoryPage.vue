@@ -16,6 +16,8 @@
     </template>
 
     <template #controls>
+      <div class="dropdown-balancer" />
+
       <ActionButton
           class="new-word-button"
           icon="plus"
@@ -251,6 +253,11 @@
     padding-left: 0;
   }
 
+  .dropdown-balancer {
+    width: 56px;
+    height: 56px;
+  }
+
   /* this turns the final option (delete) red */
   /deep/ .options-menu .dropdown-item:last-of-type {
     color: var(--negative-colour);
@@ -291,11 +298,5 @@
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
-  }
-
-  @media screen and (max-width: 960px) {
-    header {
-      top: var(--nav-top-bar-height);
-    }
   }
 </style>

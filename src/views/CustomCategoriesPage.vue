@@ -9,6 +9,8 @@
     </template>
 
     <template #controls>
+      <div class="dropdown-balancer" />
+
       <ActionButton
           icon="plus"
           text="New category"
@@ -132,6 +134,11 @@
 </script>
 
 <style scoped>
+  .dropdown-balancer {
+    width: 56px;
+    height: 56px;
+  }
+
   .qwerty-text-input {
     width: 100%;
 
