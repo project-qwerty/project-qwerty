@@ -32,7 +32,7 @@
       </router-link>
     </nav>
     <main class="page">
-      <header class="desktop-title-and-controls">
+      <header class="desktop-title-and-controls faint-border-bottom">
         <slot name="title" />
         <div class="controls">
           <slot name="controls" />
@@ -183,6 +183,12 @@
     align-items: center;
 
     gap: var(--thin-gap);
+
+    /* make sticky above page */
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    background-color: var(--background-colour);
   }
 
   .desktop-title-and-controls > .controls {
