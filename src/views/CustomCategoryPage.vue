@@ -66,7 +66,7 @@
       <h1>Rename category</h1>
       <input
           v-model="inputCategoryName"
-          class="qwerty-text-input modal-text-input"
+          class="qwerty-text-input modal-text-input rename-input"
           placeholder="New category name" />
       <div class="buttons-row">
         <ActionButton
@@ -104,6 +104,7 @@
   import LocalStorage from '@/functions/LocalStorage.js';
   import Colours from '@/functions/Colours.js';
   import Validation from '@/functions/Validation.js';
+  import Input from '@/functions/Input.js';
 
   import NavPage from '@/components/NavPage.vue';
   import RowButton from '@/components/RowButton.vue';
@@ -149,6 +150,7 @@
     beforeCreate() {
       this.Colours = Colours;
       this.Validation = Validation;
+      this.Input = Input;
     },
     created() {
       this.categoryName = this.$route.params['name'];
@@ -176,6 +178,7 @@
       handleDropdownClick(operation) {
         if (operation === 'rename') {
           this.showRenameCategoryModal = true;
+          Input.focusInputByQuery('.rename-input');
         } else if (operation === 'export') {
           this.clickExportCategory();
         } else if (operation === 'delete') {
@@ -238,13 +241,7 @@
         LocalStorage.addCustomWord(this.categoryName, '');
         this.loadWords();
 
-        // focus the new input
-        // timeout required to allow the DOM to update the `newest` class
-        // even 1ms seemed to be enough so 10ms should be plenty
-        setTimeout(() => {
-          const newInput = document.querySelector('input.newest');
-          newInput.focus();
-        }, 10);
+        Input.focusInputByQuery('input.newest');
       },
       updateWord(index) {
         LocalStorage.editCustomWord(this.categoryName, index, this.wordValues[index]);
