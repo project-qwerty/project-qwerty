@@ -41,16 +41,18 @@
         </div>
       </header>
 
-      <!-- <header class="mobile-title">
+      <header class="mobile-title">
         <slot name="title" />
-      </header> -->
+      </header>
 
       <slot />
     </main>
 
-    <!-- <div class="mobile-controls">
-      <slot name="controls" />
-    </div> -->
+    <div class="mobile-controls">
+      <div class="controls">
+        <slot name="controls" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -181,9 +183,16 @@
   .controls {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
 
     gap: var(--thin-gap);
+  }
+
+  .controls:has(*) {
+    /* add margin to controls only if there's something in there */
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   .desktop-title-and-controls {
@@ -201,12 +210,9 @@
     background-color: var(--background-colour);
   }
 
-  .desktop-title-and-controls > .controls:has(*) {
-    /* add margin to controls only if there's something in there */
-    margin-top: 28px;
-    margin-bottom: 28px;
-
+  .desktop-title-and-controls > .controls {
     /* make the controls centered when below title */
+    /* TODO: can this be .controls global? */
     align-self: center;
   }
 
@@ -219,9 +225,17 @@
     }
   }
 
-  /* .mobile-controls {
+  .mobile-controls {
+    /* position at bottom of screen */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
-  } */
+    /* appearance */
+    background-color: var(--background-colour);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px -1px 3px;
+  }
 
   /* small screen layout */
   @media screen and (max-width: 960px) {
