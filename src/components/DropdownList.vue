@@ -1,12 +1,23 @@
 <template>
   <div class="wrapper">
+    <div
+        class="mobile-only dropdown up faint-border"
+        :class="{ hidden: !open }">
+      <RowButton
+          v-for="option in options"
+          :key="option.action"
+          class="dropdown-item"
+          :text="option.label"
+          :icon="option.icon"
+          @click="$emit('click', option.action)" />
+    </div>
     <button
         ref="ellipsis"
         :class="{ active: open }">
       <FontAwesomeIcon icon="ellipsis-vertical" />
     </button>
     <div
-        class="dropdown faint-border"
+        class="desktop-only dropdown down faint-border"
         :class="{ hidden: !open }">
       <RowButton
           v-for="option in options"
@@ -94,8 +105,6 @@
     /* make it right-aligned */
     right: 0;
 
-    margin-top: 8px;
-
     background-color: var(--background-colour);
     padding-top: 10px;
     padding-bottom: 10px;
@@ -105,6 +114,16 @@
 
     /* the dropdown was rendering beneath the category row buttons on the custom-categories page; this was the quick fix */
     z-index: 40;
+  }
+
+  .down {
+    margin-top: 8px;
+  }
+
+  .up {
+    transform:
+      translateY(-100%) /* render above the button */
+      translateY(-8px); /* equivalent to the down dropdown's 8px margin */
   }
 
   .hidden {
