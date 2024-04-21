@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="top-bar">
+    <nav class="mobile-only top-bar">
       <ActionButton
           class="menu-button"
           :major="false"
@@ -38,21 +38,21 @@
         }">
       <slot name="pretitle" />
 
-      <header class="desktop-title-and-controls faint-border-bottom">
+      <header class="desktop-only desktop-title-and-controls faint-border-bottom">
         <slot name="title" />
         <div class="controls">
           <slot name="controls" />
         </div>
       </header>
 
-      <header class="mobile-title">
+      <header class="mobile-only mobile-title">
         <slot name="title" />
       </header>
 
       <slot />
     </main>
 
-    <div class="mobile-controls">
+    <div class="mobile-only mobile-controls">
       <div class="controls">
         <slot name="controls" />
       </div>
@@ -235,11 +235,6 @@
     }
   }
 
-  .mobile-title,
-  .mobile-controls {
-    display: none;
-  }
-
   .mobile-controls {
     /* position at bottom of screen */
     position: fixed;
@@ -250,17 +245,6 @@
     /* appearance */
     background-color: var(--background-colour);
     box-shadow: rgba(0, 0, 0, 0.15) 0px -1px 3px;
-  }
-
-  @media screen and (max-width: 960px) {
-    .desktop-title-and-controls {
-      display: none;
-    }
-
-    .mobile-title,
-    .mobile-controls {
-      display: block;
-    }
   }
 
   /* small screen layout */
@@ -301,11 +285,6 @@
 
   /* large screen layout */
   @media screen and (min-width: 960px) {
-    .top-bar {
-      /* hide top bar */
-      display: none;
-    }
-
     .side-bar {
       /* override .collapsed to make the side bar visible even if this.menuExpanded = false */
       display: flex;

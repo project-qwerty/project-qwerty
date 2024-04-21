@@ -110,12 +110,12 @@ button {
 
 @media screen and (max-width: 960px) {
   .desktop-only {
-    display: none;
+    display: none !important;
   }
 }
 
 @media screen and (min-width: 960px) {
   .mobile-only {
-    display: none;
+    display: none !important;
   }
 }

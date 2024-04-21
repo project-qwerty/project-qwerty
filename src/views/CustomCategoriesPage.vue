@@ -21,7 +21,7 @@
           @click="handleDropdownClick" />
     </template>
 
-    <div class="faint-border-bottom" />
+    <div class="mobile-only faint-border-bottom" />
 
     <RowButton
         v-for="(categoryName, index) in getCategories()"

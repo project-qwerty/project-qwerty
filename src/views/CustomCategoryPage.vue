@@ -33,7 +33,7 @@
     </template>
 
     <div class="faint-border-bottom">
-      <div class="faint-border-bottom" />
+      <div class="mobile-only faint-border-bottom" />
 
       <div
           v-for="(word, index) in wordValues"
