@@ -48,12 +48,12 @@ const settings = {
   assistanceLevel: {
     key: 'settings.assistanceLevel',
     parser: parseStoredStringCaps,
-    default: 'MAX',  // potential values: NONE, MIN, MAX
+    default: 'MAX', // potential values: NONE, MIN, MAX
   },
   wordDisplayCapitalization: {
     key: 'settings.wordDisplayCapitalization',
     parser: parseStoredStringCaps,
-    default: 'UPPERCASE',  // potential values: UPPPERCASE, LOWERCASE
+    default: 'UPPERCASE', // potential values: UPPPERCASE, LOWERCASE
   },
 };
 
@@ -199,7 +199,7 @@ function deleteCustomWord(categoryName, index) {
 }
 
 function exportCategoryToJson(categoryName) {
-  const category = getCustomCategory(categoryName);  // this can throw errors
+  const category = getCustomCategory(categoryName); // this can throw errors
   const data = {
     name: categoryName,
     words: category,
@@ -232,7 +232,7 @@ function importCategoryFromJson(stringData) {
     throw new Error('JSON data is invalid');
   }
 
-  createCustomCategory(data.name);  // this can throw errors
+  createCustomCategory(data.name); // this can throw errors
   for (let word of data.words) {
     addCustomWord(data.name, word);
   }

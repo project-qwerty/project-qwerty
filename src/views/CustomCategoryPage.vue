@@ -126,7 +126,7 @@
     },
     data() {
       return {
-        categoryName: null,  // should be set in created()
+        categoryName: null, // should be set in created()
 
         showRenameCategoryModal: false,
         showDeleteCategoryModal: false,
@@ -262,7 +262,7 @@
 <style scoped>
   .back-button {
     display: inline-block;
-    width: auto;  /* this keeps the button from taking up the whole width */
+    width: auto; /* this keeps the button from taking up the whole width */
 
     font-size: 24px;
 
