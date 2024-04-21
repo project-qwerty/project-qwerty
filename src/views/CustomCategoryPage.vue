@@ -6,29 +6,29 @@
         text="Back"
         @click="$router.back()" />
 
-    <header class="title-controls-header faint-border-bottom">
+    <template #title>
       <IconHeader
           icon="list"
           :icon-colour="Colours.stringToColour(categoryName)"
           :text="categoryName" />
+    </template>
 
-      <div class="controls">
-        <ActionButton
-            class="new-word-button"
-            icon="plus"
-            text="New word"
-            @click="clickAddWord" />
+    <template #controls>
+      <ActionButton
+          class="new-word-button"
+          icon="plus"
+          text="New word"
+          @click="clickAddWord" />
 
-        <DropdownList
-            class="options-menu"
-            :options="[
-              { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
-              { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
-              { label: 'Delete category', icon: 'trash-can', action: 'delete' },
-            ]"
-            @click="handleDropdownClick" />
-      </div>
-    </header>
+      <DropdownList
+          class="options-menu"
+          :options="[
+            { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
+            { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
+            { label: 'Delete category', icon: 'trash-can', action: 'delete' },
+          ]"
+          @click="handleDropdownClick" />
+    </template>
 
     <div class="faint-border-bottom">
       <div
@@ -245,13 +245,6 @@
 
     margin-top: 36px;
     padding-left: 0;
-  }
-
-  header {
-    background-color: var(--background-colour);
-
-    position: sticky;
-    top: 0;
   }
 
   /* this turns the final option (delete) red */

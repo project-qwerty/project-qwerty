@@ -1,19 +1,19 @@
 <template>
   <NavPage>
-    <header class="title-controls-header">
+    <template #title>
       <IconHeader
           icon-colour="var(--primary-colour)"
           text="Select category"
           :major="true" />
+    </template>
 
-      <div class="controls">
-        <ActionButton
-            class="start-button"
-            text="Start"
-            :enabled="anyCategoriesSelected()"
-            @click="$router.push('/practice')" />
-      </div>
-    </header>
+    <template #controls>
+      <ActionButton
+          class="start-button"
+          text="Start"
+          :enabled="anyCategoriesSelected()"
+          @click="$router.push('/practice')" />
+    </template>
 
     <IconHeader text="Built-in categories" />
 

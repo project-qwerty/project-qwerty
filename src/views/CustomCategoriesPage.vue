@@ -1,25 +1,25 @@
 <template>
   <NavPage>
-    <header class="title-controls-header">
+    <template #title>
       <IconHeader
           text="My categories"
           icon="pen"
           icon-colour="var(--primary-colour)"
           :major="true" />
+    </template>
 
-      <div class="controls">
-        <ActionButton
-            icon="plus"
-            text="New"
-            @click="showNewCategoryModal = true" />
+    <template #controls>
+      <ActionButton
+          icon="plus"
+          text="New"
+          @click="showNewCategoryModal = true" />
 
-        <DropdownList
-            :options="[
-              { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
-            ]"
-            @click="handleDropdownClick" />
-      </div>
-    </header>
+      <DropdownList
+          :options="[
+            { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
+          ]"
+          @click="handleDropdownClick" />
+    </template>
 
     <RowButton
         v-for="(categoryName, index) in getCategories()"

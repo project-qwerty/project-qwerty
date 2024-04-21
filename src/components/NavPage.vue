@@ -32,8 +32,23 @@
       </router-link>
     </nav>
     <main class="page">
+      <header class="desktop-title-and-controls">
+        <slot name="title" />
+        <div class="controls">
+          <slot name="controls" />
+        </div>
+      </header>
+
+      <!-- <header class="mobile-title">
+        <slot name="title" />
+      </header> -->
+
       <slot />
     </main>
+
+    <!-- <div class="mobile-controls">
+      <slot name="controls" />
+    </div> -->
   </div>
 </template>
 
@@ -160,6 +175,44 @@
     /* this prevents margin collapse between the page and the first element (eg. IconHeader) */
     padding-top: 1px;
   }
+
+  .desktop-title-and-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: var(--thin-gap);
+  }
+
+  .desktop-title-and-controls > .controls {
+    /* make the controls centered when below title */
+    align-self: center;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: var(--thin-gap);
+  }
+
+  .desktop-title-and-controls > .controls:has(*) {
+    /* add margin to controls only if there's something in there */
+    margin-top: 28px;
+    margin-bottom: 28px;
+  }
+
+  @media screen and (max-width: 640px) {
+    .desktop-title-and-controls {
+      flex-direction: column;
+      /* this unsets align-items because it will otherwise horizontally centre stuff which we don't want */
+      align-items: unset;
+    }
+  }
+
+  /* .mobile-controls {
+
+  } */
 
   /* small screen layout */
   @media screen and (max-width: 960px) {
