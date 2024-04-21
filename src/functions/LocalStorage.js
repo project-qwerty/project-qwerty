@@ -38,7 +38,7 @@ const settings = {
   wordDisplayTime: {
     key: 'settings.wordDisplayTime',
     parser: parseStoredInt,
-    default: 0,  // TODO: there may be a better way to store 'no timer' than zero
+    default: 0, // zero means no timer
   },
   wordsPerSession: {
     key: 'settings.wordsPerSession',
