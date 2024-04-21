@@ -1,10 +1,12 @@
 <template>
   <NavPage>
-    <RowButton
-        class="back-button"
-        icon="chevron-left"
-        text="Back"
-        @click="$router.back()" />
+    <template #pretitle>
+      <RowButton
+          class="back-button"
+          icon="chevron-left"
+          text="Back"
+          @click="$router.back()" />
+    </template>
 
     <template #title>
       <IconHeader

@@ -32,6 +32,8 @@
       </router-link>
     </nav>
     <main class="page">
+      <slot name="pretitle" />
+
       <header class="desktop-title-and-controls faint-border-bottom">
         <slot name="title" />
         <div class="controls">
