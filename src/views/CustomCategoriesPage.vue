@@ -11,7 +11,7 @@
     <template #controls>
       <ActionButton
           icon="plus"
-          text="New"
+          text="New category"
           @click="showNewCategoryModal = true" />
 
       <DropdownList
@@ -20,6 +20,8 @@
           ]"
           @click="handleDropdownClick" />
     </template>
+
+    <div class="faint-border-bottom" />
 
     <RowButton
         v-for="(categoryName, index) in getCategories()"

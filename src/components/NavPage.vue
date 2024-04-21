@@ -259,7 +259,7 @@
 
     .mobile-title,
     .mobile-controls {
-      display: unset;
+      display: block;
     }
   }
 
