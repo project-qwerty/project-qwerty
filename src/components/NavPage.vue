@@ -175,7 +175,7 @@
     padding-bottom: 6rem;
 
     /* this prevents margin collapse between the page and the first element (eg. IconHeader) */
-    padding-top: 1px;
+    padding-top: 0.01px;
   }
 
   .desktop-title-and-controls {
