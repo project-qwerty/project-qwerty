@@ -31,7 +31,11 @@
             @click="handleHideMenu" />
       </router-link>
     </nav>
-    <main class="page">
+    <main
+        class="page"
+        :class="{
+          'controls-bottom-margin': !!$slots.controls,
+        }">
       <slot name="pretitle" />
 
       <header class="desktop-title-and-controls faint-border-bottom">
@@ -178,6 +182,12 @@
 
     /* this prevents margin collapse between the page and the first element (eg. IconHeader) */
     padding-top: 0.01px;
+  }
+
+  @media screen and (max-width: 960px) {
+    .controls-bottom-margin {
+      margin-bottom: 120px;
+    }
   }
 
   .controls {
