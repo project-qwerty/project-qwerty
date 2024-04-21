@@ -1,36 +1,43 @@
 <template>
   <NavPage>
-    <RowButton
-        class="back-button"
-        icon="chevron-left"
-        text="Back"
-        @click="$router.back()" />
+    <template #pretitle>
+      <RowButton
+          class="back-button"
+          icon="chevron-left"
+          text="Back"
+          @click="$router.back()" />
+    </template>
 
-    <header class="title-controls-header faint-border-bottom">
+    <template #title>
       <IconHeader
           icon="list"
           :icon-colour="Colours.stringToColour(categoryName)"
           :text="categoryName" />
+    </template>
 
-      <div class="controls">
-        <ActionButton
-            class="new-word-button"
-            icon="plus"
-            text="New word"
-            @click="clickAddWord" />
+    <template #controls>
+      <div class="dropdown-balancer" />
 
-        <DropdownList
-            class="options-menu"
-            :options="[
-              { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
-              { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
-              { label: 'Delete category', icon: 'trash-can', action: 'delete' },
-            ]"
-            @click="handleDropdownClick" />
-      </div>
-    </header>
+      <ActionButton
+          class="new-word-button"
+          icon="plus"
+          text="New word"
+          :enabled="!alreadyHaveABlank"
+          @click="clickAddWord" />
+
+      <DropdownList
+          class="options-menu"
+          :options="[
+            { label: 'Rename category', icon: 'i-cursor', action: 'rename' },
+            { label: 'Export category', icon: 'right-from-bracket', action: 'export' },
+            { label: 'Delete category', icon: 'trash-can', action: 'delete' },
+          ]"
+          @click="handleDropdownClick" />
+    </template>
 
     <div class="faint-border-bottom">
+      <div class="mobile-only faint-border-bottom" />
+
       <div
           v-for="(word, index) in wordValues"
           :key="index"
@@ -39,7 +46,10 @@
         <input
             v-model="wordValues[index]"
             class="qwerty-text-input"
-            :class="{ invalid: !Validation.isValidWord(word) }"
+            :class="{
+              invalid: !Validation.isValidWord(word),
+              newest: index === wordValues.length - 1,
+            }"
             placeholder="new word"
             @input="updateWord(index)" />
 
@@ -56,7 +66,7 @@
       <h1>Rename category</h1>
       <input
           v-model="inputCategoryName"
-          class="qwerty-text-input modal-text-input"
+          class="qwerty-text-input modal-text-input rename-input"
           placeholder="New category name" />
       <div class="buttons-row">
         <ActionButton
@@ -94,6 +104,7 @@
   import LocalStorage from '@/functions/LocalStorage.js';
   import Colours from '@/functions/Colours.js';
   import Validation from '@/functions/Validation.js';
+  import Input from '@/functions/Input.js';
 
   import NavPage from '@/components/NavPage.vue';
   import RowButton from '@/components/RowButton.vue';
@@ -115,7 +126,7 @@
     },
     data() {
       return {
-        categoryName: null,  // should be set in created()
+        categoryName: null, // should be set in created()
 
         showRenameCategoryModal: false,
         showDeleteCategoryModal: false,
@@ -125,6 +136,15 @@
         inputCategoryName: null,
       };
     },
+    computed: {
+      alreadyHaveABlank() {
+        if (this.wordValues === null) {
+          return false; // this shouldn't be a case but seems to be during page load
+        }
+        return this.wordValues.some(word => word === '');
+      },
+    },
+
     watch: {
       categoryName() {
         this.loadWords();
@@ -133,6 +153,7 @@
     beforeCreate() {
       this.Colours = Colours;
       this.Validation = Validation;
+      this.Input = Input;
     },
     created() {
       this.categoryName = this.$route.params['name'];
@@ -160,6 +181,7 @@
       handleDropdownClick(operation) {
         if (operation === 'rename') {
           this.showRenameCategoryModal = true;
+          Input.focusInputByQuery('.rename-input');
         } else if (operation === 'export') {
           this.clickExportCategory();
         } else if (operation === 'delete') {
@@ -215,13 +237,14 @@
       },
       clickAddWord() {
         // we don't want the user to add more than one word at a time
-        const alreadyHaveABlank = this.wordValues.some(word => word === '');
-        if (alreadyHaveABlank) {
+        if (this.alreadyHaveABlank) {
           return;
         }
 
         LocalStorage.addCustomWord(this.categoryName, '');
         this.loadWords();
+
+        Input.focusInputByQuery('input.newest');
       },
       updateWord(index) {
         LocalStorage.editCustomWord(this.categoryName, index, this.wordValues[index]);
@@ -239,7 +262,7 @@
 <style scoped>
   .back-button {
     display: inline-block;
-    width: auto;  /* this keeps the button from taking up the whole width */
+    width: auto; /* this keeps the button from taking up the whole width */
 
     font-size: 24px;
 
@@ -247,11 +270,9 @@
     padding-left: 0;
   }
 
-  header {
-    background-color: var(--background-colour);
-
-    position: sticky;
-    top: 0;
+  .dropdown-balancer {
+    width: 56px;
+    height: 56px;
   }
 
   /* this turns the final option (delete) red */
@@ -294,11 +315,5 @@
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
-  }
-
-  @media screen and (max-width: 960px) {
-    header {
-      top: var(--nav-top-bar-height);
-    }
   }
 </style>

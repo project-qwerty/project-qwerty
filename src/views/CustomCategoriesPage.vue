@@ -1,25 +1,29 @@
 <template>
   <NavPage>
-    <header class="title-controls-header">
+    <template #title>
       <IconHeader
           text="My categories"
           icon="pen"
           icon-colour="var(--primary-colour)"
           :major="true" />
+    </template>
 
-      <div class="controls">
-        <ActionButton
-            icon="plus"
-            text="New"
-            @click="showNewCategoryModal = true" />
+    <template #controls>
+      <div class="dropdown-balancer" />
 
-        <DropdownList
-            :options="[
-              { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
-            ]"
-            @click="handleDropdownClick" />
-      </div>
-    </header>
+      <ActionButton
+          icon="plus"
+          text="New category"
+          @click="clickNewCategory" />
+
+      <DropdownList
+          :options="[
+            { label: 'Import category', icon: 'right-to-bracket', action: 'import' },
+          ]"
+          @click="handleDropdownClick" />
+    </template>
+
+    <div class="mobile-only faint-border-bottom" />
 
     <RowButton
         v-for="(categoryName, index) in getCategories()"
@@ -36,7 +40,7 @@
       <h1>Add category</h1>
       <input
           v-model="inputCategoryName"
-          class="qwerty-text-input"
+          class="qwerty-text-input new-category-input"
           placeholder="New category" />
       <div class="buttons-row">
         <ActionButton
@@ -59,6 +63,7 @@
   import LocalStorage from '@/functions/LocalStorage.js';
   import Colours from '@/functions/Colours.js';
   import Validation from '@/functions/Validation.js';
+  import Input from '@/functions/Input.js';
 
   import NavPage from '@/components/NavPage.vue';
   import FullscreenModal from '@/components/FullscreenModal.vue';
@@ -86,6 +91,7 @@
     beforeCreate() {
       this.Colours = Colours;
       this.Validation = Validation;
+      this.Input = Input;
     },
     methods: {
       getCategories() {
@@ -95,6 +101,10 @@
         if (operation === 'import') {
           this.clickImportCategory();
         }
+      },
+      clickNewCategory() {
+        this.showNewCategoryModal = true;
+        Input.focusInputByQuery('.new-category-input');
       },
       cleanUpCreateCategory() {
         this.showNewCategoryModal = false;
@@ -130,6 +140,11 @@
 </script>
 
 <style scoped>
+  .dropdown-balancer {
+    width: 56px;
+    height: 56px;
+  }
+
   .qwerty-text-input {
     width: 100%;
 

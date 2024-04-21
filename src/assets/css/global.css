@@ -108,35 +108,14 @@ button {
   border-right: solid 1px var(--faint-colour);
 }
 
-.title-controls-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  /* this keeps the usual IconHeader vertically centred when it lacks an icon */
-  align-items: center;
-
-  gap: var(--thin-gap);
+@media screen and (max-width: 960px) {
+  .desktop-only {
+    display: none !important;
+  }
 }
 
-.title-controls-header > .controls {
-  /* make the controls centered when below title */
-  align-self: center;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  gap: var(--thin-gap);
-
-  margin-top: 28px;
-  margin-bottom: 28px;
-}
-
-
-@media screen and (max-width: 640px) {
-  .title-controls-header {
-    flex-direction: column;
-    /* this unsets align-items because it will otherwise horizontally centre stuff which we don't want */
-    align-items: unset;
+@media screen and (min-width: 960px) {
+  .mobile-only {
+    display: none !important;
   }
 }

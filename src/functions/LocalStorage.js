@@ -38,7 +38,7 @@ const settings = {
   wordDisplayTime: {
     key: 'settings.wordDisplayTime',
     parser: parseStoredInt,
-    default: 0,  // TODO: there may be a better way to store 'no timer' than zero
+    default: 0, // zero means no timer
   },
   wordsPerSession: {
     key: 'settings.wordsPerSession',
@@ -48,12 +48,12 @@ const settings = {
   assistanceLevel: {
     key: 'settings.assistanceLevel',
     parser: parseStoredStringCaps,
-    default: 'MAX',  // potential values: NONE, MIN, MAX
+    default: 'MAX', // potential values: NONE, MIN, MAX
   },
   wordDisplayCapitalization: {
     key: 'settings.wordDisplayCapitalization',
     parser: parseStoredStringCaps,
-    default: 'UPPERCASE',  // potential values: UPPPERCASE, LOWERCASE
+    default: 'UPPERCASE', // potential values: UPPPERCASE, LOWERCASE
   },
 };
 
@@ -76,12 +76,12 @@ function setSetting(name, val) {
 
 // Custom categories handling
 
-// TODO: the order of categories isn't stable, that's not great
 function getCustomCategoryNames() {
   const customCategoryKeys = Object.keys(localStorage)
     .filter(key => key.startsWith('custom_categories.'));
   const customCategoryNames = customCategoryKeys
-    .map(key => key.replace(/^custom_categories\./, ''));
+    .map(key => key.replace(/^custom_categories\./, ''))
+    .sort((a, b) => a.localeCompare(b));
 
   return customCategoryNames;
 }
@@ -199,7 +199,7 @@ function deleteCustomWord(categoryName, index) {
 }
 
 function exportCategoryToJson(categoryName) {
-  const category = getCustomCategory(categoryName);  // this can throw errors
+  const category = getCustomCategory(categoryName); // this can throw errors
   const data = {
     name: categoryName,
     words: category,
@@ -232,7 +232,7 @@ function importCategoryFromJson(stringData) {
     throw new Error('JSON data is invalid');
   }
 
-  createCustomCategory(data.name);  // this can throw errors
+  createCustomCategory(data.name); // this can throw errors
   for (let word of data.words) {
     addCustomWord(data.name, word);
   }

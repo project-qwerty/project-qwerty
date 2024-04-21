@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="top-bar">
+    <nav class="mobile-only top-bar">
       <ActionButton
           class="menu-button"
           :major="false"
@@ -31,9 +31,32 @@
             @click="handleHideMenu" />
       </router-link>
     </nav>
-    <main class="page">
+    <main
+        class="page"
+        :class="{
+          'controls-bottom-margin': !!$slots.controls,
+        }">
+      <slot name="pretitle" />
+
+      <header class="desktop-only desktop-title-and-controls faint-border-bottom">
+        <slot name="title" />
+        <div class="controls">
+          <slot name="controls" />
+        </div>
+      </header>
+
+      <header class="mobile-only mobile-title">
+        <slot name="title" />
+      </header>
+
       <slot />
     </main>
+
+    <div class="mobile-only mobile-controls">
+      <div class="controls">
+        <slot name="controls" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -123,15 +146,6 @@
     background-color: var(--background-colour);
   }
 
-  .page {
-    padding-left: 3rem;
-    padding-right: 3rem;
-    padding-bottom: 6rem;
-
-    /* this prevents margin collapse between the page and the first element (eg. IconHeader) */
-    padding-top: 1px;
-  }
-
   .side-bar a {
     font-size: 20px;
 
@@ -161,8 +175,61 @@
     margin-left: var(--thin-gap);
   }
 
-  .toggle-icon {
-    padding: 0.5rem 1.5rem;
+  .page {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-bottom: 6rem;
+
+    /* this prevents margin collapse between the page and the first element (eg. IconHeader) */
+    padding-top: 0.01px;
+  }
+
+  @media screen and (max-width: 960px) {
+    .controls-bottom-margin {
+      margin-bottom: 120px;
+    }
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: var(--thin-gap);
+  }
+
+  .controls:has(*) {
+    /* add margin to controls only if there's something in there */
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .desktop-title-and-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: var(--thin-gap);
+
+    /* make sticky above page */
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    background-color: var(--background-colour);
+  }
+
+  .mobile-controls {
+    /* position at bottom of screen */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    /* appearance */
+    background-color: var(--background-colour);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px -1px 3px;
   }
 
   /* small screen layout */
@@ -203,11 +270,6 @@
 
   /* large screen layout */
   @media screen and (min-width: 960px) {
-    .top-bar {
-      /* hide top bar */
-      display: none;
-    }
-
     .side-bar {
       /* override .collapsed to make the side bar visible even if this.menuExpanded = false */
       display: flex;
