@@ -3,6 +3,7 @@ export default {
     'Made page headers with controls stick to the top of the screen on large devices',
     'Moved controls to the bottom of the screen on mobile',
     'Made the New Category, Rename Category, and New Word buttons automatically focus their relevant text fields',
+    'Added alphabetical sorting to the custom categories',
   ],
   '3rd April 2024': [
     'Changed the set of colours used for the category icons',
