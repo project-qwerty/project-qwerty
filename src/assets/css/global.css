@@ -107,3 +107,15 @@ button {
 .faint-border-right {
   border-right: solid 1px var(--faint-colour);
 }
+
+@media screen and (max-width: 960px) {
+  .desktop-only {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .mobile-only {
+    display: none;
+  }
+}
