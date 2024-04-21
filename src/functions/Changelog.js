@@ -1,4 +1,8 @@
 export default {
+  'TODO': [
+    'Made page headers with controls stick to the top of the screen',
+    'Moved controls to the bottom of the screen on mobile',
+  ],
   '3rd April 2024': [
     'Changed the set of colours used for the category icons',
   ],
