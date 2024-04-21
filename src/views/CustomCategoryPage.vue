@@ -46,7 +46,10 @@
         <input
             v-model="wordValues[index]"
             class="qwerty-text-input"
-            :class="{ invalid: !Validation.isValidWord(word) }"
+            :class="{
+              invalid: !Validation.isValidWord(word),
+              newest: index === wordValues.length - 1,
+            }"
             placeholder="new word"
             @input="updateWord(index)" />
 
@@ -234,6 +237,14 @@
 
         LocalStorage.addCustomWord(this.categoryName, '');
         this.loadWords();
+
+        // focus the new input
+        // timeout required to allow the DOM to update the `newest` class
+        // even 1ms seemed to be enough so 10ms should be plenty
+        setTimeout(() => {
+          const newInput = document.querySelector('input.newest');
+          newInput.focus();
+        }, 10);
       },
       updateWord(index) {
         LocalStorage.editCustomWord(this.categoryName, index, this.wordValues[index]);
