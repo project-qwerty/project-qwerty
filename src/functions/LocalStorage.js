@@ -76,12 +76,12 @@ function setSetting(name, val) {
 
 // Custom categories handling
 
-// TODO: the order of categories isn't stable, that's not great
 function getCustomCategoryNames() {
   const customCategoryKeys = Object.keys(localStorage)
     .filter(key => key.startsWith('custom_categories.'));
   const customCategoryNames = customCategoryKeys
-    .map(key => key.replace(/^custom_categories\./, ''));
+    .map(key => key.replace(/^custom_categories\./, ''))
+    .sort((a, b) => a.localeCompare(b));
 
   return customCategoryNames;
 }
