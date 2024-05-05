@@ -572,7 +572,10 @@
   /* keyboard */
 
   .keyboard-wrapper {
-    padding: 40px;
+    --keyboard-padding: 40px;
+    padding: var(--keyboard-padding);
+    /* prevent iOS gesture bar rendering over keyboard */
+    padding-bottom: calc(var(--keyboard-padding) + env(safe-area-inset-bottom));
 
     background-color: var(--faint-colour);
   }
@@ -654,7 +657,7 @@
 
   @media screen and (max-width: 960px) {
     .keyboard-wrapper {
-      padding: var(--thin-gap);
+      --keyboard-padding: var(--thin-gap);
     }
 
     .keyboard-wrapper.alpha { height: 220px; }
