@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="omni-wrapper">
     <nav class="mobile-only top-bar">
       <ActionButton
           class="menu-button"
@@ -97,6 +97,10 @@
 
 
 <style scoped>
+  .omni-wrapper {
+    padding-bottom: 1px;
+  }
+
   .top-bar {
     /* position along top of screen */
     position: fixed;
