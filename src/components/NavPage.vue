@@ -179,9 +179,6 @@
     padding-left: 3rem;
     padding-right: 3rem;
     padding-bottom: 6rem;
-
-    /* this prevents margin collapse between the page and the first element (eg. IconHeader) */
-    padding-top: 0.01px;
   }
 
   @media screen and (max-width: 960px) {
@@ -243,7 +240,8 @@
 
     .page {
       /* set page offsets to match top/side bar configuration */
-      margin-top: var(--nav-top-bar-height);
+      /* this is padding instead of margin to prevent margin collapse */
+      padding-top: var(--nav-top-bar-height);
       margin-left: 0;
 
       /* reduce page margins */
