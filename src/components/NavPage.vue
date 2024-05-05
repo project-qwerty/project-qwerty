@@ -269,7 +269,7 @@
   }
 
   /* large screen layout */
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 961px) {
     .side-bar {
       /* override .collapsed to make the side bar visible even if this.menuExpanded = false */
       display: flex;
