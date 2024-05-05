@@ -493,7 +493,7 @@
 
     border-bottom: solid 2px var(--faint-colour);
 
-    padding: 16px 24px;
+    padding: 12px 24px;
 
     font-size: 24px;
   }
@@ -514,7 +514,7 @@
     background-color: var(--faint-colour);
 
     border-radius: 0.5rem;
-    padding: 1rem;
+    padding: 0.75rem;
   }
 
   /* readout (word displays) */
@@ -527,7 +527,7 @@
   .readout .target {
     color: var(--primary-colour);
 
-    font-size: 48px;
+    font-size: 36px;
 
     margin-bottom: 10px;
   }
@@ -551,7 +551,7 @@
 
   /* this contains the user-typed text */
   .readout .input-row .input {
-    font-size: 96px;
+    font-size: 72px;
 
     /* add the underline */
     border-bottom: 1px solid var(--faint-colour);
