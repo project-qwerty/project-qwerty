@@ -3,7 +3,7 @@
       :style="colourStyle()"
       :disabled="!enabled"
       @click="onClick">
-    <FontAwesomeIcon v-if="icon" :icon="icon" />
+    <span><FontAwesomeIcon v-if="icon" :icon="icon" /></span>
     <span class="text">{{ text }}</span>
   </button>
 </template>
