@@ -1,4 +1,7 @@
 export default {
+  '13th June 2024': [
+    'Added more words to the built-in categories',
+  ],
   '21st April 2024': [
     'Made page headers with controls stick to the top of the screen on large devices',
     'Moved controls to the bottom of the screen on mobile',
