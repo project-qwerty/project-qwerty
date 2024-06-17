@@ -50,14 +50,14 @@
     </CollapsibleSection>
 
     <CollapsibleSection summary="What is ‘lucky dip’?" class="faint-border-bottom">
-      The lucky dip category contains the <strong>words</strong> from <strong>all</strong> of the other categories. This is perfect for when you want to practise words from <strong>multiple</strong> categories at once.
+      Lucky dip contains <strong>some words</strong> from <strong>all</strong> of the other categories. This is perfect for when you want to practise words from <strong>multiple</strong> categories at once.
     </CollapsibleSection>
 
     <CollapsibleSection summary="How complex is Project QWERTY?" class="faint-border-bottom">
-      Project QWERTY focuses on practising <strong>functional</strong> words and sentences. Practice is <strong>not</strong> graded based on <strong>complexity</strong>. We suggest <strong>consulting your speech pathologist</strong> to ensure the settings are right for you.
+      Project QWERTY focuses on practising <strong>functional</strong> words and sentences. Practice is <strong>not</strong> graded based on <strong>how hard it is</strong>. <strong>Speak to your speech pathologist</strong> to ensure the settings are right for you.
 
       <!-- TODO: include when words/sentences feature is done -->
-      <!-- The pre-programmed sentences are between <strong>2-10 words</strong> in length. Most of the sentences score <strong>below</strong> a Flesch-Kincaid Grade Level <strong>7, however, some are higher than this. If you are <strong>having difficulty</strong> with the pre-programmed sentences, <strong>consult your speech pathologist</strong>. -->
+      <!-- The included sentences are <strong>2-10 words</strong> in length. Most of the sentences are graded as <strong>easy to read</strong>, however, some are more difficult. If you are <strong>having difficulty</strong> with the sentences, <strong>speak to your speech pathologist</strong>. -->
     </CollapsibleSection>
 
     <CollapsibleSection summary="Who created Project QWERTY?" class="faint-border-bottom">
@@ -70,8 +70,8 @@
         <li>Grace Schofield, Speech Pathologist, Monash Health</li>
         <li>Dr Abby Foster, Allied Health Research Advisor, Monash Health</li>
         <li>Dr Caroline Baker, Research and Clinical Practice Lead, Monash Health</li>
-        <li>Dr Ciara Shiggins, Post Doctoral Research Fellow, University of Queensland</li>
-        <li>Kim Barron, person with a lived experience of aphasia</li>
+        <li>Dr Ciara Shiggins, Post Doctoral Research Fellow, The University of Queensland</li>
+        <li>Kim Barron, person with lived experience of aphasia</li>
         <li>William Holt, Software Engineer</li>
         <li>Tim Harris, Software Engineer</li>
         <li>Rob Angelone, Product Designer</li>
@@ -80,17 +80,17 @@
       <p>Project QWERTY Consultants:</p>
 
       <ul>
-        <li>Chris Borek, person with a lived experience of aphasia</li>
-        <li>Prajod Chatham Vally, person with a lived experience of aphasia</li>
-        <li>Christine Blick, person with a lived experience of aphasia</li>
+        <li>Chris Borek, person with lived experience of aphasia</li>
+        <li>Prajod Chathamvally, person with lived experience of aphasia</li>
+        <li>Christine Blick, person with lived experience of aphasia</li>
         <li>Amy Leong, Speech Pathologist, Monash Health</li>
       </ul>
 
       <p>Special thanks:</p>
 
       <ul>
-        <li>Benjamin Smith, Monash Health</li>
-        <li>Eliza Cripps, Monash University HISS participant</li>
+        <li>Benjamin Smith, Juno Healthcare</li>
+        <li>Eliza Cripps, Monash University Healthcare Innovation Summer Scholarship participant</li>
       </ul>
     </CollapsibleSection>
 
