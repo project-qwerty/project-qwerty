@@ -1,4 +1,7 @@
 export default {
+  '25th June 2024': [
+    'Added the Digits built-in category',
+  ],
   '13th June 2024': [
     'Added more words to the built-in categories',
   ],
