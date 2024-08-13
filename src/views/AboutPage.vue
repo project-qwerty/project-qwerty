@@ -50,13 +50,13 @@
     </CollapsibleSection>
 
     <CollapsibleSection summary="What is ‘lucky dip’?" class="faint-border-bottom">
-      Lucky dip contains <strong>some words and sentences</strong> from <strong>all</strong> of the other categories. This is perfect for when you want to practise words and sentences from <strong>multiple</strong> categories at once.
+      <p>Lucky dip contains <strong>some words and sentences</strong> from <strong>all</strong> of the other categories. This is perfect for when you want to practise words and sentences from <strong>multiple</strong> categories at once.</p>
     </CollapsibleSection>
 
     <CollapsibleSection summary="How complex is Project QWERTY?" class="faint-border-bottom">
-      Project QWERTY focuses on practising <strong>functional</strong> words and sentences. Practice is <strong>not</strong> graded based on <strong>how hard it is</strong>. <strong>Speak to your speech pathologist</strong> to ensure the settings are right for you.
+      <p>Project QWERTY focuses on practising <strong>functional</strong> words and sentences. Practice is <strong>not</strong> graded based on <strong>how hard it is</strong>. <strong>Speak to your speech pathologist</strong> to ensure the settings are right for you.</p>
 
-      The included sentences are <strong>2-10 words</strong> in length. Most of the sentences are graded as <strong>easy to read</strong>, however, some are more difficult. If you are <strong>having difficulty</strong> with the sentences, <strong>speak to your speech pathologist</strong>.
+      <p>The included sentences are <strong>2-10 words</strong> in length. Most of the sentences are graded as <strong>easy to read</strong>, however, some are more difficult. If you are <strong>having difficulty</strong> with the sentences, <strong>speak to your speech pathologist</strong>.</p>
     </CollapsibleSection>
 
     <CollapsibleSection summary="Who created Project QWERTY?" class="faint-border-bottom">
