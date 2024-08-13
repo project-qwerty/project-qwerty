@@ -11,7 +11,7 @@
     <IconHeader :major="true" text="FAQs" icon="circle-question" icon-colour="var(--primary-colour)" />
 
     <CollapsibleSection summary="What is Project QWERTY?" class="faint-border-bottom">
-      <p>Project QWERTY is a free therapy website for people with aphasia. It targets <strong>spelling</strong> and <strong>typing</strong> with the option of accessing everyday words via the pre-programmed categories or by creating custom categories.</p>
+      <p>Project QWERTY is a free therapy website for people with aphasia. It targets <strong>spelling</strong> and <strong>typing</strong> with the option of accessing everyday words and sentences via the pre-programmed categories or by creating custom categories.</p>
     </CollapsibleSection>
 
     <CollapsibleSection summary="What are custom categories?" class="faint-border-bottom">
@@ -50,14 +50,13 @@
     </CollapsibleSection>
 
     <CollapsibleSection summary="What is ‘lucky dip’?" class="faint-border-bottom">
-      Lucky dip contains <strong>some words</strong> from <strong>all</strong> of the other categories. This is perfect for when you want to practise words from <strong>multiple</strong> categories at once.
+      Lucky dip contains <strong>some words and sentences</strong> from <strong>all</strong> of the other categories. This is perfect for when you want to practise words and sentences from <strong>multiple</strong> categories at once.
     </CollapsibleSection>
 
     <CollapsibleSection summary="How complex is Project QWERTY?" class="faint-border-bottom">
       Project QWERTY focuses on practising <strong>functional</strong> words and sentences. Practice is <strong>not</strong> graded based on <strong>how hard it is</strong>. <strong>Speak to your speech pathologist</strong> to ensure the settings are right for you.
 
-      <!-- TODO: include when words/sentences feature is done -->
-      <!-- The included sentences are <strong>2-10 words</strong> in length. Most of the sentences are graded as <strong>easy to read</strong>, however, some are more difficult. If you are <strong>having difficulty</strong> with the sentences, <strong>speak to your speech pathologist</strong>. -->
+      The included sentences are <strong>2-10 words</strong> in length. Most of the sentences are graded as <strong>easy to read</strong>, however, some are more difficult. If you are <strong>having difficulty</strong> with the sentences, <strong>speak to your speech pathologist</strong>.
     </CollapsibleSection>
 
     <CollapsibleSection summary="Who created Project QWERTY?" class="faint-border-bottom">

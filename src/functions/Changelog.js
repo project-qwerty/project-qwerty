@@ -1,5 +1,6 @@
 export default {
   '13th August 2024': [
+    'Added sentences to default categories, with a setting to switch between practicing words, sentences, or both',
     'Reduced the amount of numbers in the Digits category to balance them out in the Lucky Dip category',
     'Renamed the "built-in" categories to "default" categories',
   ],

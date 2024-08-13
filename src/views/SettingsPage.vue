@@ -2,9 +2,9 @@
   <NavPage>
     <IconHeader :major="true" text="Settings" icon="gear" icon-colour="var(--primary-colour)" />
 
-    <IconHeader text="Words" icon="list" />
+    <IconHeader text="Trials" icon="list" />
     <div class="control-row faint-border-bottom">
-      <p>How many <strong>words</strong> would you like to practice?</p>
+      <p>How many <strong>words and sentences</strong> would you like to practice?</p>
 
       <div class="control">
         <ShowCurrentSelector
@@ -27,7 +27,7 @@
 
     <IconHeader text="Timer" icon="stopwatch" />
     <div class="control-row faint-border-bottom">
-      <p>For how many <strong>seconds</strong> would you like the word to be shown?</p>
+      <p>For how many <strong>seconds</strong> would you like each word or sentence to be shown?</p>
 
       <div class="control">
         <ShowCurrentSelector
@@ -69,7 +69,7 @@
       <div>
         <p>Would you like to practise <strong>words</strong>, <strong>sentences</strong>, or a <strong>mix of both</strong>?</p>
 
-        <p>This selection applies to the <strong>default categories only</strong>. Custom categories will include <strong>all of their words</strong> regardless of this setting.</p>
+        <p>This selection applies to the <strong>default categories only</strong>. Custom categories will include <strong>all of their words and sentences</strong> regardless of this setting.</p>
       </div>
 
       <div class="control">
@@ -86,7 +86,7 @@
 
     <IconHeader text="Repetitions" icon="repeat" />
     <div class="control-row faint-border-bottom">
-      <p><strong>How many times</strong> would you like to practice each word?</p>
+      <p><strong>How many times</strong> would you like to practice each word or sentence?</p>
 
       <div class="control">
         <ShowAllSelector
