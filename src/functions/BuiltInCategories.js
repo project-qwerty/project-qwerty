@@ -1,4 +1,4 @@
-const builtInCategories = {
+const builtInCategoriesWords = {
   'Frequent Words': {
     icon: 'star',
     words: ['a','and','be','i','in','is','it','of','that','the','to','was','all','as','are','at','but','for','have','had','he','her','his','not','on','one','said','so','they','with','you','and','by','do','go','if','me','my','no','or','up','big','can','did','get','has','him','new','now','off','old','our','out','see','she','two','who','back','been','come','down','from','into','just','like','made','much','over','then','this','well','went','when','call','come','here','make','must','only','some','then','where','what','will','your','about','before','could','first','look','more','other','right','then','their','want','which'],
@@ -37,13 +37,64 @@ const builtInCategories = {
   },
 };
 
-const allWords = Object.values(builtInCategories).map(category => category.words).flat(Infinity);
+const builtInCategoriesSentences = {
+  // TODO
+  Placeholder: {
+    icon: 'star',
+    words: ['placeholder'],
+  },
+};
+
+function upsertCategory(categories, categoryName, category) {
+
+  if (!(categoryName in categories)) {
+    // just insert the category
+    categories[categoryName] = category;
+  } else {
+    // add the category's words to the existing one
+    categories[categoryName].words = categories[categoryName].words.concat(category.words);
+  }
+}
+
+const builtInCategoriesBoth = {};
+for (const categoryName of Object.keys(builtInCategoriesWords)) {
+  upsertCategory(builtInCategoriesBoth, categoryName, builtInCategoriesWords[categoryName]);
+}
+for (const categoryName of Object.keys(builtInCategoriesSentences)) {
+  upsertCategory(builtInCategoriesBoth, categoryName, builtInCategoriesSentences[categoryName]);
+}
+
+
+const allWords = Object.values(builtInCategoriesWords).map(category => category.words).flat(Infinity);
 const uniqueWords = [...new Set(allWords)];
 
+const allSentences = Object.values(builtInCategoriesSentences).map(category => category.words).flat(Infinity);
+const uniqueSentences = [...new Set(allSentences)];
+
+const allBoth = Object.values(builtInCategoriesBoth).map(category => category.words).flat(Infinity);
+const uniqueBoth = [...new Set(allBoth)];
+
+
 export default {
-  'Lucky Dip': {
-    icon: 'gift',
-    words: uniqueWords,
+  WORDS: {
+    'Lucky Dip': {
+      icon: 'gift',
+      words: uniqueWords,
+    },
+    ...builtInCategoriesWords,
   },
-  ...builtInCategories,
+  SENTENCES: {
+    'Lucky Dip': {
+      icon: 'gift',
+      words: uniqueSentences,
+    },
+    ...builtInCategoriesSentences,
+  },
+  BOTH: {
+    'Lucky Dip': {
+      icon: 'gift',
+      words: uniqueBoth,
+    },
+    ...builtInCategoriesBoth,
+  },
 };

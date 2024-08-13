@@ -19,11 +19,11 @@
 
     <div class="tiles">
       <ToggleTile
-          v-for="(categoryName, index) in builtInCategories"
+          v-for="(categoryName, index) in Object.keys(builtInCategories)"
           :key="index"
           class="tile"
           :text="categoryName"
-          :icon="BuiltInCategories[categoryName].icon"
+          :icon="builtInCategories[categoryName].icon"
           :colour="Colours.indexToColour(index)"
           :enabled="builtInSelected.includes(categoryName)"
           @update="builtInCategoryClicked($event)" />
@@ -82,11 +82,11 @@
         return this.builtInSelected.length + this.customSelected.length > 0;
       },
       loadCategories() {
-        this.builtInCategories = Object.keys(this.BuiltInCategories);
+        this.builtInCategories = this.BuiltInCategories[LocalStorage.getSetting('wordsSentences')];
         this.customCategories = LocalStorage.getUsableCustomCategoryNames();
       },
       loadSelected() {
-        this.builtInSelected = LocalStorage.getSelectedBuiltInCategoryNames();
+        this.builtInSelected = LocalStorage.getSelectedBuiltInCategoryNames(LocalStorage.getSetting('wordsSentences'));
         this.customSelected = LocalStorage.getSelectedCustomCategoryNames();
       },
       loadEverything() {

@@ -316,9 +316,9 @@ export default {
   exportCategoryToJson: exportCategoryToJson,
   importCategoryFromJson: importCategoryFromJson,
 
-  getSelectedBuiltInCategoryNames: function() {
+  getSelectedBuiltInCategoryNames: function(termType) {
     // delete any selected categories that don't exist (any more)
-    const availableCategories = Object.keys(BuiltInCategories);
+    const availableCategories = Object.keys(BuiltInCategories[termType]);
     const selectedCategories = getSelectedCategoryNames('builtin');
     const deadCategories = selectedCategories.filter(selectedCategory => !availableCategories.includes(selectedCategory));
     for (let categoryName of deadCategories) {

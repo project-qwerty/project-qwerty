@@ -313,10 +313,12 @@
       // load words
       this.words = [];
 
-      const builtInSelected = LocalStorage.getSelectedBuiltInCategoryNames();
+      const termType = LocalStorage.getSetting('wordsSentences');
+      const builtInSelected = LocalStorage.getSelectedBuiltInCategoryNames(termType);
+      const builtInCategories = BuiltInCategories[termType];
 
       for (const categoryName of builtInSelected) {
-        const words = BuiltInCategories[categoryName].words;
+        const words = builtInCategories[categoryName].words;
         this.words = this.words.concat(words);
       }
 
@@ -330,8 +332,8 @@
       // if there's nothing selected and the user navigates directly to /practice (ergo there are no words to practice),
       // just use all of the built in lists
       if (this.words.length === 0) {
-        for (const categoryName in BuiltInCategories) {
-          const words = BuiltInCategories[categoryName].words;
+        for (const categoryName in builtInCategories) {
+          const words = builtInCategories[categoryName].words;
           this.words = this.words.concat(words);
         }
       }
