@@ -71,7 +71,10 @@ const builtInCategoriesSentences = {
 function upsertCategory(categories, categoryName, category) {
   if (!(categoryName in categories)) {
     // just insert the category
-    categories[categoryName] = category;
+    categories[categoryName] = {
+      icon: category.icon,
+      words: [...category.words],
+    };
   } else {
     // add the category's words to the existing one
     categories[categoryName].words = categories[categoryName].words.concat(category.words);
