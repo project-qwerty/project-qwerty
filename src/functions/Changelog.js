@@ -1,4 +1,7 @@
 export default {
+  '13th August 2024': [
+    'Renamed the "built-in" categories to "default" categories',
+  ],
   '25th June 2024': [
     'Added the Digits built-in category',
   ],

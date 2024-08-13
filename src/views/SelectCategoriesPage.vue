@@ -15,7 +15,7 @@
           @click="$router.push('/practice')" />
     </template>
 
-    <IconHeader text="Built-in categories" />
+    <IconHeader text="Default categories" />
 
     <div class="tiles">
       <ToggleTile
