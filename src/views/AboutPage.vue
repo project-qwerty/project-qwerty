@@ -81,7 +81,7 @@
 
       <ul>
         <li>Chris Borek, person with lived experience of aphasia</li>
-        <li>Prajod Chathamvally, person with lived experience of aphasia</li>
+        <li>Prajod and Vidhu Chathamvally, persons with lived experience of aphasia</li>
         <li>Christine Blick, person with lived experience of aphasia</li>
         <li>Amy Leong, Speech Pathologist, Monash Health</li>
       </ul>
