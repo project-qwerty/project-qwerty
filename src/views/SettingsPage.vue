@@ -64,6 +64,26 @@
       </div>
     </div>
 
+    <IconHeader text="Words or sentences" icon="comments" />
+    <div class="control-row faint-border-bottom">
+      <div>
+        <p>Would you like to practise <strong>words</strong>, <strong>sentences</strong>, or a <strong>mix of both</strong>?</p>
+
+        <p>This selection applies to the <strong>default categories only</strong>. Custom categories will include <strong>all of their words</strong> regardless of this setting.</p>
+      </div>
+
+      <div class="control">
+        <ShowAllSelector
+            :options="[
+              { label: 'Words', val: 'WORDS', },
+              { label: 'Sentences', val: 'SENTENCES', },
+              { label: 'Words and sentences', val: 'BOTH', },
+            ]"
+            :active-value="wordsSentences"
+            @update="wordsSentences = $event" />
+      </div>
+    </div>
+
     <IconHeader text="Repetitions" icon="repeat" />
     <div class="control-row faint-border-bottom">
       <p><strong>How many times</strong> would you like to practice each word?</p>
@@ -119,6 +139,7 @@
         assistanceLevel: null,
         wordRepetitions: null,
         wordDisplayCapitalization: null,
+        wordsSentences: null,
 
         assistanceLevelDescriptions: {
           'MAX': 'Maximum: The next letter will always be highlighted.',
@@ -144,6 +165,9 @@
       wordDisplayCapitalization: function(val) {
         LocalStorage.setSetting('wordDisplayCapitalization', val);
       },
+      wordsSentences: function(val) {
+        LocalStorage.setSetting('wordsSentences', val);
+      },
     },
     created() {
       this.wordDisplayTime = LocalStorage.getSetting('wordDisplayTime');
@@ -151,6 +175,7 @@
       this.assistanceLevel = LocalStorage.getSetting('assistanceLevel');
       this.wordRepetitions = LocalStorage.getSetting('wordRepetitions');
       this.wordDisplayCapitalization = LocalStorage.getSetting('wordDisplayCapitalization');
+      this.wordsSentences = LocalStorage.getSetting('wordsSentences');
     },
   };
 </script>
@@ -169,7 +194,7 @@
     flex-shrink: 0;
     align-self: flex-end;
 
-    width: 300px;
+    width: 350px;
     padding-left: 20px;
   }
 

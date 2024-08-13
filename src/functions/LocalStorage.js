@@ -55,6 +55,11 @@ const settings = {
     parser: parseStoredStringCaps,
     default: 'UPPERCASE', // potential values: UPPPERCASE, LOWERCASE
   },
+  wordsSentences: {
+    key: 'settings.wordsSentences',
+    parser: parseStoredStringCaps,
+    default: 'WORDS', // potential values: WORDS, SENTENCES, BOTH
+  },
 };
 
 function getSetting(name) {
