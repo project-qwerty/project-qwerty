@@ -20,7 +20,7 @@ if (window.location.host === 'projectqwerty.com') {
     Vue,
     dsn: 'https://beaa4ea7e54e4c7a9fc7d944551fd850@o4505056613564416.ingest.sentry.io/4505056616054784',
     integrations: [
-      new Sentry.BrowserTracing({
+      Sentry.browserTracingIntegration({
         routingInstrumentation: Sentry.vueRouterInstrumentation(router),
         tracePropagationTargets: ['projectqwerty.com', /^\//],
       }),
