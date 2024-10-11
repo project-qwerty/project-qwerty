@@ -20,11 +20,9 @@ if (window.location.host === 'projectqwerty.com') {
     Vue,
     dsn: 'https://beaa4ea7e54e4c7a9fc7d944551fd850@o4505056613564416.ingest.sentry.io/4505056616054784',
     integrations: [
-      Sentry.browserTracingIntegration({
-        routingInstrumentation: Sentry.vueRouterInstrumentation(router),
-        tracePropagationTargets: ['projectqwerty.com', /^\//],
-      }),
+      Sentry.browserTracingIntegration({ router }),
     ],
+    tracePropagationTargets: ['projectqwerty.com', /^\//],
     // Set tracesSampleRate to 1.0 to capture 100%
     // of transactions for performance monitoring.
     // We recommend adjusting this value in production
